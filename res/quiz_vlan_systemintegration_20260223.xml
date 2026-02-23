@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ================================================================
+     Thema      : VLANs (Virtual Local Area Networks)
+     Zielgruppe : Fachinformatiker Systemintegration
+     Fragen     : 5  (ddmatch | ddwtos | multichoice | cloze | multichoice)
+     Symbole    : Cisco Standard-Symbole (Router, Switch, PC/Workstation)
+     Erstellt   : 2026-02-23
+     ================================================================ -->
+
+
+<!-- ==================== FRAGE 1: ddmatch (leicht) ==================== -->
+<!-- Cisco-Netzwerksymbole den richtigen Begriffen zuordnen              -->
+
+  <question type="ddmatch">
+    <name>
+      <text>VLANs – Cisco-Symbole zuordnen (leicht)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie jedem nummerierten Symbol im Netzdiagramm den richtigen Begriff zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="195"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <!-- Cisco Router – aus symbols/cisco/router.svg (viewBox 0 0 60 41) -->
+    <symbol id="rtr1" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" stroke="none" fill="#fff"/>
+    </symbol>
+    <!-- Cisco L2-Switch – aus symbols/cisco/switch.svg (viewBox 0 0 77 39) -->
+    <symbol id="sw1" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <!-- Cisco PC/Workstation – aus symbols/cisco/pc.svg (viewBox 0 0 59 53) -->
+    <symbol id="pc1" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+
+  <!-- ① Router -->
+  <text x="10" y="54" font-size="14" font-weight="bold" fill="#c00">①</text>
+  <line x1="26" y1="51" x2="55" y2="47" stroke="#c00" stroke-width="1" stroke-dasharray="4,3"/>
+  <use href="#rtr1" x="57" y="27" width="60" height="41"/>
+  <text x="84" y="92" text-anchor="middle" font-size="11" fill="#333">R1</text>
+
+  <!-- ② Switch -->
+  <text x="244" y="54" font-size="14" font-weight="bold" fill="#c00">②</text>
+  <line x1="260" y1="51" x2="270" y2="51" stroke="#c00" stroke-width="1" stroke-dasharray="4,3"/>
+  <use href="#sw1" x="272" y="32" width="77" height="39"/>
+  <text x="312" y="90" text-anchor="middle" font-size="11" fill="#333">SW1</text>
+
+  <!-- ③ Trunk-Link (Doppellinie) -->
+  <text x="10" y="148" font-size="14" font-weight="bold" fill="#c00">③</text>
+  <line x1="26" y1="145" x2="50" y2="145" stroke="#c00" stroke-width="1" stroke-dasharray="4,3"/>
+  <line x1="52" y1="141" x2="215" y2="141" stroke="#1a5276" stroke-width="2"/>
+  <line x1="52" y1="150" x2="215" y2="150" stroke="#1a5276" stroke-width="2"/>
+
+  <!-- ④ PC -->
+  <text x="244" y="140" font-size="14" font-weight="bold" fill="#c00">④</text>
+  <line x1="260" y1="137" x2="270" y2="137" stroke="#c00" stroke-width="1" stroke-dasharray="4,3"/>
+  <use href="#pc1" x="272" y="118" width="55" height="49"/>
+  <text x="297" y="184" text-anchor="middle" font-size="11" fill="#333">PC1</text>
+</svg>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>① Router</strong>: Das Cisco-Router-Symbol ist ein Kreis mit vier Richtungspfeilen.
+      Im VLAN-Kontext übernimmt der Router das Inter-VLAN-Routing.</li>
+  <li><strong>② Layer-2-Switch</strong>: Rechteck mit Port-Kerben oben und gekreuzten Pfeilen.
+      Der Switch leitet Frames anhand der MAC-Adresse und VLAN-Zuweisung weiter.</li>
+  <li><strong>③ Trunk-Link</strong>: Zwei parallele Linien symbolisieren eine Trunk-Verbindung
+      nach IEEE 802.1Q, über die mehrere VLANs gleichzeitig transportiert werden.</li>
+  <li><strong>④ PC (Workstation)</strong>: Monitor mit Bildschirm, Standfuß und Sockel –
+      bildet ein Endgerät ab, das einem Access-Port und damit einem VLAN zugeordnet ist.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Richtig!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+
+    <subquestion format="html">
+      <text><![CDATA[<p>① – Kreis mit vier Richtungspfeilen</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Router</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>② – Rechteck mit Port-Kerben und gekreuzten Pfeilen</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Layer-2-Switch</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>③ – Zwei parallele Linien</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Trunk-Link</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>④ – Monitor mit Bildschirm, Standfuß und Sockel</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>PC / Workstation</p>]]></text>
+      </answer>
+    </subquestion>
+    <!-- Distractor -->
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Firewall</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ==================== FRAGE 2: ddwtos (mittel) ==================== -->
+<!-- VLAN-Lückentext mit Switch-Topologie                               -->
+
+  <question type="ddwtos">
+    <name>
+      <text>VLANs – Lückentext zur VLAN-Topologie (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie die Netzwerktopologie und ergänzen Sie die Lücken:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="185"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <!-- Cisco L2-Switch – aus symbols/cisco/switch.svg (viewBox 0 0 77 39) -->
+    <symbol id="sw2" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <!-- Cisco PC/Workstation – aus symbols/cisco/pc.svg (viewBox 0 0 59 53) -->
+    <symbol id="pc2" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+
+  <!-- VLAN-10-Bereich -->
+  <rect x="5" y="30" width="130" height="80" rx="4" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="70" y="46" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">VLAN 10</text>
+
+  <!-- VLAN-20-Bereich -->
+  <rect x="305" y="30" width="130" height="80" rx="4" fill="#fde8d8" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="370" y="46" text-anchor="middle" font-size="11" font-weight="bold" fill="#a04000">VLAN 20</text>
+
+  <!-- PC1 (VLAN 10) -->
+  <use href="#pc2" x="22" y="50" width="55" height="49"/>
+  <text x="47" y="115" text-anchor="middle" font-size="11" fill="#333">PC1</text>
+
+  <!-- PC2 (VLAN 20) -->
+  <use href="#pc2" x="318" y="50" width="55" height="49"/>
+  <text x="343" y="115" text-anchor="middle" font-size="11" fill="#333">PC2</text>
+
+  <!-- SW1 -->
+  <use href="#sw2" x="180" y="128" width="77" height="39"/>
+  <text x="220" y="183" text-anchor="middle" font-size="11" fill="#333">SW1</text>
+
+  <!-- Access-Port: SW1 → PC1 -->
+  <line x1="196" y1="130" x2="72" y2="98" stroke="#1a5276" stroke-width="1.5"/>
+  <text x="126" y="106" font-size="10" fill="#555">Fa0/1</text>
+
+  <!-- Access-Port: SW1 → PC2 -->
+  <line x1="244" y1="130" x2="318" y2="98" stroke="#1a5276" stroke-width="1.5"/>
+  <text x="292" y="106" font-size="10" fill="#555">Fa0/3</text>
+
+  <!-- Trunk-Uplink (Doppellinie) von SW1 nach oben -->
+  <line x1="216" y1="128" x2="216" y2="10" stroke="#1a5276" stroke-width="2"/>
+  <line x1="224" y1="128" x2="224" y2="10" stroke="#1a5276" stroke-width="2"/>
+  <polygon points="215,8 220,3 225,8" fill="#1a5276"/>
+  <text x="232" y="72" font-size="10" fill="#555">Fa0/24</text>
+</svg>
+
+<p>Der Port <code>Fa0/1</code> ist ein [[1]], er leitet ausschließlich
+   Frames des VLAN 10 weiter.</p>
+
+<p>Der Port <code>Fa0/24</code> ist ein [[2]], er transportiert Frames
+   mehrerer VLANs gleichzeitig.</p>
+
+<p>Frames auf dem Port <code>Fa0/24</code> werden nach IEEE 802.1Q
+   mit einem [[3]]-Header versehen.</p>
+
+<p>Dieser Header enthält die [[4]], anhand derer der empfangende Switch
+   das Frame dem richtigen VLAN zuordnet.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>
+  <strong>Access-Port</strong>: Verbindet ein Endgerät mit dem Switch; ist einem einzigen VLAN zugeordnet –
+  Frames werden <em>untagged</em> übertragen.<br/>
+  <strong>Trunk-Port</strong>: Verbindet Switches oder Switches mit Routern; überträgt Frames mehrerer VLANs
+  gleichzeitig.<br/>
+  <strong>Tagged</strong>: IEEE 802.1Q fügt jedem Ethernet-Frame auf dem Trunk einen 4-Byte-Header
+  (Tag) hinzu, der die VLAN-ID enthält.<br/>
+  <strong>VLAN-ID</strong>: 12-Bit-Wert (1–4094) im 802.1Q-Tag, der das jeweilige VLAN identifiziert.
+</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Richtig!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+
+    <!-- Gruppe 1: Access-Port (korrekt) | Trunk-Port (Distractor) -->
+    <dragbox><text>Access-Port</text><group>1</group></dragbox>
+    <dragbox><text>Trunk-Port</text><group>1</group></dragbox>
+
+    <!-- Gruppe 2: Trunk-Port (korrekt) | Access-Port (Distractor) -->
+    <dragbox><text>Trunk-Port</text><group>2</group></dragbox>
+    <dragbox><text>Access-Port</text><group>2</group></dragbox>
+
+    <!-- Gruppe 3: Tagged (korrekt) | Untagged (Distractor) -->
+    <dragbox><text>Tagged</text><group>3</group></dragbox>
+    <dragbox><text>Untagged</text><group>3</group></dragbox>
+
+    <!-- Gruppe 4: VLAN-ID (korrekt) | MAC-Adresse (Distractor) -->
+    <dragbox><text>VLAN-ID</text><group>4</group></dragbox>
+    <dragbox><text>MAC-Adresse</text><group>4</group></dragbox>
+  </question>
+
+
+<!-- ==================== FRAGE 3: multichoice (mittel) ==================== -->
+<!-- Router-on-a-Stick – welche Aussagen sind korrekt?                       -->
+
+  <question type="multichoice">
+    <name>
+      <text>VLANs – Router-on-a-Stick (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie die Topologie. <strong>Welche zwei Aussagen sind korrekt?</strong></p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="210"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <!-- Cisco Router – aus symbols/cisco/router.svg (viewBox 0 0 60 41) -->
+    <symbol id="rtr3" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" stroke="none" fill="#fff"/>
+    </symbol>
+    <!-- Cisco L2-Switch – aus symbols/cisco/switch.svg (viewBox 0 0 77 39) -->
+    <symbol id="sw3" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <!-- Cisco PC/Workstation – aus symbols/cisco/pc.svg (viewBox 0 0 59 53) -->
+    <symbol id="pc3" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+
+  <!-- R1 (Router-on-a-Stick) -->
+  <use href="#rtr3" x="196" y="4" width="60" height="41"/>
+  <text x="220" y="60" text-anchor="middle" font-size="11" fill="#333">R1</text>
+  <text x="250" y="30" font-size="9" fill="#555">Fa0/0.10</text>
+  <text x="250" y="42" font-size="9" fill="#555">Fa0/0.20</text>
+
+  <!-- Trunk R1 → SW1 (Doppellinie) -->
+  <line x1="216" y1="52" x2="216" y2="86" stroke="#1a5276" stroke-width="2"/>
+  <line x1="224" y1="52" x2="224" y2="86" stroke="#1a5276" stroke-width="2"/>
+
+  <!-- SW1 -->
+  <use href="#sw3" x="180" y="86" width="77" height="39"/>
+  <text x="220" y="142" text-anchor="middle" font-size="11" fill="#333">SW1</text>
+
+  <!-- VLAN-10-Bereich -->
+  <rect x="5" y="150" width="180" height="55" rx="4" fill="#d5f5e3" stroke="#27ae60" stroke-width="1.5"/>
+  <text x="95" y="164" text-anchor="middle" font-size="11" font-weight="bold" fill="#1e8449">VLAN 10</text>
+
+  <!-- VLAN-20-Bereich -->
+  <rect x="255" y="150" width="180" height="55" rx="4" fill="#fde8d8" stroke="#e67e22" stroke-width="1.5"/>
+  <text x="345" y="164" text-anchor="middle" font-size="11" font-weight="bold" fill="#a04000">VLAN 20</text>
+
+  <!-- PC1 + PC2 (VLAN 10) -->
+  <use href="#pc3" x="14" y="160" width="44" height="40"/>
+  <text x="36" y="205" text-anchor="middle" font-size="10" fill="#333">PC1</text>
+  <use href="#pc3" x="110" y="160" width="44" height="40"/>
+  <text x="132" y="205" text-anchor="middle" font-size="10" fill="#333">PC2</text>
+
+  <!-- PC3 + PC4 (VLAN 20) -->
+  <use href="#pc3" x="264" y="160" width="44" height="40"/>
+  <text x="286" y="205" text-anchor="middle" font-size="10" fill="#333">PC3</text>
+  <use href="#pc3" x="360" y="160" width="44" height="40"/>
+  <text x="382" y="205" text-anchor="middle" font-size="10" fill="#333">PC4</text>
+
+  <!-- Verbindungslinien SW1 → PCs -->
+  <line x1="196" y1="128" x2="36" y2="162" stroke="#1a5276" stroke-width="1.5"/>
+  <line x1="208" y1="128" x2="132" y2="162" stroke="#1a5276" stroke-width="1.5"/>
+  <line x1="232" y1="128" x2="286" y2="162" stroke="#1a5276" stroke-width="1.5"/>
+  <line x1="244" y1="128" x2="382" y2="162" stroke="#1a5276" stroke-width="1.5"/>
+</svg>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>Richtig – Router-on-a-Stick</strong>: Ein einziges physisches Router-Interface wird
+      als Trunk-Port konfiguriert. Für jedes VLAN wird ein logisches Subinterface (z. B.
+      <code>Fa0/0.10</code>, <code>Fa0/0.20</code>) mit eigenem IP-Gateway angelegt.</li>
+  <li><strong>Richtig – Trunk zwischen R1 und SW1</strong>: Die Verbindung zwischen Router und
+      Switch muss als IEEE-802.1Q-Trunk konfiguriert sein, damit der Router Frames aller VLANs
+      empfangen und senden kann.</li>
+  <li><strong>Falsch – kein separates physisches Interface pro VLAN nötig</strong>: Genau das ist
+      der Vorteil von Router-on-a-Stick: ein physisches Interface reicht aus.</li>
+  <li><strong>Falsch – Layer-2-Switch kann kein Inter-VLAN-Routing</strong>: Ein reiner L2-Switch
+      trennt VLANs, kann aber ohne Router/Layer-3-Switch nicht zwischen ihnen routen.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>none</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+
+    <!-- 2 richtige Antworten à 50 % -->
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>R1 benötigt nur ein physisches Interface, das als Trunk konfiguriert wird;
+      pro VLAN wird ein logisches Subinterface angelegt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Richtig! Das ist das Prinzip von Router-on-a-Stick: ein physisches Interface,
+        mehrere Subinterfaces (z. B. <code>Fa0/0.10</code>, <code>Fa0/0.20</code>).]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>Die Verbindung zwischen R1 und SW1 muss als IEEE-802.1Q-Trunk konfiguriert
+      sein, damit getaggte Frames beider VLANs übertragen werden.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Richtig! Ohne Trunk-Konfiguration auf dem Link R1–SW1 würde der Router nur
+        ein VLAN sehen.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- 2 falsche Antworten à -50 % -->
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>R1 benötigt für jedes VLAN ein eigenes physisches Interface
+      (z. B. Fa0/0 für VLAN 10, Fa0/1 für VLAN 20).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch! Bei Router-on-a-Stick wird ein einziges physisches Interface als Trunk
+        genutzt – mehrere physische Interfaces wären eine ältere, ineffiziente Variante.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>SW1 kann das Inter-VLAN-Routing eigenständig durchführen,
+      da er die VLAN-IDs der Frames kennt.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch! Ein reiner Layer-2-Switch leitet Frames nur innerhalb eines VLANs weiter.
+        Inter-VLAN-Routing erfordert einen Router oder einen Layer-3-Switch.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ==================== FRAGE 4: cloze (mittel) ==================== -->
+<!-- IEEE 802.1Q Trunk zwischen zwei Switches                           -->
+
+  <question type="cloze">
+    <name>
+      <text>VLANs – IEEE 802.1Q Trunk-Eigenschaften (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie die Trunk-Verbindung zwischen SW-A und SW-B:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="140"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <!-- Cisco L2-Switch – aus symbols/cisco/switch.svg (viewBox 0 0 77 39) -->
+    <symbol id="sw4" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <!-- Cisco PC/Workstation – aus symbols/cisco/pc.svg (viewBox 0 0 59 53) -->
+    <symbol id="pc4" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+
+  <!-- SW-A -->
+  <use href="#sw4" x="14" y="38" width="77" height="39"/>
+  <text x="54" y="94" text-anchor="middle" font-size="11" fill="#333">SW-A</text>
+
+  <!-- SW-B -->
+  <use href="#sw4" x="346" y="38" width="77" height="39"/>
+  <text x="386" y="94" text-anchor="middle" font-size="11" fill="#333">SW-B</text>
+
+  <!-- Trunk-Link (Doppellinie) SW-A → SW-B -->
+  <line x1="94" y1="56" x2="346" y2="56" stroke="#1a5276" stroke-width="2"/>
+  <line x1="94" y1="64" x2="346" y2="64" stroke="#1a5276" stroke-width="2"/>
+  <text x="220" y="50" text-anchor="middle" font-size="10" fill="#1a5276">VLAN 10, 20, 30</text>
+  <text x="220" y="78" text-anchor="middle" font-size="10" fill="#888">802.1Q</text>
+  <text x="100" y="52" font-size="9" fill="#555">Fa0/24</text>
+  <text x="298" y="52" font-size="9" fill="#555">Fa0/24</text>
+
+  <!-- PCs links -->
+  <use href="#pc4" x="8" y="92" width="40" height="36"/>
+  <text x="28" y="133" text-anchor="middle" font-size="9" fill="#333">PC-A1</text>
+  <line x1="28" y1="92" x2="40" y2="82" stroke="#1a5276" stroke-width="1.2"/>
+
+  <use href="#pc4" x="58" y="92" width="40" height="36"/>
+  <text x="78" y="133" text-anchor="middle" font-size="9" fill="#333">PC-A2</text>
+  <line x1="78" y1="92" x2="68" y2="82" stroke="#1a5276" stroke-width="1.2"/>
+
+  <!-- PCs rechts -->
+  <use href="#pc4" x="332" y="92" width="40" height="36"/>
+  <text x="352" y="133" text-anchor="middle" font-size="9" fill="#333">PC-B1</text>
+  <line x1="352" y1="92" x2="362" y2="82" stroke="#1a5276" stroke-width="1.2"/>
+
+  <use href="#pc4" x="392" y="92" width="40" height="36"/>
+  <text x="412" y="133" text-anchor="middle" font-size="9" fill="#333">PC-B2</text>
+  <line x1="412" y1="92" x2="406" y2="82" stroke="#1a5276" stroke-width="1.2"/>
+</svg>
+
+<p><strong>1.</strong> Wie werden Frames auf einem Trunk-Port nach IEEE 802.1Q übertragen?<br/>
+{1:MULTICHOICE:Untagged (ohne Markierung)~=Tagged (mit 4-Byte-VLAN-Header)~Mit eigenem IP-Header~Per QinQ doppelt getaggt}</p>
+
+<p><strong>2.</strong> Welche Größe hat ein IEEE-802.1Q-Tag im Ethernet-Frame?<br/>
+{1:MULTICHOICE:1 Byte~2 Byte~=4 Byte~8 Byte}</p>
+
+<p><strong>3.</strong> Was ist das „Native VLAN" auf einem Trunk-Port?<br/>
+{1:MULTICHOICE:Das VLAN mit der höchsten Priorität~Das Management-VLAN~=Das VLAN, dessen Frames <em>untagged</em> übertragen werden~Das VLAN, das zuerst konfiguriert wurde}</p>
+
+<p><strong>4.</strong> Welcher Cisco-IOS-Befehl setzt den Port <code>Fa0/24</code> in den Trunk-Modus?<br/>
+{1:MULTICHOICE:switchport mode access~switchport access vlan 10~=switchport mode trunk~switchport trunk native vlan 1}</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>Tagged-Übertragung</strong>: IEEE 802.1Q fügt zwischen Quell-MAC und EtherType
+      einen 4-Byte-Tag ein, der u. a. die 12-Bit-VLAN-ID enthält.</li>
+  <li><strong>Tag-Größe: 4 Byte</strong>: 2 Byte TPID (0x8100) + 2 Byte TCI
+      (3 Bit PCP, 1 Bit DEI, 12 Bit VLAN-ID).</li>
+  <li><strong>Native VLAN</strong>: Frames dieses VLANs werden auf dem Trunk <em>ohne</em> Tag
+      übertragen. Standard ist VLAN 1; aus Sicherheitsgründen sollte es geändert werden.</li>
+  <li><strong>Trunk-Modus-Befehl</strong>: <code>switchport mode trunk</code> konfiguriert den
+      Port als statischen Trunk (kein DTP-Aushandeln). Zusätzlich ist
+      <code>switchport trunk encapsulation dot1q</code> auf manchen Plattformen nötig.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ==================== FRAGE 5: multichoice (schwer) ==================== -->
+<!-- Cisco-IOS-Befehlssequenz für VLAN-Konfiguration identifizieren         -->
+
+  <question type="multichoice">
+    <name>
+      <text>VLANs – Cisco-IOS-Befehlssequenz (schwer)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Auf dem Switch <strong>SW1</strong> soll folgendes konfiguriert werden:</p>
+<ul>
+  <li>VLAN 10 mit dem Namen <code>Verwaltung</code> anlegen</li>
+  <li>Port <code>Fa0/1</code> dem VLAN 10 als Access-Port zuweisen</li>
+  <li>Port <code>Fa0/24</code> als 802.1Q-Trunk konfigurieren</li>
+</ul>
+<p>Welche Befehlssequenz (Option B) ist <strong>vollständig und korrekt</strong>?</p>
+
+<p><strong>Option A</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #1a5276;font-size:12px;">SW1# configure terminal
+SW1(config)# vlan 10
+SW1(config-vlan)# name Verwaltung
+SW1(config-vlan)# exit
+SW1(config)# interface Fa0/1
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 10
+SW1(config-if)# exit
+SW1(config)# interface Fa0/24
+SW1(config-if)# switchport mode trunk</pre>
+
+<p><strong>Option B</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #1a5276;font-size:12px;">SW1# vlan 10
+SW1(vlan)# name Verwaltung
+SW1# interface Fa0/1
+SW1(config-if)# switchport access vlan 10
+SW1# interface Fa0/24
+SW1(config-if)# switchport trunk</pre>
+
+<p><strong>Option C</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #1a5276;font-size:12px;">SW1# configure terminal
+SW1(config)# vlan 10 name Verwaltung
+SW1(config)# interface Fa0/1
+SW1(config-if)# switchport vlan 10
+SW1(config-if)# exit
+SW1(config)# interface Fa0/24
+SW1(config-if)# switchport mode trunk</pre>
+
+<p><strong>Option D</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #1a5276;font-size:12px;">SW1# configure terminal
+SW1(config)# vlan 10
+SW1(config-vlan)# name Verwaltung
+SW1(config-vlan)# exit
+SW1(config)# interface Fa0/1
+SW1(config-if)# switchport mode access
+SW1(config-if)# switchport access vlan 10
+SW1(config-if)# exit
+SW1(config)# interface Fa0/24
+SW1(config-if)# switchport mode trunk
+SW1(config-if)# end</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>Option A – fast richtig, aber unvollständig</strong>: Fehlendes <code>end</code> / fehlende
+      Rückkehr in den privilegierten Modus ist kein Fehler, aber es fehlt auch kein zwingender Schritt.
+      Tatsächlich fehlt hier die Angabe <code>switchport mode access</code> vor
+      <code>switchport access vlan 10</code> – diese Reihenfolge ist sinnvoll aber nicht immer
+      zwingend Fehler. Dennoch ist Option D vollständiger und expliziter.</li>
+  <li><strong>Option B – falsch</strong>: <code>SW1# vlan 10</code> ohne vorheriges
+      <code>configure terminal</code> ist im privilegierten Exec-Modus nicht gültig.
+      Außerdem lautet der korrekte Befehl <code>switchport mode trunk</code>,
+      nicht <code>switchport trunk</code>.</li>
+  <li><strong>Option C – falsch</strong>: <code>vlan 10 name Verwaltung</code> ist keine
+      gültige IOS-Syntax. VLAN und Name müssen getrennt im VLAN-Konfigurationsmodus
+      gesetzt werden. Außerdem lautet der Befehl <code>switchport access vlan 10</code>,
+      nicht <code>switchport vlan 10</code>.</li>
+  <li><strong>Option D – korrekt ✓</strong>: Vollständige und korrekte Sequenz:
+      VLAN anlegen und benennen im VLAN-Modus, Port als Access-Port setzen und VLAN zuweisen,
+      Trunk-Port korrekt konfigurieren, sauber mit <code>end</code> abschließen.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>none</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+
+    <!-- Richtige Antwort: Option D -->
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Option D – vollständige IOS-Sequenz mit <code>configure terminal</code>,
+      <code>vlan 10</code>/<code>name</code>, <code>switchport mode access</code>,
+      <code>switchport access vlan 10</code>, <code>switchport mode trunk</code> und <code>end</code></p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Richtig! Option D ist vollständig und syntaktisch korrekt: VLAN anlegen,
+        Access-Port konfigurieren, Trunk-Port setzen, mit <code>end</code> abschließen.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- Falsche Antwort: Option A -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Option A – fehlt <code>end</code> am Abschluss und <code>switchport mode access</code>
+      vor der VLAN-Zuweisung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Nicht die vollständigste Lösung. Option A fehlt zwar nur das abschließende
+        <code>end</code>, macht aber deutlich, dass Option D expliziter und vollständiger ist.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- Falsche Antwort: Option B -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Option B – <code>vlan 10</code> ohne <code>configure terminal</code>
+      und falscher Befehl <code>switchport trunk</code></p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch. Ohne <code>configure terminal</code> gelangt man nicht in den globalen
+        Konfigurationsmodus. Der korrekte Befehl lautet <code>switchport mode trunk</code>.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- Falsche Antwort: Option C -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Option C – ungültige Syntax <code>vlan 10 name Verwaltung</code>
+      und falscher Befehl <code>switchport vlan 10</code></p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch. <code>vlan 10 name Verwaltung</code> ist keine gültige IOS-Syntax.
+        Name und VLAN-ID müssen getrennt im VLAN-Konfigurationsmodus (<code>config-vlan</code>)
+        gesetzt werden. Außerdem lautet der korrekte Befehl <code>switchport access vlan 10</code>.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+</quiz>
