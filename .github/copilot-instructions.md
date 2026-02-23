@@ -58,6 +58,18 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - Definiere Marker in `<defs>` und verwende sie per `marker-end="url(#id)"`.
 - Für gestrichelte Beziehungen: `stroke-dasharray="6,3"`.
 
+### Netzwerktopologien – Cisco-Symbole (Pflicht)
+- Bei **jeder** Netzwerktopologie-Darstellung (VLANs, Routing, Switching, IP-Netze, etc.) **müssen** die Symbole aus `symbols/cisco/` verwendet werden.
+- Verfügbare Symbole (Pfad relativ zum Workspace-Root):
+  | Datei | Symbol | viewBox |
+  |---|---|---|
+  | `symbols/cisco/router.svg` | Cisco Router (3D-Zylinder, blau) | `0 0 60 41` |
+  | `symbols/cisco/switch.svg` | Cisco L2-Switch (3D-Gehäuse, blau) | `0 0 77 39` |
+  | `symbols/cisco/pc.svg` | Cisco PC/Workstation (3D-Arbeitsplatz, blau) | `0 0 59 53` |
+- **Einbettung:** Symbol-Pfade werden 1:1 aus der jeweiligen SVG-Datei als `<symbol id="...">` in den `<defs>`-Block des Fragen-SVG übernommen (CSS-Klassen als direkte Attribute auflösen, `xlink:href`-Referenzen intern umbenennen, damit pro Diagramm eindeutige IDs entstehen).
+- **Keine selbst gezeichneten** Router/Switch/PC-Primitive (Kreise, Rechtecke, etc.) – ausschließlich die Inhalte aus `symbols/cisco/`.
+- Trunk-Links und einfache Verbindungslinien werden weiterhin als SVG-`<line>`-Elemente gezeichnet (kein Symbol notwendig).
+
 ### UML/Diagramm-Konsistenz
 - Klassendiagramme:
   - Wenn Aggregation/Komposition gezeichnet ist, muss das passende Attribut in der „Ganzes“-Klasse modelliert sein.
