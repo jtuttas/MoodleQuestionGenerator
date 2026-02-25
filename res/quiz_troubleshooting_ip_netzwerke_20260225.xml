@@ -1,0 +1,582 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ================================================================
+     Moodle 4.x Quiz: Troubleshooting IP-Netzwerke
+     Zielgruppe: Fachinformatiker Systemintegration
+     Fragetypen: ddmatch | multichoice | cloze | ddwtos | multichoice
+     Erstellt: 2026-02-25
+     ================================================================ -->
+
+
+<!-- ==================== Q1: ddmatch – Fehlkonfigurationen und Auswirkungen (leicht) ==================== -->
+
+  <question type="ddmatch">
+    <name>
+      <text>Troubleshooting – Fehlkonfigurationen und Auswirkungen (leicht)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Im folgenden LAN-Netzwerk (192.168.10.0/24) treten verschiedene Fehlkonfigurationen auf.
+Ordnen Sie jeder Fehlkonfiguration (links) die typische Auswirkung (rechts) zu.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="200"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <symbol id="rtr1" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="sw1" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="pc1" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+  <!-- Router R1 -->
+  <use href="#rtr1" x="10" y="75" width="60" height="41"/>
+  <text x="40" y="130" text-anchor="middle" font-size="11px">R1</text>
+  <text x="40" y="142" text-anchor="middle" font-size="10px" fill="#555">192.168.10.1</text>
+  <!-- Switch SW1 -->
+  <use href="#sw1" x="130" y="80" width="77" height="39"/>
+  <text x="168" y="132" text-anchor="middle" font-size="11px">SW1</text>
+  <!-- Link R1 - SW1 -->
+  <line x1="70" y1="96" x2="130" y2="99" stroke="#333" stroke-width="2"/>
+  <!-- PC1 -->
+  <use href="#pc1" x="270" y="20" width="55" height="49"/>
+  <text x="297" y="82" text-anchor="middle" font-size="11px">PC-1</text>
+  <!-- PC2 -->
+  <use href="#pc1" x="270" y="90" width="55" height="49"/>
+  <text x="297" y="152" text-anchor="middle" font-size="11px">PC-2</text>
+  <!-- PC3 -->
+  <use href="#pc1" x="270" y="160" width="55" height="49"/>
+  <text x="297" y="222" text-anchor="middle" font-size="11px">PC-3</text>
+  <!-- Links SW1 - PCs -->
+  <line x1="207" y1="99" x2="270" y2="45" stroke="#333" stroke-width="1.5"/>
+  <line x1="207" y1="99" x2="270" y2="115" stroke="#333" stroke-width="1.5"/>
+  <line x1="207" y1="99" x2="270" y2="185" stroke="#333" stroke-width="1.5"/>
+  <!-- Internet cloud -->
+  <ellipse cx="490" cy="96" rx="55" ry="35" fill="#e8f4fd" stroke="#5ba4d4" stroke-width="1.5"/>
+  <text x="490" y="91" text-anchor="middle" font-size="12px" fill="#2266aa">Internet</text>
+  <text x="490" y="107" text-anchor="middle" font-size="10px" fill="#2266aa">/ WAN</text>
+  <!-- Link R1 - Internet -->
+  <line x1="70" y1="96" x2="435" y2="96" stroke="#333" stroke-width="2" stroke-dasharray="6,3"/>
+</svg>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p><strong>Lösungsübersicht:</strong></p>
+<ul>
+  <li><strong>Falsche Subnetzmaske (zu groß):</strong> Der Host glaubt, viele Adressen seien lokal – er sendet ARP statt über den Router zu routen.</li>
+  <li><strong>Falsches Default Gateway:</strong> Nur lokale Kommunikation möglich; externe Netze sind unerreichbar.</li>
+  <li><strong>IP aus falschem Subnetz:</strong> Der Host kann mit keinem lokalen Nachbarn kommunizieren.</li>
+  <li><strong>Falscher DNS-Server:</strong> Nur Namensauflösung ist betroffen; direkte IP-Kommunikation funktioniert weiter.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Alle Zuordnungen sind korrekt.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Einige Zuordnungen sind korrekt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Zuordnungen sind nicht korrekt.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <subquestion format="html">
+      <text><![CDATA[<p>Falsche Subnetzmaske (zu groß, z.B. /16 statt /24)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Host behandelt viele fremde Hosts als lokal und sendet ARP statt den Router zu nutzen</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Falsches Default Gateway (nicht erreichbar)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Host kann nur im eigenen Subnetz kommunizieren, externe Netze und das Internet sind nicht erreichbar</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>IP-Adresse aus einem anderen Subnetz als die übrigen Hosts</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Host kann mit keinem Nachbarn im gleichen LAN kommunizieren</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Falsche DNS-Server-Adresse</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Namensauflösung schlägt fehl, direkte IP-Kommunikation mit bekannten Adressen funktioniert weiterhin</p>]]></text>
+      </answer>
+    </subquestion>
+    <!-- Distractor -->
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Host erhält keine IP-Adresse vom DHCP-Server</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ==================== Q2: multichoice – Fehlkonfigurierte Hosts im LAN (mittel) ==================== -->
+
+  <question type="multichoice">
+    <name>
+      <text>Troubleshooting – Fehlkonfigurierte Hosts im LAN (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Das folgende LAN verwendet das Netz <strong>192.168.10.0/24</strong>. Router R1 hat die IP <strong>192.168.10.1</strong>.
+Analysieren Sie die Konfigurationsangaben im Diagramm.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="280"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <symbol id="rtr2" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="sw2" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="pc2" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+  <!-- Router R1 -->
+  <use href="#rtr2" x="270" y="110" width="60" height="41"/>
+  <text x="300" y="163" text-anchor="middle" font-size="11px" font-weight="bold">R1</text>
+  <text x="300" y="175" text-anchor="middle" font-size="10px" fill="#555">192.168.10.1</text>
+  <!-- Switch SW1 -->
+  <use href="#sw2" x="230" y="230" width="77" height="39"/>
+  <text x="268" y="282" text-anchor="middle" font-size="11px" font-weight="bold">SW1</text>
+  <!-- Link R1 - SW1 -->
+  <line x1="300" y1="151" x2="268" y2="230" stroke="#333" stroke-width="2"/>
+  <!-- PC-A -->
+  <use href="#pc2" x="30" y="10" width="55" height="49"/>
+  <text x="57" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-A</text>
+  <text x="57" y="82" text-anchor="middle" font-size="10px" fill="#1a7a1a">IP: 192.168.10.10</text>
+  <text x="57" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
+  <text x="57" y="104" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 192.168.10.1</text>
+  <!-- PC-B -->
+  <use href="#pc2" x="150" y="10" width="55" height="49"/>
+  <text x="177" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-B</text>
+  <text x="177" y="82" text-anchor="middle" font-size="10px" fill="#1a7a1a">IP: 192.168.10.20</text>
+  <text x="177" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
+  <text x="177" y="104" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 192.168.10.1</text>
+  <!-- PC-C -->
+  <use href="#pc2" x="370" y="10" width="55" height="49"/>
+  <text x="397" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-C</text>
+  <text x="397" y="82" text-anchor="middle" font-size="10px" fill="#1a7a1a">IP: 192.168.10.30</text>
+  <text x="397" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
+  <text x="397" y="104" text-anchor="middle" font-size="10px" fill="#cc0000">GW: 192.168.11.1 !</text>
+  <!-- PC-D -->
+  <use href="#pc2" x="490" y="10" width="55" height="49"/>
+  <text x="517" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-D</text>
+  <text x="517" y="82" text-anchor="middle" font-size="10px" fill="#cc0000">IP: 192.168.20.40 !</text>
+  <text x="517" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
+  <text x="517" y="104" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 192.168.10.1</text>
+  <!-- Links SW1 - PCs -->
+  <line x1="240" y1="249" x2="57" y2="59" stroke="#333" stroke-width="1.5"/>
+  <line x1="250" y1="231" x2="177" y2="59" stroke="#333" stroke-width="1.5"/>
+  <line x1="286" y1="231" x2="397" y2="59" stroke="#333" stroke-width="1.5"/>
+  <line x1="296" y1="231" x2="517" y2="59" stroke="#333" stroke-width="1.5"/>
+</svg>
+<p><strong>Welche zwei Hosts sind falsch konfiguriert?</strong> (Mehrfachauswahl – wählen Sie genau zwei aus)</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p><strong>Erklärung:</strong></p>
+<ul>
+  <li><strong>PC-C</strong> hat als Default Gateway <code>192.168.11.1</code> eingetragen – diese Adresse liegt in einem anderen Subnetz (192.168.11.0/24) und ist vom Netz 192.168.10.0/24 aus nicht per ARP erreichbar. PC-C kann keine Pakete an externe Netze senden.</li>
+  <li><strong>PC-D</strong> hat die IP-Adresse <code>192.168.20.40</code>, die zum Subnetz 192.168.20.0/24 gehört, nicht zum LAN-Netz 192.168.10.0/24. PC-D kann mit keinem anderen Host im LAN kommunizieren.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <shownumcorrect/>
+    <correctfeedback format="html">
+      <text>Richtig! Sie haben die beiden falsch konfigurierten Hosts korrekt identifiziert.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig. Überprüfen Sie die IP-Konfiguration aller Hosts genau.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch. Vergleichen Sie die konfigurierten IPs und Gateways mit dem Netwerk 192.168.10.0/24.</text>
+    </incorrectfeedback>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>PC-A</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. PC-A ist korrekt konfiguriert: IP 192.168.10.10/24, Gateway 192.168.10.1 – alle Parameter passen zum Netz 192.168.10.0/24.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>PC-B</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. PC-B ist korrekt konfiguriert: IP 192.168.10.20/24, Gateway 192.168.10.1 – alle Parameter passen zum Netz 192.168.10.0/24.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>PC-C</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig! Das Default Gateway von PC-C (192.168.11.1) liegt in einem anderen Subnetz und ist nicht erreichbar. PC-C kann keine Pakete an externe Netze routen.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>PC-D</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig! Die IP-Adresse von PC-D (192.168.20.40) gehört zum Subnetz 192.168.20.0/24, nicht zum LAN 192.168.10.0/24. PC-D kann mit keinem lokalen Host kommunizieren.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ==================== Q3: cloze – ipconfig /all analysieren (mittel) ==================== -->
+
+  <question type="cloze">
+    <name>
+      <text>Troubleshooting – ipconfig /all analysieren (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Techniker führt auf einem Windows-PC den Befehl <code>ipconfig /all</code> aus und erhält folgende Ausgabe.
+Das Unternehmensnetz ist <strong>192.168.10.0/24</strong>. Der Router (Default Gateway) hat die IP <strong>192.168.10.1</strong>.</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-size:12px;overflow:auto;">C:\&gt; ipconfig /all
+
+Windows IP-Konfiguration
+
+Ethernet-Adapter LAN:
+   Verbindungsspezifisches DNS-Suffix:
+   Physikalische Adresse. . . . . . : AA-BB-CC-DD-EE-FF
+   DHCP aktiviert . . . . . . . . . : Nein
+   IPv4-Adresse . . . . . . . . . . : 192.168.10.55
+   Subnetzmaske . . . . . . . . . . : 255.255.255.0
+   Standardgateway. . . . . . . . . : 192.168.20.1
+   DNS-Server . . . . . . . . . . . : 8.8.8.8</pre>
+<p>Beantworten Sie die folgenden Fragen zur Analyse dieser Konfiguration:</p>
+<ol>
+  <li>Welcher Parameter ist falsch konfiguriert? {1:MULTICHOICE:IPv4-Adresse~Subnetzmaske~=Standardgateway~DNS-Server}</li>
+  <li>Welcher Wert wäre für diesen Parameter korrekt? {1:MULTICHOICE:192.168.10.55~8.8.8.8~192.168.20.1~=192.168.10.1}</li>
+  <li>Welche Kommunikation ist trotz dieser Fehlkonfiguration noch möglich? {1:MULTICHOICE:=Kommunikation mit anderen Hosts im Netz 192.168.10.0/24~Kommunikation mit Hosts im Internet~Namensauflösung über den DNS-Server 8.8.8.8~Kommunikation mit Hosts in anderen Netzen}</li>
+</ol>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p><strong>Analyse:</strong></p>
+<ul>
+  <li>Der <strong>Standardgateway</strong> ist falsch: Eingetragen ist <code>192.168.20.1</code>, aber das Netz ist 192.168.10.0/24 – der Gateway muss in diesem Subnetz liegen, also <code>192.168.10.1</code>.</li>
+  <li>IP-Adresse (192.168.10.55) und Subnetzmaske (255.255.255.0) sind korrekt. Der DNS-Server (8.8.8.8) ist konfiguriert, aber da kein Gateway erreichbar ist, sind externe Anfragen ohnehin blockiert.</li>
+  <li>Da Gateway und PC im gleichen Subnetz 192.168.10.0/24 bleiben, funktioniert die lokale Kommunikation zwischen Hosts im selben LAN weiterhin.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ==================== Q4: ddwtos – Linux ip-Befehle analysieren (mittel) ==================== -->
+
+  <question type="ddwtos">
+    <name>
+      <text>Troubleshooting – Linux ip-Befehle analysieren (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ein Linux-Administrator prüft die Netzwerkkonfiguration eines Servers.
+Das Unternehmensnetz ist <strong>10.0.1.0/24</strong>. Der Router hat die IP <strong>10.0.1.1</strong>.</p>
+<pre style="background:#1e1e1e;color:#d4d4d4;padding:12px;border-radius:6px;font-size:12px;overflow:auto;">$ ip addr show eth0
+2: eth0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt;
+    link/ether 00:11:22:33:44:55 brd ff:ff:ff:ff:ff:ff
+    inet 10.0.1.100/16 brd 10.0.255.255 scope global eth0
+
+$ ip route show
+default via 10.0.0.1 dev eth0
+10.0.0.0/16 dev eth0 proto kernel scope link src 10.0.1.100</pre>
+<p>Ergänzen Sie die Lücken mit den richtigen Begriffen:</p>
+<p>Die Ausgabe zeigt, dass eth0 die Präfixlänge [[1]] hat.<br/>
+Für das Netz 10.0.1.0/24 wäre die korrekte Präfixlänge [[2]].<br/>
+Das Standard-Gateway ist als [[3]] eingetragen, richtig wäre jedoch [[4]].</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p><strong>Analyse der Fehlkonfiguration:</strong></p>
+<ul>
+  <li><strong>Präfixlänge:</strong> Die Ausgabe von <code>ip addr</code> zeigt <code>/16</code> (Subnetzmaske 255.255.0.0). Für das Netz 10.0.1.0/<strong>24</strong> müsste die Maske 255.255.255.0 (/24) sein.</li>
+  <li><strong>Default Gateway:</strong> Eingetragen ist <code>10.0.0.1</code>, der korrekte Gateway für das Netz 10.0.1.0/24 wäre <code>10.0.1.1</code>.</li>
+  <li>Beide Fehler zusammen bedeuten: Der Server kann mit Hosts außerhalb seines (falschen) /16-Netzes nicht kommunizieren und hat keinen funktionsfähigen Gateway.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Alle Lücken sind korrekt ausgefüllt.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Einige Lücken sind korrekt ausgefüllt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antworten sind nicht korrekt. Analysieren Sie die Ausgabe der ip-Befehle genau.</text>
+    </incorrectfeedback>
+    <!-- Group 1: aktuelle Präfixlänge -->
+    <dragbox>
+      <text>/16</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>/8</text>
+      <group>1</group>
+    </dragbox>
+    <!-- Group 2: korrekte Präfixlänge -->
+    <dragbox>
+      <text>/24</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>/32</text>
+      <group>2</group>
+    </dragbox>
+    <!-- Group 3: falsches Gateway aus Ausgabe -->
+    <dragbox>
+      <text>10.0.0.1</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>10.0.2.1</text>
+      <group>3</group>
+    </dragbox>
+    <!-- Group 4: richtiges Gateway -->
+    <dragbox>
+      <text>10.0.1.1</text>
+      <group>4</group>
+    </dragbox>
+    <dragbox>
+      <text>10.0.1.254</text>
+      <group>4</group>
+    </dragbox>
+  </question>
+
+
+<!-- ==================== Q5: multichoice – Routing zwischen zwei Subnetzen (schwer) ==================== -->
+
+  <question type="multichoice">
+    <name>
+      <text>Troubleshooting – Routing zwischen zwei Subnetzen (schwer)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie die folgende Zwei-Subnetz-Topologie mit Router R1. Techniker Müller stellt fest,
+dass Host B2 keine Pakete an Host A1 (172.16.1.10) senden kann, obwohl alle anderen Verbindungen funktionieren.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="680" height="280"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <symbol id="rtr5" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="none" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" stroke="#fff" stroke-linejoin="miter" fill="none" stroke-width=".788"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="sw5a" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="sw5b" viewBox="0 0 77 39" overflow="visible">
+      <g stroke="#fff" stroke-linejoin="miter" fill="#126d99" stroke-width=".787">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" stroke="none" fill="#fff"/>
+    </symbol>
+    <symbol id="pc5a" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+    <symbol id="pc5b" viewBox="0 0 59 53" overflow="visible">
+      <path d="M49.573 44.459v-9.443H0v9.443h49.573z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M34.229 40.131h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 40.131h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M34.229 39.737h12.59z" stroke="none" fill="#0b719f"/>
+      <path d="M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787" stroke-linecap="square"/>
+      <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966v1.967H1.18v-1.967h39.737z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M40.917 49.966H1.18l4.328-6.295h39.737l-4.328 6.295z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M57.835 27.147H8.262L0 35.016h49.573l8.262-7.869z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M42.885 30.295V5.508H9.049v24.787h33.836z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" stroke="none" fill="#0f73a0"/>
+      <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="none" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+      <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" stroke="#fff" stroke-linejoin="miter" fill="#0f73a0" stroke-width=".787"/>
+      <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-linejoin="miter" stroke-width=".787"/>
+    </symbol>
+  </defs>
+
+  <!-- LAN A label -->
+  <rect x="5" y="5" width="270" height="265" rx="8" fill="#f0f8ff" stroke="#5ba4d4" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="140" y="22" text-anchor="middle" font-size="12px" font-weight="bold" fill="#2266aa">LAN A – 172.16.1.0/24</text>
+
+  <!-- LAN B label -->
+  <rect x="400" y="5" width="270" height="265" rx="8" fill="#fff8f0" stroke="#d45b5b" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="535" y="22" text-anchor="middle" font-size="12px" font-weight="bold" fill="#aa2222">LAN B – 172.16.2.0/24</text>
+
+  <!-- SW-A -->
+  <use href="#sw5a" x="90" y="195" width="77" height="39"/>
+  <text x="128" y="246" text-anchor="middle" font-size="11px" font-weight="bold">SW-A</text>
+
+  <!-- SW-B -->
+  <use href="#sw5b" x="508" y="195" width="77" height="39"/>
+  <text x="546" y="246" text-anchor="middle" font-size="11px" font-weight="bold">SW-B</text>
+
+  <!-- Router R1 -->
+  <use href="#rtr5" x="305" y="105" width="60" height="41"/>
+  <text x="335" y="158" text-anchor="middle" font-size="11px" font-weight="bold">R1</text>
+  <text x="335" y="170" text-anchor="middle" font-size="10px" fill="#555">fa0/0: 172.16.1.1/24</text>
+  <text x="335" y="181" text-anchor="middle" font-size="10px" fill="#555">fa0/1: 172.16.2.1/24</text>
+
+  <!-- Links R1 - SW-A and SW-B -->
+  <line x1="305" y1="125" x2="167" y2="214" stroke="#333" stroke-width="2"/>
+  <line x1="365" y1="125" x2="508" y2="214" stroke="#333" stroke-width="2"/>
+
+  <!-- Host A1 -->
+  <use href="#pc5a" x="30" y="80" width="55" height="49"/>
+  <text x="57" y="140" text-anchor="middle" font-size="11px" font-weight="bold">A1</text>
+  <text x="57" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.1.10/24</text>
+  <text x="57" y="163" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 172.16.1.1</text>
+  <!-- Link A1 - SW-A -->
+  <line x1="90" y1="214" x2="75" y2="129" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Host A2 -->
+  <use href="#pc5a" x="170" y="80" width="55" height="49"/>
+  <text x="197" y="140" text-anchor="middle" font-size="11px" font-weight="bold">A2</text>
+  <text x="197" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.1.20/24</text>
+  <text x="197" y="163" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 172.16.1.1</text>
+  <!-- Link A2 - SW-A -->
+  <line x1="167" y1="214" x2="195" y2="129" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Host B1 -->
+  <use href="#pc5b" x="430" y="80" width="55" height="49"/>
+  <text x="457" y="140" text-anchor="middle" font-size="11px" font-weight="bold">B1</text>
+  <text x="457" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.2.10/24</text>
+  <text x="457" y="163" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 172.16.2.1</text>
+  <!-- Link B1 - SW-B -->
+  <line x1="508" y1="214" x2="475" y2="129" stroke="#333" stroke-width="1.5"/>
+
+  <!-- Host B2 -->
+  <use href="#pc5b" x="565" y="80" width="55" height="49"/>
+  <text x="592" y="140" text-anchor="middle" font-size="11px" font-weight="bold">B2</text>
+  <text x="592" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.2.20/24</text>
+  <text x="592" y="163" text-anchor="middle" font-size="10px" fill="#cc0000" font-weight="bold">GW: 172.16.1.1 !</text>
+  <!-- Link B2 - SW-B -->
+  <line x1="585" y1="214" x2="610" y2="129" stroke="#333" stroke-width="1.5"/>
+</svg>
+<p><strong>Was ist die Ursache dafür, dass Host B2 keine Pakete an Host A1 (172.16.1.10) senden kann?</strong></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p><strong>Erklärung:</strong></p>
+<p>Host B2 hat als Default Gateway <code>172.16.1.1</code> konfiguriert. Diese Adresse gehört zum Subnetz <strong>172.16.1.0/24</strong> (LAN A), nicht zum lokalen Subnetz <strong>172.16.2.0/24</strong> (LAN B), in dem sich B2 befindet.</p>
+<p>Um ein Paket an einen Host in einem anderen Netz zu senden, muss B2 das Paket an das Default Gateway schicken. Dazu ist ein ARP-Request für 172.16.1.1 notwendig – aber 172.16.1.1 befindet sich nicht im lokalen LAN B (172.16.2.0/24) und antwortet daher nicht auf den ARP-Request. B2 kann das Gateway nicht erreichen und das Paket wird verworfen.</p>
+<p>Der korrekte Gateway für Hosts in LAN B wäre <code>172.16.2.1</code> (fa0/1 von R1).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>1</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <correctfeedback format="html">
+      <text>Richtig! Das ist die korrekte Ursache.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch. Analysieren Sie die Gateway-Konfiguration von Host B2 genau.</text>
+    </incorrectfeedback>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Der Router R1 hat keine Route für das Netz 172.16.1.0/24</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. R1 verbindet beide Subnetze direkt (fa0/0 in LAN A, fa0/1 in LAN B) und hat daher automatisch Connected Routes für beide Netze.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die IP-Adresse von Host B2 liegt im falschen Subnetz</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Die IP-Adresse 172.16.2.20/24 liegt korrekt im Subnetz 172.16.2.0/24 (LAN B).</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Das Standard-Gateway von Host B2 (172.16.1.1) befindet sich nicht im Subnetz 172.16.2.0/24 und ist daher nicht per ARP erreichbar</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig! B2 kann keinen ARP-Request für 172.16.1.1 erfolgreich abschließen, da dieser Gateway nicht im lokalen LAN B (172.16.2.0/24) liegt. Der korrekte Gateway wäre 172.16.2.1.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Subnetzmaske von Host B2 ist falsch konfiguriert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Die Subnetzmaske /24 (255.255.255.0) ist für das Netz 172.16.2.0/24 korrekt.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+</quiz>
