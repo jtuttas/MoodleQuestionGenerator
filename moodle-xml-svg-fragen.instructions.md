@@ -187,6 +187,17 @@
 - **Alle gleichwertigen Elemente** (z. B. mehrere Tabellen, Klassen, Knoten) erhalten **einheitliche Farben und Rahmen** – es sei denn, der Unterschied ist ausdrücklicher Prüfungsgegenstand.
 - **Abschluss-Kontrollfrage:** Kann ein Schüler die richtige Antwort allein durch Betrachten der Grafik erschließen, ohne die Aufgabe zu lösen? → Wenn ja, Grafik anpassen.
 
+### 3.9 Überschneidungsfreiheit (kritisch)
+**Kein grafisches Element darf ein anderes überlagern oder unleserlich machen.**
+- **Vor der Fertigstellung alle Koordinaten rechnerisch prüfen:** Rechtecke, Ellipsen, Texte und Verbindungslinien dürfen sich nicht überlappen.
+- **Mindestabstände einhalten:**
+  - Zwischen zwei Rechtecken/Boxen: ≥ 10 px Abstand (nicht nur berühren).
+  - Beschriftungen (`<text>`) müssen vollständig **innerhalb** ihrer Box liegen oder eindeutig außerhalb mit ≥ 5 px Abstand zur nächsten Box.
+  - Verbindungslinien dürfen keine Boxen kreuzen, wenn es eine führbare Umgehung gibt.
+- **SVG `width`/`height` groß genug wählen**, sodass alle Elemente einschließlich Texte und Markerspitzen innerhalb des sichtbaren Bereichs liegen (Markerspitzen ragen über die Koordinate des Endpunkts hinaus – entsprechend `refX`/`refY` einkalkulieren).
+- **Textlänge schätzen:** Bei `font-size:13px` belegt ein Zeichen ~7–8 px Breite. Boxbreite ≥ Textlänge × 8 px + 2× Innenabstand (mind. 8 px je Seite).
+- **Callout-Nummern (①②…)** dürfen keine anderen Elemente überdecken – Platz links/oben vor dem Element reservieren.
+
 ---
 
 ## 4. Logik-Konsistenz – Pflichtprüfung
@@ -195,6 +206,7 @@ Vor dem Import immer prüfen:
 
 ### Alle Diagrammtypen
 - [ ] **Lösungsneutralität:** Kein Element ist durch Farbe, Rahmen oder Beschriftung so hervorgehoben, dass die gesuchte Antwort daraus direkt ablesbar ist (siehe 3.8)
+- [ ] **Überschneidungsfreiheit:** Alle Boxen, Texte und Linien überlappen sich nicht; Beschriftungen sind vollständig lesbar; SVG-Gesamtgröße reicht für alle Inhalte inkl. Markerspitzen (siehe 3.9)
 
 ### Klassendiagramme
 - [ ] Jede Klasse hat **nur Attribute, die darin modelliert sind** – keine „unsichtbaren" Beziehungen
