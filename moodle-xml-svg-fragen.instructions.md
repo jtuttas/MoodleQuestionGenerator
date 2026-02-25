@@ -71,114 +71,13 @@
 
 ## 3. SVG-Diagramme – Technische Regeln
 
-### 3.1 Grundgerüst der SVG-Grafik mit eingebettetem draw.io-Modell
-- Eine draw.io-editierbare SVG besteht aus zwei Schichten:
-  - Sichtbare SVG-Vorschau (normales SVG für Browser/Renderer)
-  - Eingebettetes draw.io-Diagramm (mxfile) im content-Attribut des <svg>
+### 3.1 Grundgerüst
 ```xml
-<svg xmlns="http://www.w3.org/2000/svg"
-     xmlns:xlink="http://www.w3.org/1999/xlink"
-     width="420" height="200" viewBox="0 0 420 200"
-     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;"
-     content="&lt;mxfile ...&gt;...&lt;/mxfile&gt;">
-  <!-- Sichtbare SVG-Vorschau -->
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="200"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <!-- Inhalt -->
 </svg>
 ```
-#### 3.1.1 Pflichtstruktur des eingebetteten draw.io-Modells
-```xml
-<mxfile ...>
-  <diagram id="..." name="Page-1">
-    <mxGraphModel ...>
-      <root>
-        <mxCell id="0"/>
-        <mxCell id="1" parent="0"/>
-
-        <!-- Form/Knoten -->
-        <mxCell id="node1" value="..." style="..." vertex="1" parent="1">
-          <mxGeometry x="..." y="..." width="..." height="..." as="geometry"/>
-        </mxCell>
-
-        <!-- Verbindung/Kante -->
-        <mxCell id="edge1" style="..." edge="1" parent="1" source="node1" target="node2">
-          <mxGeometry relative="1" as="geometry"/>
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
-```
-
-#### 3.1.2 XML-Escaping-Regeln für content (Pflicht)
-- Das eingebettete `mxfile` muss im `content`-Attribut XML-escaped werden:
-  - < → &lt;
-  - > → &gt;
-  - " → &quot;
-  - & → &amp;
-
-Beispiel:
-```xml
-content="&lt;mxfile host=&quot;app.diagrams.net&quot; ...&gt;...&lt;/mxfile&gt;"
-```
-
-#### 3.1.3 Synchronisationsregel: SVG-Vorschau ↔ mxfile
-- Die Vorschau und das eingebettete `mxfile` müssen semantisch dasselbe Diagramm abbilden.
-
-Pflicht:
-  - Jede sichtbare Form im SVG hat ein entsprechendes `vertex` im `mxfile`
-  - Jede sichtbare Linie/Verbindung im SVG hat eine `edge` im `mxfile`
-  - Alle sichtbaren Labels/Texte sind im `mxfile` enthalten (als `value` oder Textobjekt)
-
-#### 3.1.4 Kompatibilitätsregel für <use>
-- Für SVG-Symbole (<defs><symbol>...) ist in <use> immer zu verwenden:
-```xml
-<use xlink:href="#symbolId" x="..." y="..." width="..." height="..."/>
-```
-Nicht nur `href`, sondern `xlink:href` (plus `xmlns:xlink` am Root).
-
-#### 3.1.5 Pflicht: feste Größe und viewBox
-- Die SVGs müssen immer enthalten:
-  - width
-  - height
-  - viewBox
-(Das verhindert fehlerhafte Skalierung in Editoren/Renderern.)
-
-#### 3.1.6 Draw.io-Styles im mxfile (empfohlen)
-Für gute Weiterbearbeitbarkeit in draw.io sollen mxCell-Styles draw.io-konform gesetzt werden.
-
-- Empfohlene Basis-Styles (Knoten):
-  - html=1
-  - align=center
-  - verticalAlign=middle
-  - strokeColor=#333333
-  - strokeWidth=1.5
-
-Empfohlene Basis-Styles (Kanten):
-  - endArrow=none (wenn keine Pfeilspitze)
-  - rounded=0
-  - strokeWidth=1.5
-  - dashed=1;dashPattern=6 3 (für gestrichelt)
-
-#### 3.1.7 Cisco-/Spezial-Symbole in draw.io
-Wenn Cisco-Symbole editierbar in draw.io sein sollen, müssen sie im `mxfile` als draw.io-Shape referenziert werden (nicht nur als SVG-Pfade in der Vorschau).
-
-Beispiele für `style`:
-- shape=mxgraph.cisco.routers.router
-- shape=mxgraph.cisco.switches.workgroup_switch
-- shape=mxgraph.cisco.computers_and_peripherals.pc
-
-#### 3.1.8 Vorschau-Regel für AI-Agenten (Pflicht)
-Die SVG-Vorschau muss eigenständig renderbar sein, auch ohne draw.io.
-
-Daher:
-- Alle sichtbaren Elemente normal als SVG zeichnen (`path`, `line`, `rect`, `ellipse`, `text`, `use`, ...)
-- Nicht darauf verlassen, dass ein SVG-Viewer das `content`-Attribut interpretiert
-
-#### 3.1.9 Operativer Ablauf für den AI-Agenten (Pflichtprozess)
-- Wenn ein SVG erzeugt werden soll:
-  - Sichtbares SVG nach den Diagrammregeln erzeugen
-  - Parallel ein passendes draw.io-mxfile aufbauen
-  - mxfile XML-escapen
-  - Escaped mxfile in content="..." des <svg> einfügen
 
 ### 3.2 Pfeilspitzen (Marker)
 ```xml
