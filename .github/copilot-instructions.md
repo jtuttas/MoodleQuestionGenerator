@@ -111,6 +111,7 @@ Wenn möglich: zusätzlich nach `<text>` ohne CDATA suchen, sobald HTML vorkommt
 
 ## Standard-Ausgabeformat im Chat
 - Erzeuge/aktualisiere die XML-Datei unter `res/`.
+- **Aktualisiere anschließend den Abschnitt „Enthaltene Fragendateien" in `README.md`**: neue Zeile in die Tabelle eintragen (Dateiname, Thema, Zielgruppe, Anzahl Fragen, Fragetypen) sowie den Eintrag in der Verzeichnisstruktur ergänzen.
 - Gib am Ende kurz an:
   - Dateiname
   - Anzahl Fragen + verwendete Fragetypen
