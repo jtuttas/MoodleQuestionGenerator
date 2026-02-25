@@ -41,6 +41,7 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - Punkte: richtige Antworten sollen zusammen **≈ 100%** ergeben (z. B. 2×50 oder 3×33.33333).
 - Falsche Antworten können negative fractions haben (z. B. `-25`, `-50`).
 - Antworttexte dürfen **nicht** mit `+`, `-`, `~` beginnen (Moodle-Sonderzeichen).
+- **Antworttextlänge neutralisieren:** Die richtige Antwort darf **nicht erkennbar die längste** sein. Alle Distraktoren müssen eine ähnliche Länge und Detailtiefe haben wie die korrekte Antwort – sonst ist die Lösung durch reines Abzählen der Zeichen erratbar.
 
 #### `cloze`
 - Eingebettete Syntax im Fragetext, z. B.:

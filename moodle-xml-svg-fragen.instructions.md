@@ -248,6 +248,7 @@ Vor dem Import immer prüfen:
 - Punkte für richtige Antworten summieren sich zu 100% (z. B. 3× `33.33333`)
 - Negativpunkte für falsche: z. B. `fraction="-25"`
 - Antworttexte dürfen **nicht mit** `+`, `-`, `~` **beginnen** (Moodle-Sonderzeichen)
+- **Antworttextlänge neutralisieren:** Die richtige Antwort darf **nicht erkennbar die längste** sein. Alle Distraktoren müssen eine ähnliche Länge und Detailtiefe haben wie die korrekte Antwort – sonst ist die Lösung durch reines Abzählen der Zeichen erratbar.
 
 ### cloze (Lückentext mit eingebetteten Fragen)
 - Syntax: `{1:MULTICHOICE:Option1~Option2~=RichtigeOption~Option3}`
