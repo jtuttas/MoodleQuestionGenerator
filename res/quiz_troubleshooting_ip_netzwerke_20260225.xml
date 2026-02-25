@@ -197,27 +197,27 @@ Analysieren Sie die Konfigurationsangaben im Diagramm.</p>
   <!-- PC-A -->
   <use href="#pc2" x="30" y="10" width="55" height="49"/>
   <text x="57" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-A</text>
-  <text x="57" y="82" text-anchor="middle" font-size="10px" fill="#1a7a1a">IP: 192.168.10.10</text>
-  <text x="57" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
-  <text x="57" y="104" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 192.168.10.1</text>
+  <text x="57" y="82" text-anchor="middle" font-size="10px" fill="#333">IP: 192.168.10.10</text>
+  <text x="57" y="93" text-anchor="middle" font-size="10px" fill="#333">Maske: 255.255.255.0</text>
+  <text x="57" y="104" text-anchor="middle" font-size="10px" fill="#333">GW: 192.168.10.1</text>
   <!-- PC-B -->
   <use href="#pc2" x="150" y="10" width="55" height="49"/>
   <text x="177" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-B</text>
-  <text x="177" y="82" text-anchor="middle" font-size="10px" fill="#1a7a1a">IP: 192.168.10.20</text>
-  <text x="177" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
-  <text x="177" y="104" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 192.168.10.1</text>
+  <text x="177" y="82" text-anchor="middle" font-size="10px" fill="#333">IP: 192.168.10.20</text>
+  <text x="177" y="93" text-anchor="middle" font-size="10px" fill="#333">Maske: 255.255.255.0</text>
+  <text x="177" y="104" text-anchor="middle" font-size="10px" fill="#333">GW: 192.168.10.1</text>
   <!-- PC-C -->
   <use href="#pc2" x="370" y="10" width="55" height="49"/>
   <text x="397" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-C</text>
-  <text x="397" y="82" text-anchor="middle" font-size="10px" fill="#1a7a1a">IP: 192.168.10.30</text>
-  <text x="397" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
-  <text x="397" y="104" text-anchor="middle" font-size="10px" fill="#cc0000">GW: 192.168.11.1 !</text>
+  <text x="397" y="82" text-anchor="middle" font-size="10px" fill="#333">IP: 192.168.10.30</text>
+  <text x="397" y="93" text-anchor="middle" font-size="10px" fill="#333">Maske: 255.255.255.0</text>
+  <text x="397" y="104" text-anchor="middle" font-size="10px" fill="#333">GW: 192.168.11.1</text>
   <!-- PC-D -->
   <use href="#pc2" x="490" y="10" width="55" height="49"/>
   <text x="517" y="70" text-anchor="middle" font-size="11px" font-weight="bold">PC-D</text>
-  <text x="517" y="82" text-anchor="middle" font-size="10px" fill="#cc0000">IP: 192.168.20.40 !</text>
-  <text x="517" y="93" text-anchor="middle" font-size="10px" fill="#1a7a1a">Maske: 255.255.255.0</text>
-  <text x="517" y="104" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 192.168.10.1</text>
+  <text x="517" y="82" text-anchor="middle" font-size="10px" fill="#333">IP: 192.168.20.40</text>
+  <text x="517" y="93" text-anchor="middle" font-size="10px" fill="#333">Maske: 255.255.255.0</text>
+  <text x="517" y="104" text-anchor="middle" font-size="10px" fill="#333">GW: 192.168.10.1</text>
   <!-- Links SW1 - PCs -->
   <line x1="240" y1="249" x2="57" y2="59" stroke="#333" stroke-width="1.5"/>
   <line x1="250" y1="231" x2="177" y2="59" stroke="#333" stroke-width="1.5"/>
@@ -500,32 +500,32 @@ dass Host B2 keine Pakete an Host A1 (172.16.1.10) senden kann, obwohl alle ande
   <!-- Host A1 -->
   <use href="#pc5a" x="30" y="80" width="55" height="49"/>
   <text x="57" y="140" text-anchor="middle" font-size="11px" font-weight="bold">A1</text>
-  <text x="57" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.1.10/24</text>
-  <text x="57" y="163" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 172.16.1.1</text>
+  <text x="57" y="152" text-anchor="middle" font-size="10px" fill="#333">172.16.1.10/24</text>
+  <text x="57" y="163" text-anchor="middle" font-size="10px" fill="#333">GW: 172.16.1.1</text>
   <!-- Link A1 - SW-A -->
   <line x1="90" y1="214" x2="75" y2="129" stroke="#333" stroke-width="1.5"/>
 
   <!-- Host A2 -->
   <use href="#pc5a" x="170" y="80" width="55" height="49"/>
   <text x="197" y="140" text-anchor="middle" font-size="11px" font-weight="bold">A2</text>
-  <text x="197" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.1.20/24</text>
-  <text x="197" y="163" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 172.16.1.1</text>
+  <text x="197" y="152" text-anchor="middle" font-size="10px" fill="#333">172.16.1.20/24</text>
+  <text x="197" y="163" text-anchor="middle" font-size="10px" fill="#333">GW: 172.16.1.1</text>
   <!-- Link A2 - SW-A -->
   <line x1="167" y1="214" x2="195" y2="129" stroke="#333" stroke-width="1.5"/>
 
   <!-- Host B1 -->
   <use href="#pc5b" x="430" y="80" width="55" height="49"/>
   <text x="457" y="140" text-anchor="middle" font-size="11px" font-weight="bold">B1</text>
-  <text x="457" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.2.10/24</text>
-  <text x="457" y="163" text-anchor="middle" font-size="10px" fill="#1a7a1a">GW: 172.16.2.1</text>
+  <text x="457" y="152" text-anchor="middle" font-size="10px" fill="#333">172.16.2.10/24</text>
+  <text x="457" y="163" text-anchor="middle" font-size="10px" fill="#333">GW: 172.16.2.1</text>
   <!-- Link B1 - SW-B -->
   <line x1="508" y1="214" x2="475" y2="129" stroke="#333" stroke-width="1.5"/>
 
   <!-- Host B2 -->
   <use href="#pc5b" x="565" y="80" width="55" height="49"/>
   <text x="592" y="140" text-anchor="middle" font-size="11px" font-weight="bold">B2</text>
-  <text x="592" y="152" text-anchor="middle" font-size="10px" fill="#1a7a1a">172.16.2.20/24</text>
-  <text x="592" y="163" text-anchor="middle" font-size="10px" fill="#cc0000" font-weight="bold">GW: 172.16.1.1 !</text>
+  <text x="592" y="152" text-anchor="middle" font-size="10px" fill="#333">172.16.2.20/24</text>
+  <text x="592" y="163" text-anchor="middle" font-size="10px" fill="#333">GW: 172.16.1.1</text>
   <!-- Link B2 - SW-B -->
   <line x1="585" y1="214" x2="610" y2="129" stroke="#333" stroke-width="1.5"/>
 </svg>
