@@ -180,11 +180,21 @@
 <line x1="62" y1="30" x2="184" y2="28" stroke="#c00" stroke-width="1" stroke-dasharray="4,3"/>
 ```
 
+### 3.8 Lösungsneutralität in Grafiken (kritisch)
+**Die Grafik darf niemals die Lösung vorwegnehmen oder visuell verraten.**
+- **Keine farbliche Hervorhebung** von Elementen, deren Rolle die gesuchte Antwort ist (z. B. eine gesuchte Zwischentabelle nicht orange/gelb einfärben, wenn „Zwischentabelle" die korrekte Antwort ist).
+- **Keine Legenden**, die direkt auf die richtige Antwort hindeuten (z. B. Beschriftungen in einer Sonderfarbe, die mit dem zu erkennenden Konzept assoziiert ist).
+- **Alle gleichwertigen Elemente** (z. B. mehrere Tabellen, Klassen, Knoten) erhalten **einheitliche Farben und Rahmen** – es sei denn, der Unterschied ist ausdrücklicher Prüfungsgegenstand.
+- **Abschluss-Kontrollfrage:** Kann ein Schüler die richtige Antwort allein durch Betrachten der Grafik erschließen, ohne die Aufgabe zu lösen? → Wenn ja, Grafik anpassen.
+
 ---
 
 ## 4. Logik-Konsistenz – Pflichtprüfung
 
 Vor dem Import immer prüfen:
+
+### Alle Diagrammtypen
+- [ ] **Lösungsneutralität:** Kein Element ist durch Farbe, Rahmen oder Beschriftung so hervorgehoben, dass die gesuchte Antwort daraus direkt ablesbar ist (siehe 3.8)
 
 ### Klassendiagramme
 - [ ] Jede Klasse hat **nur Attribute, die darin modelliert sind** – keine „unsichtbaren" Beziehungen

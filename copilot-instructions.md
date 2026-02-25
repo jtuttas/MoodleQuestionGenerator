@@ -85,7 +85,12 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - Inhaltliche Konsistenz: Diagramm ↔ Frage ↔ Lösungen/Feedback müssen zusammenpassen.
 - Keine „unsichtbaren“ Beziehungen: wenn eine Beziehung im Diagramm existiert, muss sie in Text/Antworten nachvollziehbar sein.
 - Keine unnötigen Features: Erzeuge genau die angeforderten Fragen und Fragetypen.
-
+### Lösungsneutralität in SVG-Grafiken (kritisch)
+**Die Grafik darf niemals die Lösung vorwegnehmen oder visuell verraten.** Konkret:
+- **Keine farbliche Hervorhebung** von Elementen, die die gesuchte Antwort darstellen (z. B. eine gesuchte Zwischentabelle nicht orange/gelb einfärben, wenn „Zwischentabelle" die korrekte Antwort ist).
+- **Keine Legenden**, die direkt auf die richtige Antwort hinweisen (z. B. „Pfeile = Fremdschlüsselbezüge" in einer Farbe, die mit der zu identifizierenden Sonderrolle assoziiert ist).
+- **Alle gleichwertigen Elemente** (z. B. mehrere Tabellen, Klassen, Knoten) erhalten **einheitliche Farben und Rahmen** – es sei denn, die Aufgabe lautet ausdrücklich, den Unterschied der Farbe zu erklären.
+- **Vor der Fertigstellung prüfen:** Könnte ein Schüler die richtige Antwort allein aus dem Diagramm ableiten, ohne die Frage zu lösen? Wenn ja → Grafik anpassen.
 ## Validierung (vor dem finalen Ergebnis)
 Führe eine schnelle XML-Validierung aus (Beispiel in PowerShell):
 

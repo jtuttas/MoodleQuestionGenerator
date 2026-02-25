@@ -1,0 +1,446 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ================================================================
+     Thema     : N:M-Beziehungen in relationalen Datenbanken
+     Zielgruppe: Fachinformatiker Anwendungsentwicklung
+     Fragen    : 5  (ddmatch | multichoice | ddwtos | cloze | multichoice)
+     SVG       : Ja (ER-Diagramme, Tabellenschemata)
+     Erstellt  : 2026-02-24
+     ================================================================ -->
+
+
+<!-- ==================== FRAGE 1: ddmatch (leicht) ==================== -->
+<!-- ER-Diagramm-Symbole den richtigen Begriffen zuordnen               -->
+
+  <question type="ddmatch">
+    <name>
+      <text>N:M Beziehungen – ER-Diagramm Symbole zuordnen (leicht)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie jedem nummerierten Element im ER-Diagramm den richtigen Begriff zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="230"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+
+  <!-- ① Entität: Rechteck Student -->
+  <text x="5" y="52" font-size="14" font-weight="bold" fill="#c00">①</text>
+  <rect x="30" y="30" width="110" height="40" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="85" y="55" text-anchor="middle" font-weight="bold">Student</text>
+
+  <!-- Linie Student → belegt, ② Kardinalität N -->
+  <line x1="140" y1="50" x2="195" y2="80" stroke="#333" stroke-width="1.5"/>
+  <text x="148" y="62" font-size="13" fill="#333">N</text>
+  <text x="159" y="56" font-size="14" font-weight="bold" fill="#c00">②</text>
+
+  <!-- ③ Beziehungstyp: Raute belegt -->
+  <text x="193" y="58" font-size="14" font-weight="bold" fill="#c00">③</text>
+  <polygon points="250,78 290,108 250,138 210,108" fill="#fffbe6" stroke="#333" stroke-width="1.5"/>
+  <text x="250" y="114" text-anchor="middle" font-weight="bold">belegt</text>
+
+  <!-- Linie belegt → Kurs, Kardinalität M -->
+  <line x1="290" y1="108" x2="345" y2="80" stroke="#333" stroke-width="1.5"/>
+  <text x="315" y="90" font-size="13" fill="#333">M</text>
+
+  <!-- Entität Kurs rechts -->
+  <rect x="345" y="58" width="110" height="40" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="400" y="83" text-anchor="middle" font-weight="bold">Kurs</text>
+
+  <!-- ④ Attribut-Ellipse an Student -->
+  <text x="5" y="168" font-size="14" font-weight="bold" fill="#c00">④</text>
+  <line x1="85" y1="70" x2="85" y2="155" stroke="#333" stroke-width="1" stroke-dasharray="4,3"/>
+  <ellipse cx="85" cy="175" rx="48" ry="22" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <text x="85" y="180" text-anchor="middle">Name</text>
+</svg>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>① Entität</strong> – dargestellt als Rechteck; repräsentiert einen realen Objekttyp (z.B. Student, Kurs).</li>
+  <li><strong>② Kardinalität</strong> – das „N" bzw. „M" an der Verbindungslinie gibt das Mengenverhältnis an. N:M bedeutet: ein Student kann viele Kurse belegen und ein Kurs kann von vielen Studenten besucht werden.</li>
+  <li><strong>③ Beziehungstyp</strong> – dargestellt als Raute; beschreibt die semantische Verbindung zwischen zwei Entitäten.</li>
+  <li><strong>④ Attribut</strong> – dargestellt als Ellipse; beschreibt eine Eigenschaft einer Entität.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Richtig!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+
+    <subquestion format="html">
+      <text><![CDATA[<p>① – Rechteck (<em>Student</em>)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Entität</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>② – „N" an der Verbindungslinie</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Kardinalität</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>③ – Raute (<em>belegt</em>)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Beziehungstyp</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>④ – Ellipse (<em>Name</em>)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Attribut</p>]]></text>
+      </answer>
+    </subquestion>
+    <!-- Distractor -->
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Primärschlüssel</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ==================== FRAGE 2: multichoice (single, mittel) ==================== -->
+<!-- Wie wird eine N:M-Beziehung in einem relationalen Datenbankschema abgebildet?  -->
+
+  <question type="multichoice">
+    <name>
+      <text>N:M Beziehungen – Auflösung in relationale Tabellen (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben ist folgendes ER-Diagramm:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="90"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <!-- Student -->
+  <rect x="10" y="25" width="110" height="40" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="65" y="50" text-anchor="middle" font-weight="bold">Student</text>
+  <!-- Linie links -->
+  <line x1="120" y1="45" x2="170" y2="45" stroke="#333" stroke-width="1.5"/>
+  <text x="130" y="40" font-size="12">N</text>
+  <!-- Raute belegt -->
+  <polygon points="195,20 230,45 195,70 160,45" fill="#fffbe6" stroke="#333" stroke-width="1.5"/>
+  <text x="195" y="50" text-anchor="middle">belegt</text>
+  <!-- Linie rechts -->
+  <line x1="230" y1="45" x2="280" y2="45" stroke="#333" stroke-width="1.5"/>
+  <text x="268" y="40" font-size="12">M</text>
+  <!-- Kurs -->
+  <rect x="280" y="25" width="110" height="40" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="335" y="50" text-anchor="middle" font-weight="bold">Kurs</text>
+</svg>
+<p>Wie wird diese N:M-Beziehung korrekt in einem relationalen Datenbankschema abgebildet?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Eine N:M-Beziehung kann in einem relationalen DBMS <strong>nicht direkt</strong> abgebildet werden.
+Sie wird durch eine <strong>Zwischentabelle</strong> (Verbindungs- oder Assoziationstabelle) aufgelöst,
+die mindestens die Primärschlüssel beider Ausgangstabellen als Fremdschlüssel enthält.
+Diese bilden gemeinsam den zusammengesetzten Primärschlüssel der Zwischentabelle.</p>
+<p>Resultierende Tabellen:</p>
+<ul>
+  <li><code>Student(<u>id</u>, name)</code></li>
+  <li><code>Kurs(<u>id</u>, bezeichnung)</code></li>
+  <li><code>Einschreibung(<u>student_id</u>, <u>kurs_id</u>)</code> – FK auf Student und Kurs</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Eine Zwischentabelle <code>Einschreibung(student_id, kurs_id)</code> wird angelegt; beide Spalten sind Fremdschlüssel und bilden gemeinsam den Primärschlüssel.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig! Die Zwischentabelle löst die N:M-Beziehung auf und stellt referenzielle Integrität sicher.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>In der Tabelle <code>Student</code> wird eine Spalte <code>kurs_ids</code> ergänzt, die kommagetrennte Kurs-IDs speichert.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch! Mehrwertige Attribute in einer Spalte verstoßen gegen die 1. Normalform und sind in relationalen Datenbanken nicht zulässig.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Die Tabelle <code>Kurs</code> erhält einen einfachen Fremdschlüssel <code>student_id</code>, der auf <code>Student</code> verweist.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch! Ein einzelner Fremdschlüssel in einer Tabelle bildet nur eine 1:N-Beziehung ab, keine N:M-Beziehung.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Relationale Datenbanken unterstützen N:M-Beziehungen nativ – es sind keine zusätzlichen Tabellen notwendig.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch! Relationale Datenbanken kennen kein natives N:M-Konzept; die Auflösung über eine Zwischentabelle ist zwingend erforderlich.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ==================== FRAGE 3: ddwtos (mittel) ==================== -->
+<!-- SQL CREATE TABLE für Zwischentabelle: fehlende Schlüsselwörter ergänzen -->
+
+  <question type="ddwtos">
+    <name>
+      <text>N:M Beziehungen – SQL Zwischentabelle erstellen (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Die N:M-Beziehung zwischen <strong>Student</strong> und <strong>Kurs</strong> wird durch folgende SQL-Anweisungen abgebildet.
+Ergänzen Sie die fehlenden SQL-Schlüsselwörter in den Lücken [[1]], [[2]] und [[3]]:</p>
+<pre style="background:#f4f4f4;padding:10px;border-radius:4px;font-size:12px;line-height:1.6;">CREATE TABLE Student (
+    id   INT          NOT NULL,
+    name VARCHAR(100) NOT NULL,
+    [[1]] KEY (id)
+);
+
+CREATE TABLE Kurs (
+    id          INT          NOT NULL,
+    bezeichnung VARCHAR(200) NOT NULL,
+    [[1]] KEY (id)
+);
+
+CREATE TABLE Einschreibung (
+    student_id INT NOT NULL,
+    kurs_id    INT NOT NULL,
+    [[1]] KEY (student_id, kurs_id),
+    [[2]] KEY fk_student (student_id) [[3]] Student(id),
+    [[2]] KEY fk_kurs    (kurs_id)    [[3]] Kurs(id)
+);</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>PRIMARY</strong> – legt den Primärschlüssel fest (<code>PRIMARY KEY</code>). In <em>Einschreibung</em> ist er zusammengesetzt aus <code>student_id</code> und <code>kurs_id</code>.</li>
+  <li><strong>FOREIGN</strong> – definiert eine Fremdschlüsselspalte (<code>FOREIGN KEY</code>), die auf eine andere Tabelle verweist.</li>
+  <li><strong>REFERENCES</strong> – gibt an, auf welche Tabelle und Spalte der Fremdschlüssel zeigt.</li>
+</ul>
+<p>Der zusammengesetzte Primärschlüssel <code>(student_id, kurs_id)</code> stellt sicher,
+dass ein Student sich für denselben Kurs nicht doppelt einschreiben kann.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <!-- Lücke [[1]]: PRIMARY   Distractor: UNIQUE -->
+    <dragbox><text>PRIMARY</text><group>1</group></dragbox>
+    <dragbox><text>UNIQUE</text><group>1</group></dragbox>
+    <!-- Lücke [[2]]: FOREIGN   Distractor: INDEX -->
+    <dragbox><text>FOREIGN</text><group>2</group></dragbox>
+    <dragbox><text>INDEX</text><group>2</group></dragbox>
+    <!-- Lücke [[3]]: REFERENCES   Distractor: CONSTRAINT -->
+    <dragbox><text>REFERENCES</text><group>3</group></dragbox>
+    <dragbox><text>CONSTRAINT</text><group>3</group></dragbox>
+  </question>
+
+
+<!-- ==================== FRAGE 4: cloze (mittel) ==================== -->
+<!-- Relationales Schema aus N:M-Auflösung analysieren                  -->
+
+  <question type="cloze">
+    <name>
+      <text>N:M Beziehungen – Datenbankschema analysieren (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analysieren Sie das folgende relationale Datenbankschema, das durch Auflösung einer N:M-Beziehung entstanden ist:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="510" height="155"
+     style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="fkArr" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#c80"/>
+    </marker>
+  </defs>
+
+  <!-- Tabelle Student -->
+  <rect x="5"  y="8" width="145" height="88" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <rect x="5"  y="8" width="145" height="24" fill="#5b8dd9" stroke="#333" stroke-width="1.5"/>
+  <text x="78" y="25" text-anchor="middle" font-weight="bold" fill="#fff">Student</text>
+  <text x="13" y="46" font-size="11">PK  id INT</text>
+  <text x="13" y="62" font-size="11">    name VARCHAR(100)</text>
+  <text x="13" y="78" font-size="11">    email VARCHAR(200)</text>
+
+  <!-- Tabelle Einschreibung (Zwischentabelle) -->
+  <rect x="180" y="8" width="160" height="88" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <rect x="180" y="8" width="160" height="24" fill="#5b8dd9" stroke="#333" stroke-width="1.5"/>
+  <text x="260" y="25" text-anchor="middle" font-weight="bold" fill="#fff">Einschreibung</text>
+  <text x="188" y="46" font-size="11">PK/FK  student_id INT</text>
+  <text x="188" y="62" font-size="11">PK/FK  kurs_id    INT</text>
+  <text x="188" y="78" font-size="11">       datum DATE</text>
+
+  <!-- Tabelle Kurs -->
+  <rect x="370" y="8" width="135" height="88" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <rect x="370" y="8" width="135" height="24" fill="#5b8dd9" stroke="#333" stroke-width="1.5"/>
+  <text x="438" y="25" text-anchor="middle" font-weight="bold" fill="#fff">Kurs</text>
+  <text x="378" y="46" font-size="11">PK  id INT</text>
+  <text x="378" y="62" font-size="11">    bezeichnung VARCHAR</text>
+  <text x="378" y="78" font-size="11">    dozent VARCHAR</text>
+
+  <!-- FK-Pfeile -->
+  <line x1="180" y1="54" x2="152" y2="54" stroke="#555" stroke-width="1.5" marker-end="url(#fkArr)"/>
+  <line x1="340" y1="62" x2="368" y2="62" stroke="#555" stroke-width="1.5" marker-end="url(#fkArr)"/>
+
+  <!-- Legende -->
+  <text x="5"  y="118" font-size="10" fill="#555">PK = Primärschlüssel</text>
+  <text x="5"  y="132" font-size="10" fill="#555">FK = Fremdschlüssel</text>
+  <text x="5"  y="146" font-size="10" fill="#555">Pfeile = Fremdschlüsselbezüge</text>
+</svg>
+
+<p><strong>1.</strong> Die Tabelle <em>Einschreibung</em> ist eine
+{1:MULTICHOICE:=Zwischentabelle~Basistabelle~Sichttabelle~Systemtabelle}.</p>
+
+<p><strong>2.</strong> Der Primärschlüssel der Tabelle <em>Einschreibung</em> ist
+{1:MULTICHOICE:=zusammengesetzt aus student_id und kurs_id~nur die Spalte student_id~nur die Spalte kurs_id~die Spalte datum}.</p>
+
+<p><strong>3.</strong> Die Spalte <code>student_id</code> in <em>Einschreibung</em> referenziert
+{1:MULTICHOICE:=die Spalte id in Student~die Spalte id in Kurs~die Spalte datum in Einschreibung~keine andere Tabelle}.</p>
+
+<p><strong>4.</strong> Laut Schema kann ein Student
+{1:MULTICHOICE:=beliebig viele Kurse belegen~genau einen Kurs belegen~maximal zwei Kurse belegen~keinen Kurs belegen}.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ol>
+  <li>Die Tabelle <em>Einschreibung</em> ist eine <strong>Zwischentabelle</strong> (auch: Assoziationstabelle / Verbindungstabelle), die die N:M-Beziehung auflöst.</li>
+  <li>Der Primärschlüssel ist <strong>zusammengesetzt</strong>: <code>(student_id, kurs_id)</code> – beide Spalten identifizieren gemeinsam einen Datensatz eindeutig und verhindern doppelte Einschreibungen.</li>
+  <li><code>student_id</code> ist ein Fremdschlüssel, der auf <strong>Student(id)</strong> verweist (Pfeil im Diagramm).</li>
+  <li>Da beliebig viele Zeilen in <em>Einschreibung</em> mit derselben <code>student_id</code> existieren dürfen, kann ein Student <strong>beliebig viele Kurse</strong> belegen.</li>
+</ol>]]></text>
+    </generalfeedback>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ==================== FRAGE 5: multichoice (Mehrfachauswahl, schwer) ==================== -->
+<!-- SQL SELECT mit INNER JOIN über alle drei Tabellen                                        -->
+
+  <question type="multichoice">
+    <name>
+      <text>N:M Beziehungen – SQL SELECT mit JOIN (schwer)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Gegeben sind folgende drei Tabellen (entstanden aus einer N:M-Auflösung):</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="510" height="68"
+     style="font-family:Arial,sans-serif;font-size:11px;display:block;margin:10px auto;">
+  <rect x="5"   y="5" width="148" height="56" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="79"  y="20" text-anchor="middle" font-weight="bold">Student</text>
+  <text x="13"  y="36">PK id INT</text>
+  <text x="13"  y="52">   name VARCHAR(100)</text>
+
+  <rect x="178" y="5" width="160" height="56" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="258" y="20" text-anchor="middle" font-weight="bold">Einschreibung</text>
+  <text x="186" y="36">FK student_id INT → Student</text>
+  <text x="186" y="52">FK kurs_id    INT → Kurs</text>
+
+  <rect x="363" y="5" width="142" height="56" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="434" y="20" text-anchor="middle" font-weight="bold">Kurs</text>
+  <text x="371" y="36">PK id INT</text>
+  <text x="371" y="52">   bezeichnung VARCHAR(200)</text>
+</svg>
+<p>Welche der folgenden SQL-Abfragen liefert korrekt <strong>alle Studenten mit den Bezeichnungen ihrer belegten Kurse</strong>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Um alle Studenten mit ihren Kursen zu ermitteln, müssen alle drei Tabellen über die Zwischentabelle verknüpft werden:</p>
+<pre style="background:#f4f4f4;padding:8px;border-radius:4px;font-size:12px;">SELECT s.name, k.bezeichnung
+FROM   Student       s
+INNER JOIN Einschreibung e ON s.id = e.student_id
+INNER JOIN Kurs          k ON e.kurs_id = k.id;</pre>
+<p><code>JOIN</code> ohne Schlüsselwort ist eine Kurzform für <code>INNER JOIN</code> und liefert dasselbe Ergebnis.
+Ein direkter Join von Student und Kurs ohne Zwischentabelle sowie vertauschte Fremdschlüsselbedingungen liefern falsche Ergebnisse.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+
+    <!-- 2 richtige Antworten à 50% -->
+    <answer fraction="50" format="html">
+      <text><![CDATA[<pre>SELECT s.name, k.bezeichnung
+FROM   Student       s
+INNER JOIN Einschreibung e ON s.id = e.student_id
+INNER JOIN Kurs          k ON e.kurs_id = k.id;</pre>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig! Korrekter INNER JOIN über die Zwischentabelle mit richtigen ON-Bedingungen.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<pre>SELECT s.name, k.bezeichnung
+FROM   Student       s
+JOIN   Einschreibung e ON e.student_id = s.id
+JOIN   Kurs          k ON k.id = e.kurs_id;</pre>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig! <code>JOIN</code> ist eine Kurzform von <code>INNER JOIN</code> – das Ergebnis ist identisch.</p>]]></text>
+      </feedback>
+    </answer>
+
+    <!-- 3 falsche Antworten à -33.33% -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<pre>SELECT s.name, k.bezeichnung
+FROM   Student s, Kurs k
+WHERE  s.id = k.id;</pre>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch! Die Zwischentabelle <em>Einschreibung</em> fehlt völlig. <code>s.id = k.id</code> ist außerdem keine sinnvolle Verknüpfungsbedingung.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<pre>SELECT s.name, k.bezeichnung
+FROM   Student s
+INNER JOIN Kurs k ON s.id = k.id;</pre>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch! Die Zwischentabelle <em>Einschreibung</em> wird nicht einbezogen. Ein direkter Join von Student und Kurs liefert keine korrekte N:M-Verknüpfung.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<pre>SELECT s.name, k.bezeichnung
+FROM   Student       s
+INNER JOIN Einschreibung e ON s.id = e.kurs_id
+INNER JOIN Kurs          k ON e.student_id = k.id;</pre>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch! Die Fremdschlüsselbedingungen sind vertauscht: <code>e.student_id</code> muss mit <code>s.id</code> verglichen werden und <code>e.kurs_id</code> mit <code>k.id</code>.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+</quiz>

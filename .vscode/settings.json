@@ -1,0 +1,8 @@
+{
+    "chat.tools.terminal.autoApprove": {
+        "/^python -c \"import xml\\.etree\\.ElementTree as ET; ET\\.parse\\(r'd:\\\\Code\\\\MoodleQuestionGenerator\\\\res\\\\quiz_nm_beziehungen_20260224\\.xml'\\); print\\('XML valid'\\)\"$/": {
+            "approve": true,
+            "matchCommandLine": true
+        }
+    }
+}
