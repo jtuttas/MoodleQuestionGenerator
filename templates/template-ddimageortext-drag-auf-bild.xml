@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: ddimageortext (Drag-Drop auf Bild) ==================== -->
+<!-- 
+  VERWENDUNG: Elemente auf ein Bild ziehen (Beschriftung, Zuordnung)
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Aufgabenstellung anpassen
+  - <file>: Hintergrundbild als base64 encoded (PNG/JPG/SVG)
+  - <drag>: Ziehbare Elemente (Text oder Bild)
+  - <drop>: Zielzonen auf dem Bild
+  
+  WICHTIG:
+  - xleft/ytop: Pixel-Koordinaten für Drop-Zonen (0,0 = oben links)
+  - choice in <drop>: Nummer des passenden <drag> Elements
+  - draggroup: Gruppierung (normalerweise alle = 1)
+  - Bild muss als base64 kodiert sein oder externes file
+  
+  TIPP: Bild-Koordinaten ermitteln:
+  - Mit Grafikprogramm (GIMP, Photoshop) Pixel-Koordinaten ablesen
+  - Oder Browser-DevTools verwenden
+-->
+
+  <question type="ddimageortext">
+    <name>
+      <text>[TITEL DER DRAG-DROP-AUF-BILD-AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE AUFGABENSTELLUNG EINFÜGEN]</p>
+<p>Ziehen Sie die Begriffe auf die richtige Position im Bild.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionale Erklärung der Lösung]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    
+    <!-- HINTERGRUNDBILD (base64 encoded) -->
+    <!-- ANLEITUNG ZUM KONVERTIEREN:
+         1. Online-Tool: https://www.base64-image.de/
+         2. Oder Linux/Mac: base64 bild.png > bild.txt
+         3. Oder PowerShell: [Convert]::ToBase64String([IO.File]::ReadAllBytes("bild.png"))
+         
+         WICHTIG: Ersetzen Sie das Beispiel-SVG durch Ihr eigenes Bild!
+         Das folgende SVG ist nur ein Platzhalter (300x200px mit 3 Positionen)
+    -->
+    <file name="hintergrundbild.svg" path="/" encoding="base64">PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0i
+MjAwIj4KICA8cmVjdCB3aWR0aD0iMzAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2YwZjBmMCIgc3Ryb2tl
+PSIjMzMzIiBzdHJva2Utd2lkdGg9IjIiLz4KICA8IS0tIFBvc2l0aW9uIDEgLS0+CiAgPHJlY3QgeD0i
+MjAiIHk9IjIwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGZpbGw9IiNmZmZkZTciIHN0cm9rZT0iI2Y5
+YTgyNSIgc3Ryb2tlLXdpZHRoPSIyIi8+CiAgPHRleHQgeD0iNjAiIHk9IjQ1IiB0ZXh0LWFuY2hvcj0i
+bWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTIiPj8/PzwvdGV4dD4KICA8IS0t
+IFBvc2l0aW9uIDIgLS0+CiAgPHJlY3QgeD0iMTEwIiB5PSI4MCIgd2lkdGg9IjgwIiBoZWlnaHQ9IjQw
+IiBmaWxsPSIjZmZmZGU3IiBzdHJva2U9IiNmOWE4MjUiIHN0cm9rZS13aWR0aD0iMiIvPgogIDx0ZXh0
+IHg9IjE1MCIgeT0iMTA1IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LWZhbWlseT0iQXJpYWwiIGZv
+bnQtc2l6ZT0iMTIiPj8/PzwvdGV4dD4KICA8IS0tIFBvc2l0aW9uIDMgLS0+CiAgPHJlY3QgeD0iMjAw
+IiB5PSIxNDAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI0MCIgZmlsbD0iI2ZmZmRlNyIgc3Ryb2tlPSIjZjlh
+ODI1IiBzdHJva2Utd2lkdGg9IjIiLz4KICA8dGV4dCB4PSIyNDAiIHk9IjE2NSIgdGV4dC1hbmNob3I9
+Im1pZGRsZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjEyIj4/Pz88L3RleHQ+Cjwvc3Zn
+Pg==</file>
+
+    <!-- ZIEHBARE ELEMENTE (Drag) -->
+    <!-- no: Eindeutige ID für dieses ziehbare Element
+         text: Der angezeigte Text (kann auch HTML enthalten via CDATA)
+         draggroup: Gruppe (normalerweise alle = 1)
+         infinite (optional): Erlaubt mehrfache Verwendung desselben Elements
+    -->
+    <drag>
+      <no>1</no>
+      <text><![CDATA[[Begriff 1]]]></text>
+      <draggroup>1</draggroup>
+    </drag>
+    
+    <drag>
+      <no>2</no>
+      <text><![CDATA[[Begriff 2]]]></text>
+      <draggroup>1</draggroup>
+    </drag>
+    
+    <drag>
+      <no>3</no>
+      <text><![CDATA[[Begriff 3]]]></text>
+      <draggroup>1</draggroup>
+    </drag>
+    
+    <!-- ABLAGEZONEN (Drop) - Position in Pixel -->
+    <!-- WICHTIG: xleft und ytop müssen ZAHLEN sein, keine Strings!
+         Koordinaten aus dem SVG/Bild oben ablesen:
+         - Position 1 ist bei x=20, y=20
+         - Position 2 ist bei x=110, y=80
+         - Position 3 ist bei x=200, y=140
+    -->
+    <drop>
+      <text></text>
+      <no>1</no>
+      <choice>1</choice>  <!-- Verweist auf <drag><no>1</no> -->
+      <xleft>20</xleft>   <!-- X-Koordinate in Pixel - MUSS ZAHL SEIN! -->
+      <ytop>20</ytop>     <!-- Y-Koordinate in Pixel - MUSS ZAHL SEIN! -->
+    </drop>
+    
+    <drop>
+      <text></text>
+      <no>2</no>
+      <choice>2</choice>  <!-- Verweist auf <drag><no>2</no> -->
+      <xleft>110</xleft>  <!-- Passen Sie diese Werte an Ihr Bild an -->
+      <ytop>80</ytop>
+    </drop>
+    
+    <drop>
+      <text></text>
+      <no>3</no>
+      <choice>3</choice>  <!-- Verweist auf <drag><no>3</no> -->
+      <xleft>200</xleft>  <!-- Koordinaten ermitteln mit Grafikprogramm -->
+      <ytop>140</ytop>
+    </drop>
+  </question>
+
+</quiz>

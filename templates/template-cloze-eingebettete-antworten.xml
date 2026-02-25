@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: cloze (Eingebettete Antworten/Lückentext) ==================== -->
+<!-- 
+  VERWENDUNG: Komplexe Fragen mit verschiedenen Antworttypen in einem Text
+  
+  SYNTAX FÜR LÜCKEN:
+  {PUNKTE:FRAGETYP:ANTWORTEN}
+  
+  FRAGETYPEN:
+  - MULTICHOICE: Multiple Choice (mit ~ getrennt, = markiert richtig)
+    Beispiel: {1:MULTICHOICE:=Richtig~Falsch1~Falsch2}
+  
+  - MULTIRESPONSE: Mehrfachauswahl (mehrere richtige mit ~ getrennt)
+    Beispiel: {1:MULTIRESPONSE:~%50%Richtig1~%50%Richtig2~%-100%Falsch}
+  
+  - NUMERICAL: Numerische Antwort mit Toleranz
+    Beispiel: {1:NUMERICAL:=42:0.1} (42 ± 0.1)
+  
+  - SHORTANSWER: Kurzantwort (Text)
+    Beispiel: {1:SHORTANSWER:=Berlin~=berlin}
+  
+  - SHORTANSWER_C: Case-sensitive Kurzantwort
+    Beispiel: {1:SHORTANSWER_C:=Linux}
+  
+  WICHTIG:
+  - Alle Fragen sind direkt im questiontext eingebettet
+  - = markiert die richtige Antwort
+  - ~ trennt verschiedene Antworten
+  - %PROZENT% für Punkteverteilung bei MULTIRESPONSE
+  - :TOLERANZ hinter NUMERICAL für Ungenauigkeit
+-->
+
+  <question type="cloze">
+    <name>
+      <text>[TITEL DER CLOZE-AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE AUFGABENSTELLUNG EINFÜGEN]</p>
+
+<p><strong>Beispiel 1 - Multiple Choice:</strong></p>
+<p>Die Hauptstadt von Deutschland ist {1:MULTICHOICE:=Berlin~München~Hamburg~Köln}.</p>
+
+<p><strong>Beispiel 2 - Numerische Antwort:</strong></p>
+<p>Das Ergebnis von 6 × 7 ist {1:NUMERICAL:=42:0}.</p>
+
+<p><strong>Beispiel 3 - Kurzantwort:</strong></p>
+<p>Die primäre Farbe, die aus Blau und Gelb entsteht, ist {1:SHORTANSWER:=Grün~=grün}.</p>
+
+<p><strong>Beispiel 4 - Mehrfachauswahl (mehrere richtige Antworten):</strong></p>
+<p>Welche sind Primärfarben? {2:MULTIRESPONSE:~%33.33333%Rot~%33.33333%Gelb~%33.33333%Blau~%-100%Grün~%-100%Orange}</p>
+
+<p><strong>Beispiel 5 - Kombiniert:</strong></p>
+<p>Ein XLR-Kabel hat {1:NUMERICAL:=3:0} Pins und überträgt {1:MULTICHOICE:=symmetrische~unsymmetrische} Signale mit einer Impedanz von {1:NUMERICAL:=110:10} Ohm.</p>
+
+<p><strong>ANLEITUNG ZUM ANPASSEN:</strong></p>
+<ul>
+  <li>Ersetzen Sie die Beispiele durch Ihre eigenen Fragen</li>
+  <li>Verwenden Sie die Syntax {PUNKTE:TYP:ANTWORTEN}</li>
+  <li>= markiert die richtige(n) Antwort(en)</li>
+  <li>~ trennt verschiedene Optionen</li>
+  <li>Bei MULTIRESPONSE: %PROZENT% für Punkteverteilung</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionales allgemeines Feedback mit Erklärungen zu allen Teilfragen]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+</quiz>

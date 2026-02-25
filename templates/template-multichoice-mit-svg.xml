@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: multichoice mit SVG ==================== -->
+<!-- Mehrfachauswahl: fraction summiert sich bei richtigen zu ~100%, negativ bei falschen -->
+
+  <question type="multichoice">
+    <name>
+      <text>TEMPLATE multichoice – Mehrfachauswahl mit SVG-Diagramm</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie den dargestellten Ablauf. Welche Aussagen sind korrekt?</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="320" height="180"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#2c3e50"/>
+    </marker>
+  </defs>
+  
+  <!-- Start -->
+  <rect x="120" y="10" width="80" height="35" fill="#27ae60" stroke="#2c3e50" stroke-width="2" rx="4"/>
+  <text x="160" y="32" text-anchor="middle" fill="#fff" font-weight="bold">START</text>
+  
+  <!-- Pfeil 1 -->
+  <line x1="160" y1="45" x2="160" y2="65" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Schritt 1 -->
+  <rect x="120" y="70" width="80" height="35" fill="#3498db" stroke="#2c3e50" stroke-width="2" rx="4"/>
+  <text x="160" y="92" text-anchor="middle" fill="#fff">Schritt 1</text>
+  
+  <!-- Pfeil 2 -->
+  <line x1="160" y1="105" x2="160" y2="125" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrow)"/>
+  
+  <!-- Schritt 2 -->
+  <rect x="120" y="130" width="80" height="35" fill="#e74c3c" stroke="#2c3e50" stroke-width="2" rx="4"/>
+  <text x="160" y="152" text-anchor="middle" fill="#fff">Schritt 2</text>
+</svg>
+<p>Welche Aussagen über das Diagramm sind korrekt?</p>
+<p><strong>HINWEIS:</strong> Passen Sie das SVG-Diagramm und die Antwortoptionen an Ihr Fachthema an!</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>Der Ablauf beginnt mit START (grün), gefolgt von Schritt 1 (blau) und endet mit Schritt 2 (rot).</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>             <!-- false = Mehrfachauswahl, true = Einzelauswahl -->
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>none</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Alle Antworten korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Einige Antworten sind korrekt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antworten sind nicht korrekt.</text>
+    </incorrectfeedback>
+    
+    <!-- Richtige Antworten: fraction addiert sich zu 100% (hier 2x 50%) -->
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>Der Ablauf beginnt mit dem grünen START-Element</p>]]></text>
+      <feedback format="html">
+        <text>Richtig! Das grüne Element ist der Startpunkt des Ablaufs.</text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>Schritt 1 (blau) kommt vor Schritt 2 (rot)</p>]]></text>
+      <feedback format="html">
+        <text>Richtig! Die Pfeile zeigen die Reihenfolge von oben nach unten.</text>
+      </feedback>
+    </answer>
+    
+    <!-- Falsche Antworten: negative fraction als Strafpunkte -->
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Schritt 2 kommt vor Schritt 1 im Ablauf</p>]]></text>
+      <feedback format="html">
+        <text>Falsch. Die Pfeile zeigen, dass Schritt 1 zuerst kommt.</text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Der Ablauf beginnt mit dem roten Element</p>]]></text>
+      <feedback format="html">
+        <text>Falsch. Der Ablauf beginnt mit dem grünen START-Element.</text>
+      </feedback>
+    </answer>
+  </question>
+
+</quiz>

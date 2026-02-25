@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: numerical (Numerische Antwort) ==================== -->
+<!-- 
+  VERWENDUNG: Fragen mit numerischen Antworten (mit Toleranzbereich)
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Fragestellung mit Rechenaufgabe/Berechnung
+  - <answer><text>: Richtige Zahl
+  - <tolerance>: Akzeptierter Toleranzbereich (z.B. 0.1 für ±0.1)
+  
+  WICHTIG:
+  - Antwort muss eine Zahl sein
+  - Toleranz ermöglicht Rundungsfehler (Standard: 0)
+  - Mehrere answer-Blöcke für verschiedene akzeptierte Bereiche möglich
+-->
+
+  <question type="numerical">
+    <name>
+      <text>[TITEL DER NUMERISCHEN AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE RECHENAUFGABE/FRAGESTELLUNG EINFÜGEN]</p>
+<p>Geben Sie das Ergebnis an (bei Bedarf Einheit erwähnen).</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionaler Rechenweg oder Erklärung]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <unitgradingtype>0</unitgradingtype>
+    <unitpenalty>0.1</unitpenalty>
+    <showunits>3</showunits>
+    <unitsleft>0</unitsleft>
+    
+    <!-- RICHTIGE ANTWORT mit Toleranz -->
+    <answer fraction="100" format="moodle_auto_format">
+      <text>[ZAHLENWERT]</text>  <!-- z.B. 42 oder 3.14159 -->
+      <feedback format="html">
+        <text><![CDATA[<p>Korrekt!</p>]]></text>
+      </feedback>
+      <tolerance>[TOLERANZ]</tolerance>  <!-- z.B. 0.1 für ±0.1 oder 0 für exakte Antwort -->
+    </answer>
+    
+    <!-- Optional: Einheiten definieren (falls benötigt) -->
+    <!-- 
+    <units>
+      <unit>
+        <multiplier>1</multiplier>
+        <unit_name>m</unit_name>
+      </unit>
+      <unit>
+        <multiplier>100</multiplier>
+        <unit_name>cm</unit_name>
+      </unit>
+    </units>
+    -->
+  </question>
+
+</quiz>

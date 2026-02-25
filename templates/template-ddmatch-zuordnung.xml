@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: ddmatch (Zuordnung) ==================== -->
+<!-- 
+  VERWENDUNG: Zuordnungsaufgaben - Links und Rechts zuordnen
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Fragestellung anpassen
+  - <subquestion>: Links anzuzeigende Elemente (beliebig viele)
+  - <answer>: Zugehörige richtige Antwort
+  - Distractor: Leeres <text></text> in subquestion, aber <answer> mit Inhalt
+  
+  WICHTIG: 
+  - Jede subquestion braucht genau eine <answer>
+  - Distractors haben leeren subquestion-Text
+  - shuffleanswers="true" mischt die Antworten
+-->
+
+  <question type="ddmatch">
+    <name>
+      <text>[TITEL DER AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE AUFGABENSTELLUNG EINFÜGEN]</p>
+<p>Ordnen Sie die Begriffe/Elemente einander zu.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionales allgemeines Feedback nach Beantwortung]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    
+    <!-- ZUORDNUNGSPAARE - So viele wie benötigt hinzufügen/entfernen -->
+    <subquestion format="html">
+      <text><![CDATA[<p>[Begriff/Element 1]</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>[Zugehörige Antwort 1]</p>]]></text>
+      </answer>
+    </subquestion>
+    
+    <subquestion format="html">
+      <text><![CDATA[<p>[Begriff/Element 2]</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>[Zugehörige Antwort 2]</p>]]></text>
+      </answer>
+    </subquestion>
+    
+    <subquestion format="html">
+      <text><![CDATA[<p>[Begriff/Element 3]</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>[Zugehörige Antwort 3]</p>]]></text>
+      </answer>
+    </subquestion>
+    
+    <!-- DISTRACTOR (Falschantwort ohne Zuordnung) - Optional -->
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>[Falsche Antwort als Distractor]</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+</quiz>

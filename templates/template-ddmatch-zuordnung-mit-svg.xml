@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: ddmatch mit SVG ==================== -->
+<!-- Zuordnungsaufgabe: Jede Zeile links wird einer Antwort rechts zugeordnet -->
+
+  <question type="ddmatch">
+    <name>
+      <text>TEMPLATE ddmatch – Zuordnung mit SVG-Diagramm</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie jedem Element die richtige Bezeichnung zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="140"
+     style="font-family:Arial,sans-serif;font-size:14px;display:block;margin:10px auto;">
+  <!-- Element A: Kreis -->
+  <circle cx="70" cy="40" r="25" fill="#4a90e2" stroke="#333" stroke-width="2"/>
+  <text x="70" y="48" text-anchor="middle" fill="#fff" font-weight="bold">A</text>
+  
+  <!-- Element B: Quadrat -->
+  <rect x="135" y="15" width="50" height="50" fill="#f39c12" stroke="#333" stroke-width="2"/>
+  <text x="160" y="48" text-anchor="middle" fill="#fff" font-weight="bold">B</text>
+  
+  <!-- Element C: Dreieck -->
+  <polygon points="245,65 220,20 270,20" fill="#e74c3c" stroke="#333" stroke-width="2"/>
+  <text x="245" y="43" text-anchor="middle" fill="#fff" font-weight="bold">C</text>
+  
+  <!-- Beschriftung -->
+  <text x="150" y="100" text-anchor="middle" font-size="12" fill="#666">Geometrische Formen</text>
+</svg>
+<p><strong>HINWEIS:</strong> Passen Sie das SVG-Diagramm und die Zuordnungspaare an Ihr Fachthema an!</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>Element A ist ein Kreis, Element B ist ein Quadrat, Element C ist ein Dreieck.</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Alle Zuordnungen sind korrekt.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Einige Zuordnungen sind korrekt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Zuordnungen sind nicht korrekt.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    
+    <!-- Jedes subquestion-Paar: linke Seite + zugehörige Antwort -->
+    <subquestion format="html">
+      <text><![CDATA[<p>Element A (blau)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Kreis</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Element B (orange)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Quadrat</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Element C (rot)</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Dreieck</p>]]></text>
+      </answer>
+    </subquestion>
+    
+    <!-- Distractor-Antwort (kein passendes subquestion – taucht als Falschoption auf) -->
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Rechteck</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+</quiz>

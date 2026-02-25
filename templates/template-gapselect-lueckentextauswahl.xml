@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: gapselect (Lückentextauswahl) ==================== -->
+<!-- 
+  VERWENDUNG: Lückentext mit Dropdown-Auswahl (nicht Drag-and-Drop)
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Text mit Lücken [[1]] [[2]] [[3]] etc.
+  - <selectoption>: Auswahloptionen für die Dropdowns
+  - <group>: Nummer muss zur Lückennummer passen
+  
+  UNTERSCHIED zu ddwtos:
+  - gapselect = Dropdown-Menü in der Lücke
+  - ddwtos = Drag-and-Drop Begriffe
+  
+  WICHTIG:
+  - Lücken im Text mit [[1]], [[2]], [[3]] usw. markieren
+  - Pro Lücke mehrere selectoptions mit gleicher <group>
+  - Eine davon ist richtig (steht in <answer>)
+  - Distractors haben dieselbe <group> aber andere Texte
+-->
+
+  <question type="gapselect">
+    <name>
+      <text>[TITEL DER LÜCKENTEXTAUSWAHL-AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE AUFGABENSTELLUNG EINFÜGEN]</p>
+<p>Wählen Sie in den Dropdown-Menüs die richtigen Begriffe aus:</p>
+<p>[IHR TEXT] [[1]] [WEITERER TEXT] [[2]] [NOCH MEHR TEXT] [[3]].</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionales Feedback mit Erklärung der Lösung]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    
+    <!-- AUSWAHLOPTIONEN FÜR LÜCKE 1 [[1]] -->
+    <selectoption>
+      <text>[Richtige Option für Lücke 1]</text>
+      <group>1</group>
+    </selectoption>
+    <selectoption>
+      <text>[Falsche Option als Distractor]</text>
+      <group>1</group>
+    </selectoption>
+    <selectoption>
+      <text>[Weitere falsche Option]</text>
+      <group>1</group>
+    </selectoption>
+    
+    <!-- AUSWAHLOPTIONEN FÜR LÜCKE 2 [[2]] -->
+    <selectoption>
+      <text>[Richtige Option für Lücke 2]</text>
+      <group>2</group>
+    </selectoption>
+    <selectoption>
+      <text>[Falsche Option als Distractor]</text>
+      <group>2</group>
+    </selectoption>
+    <selectoption>
+      <text>[Weitere falsche Option]</text>
+      <group>2</group>
+    </selectoption>
+    
+    <!-- AUSWAHLOPTIONEN FÜR LÜCKE 3 [[3]] -->
+    <selectoption>
+      <text>[Richtige Option für Lücke 3]</text>
+      <group>3</group>
+    </selectoption>
+    <selectoption>
+      <text>[Falsche Option als Distractor]</text>
+      <group>3</group>
+    </selectoption>
+    <selectoption>
+      <text>[Weitere falsche Option]</text>
+      <group>3</group>
+    </selectoption>
+    
+    <!-- RICHTIGE ANTWORTEN -->
+    <!-- Die erste selectoption jeder Gruppe ist automatisch richtig -->
+    <answer>
+      <questiontext>[Richtige Option für Lücke 1]</questiontext>
+      <answer>1</answer>
+    </answer>
+    <answer>
+      <questiontext>[Richtige Option für Lücke 2]</questiontext>
+      <answer>1</answer>
+    </answer>
+    <answer>
+      <questiontext>[Richtige Option für Lücke 3]</questiontext>
+      <answer>1</answer>
+    </answer>
+  </question>
+
+</quiz>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: ddwtos (Drag-Drop-Lückentext) ==================== -->
+<!-- 
+  VERWENDUNG: Lückentext mit Drag-and-Drop Begriffen
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Text mit Lücken [[1]] [[2]] [[3]] etc.
+  - <dragbox>: Begriffe zum Einsetzen
+  - <group>: Nummer muss zur Lückennummer passen
+  
+  WICHTIG:
+  - Lücken im Text mit [[1]], [[2]], [[3]] usw. markieren
+  - Pro Lücke mindestens eine richtige Antwort in <dragbox> mit matching <group>
+  - Distractors haben dieselbe <group> aber sind falsch
+  - Mehrere dragboxes mit gleicher group = Auswahlmöglichkeiten für diese Lücke
+-->
+
+  <question type="ddwtos">
+    <name>
+      <text>[TITEL DER LÜCKENTEXT-AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE AUFGABENSTELLUNG EINFÜGEN]</p>
+<p>Ergänzen Sie die Lücken durch Ziehen der passenden Begriffe:</p>
+<p>[IHR TEXT] [[1]] [WEITERER TEXT] [[2]] [NOCH MEHR TEXT] [[3]].</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionales Feedback mit Erklärung der Lösung]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    
+    <!-- BEGRIFFE FÜR LÜCKE 1 [[1]] -->
+    <dragbox><text>[Richtiger Begriff für Lücke 1]</text><group>1</group></dragbox>
+    <dragbox><text>[Falscher Begriff als Distractor]</text><group>1</group></dragbox>
+    
+    <!-- BEGRIFFE FÜR LÜCKE 2 [[2]] -->
+    <dragbox><text>[Richtiger Begriff für Lücke 2]</text><group>2</group></dragbox>
+    <dragbox><text>[Falscher Begriff als Distractor]</text><group>2</group></dragbox>
+    
+    <!-- BEGRIFFE FÜR LÜCKE 3 [[3]] -->
+    <dragbox><text>[Richtiger Begriff für Lücke 3]</text><group>3</group></dragbox>
+    <dragbox><text>[Falscher Begriff als Distractor]</text><group>3</group></dragbox>
+    
+    <!-- Bei Bedarf weitere Lücken [[4]], [[5]] usw. mit entsprechenden dragboxes -->
+  </question>
+
+</quiz>

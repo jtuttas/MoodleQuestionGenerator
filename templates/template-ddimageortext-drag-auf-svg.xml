@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: ddimageortext mit SVG ==================== -->
+<!-- 
+  Drag & Drop auf Grafik: SVG wird als base64-Bild hinterlegt.
+  Schüler ziehen Symbole auf markierte Bereiche im Bild.
+  
+  WICHTIGE REGELN:
+  - SVG als base64 in <file name="background.svg" path="/" encoding="base64">
+  - xleft/ytop sind Pixel-Koordinaten (0,0 = oben links)
+  - <infinite/> erlaubt mehrfache Nutzung desselben drag-Items
+  - Mindestabstand zwischen Zonen: ≥80 px vertikal / ≥150 px horizontal
+  - Bei breiten Labels: Nummernkreise in leere Randbereiche setzen
+-->
+
+  <question type="ddimageortext">
+    <name>
+      <text>TEMPLATE ddimageortext – Drag &amp; Drop auf SVG-Diagramm</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ziehen Sie die richtigen Farbnamen auf die markierten weißen Felder im Diagramm.</p>
+<p><strong>HINWEIS:</strong> Passen Sie das SVG-Bild und die ziehbaren Elemente an Ihr Fachthema an!</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>Die Farben waren: Rot, Blau, Grün, Gelb und Lila.</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Alle Farbnamen korrekt zugeordnet!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Einige Farbnamen sind korrekt zugeordnet.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Zuordnung ist nicht korrekt.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+
+    <!-- Hintergrundbild: SVG als base64 eingebettet -->
+    <!-- WICHTIG: path="/" muss angegeben werden! -->
+    <file name="background.svg" path="/" encoding="base64">PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI0MDAiIGhlaWdodD0i
+MjQwIiBzdHlsZT0iZm9udC1mYW1pbHk6QXJpYWwsc2Fucy1zZXJpZjtmb250LXNpemU6MTNweDsiPgog
+IDwhLS0gw5xiZXJzY2hyaWZ0IC0tPgogIDx0ZXh0IHg9IjIwMCIgeT0iMjAiIHRleHQtYW5jaG9yPSJt
+aWRkbGUiIGZvbnQtc2l6ZT0iMTYiIGZvbnQtd2VpZ2h0PSJib2xkIiBmaWxsPSIjMmMzZTUwIj5GYXJi
+enVvcmRudW5nPC90ZXh0PgogIAogIDwhLS0gQmVyZWljaCAxOiBSb3QgLS0+CiAgPHJlY3QgeD0iMzAi
+IHk9IjQwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiNlNzRjM2MiIHN0cm9rZT0iIzJjM2U1
+MCIgc3Ryb2tlLXdpZHRoPSIyIiByeD0iNSIvPgogIDxyZWN0IHg9IjUwIiB5PSIxMDAiIHdpZHRoPSI0
+MCIgaGVpZ2h0PSIyNSIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZjM5YzEyIiBzdHJva2Utd2lkdGg9IjIi
+IHJ4PSIzIi8+CiAgPHRleHQgeD0iNzAiIHk9IjExNiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1z
+aXplPSIxNiIgZmlsbD0iIzk5OSI+PzwvdGV4dD4KICAKICA8IS0tIEJlcmVpY2ggMjogQmxhdSAtLT4K
+ICA8cmVjdCB4PSIxNjAiIHk9IjQwIiB3aWR0aD0iODAiIGhlaWdodD0iODAiIGZpbGw9IiMzNDk4ZGIi
+IHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIiByeD0iNSIvPgogIDxyZWN0IHg9IjE4MCIg
+eT0iMTAwIiB3aWR0aD0iNDAiIGhlaWdodD0iMjUiIGZpbGw9IiNmZmYiIHN0cm9rZT0iI2YzOWMxMiIg
+c3Ryb2tlLXdpZHRoPSIyIiByeD0iMyIvPgogIDx0ZXh0IHg9IjIwMCIgeT0iMTE2IiB0ZXh0LWFuY2hv
+cj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5Ij4/PC90ZXh0PgogIAogIDwhLS0gQmVy
+ZWljaCAzOiBHcsO8biAtLT4KICA8cmVjdCB4PSIyOTAiIHk9IjQwIiB3aWR0aD0iODAiIGhlaWdodD0i
+ODAiIGZpbGw9IiMyN2FlNjAiIHN0cm9rZT0iIzJjM2U1MCIgc3Ryb2tlLXdpZHRoPSIyIiByeD0iNSIv
+PgogIDxyZWN0IHg9IjMxMCIgeT0iMTAwIiB3aWR0aD0iNDAiIGhlaWdodD0iMjUiIGZpbGw9IiNmZmYi
+IHN0cm9rZT0iI2YzOWMxMiIgc3Ryb2tlLXdpZHRoPSIyIiByeD0iMyIvPgogIDx0ZXh0IHg9IjMzMCIg
+eT0iMTE2IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjE2IiBmaWxsPSIjOTk5Ij4/PC90
+ZXh0PgogIAogIDwhLS0gQmVyZWljaCA0OiBHZWxiIC0tPgogIDxyZWN0IHg9Ijk1IiB5PSIxNTAiIHdp
+ZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0iI2YzOWMxMiIgc3Ryb2tlPSIjMmMzZTUwIiBzdHJva2Ut
+d2lkdGg9IjIiIHJ4PSI1Ii8+CiAgPHJlY3QgeD0iMTE1IiB5PSIyMTAiIHdpZHRoPSI0MCIgaGVpZ2h0
+PSIyNSIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZjM5YzEyIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSIzIi8+
+CiAgPHRleHQgeD0iMTM1IiB5PSIyMjYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTYi
+IGZpbGw9IiM5OTkiPj88L3RleHQ+CiAgCiAgPCEtLSBCZXJlaWNoIDU6IExpbGEgLS0+CiAgPHJlY3Qg
+eD0iMjI1IiB5PSIxNTAiIHdpZHRoPSI4MCIgaGVpZ2h0PSI4MCIgZmlsbD0iIzliNTliNiIgc3Ryb2tl
+PSIjMmMzZTUwIiBzdHJva2Utd2lkdGg9IjIiIHJ4PSI1Ii8+CiAgPHJlY3QgeD0iMjQ1IiB5PSIyMTAi
+IHdpZHRoPSI0MCIgaGVpZ2h0PSIyNSIgZmlsbD0iI2ZmZiIgc3Ryb2tlPSIjZjM5YzEyIiBzdHJva2Ut
+d2lkdGg9IjIiIHJ4PSIzIi8+CiAgPHRleHQgeD0iMjY1IiB5PSIyMjYiIHRleHQtYW5jaG9yPSJtaWRk
+bGUiIGZvbnQtc2l6ZT0iMTYiIGZpbGw9IiM5OTkiPj88L3RleHQ+CiAgCiAgPHRleHQgeD0iMjAwIiB5
+PSIyMzgiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTAiIGZpbGw9IiM2NjYiPlppZWhl
+biBTaWUgZGllIEZhcmJuYW1lbiBpbiBkaWUgd2Vpw59lbiBGZWxkZXI8L3RleHQ+Cjwvc3ZnPg==</file>
+
+    <!-- Ziehbare Elemente (drag) -->
+    <!-- no: interne ID, wird in drop/choice referenziert -->
+    <!-- infinite: dasselbe Item kann mehrfach abgelegt werden -->
+    <drag>
+      <no>1</no>
+      <text>Rot</text>
+      <infinite/>
+    </drag>
+    <drag>
+      <no>2</no>
+      <text>Blau</text>
+      <infinite/>
+    </drag>
+    <drag>
+      <no>3</no>
+      <text>Grün</text>
+      <infinite/>
+    </drag>
+    <drag>
+      <no>4</no>
+      <text>Gelb</text>
+      <infinite/>
+    </drag>
+    <drag>
+      <no>5</no>
+      <text>Lila</text>
+      <infinite/>
+    </drag>
+
+    <!-- Ablagebereiche (drop) -->
+    <!-- xleft/ytop: linke obere Ecke des Drop-Ziels in Bildpixeln -->
+    <!-- choice: welche drag-no hier korrekt ist -->
+    <!-- Koordinaten direkt aus SVG ablesen; nie schätzen! -->
+
+    <!-- Bereich 1: Rot (oben links) → rect x=50, y=100 im SVG -->
+    <drop>
+      <no>1</no>
+      <text>Farbe 1</text>
+      <choice>1</choice>
+      <xleft>50</xleft>
+      <ytop>100</ytop>
+    </drop>
+
+    <!-- Bereich 2: Blau (oben mitte) → rect x=180, y=100 im SVG -->
+    <drop>
+      <no>2</no>
+      <text>Farbe 2</text>
+      <choice>2</choice>
+      <xleft>180</xleft>
+      <ytop>100</ytop>
+    </drop>
+
+    <!-- Bereich 3: Grün (oben rechts) → rect x=310, y=100 im SVG -->
+    <drop>
+      <no>3</no>
+      <text>Farbe 3</text>
+      <choice>3</choice>
+      <xleft>310</xleft>
+      <ytop>100</ytop>
+    </drop>
+
+    <!-- Bereich 4: Gelb (unten links) → rect x=115, y=210 im SVG -->
+    <drop>
+      <no>4</no>
+      <text>Farbe 4</text>
+      <choice>4</choice>
+      <xleft>115</xleft>
+      <ytop>210</ytop>
+    </drop>
+
+    <!-- Bereich 5: Lila (unten rechts) → rect x=245, y=210 im SVG -->
+    <drop>
+      <no>5</no>
+      <text>Farbe 5</text>
+      <choice>5</choice>
+      <xleft>245</xleft>
+      <ytop>210</ytop>
+    </drop>
+  </question>
+
+</quiz>

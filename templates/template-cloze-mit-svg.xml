@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: cloze mit SVG ==================== -->
+<!--
+  NUR eingebettete Antworten – KEIN Freitext (kein SHORTANSWER / SHORTANSWER_C)
+
+  ERLAUBTE EINGEBETTETE TYPEN:
+  ┌─────────────────────────────────────────────────────────────────────┐
+  │ MULTICHOICE   │ {1:MULTICHOICE:=Richtig~Falsch1~Falsch2}           │
+  │               │ Einzelauswahl, = markiert richtige Antwort         │
+  ├───────────────┼─────────────────────────────────────────────────────┤
+  │ MULTIRESPONSE │ {2:MULTIRESPONSE:~%50%Richtig1~%50%Richtig2~       │
+  │               │   ~%-100%Falsch}                                   │
+  │               │ Mehrfachauswahl, Prozentpunkte für jede Option     │
+  ├───────────────┼─────────────────────────────────────────────────────┤
+  │ NUMERICAL     │ {1:NUMERICAL:=42:0.5}                              │
+  │               │ Zahl mit optionaler Toleranz (=Wert:Toleranz)      │
+  └─────────────────────────────────────────────────────────────────────┘
+
+  NICHT ERLAUBT in diesem Template:
+  ✘ SHORTANSWER   (Freitext – manuelle oder automatische Texteingabe)
+  ✘ SHORTANSWER_C (Freitext, Groß-/Kleinschreibung beachten)
+  ✘ ESSAY         (Freitext – nur manuell bewertbar)
+
+  SYNTAX ALLGEMEIN: {PUNKTE:TYP:ANTWORTEN}
+  - =  markiert die richtige Antwort
+  - ~  trennt verschiedene Optionen
+  - %X% definiert den Prozentsatz bei MULTIRESPONSE
+  - :T  hinter dem Zahlenwert bei NUMERICAL = Toleranz ± T
+  
+  HINWEIS: defaultgrade wird von Moodle automatisch aus den
+  eingebetteten Punkten (erster Wert in {}) berechnet.
+-->
+
+  <question type="cloze">
+    <name>
+      <text>[TITEL DER AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Analysieren Sie das folgende Diagramm und beantworten Sie die Fragen durch Auswahl oder Zahleneingabe:</p>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="480" height="210"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arrowC" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#2c3e50"/>
+    </marker>
+  </defs>
+
+  <!-- Schritt 1 -->
+  <rect x="10" y="80" width="110" height="50" fill="#3498db" stroke="#2c3e50" stroke-width="2" rx="4"/>
+  <text x="65" y="101" text-anchor="middle" fill="#fff" font-weight="bold">[Schritt 1]</text>
+  <text x="65" y="118" text-anchor="middle" fill="#fff" font-size="11">Beschreibung A</text>
+  <line x1="120" y1="105" x2="148" y2="105" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowC)"/>
+
+  <!-- Schritt 2 -->
+  <rect x="150" y="80" width="110" height="50" fill="#27ae60" stroke="#2c3e50" stroke-width="2" rx="4"/>
+  <text x="205" y="101" text-anchor="middle" fill="#fff" font-weight="bold">[Schritt 2]</text>
+  <text x="205" y="118" text-anchor="middle" fill="#fff" font-size="11">Beschreibung B</text>
+  <line x1="260" y1="105" x2="288" y2="105" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowC)"/>
+
+  <!-- Entscheidung -->
+  <polygon points="360,80 290,105 360,130 430,105" fill="#f39c12" stroke="#2c3e50" stroke-width="2"/>
+  <text x="360" y="100" text-anchor="middle" fill="#fff" font-size="11" font-weight="bold">[Bedingung]</text>
+  <text x="360" y="115" text-anchor="middle" fill="#fff" font-size="11">Ja / Nein?</text>
+  <line x1="430" y1="105" x2="458" y2="105" stroke="#2c3e50" stroke-width="2" marker-end="url(#arrowC)"/>
+
+  <!-- Ende -->
+  <ellipse cx="480" cy="105" rx="0" ry="0" fill="none"/>
+  <!-- Hinweistext unter dem Diagramm -->
+  <text x="240" y="195" text-anchor="middle" fill="#7f8c8d" font-size="11">
+    Passen Sie dieses Diagramm an Ihr Fachthema an!
+  </text>
+</svg>
+
+<!-- ========== BEISPIEL 1: MULTICHOICE (Einzelauswahl) ========== -->
+<p><strong>Frage 1</strong> – Welche Farbe hat [Schritt 2] im Diagramm?<br/>
+{1:MULTICHOICE:Blau~=Grün~Orange~Grau}</p>
+
+<!-- ========== BEISPIEL 2: MULTIRESPONSE (Mehrfachauswahl) ========== -->
+<p><strong>Frage 2</strong> – Welche der folgenden Aussagen treffen auf [Schritt 1] zu?
+(Mehrere Antworten möglich)<br/>
+{2:MULTIRESPONSE:~%50%[Richtige Aussage A]~%50%[Richtige Aussage B]~%-100%[Falsche Aussage C]~%-100%[Falsche Aussage D]}</p>
+
+<!-- ========== BEISPIEL 3: NUMERICAL (Zahleneingabe) ========== -->
+<p><strong>Frage 3</strong> – Wie viele Schritte enthält der dargestellte Prozess
+(inklusive Entscheidung)?<br/>
+{1:NUMERICAL:=3:0}</p>
+
+<!-- ========== BEISPIEL 4: Kombination im Fließtext ========== -->
+<p><strong>Frage 4</strong> – Der Prozess besteht aus
+{1:NUMERICAL:=2:0} Verarbeitungsschritten und einer
+{1:MULTICHOICE:=Entscheidung~Schleife~Ausgabe} am Ende.</p>
+
+<p style="color:#7f8c8d;font-size:12px;"><em>Anleitung: Ersetzen Sie die Platzhalter [in eckigen Klammern] und passen Sie SVG sowie Fragen an Ihr Fachthema an. Nur MULTICHOICE, MULTIRESPONSE und NUMERICAL verwenden – kein SHORTANSWER.</em></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>[Allgemeines Feedback: Erklärung der richtigen Lösungen und Zusammenfassung des dargestellten Prozesses.]</p>]]></text>
+    </generalfeedback>
+    <!-- defaultgrade wird von Moodle automatisch aus den eingebetteten {PUNKTE:...} berechnet -->
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+</quiz>

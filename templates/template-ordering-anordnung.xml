@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: ordering (Anordnung/Reihenfolge) ==================== -->
+<!-- 
+  WICHTIG: Dieser Fragetyp erfordert das Moodle-Plugin "Ordering"
+  Plugin-Installation: https://moodle.org/plugins/qtype_ordering
+  
+  VERWENDUNG: Elemente in die richtige Reihenfolge bringen
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Aufgabenstellung
+  - <answer>: Elemente in der RICHTIGEN Reihenfolge auflisten
+  
+  WICHTIG:
+  - Die Reihenfolge der <answer>-Elemente = die richtige Reihenfolge (md5key wichtig!)
+  - Moodle mischt die Elemente automatisch beim Anzeigen
+  - Schüler müssen sie in die richtige Reihenfolge bringen
+  
+  BEISPIELE:
+  - Prozessschritte chronologisch ordnen
+  - OSI-Schichten von oben nach unten
+  - Signalkette von Quelle zu Ausgang
+  - Historische Ereignisse zeitlich ordnen
+-->
+
+  <question type="ordering">
+    <name>
+      <text>[TITEL DER ANORDNUNGS-AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE AUFGABENSTELLUNG EINFÜGEN]</p>
+<p>Bringen Sie die folgenden Elemente in die richtige Reihenfolge:</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionale Erklärung der richtigen Reihenfolge]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    
+    <!-- LAYOUTTYP -->
+    <!-- 0 = VERTICAL (untereinander), 1 = HORIZONTAL (nebeneinander) -->
+    <layouttype>0</layouttype>
+    
+    <!-- AUSWAHLTYP -->
+    <!-- 0 = ALL (alle anzeigen), 1 = RANDOM (zufällige Auswahl), 2 = CONTIGUOUS (zusammenhängend) -->
+    <selecttype>0</selecttype>
+    
+    <!-- ANZAHL ZU SORTIERENDER ELEMENTE (0 = alle) -->
+    <selectcount>0</selectcount>
+    
+    <!-- BEWERTUNGSTYP -->
+    <!-- 0 = ALL_OR_NOTHING, 1 = ABSOLUTE, 2 = LONGEST_CONTIGUOUS_SUBSET, 3 = LONGEST_ORDERED_SUBSET -->
+    <gradingtype>0</gradingtype>
+    
+    <!-- NUMMERIERUNG ANZEIGEN? -->
+    <showgrading>1</showgrading>
+    
+    <!-- FEEDBACK -->
+    <correctfeedback format="html">
+      <text>Die Reihenfolge ist vollständig korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Reihenfolge ist teilweise korrekt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Reihenfolge ist nicht korrekt.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    
+    <!-- ELEMENTE IN DER RICHTIGEN REIHENFOLGE -->
+    <!-- WICHTIG: Die Reihenfolge hier IST die richtige Reihenfolge! -->
+    <!-- md5key wird automatisch von Moodle generiert, kann leer gelassen werden -->
+    
+    <answer fraction="1" format="html">
+      <text><![CDATA[<p>Schritt 1: [Erstes Element in der Reihenfolge]</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+      <md5key></md5key>
+    </answer>
+    
+    <answer fraction="2" format="html">
+      <text><![CDATA[<p>Schritt 2: [Zweites Element in der Reihenfolge]</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+      <md5key></md5key>
+    </answer>
+    
+    <answer fraction="3" format="html">
+      <text><![CDATA[<p>Schritt 3: [Drittes Element in der Reihenfolge]</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+      <md5key></md5key>
+    </answer>
+    
+    <answer fraction="4" format="html">
+      <text><![CDATA[<p>Schritt 4: [Viertes Element in der Reihenfolge]</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+      <md5key></md5key>
+    </answer>
+    
+    <answer fraction="5" format="html">
+      <text><![CDATA[<p>Schritt 5: [Fünftes Element in der Reihenfolge]</p>]]></text>
+      <feedback format="html">
+        <text></text>
+      </feedback>
+      <md5key></md5key>
+    </answer>
+    
+    <!-- Bei Bedarf weitere Elemente hinzufügen -->
+    <!-- fraction = Position (1, 2, 3, 4, ...) -->
+    <!-- md5key wird von Moodle beim Import automatisch generiert -->
+  </question>
+
+</quiz>

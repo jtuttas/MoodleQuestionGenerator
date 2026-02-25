@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- ==================== FRAGETYP: multichoice (Mehrfachauswahl) ==================== -->
+<!-- 
+  VERWENDUNG: Multiple-Choice Fragen (eine oder mehrere richtige Antworten)
+  ANPASSUNGEN:
+  - <name><text>: Fragentitel ändern
+  - <questiontext>: Fragestellung anpassen
+  - <single>: false = Mehrfachauswahl, true = nur eine richtige Antwort
+  - <answer fraction="">: 
+    * Bei EINER richtigen Antwort: fraction="100" für richtig, "0" für falsch
+    * Bei MEHREREN richtigen: fraction addiert sich zu 100% (z.B. 4 richtige = je 25%)
+    * Falsche Antworten: negatives fraction (z.B. -25% oder -33.33%)
+  
+  WICHTIG:
+  - fraction bei mehreren richtigen Antworten muss sich zu 100% addieren
+  - Negative fractions für falsche Antworten verhindern Raten
+  - shuffleanswers="true" mischt die Reihenfolge
+-->
+
+  <question type="multichoice">
+    <name>
+      <text>[TITEL DER MULTIPLE-CHOICE-AUFGABE]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>[HIER IHRE FRAGESTELLUNG EINFÜGEN]</p>
+<p>Welche Aussagen sind korrekt?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text>[Optionales allgemeines Feedback mit Erklärung]</text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>  <!-- false = Mehrfachauswahl, true = Einzelauswahl -->
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>none</answernumbering>  <!-- none, abc, ABCD, 123, iii, IIII -->
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Vollständig korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Leider falsch.</text>
+    </incorrectfeedback>
+    
+    <!-- RICHTIGE ANTWORTEN - fraction addiert sich zu 100% -->
+    <answer fraction="50" format="html">  <!-- Bei 2 richtigen Antworten = je 50% -->
+      <text><![CDATA[<p>[Richtige Antwort 1]</p>]]></text>
+      <feedback format="html">
+        <text>[Optionales Feedback für diese Antwort]</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction="50" format="html">  <!-- Bei 2 richtigen Antworten = je 50% -->
+      <text><![CDATA[<p>[Richtige Antwort 2]</p>]]></text>
+      <feedback format="html">
+        <text>[Optionales Feedback für diese Antwort]</text>
+      </feedback>
+    </answer>
+    
+    <!-- FALSCHE ANTWORTEN - negative fraction verhindert Raten -->
+    <answer fraction="-25" format="html">
+      <text><![CDATA[<p>[Falsche Antwort 1]</p>]]></text>
+      <feedback format="html">
+        <text>[Erklärung warum falsch]</text>
+      </feedback>
+    </answer>
+    
+    <answer fraction="-25" format="html">
+      <text><![CDATA[<p>[Falsche Antwort 2]</p>]]></text>
+      <feedback format="html">
+        <text>[Erklärung warum falsch]</text>
+      </feedback>
+    </answer>
+    
+    <!-- Bei Bedarf weitere Antworten hinzufügen -->
+  </question>
+
+</quiz>
