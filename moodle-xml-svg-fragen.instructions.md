@@ -194,6 +194,7 @@
   - Zwischen zwei Rechtecken/Boxen: ≥ 10 px Abstand (nicht nur berühren).
   - Beschriftungen (`<text>`) müssen vollständig **innerhalb** ihrer Box liegen oder eindeutig außerhalb mit ≥ 5 px Abstand zur nächsten Box.
   - Verbindungslinien dürfen keine Boxen kreuzen, wenn es eine führbare Umgehung gibt.
+- **Texte nicht durch Linien kreuzen lassen:** Verbindungslinien dürfen keine Beschriftungen schneiden. Falls nötig, Beschriftungen rechts, links oder oberhalb der Grafik platzieren.
 - **SVG `width`/`height` groß genug wählen**, sodass alle Elemente einschließlich Texte und Markerspitzen innerhalb des sichtbaren Bereichs liegen (Markerspitzen ragen über die Koordinate des Endpunkts hinaus – entsprechend `refX`/`refY` einkalkulieren).
 - **Textlänge schätzen:** Bei `font-size:13px` belegt ein Zeichen ~7–8 px Breite. Boxbreite ≥ Textlänge × 8 px + 2× Innenabstand (mind. 8 px je Seite).
 - **Callout-Nummern (①②…)** dürfen keine anderen Elemente überdecken – Platz links/oben vor dem Element reservieren.
