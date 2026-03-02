@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  TEMPLATE: CodeRunner – Python mit Hintergrundklasse (Vererbung, ABC, etc.)
+
+  KERNPROBLEM: Wenn eine Basisklasse im Hintergrund vorgegeben sein soll
+  (für den Studenten unsichtbar), dann MUSS das <template> explizit die
+  Reihenfolge der Code-Ausführung steuern:
+    1. Hintergrundklasse(n)
+    2. Studentencode
+    3. Testcode
+  Andernfalls kommt es zu einem NameError, weil der Standard-CodeRunner-
+  Mechanismus den Studentencode VOR dem globalextra-Code ausführt.
+
+  WICHTIG: Das <template> muss mit dem Python-Code für JEDEN Test separat
+  eine runner.py erzeugen und ausführen (iscombinatortemplate=0).
+  Der einleitende {{ STUDENT_ANSWER }} DARF NICHT im Template stehen,
+  da sonst der NameError beim direkten Ausführen entsteht.
+
+  MERKHILFE GLOBALEXTRA:
+  Das <globalextra>-Feld wird im Moodle-UI als "Vorgabe-Klasse" angezeigt,
+  hat jedoch bei python3 KEINEN automatischen Effekt auf die Ausführung.
+  Die tatsächliche Basisklasse wird im <template> eingebaut.
+  Beide müssen synchron gehalten werden!
+-->
+<quiz>
+  <question type="coderunner">
+    <name>
+      <text>[FRAGETITEL: z. B. Unterklasse implementieren (Python)]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Aufgabe</strong>: Implementieren Sie die Python-Klasse <code>[Unterklasse]</code> als Unterklasse von <code>[Basisklasse]</code>.</p>
+
+<p><strong>Wichtig:</strong> Die Elternklasse <code>[Basisklasse]</code> ist im Hintergrund bereits vorhanden. Sie implementieren ausschließlich <code>[Unterklasse]</code>.</p>
+
+<h3>Anforderungen an <code>[Unterklasse]</code></h3>
+<ul>
+  <li><strong>Vererbung:</strong> <code>class [Unterklasse]([Basisklasse]):</code></li>
+  <li><strong>Konstruktor:</strong> <code>__init__(self, ...)</code> – ruft <code>super().__init__(...)</code> auf</li>
+  <li><strong>Methoden:</strong> Implementieren Sie ...</li>
+</ul>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Überprüfen Sie, dass:</p>
+<ul>
+<li>die Klasse korrekt von der Basisklasse erbt</li>
+<li>der Konstruktor <code>super().__init__()</code> aufruft</li>
+<li>alle geforderten Methoden korrekt implementiert sind</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>10</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>python3</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>20</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+
+    <!-- Code-Skelett für den Studenten -->
+    <answerpreload>class [Unterklasse]([Basisklasse]):
+
+    def __init__(self, ...):
+        # TODO: super().__init__(...) aufrufen
+        pass
+
+    # TODO: weitere Methoden
+</answerpreload>
+
+    <!--
+      GLOBALEXTRA: Basisklasse zur Anzeige im Moodle-UI (z. B. Readonly-Vorgabe).
+      ACHTUNG: Wird bei python3 NICHT automatisch vor dem Studentencode ausgeführt!
+      Die funktionale Kopie steht im <template> unten im test_script-String.
+      Beide MÜSSEN synchron gehalten werden!
+    -->
+    <globalextra><![CDATA[import abc  # falls benötigt
+
+class [Basisklasse](abc.ABC):  # ggf. (abc.ABC) entfernen wenn nicht abstrakt
+    def __init__(self, value):
+        self._value = value
+
+    @abc.abstractmethod
+    def do_something(self):
+        pass
+]]></globalextra>
+
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+
+    <!--
+      TEMPLATE (KRITISCH):
+      - Startet NICHT mit {{ STUDENT_ANSWER }} direkt – das würde einen NameError
+        auslösen, weil die Basisklasse noch nicht definiert ist!
+      - Studentencode wird als String gespeichert und erst NACH der Basisklasse
+        in runner.py eingefügt.
+      - iscombinatortemplate=0: Jeder Testfall wird separat ausgeführt.
+    -->
+    <template><![CDATA[__student_answer__ = """{{ STUDENT_ANSWER | e('py') }}"""
+
+import subprocess
+
+test_script = """import abc  # falls benötigt
+
+class [Basisklasse](abc.ABC):  # ggf. anpassen
+    def __init__(self, value):
+        self._value = value
+
+    @abc.abstractmethod
+    def do_something(self):
+        pass
+
+# Student code
+""" + __student_answer__ + """
+
+# Test code
+{{ TEST.testcode }}
+"""
+
+with open("runner.py", "w", encoding="utf-8") as f:
+    f.write(test_script)
+
+try:
+    result = subprocess.run(["python3", "runner.py"], capture_output=True, text=True, check=True)
+    print(result.stdout, end="")
+except subprocess.CalledProcessError as e:
+    print(e.stdout, end="")
+    print(e.stderr, end="")
+]]></template>
+
+    <iscombinatortemplate>0</iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+
+    <!-- Musterlösung -->
+    <answer><![CDATA[class [Unterklasse]([Basisklasse]):
+
+    def __init__(self, value):
+        super().__init__(value)
+
+    def do_something(self):
+        self._value += 1
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language>python3</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>5</cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>twig</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0" >
+        <testcode>
+          <text><![CDATA[obj = [Unterklasse](10)
+obj.do_something()
+print(obj._value)]]></text>
+        </testcode>
+        <stdin><text></text></stdin>
+        <expected><text>11</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0" >
+        <testcode>
+          <text><![CDATA[obj = [Unterklasse](0)
+obj.do_something()
+obj.do_something()
+print(obj._value)]]></text>
+        </testcode>
+        <stdin><text></text></stdin>
+        <expected><text>2</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+    </testcases>
+    <tags>
+      <tag><text>OOP</text></tag>
+      <tag><text>Vererbung</text></tag>
+      <tag><text>Python</text></tag>
+      <tag><text>CodeRunner</text></tag>
+    </tags>
+  </question>
+</quiz>

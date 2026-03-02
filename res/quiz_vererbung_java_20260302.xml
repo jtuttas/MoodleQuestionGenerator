@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+  <!-- ================================================================
+       Thema   : Java – Vererbung (Inheritance)
+       Typ     : coderunner (java_class)
+       Klasse  : Mittelstufe / Oberstufe Informatik
+       Datum   : 2026-03-02
+       ================================================================ -->
+
+  <question type="coderunner">
+    <name>
+      <text>Vererbung – Klasse Hund implementieren</text>
+    </name>
+
+    <questiontext format="html">
+      <text><![CDATA[
+<p>Im folgenden Klassendiagramm ist die Klasse <strong>Tier</strong> als Basisklasse und die Klasse <strong>Hund</strong> als abgeleitete Klasse dargestellt:</p>
+
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="440"
+     style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+
+  <!-- ===== Basisklasse Tier ===== -->
+  <!-- Header -->
+  <rect x="90" y="20"  width="240" height="32" fill="#dce8f5" stroke="#333" stroke-width="1.5"/>
+  <text x="210" y="42" text-anchor="middle" font-size="14" font-weight="bold">Tier</text>
+
+  <!-- Attribute-Abschnitt -->
+  <rect x="90" y="52"  width="240" height="52" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+  <text x="102" y="72">- name: String</text>
+  <text x="102" y="95">- alter: int</text>
+
+  <!-- Methoden-Abschnitt -->
+  <rect x="90" y="104" width="240" height="112" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+  <text x="102" y="124">+ Tier(name: String, alter: int)</text>
+  <text x="102" y="151">+ getName(): String</text>
+  <text x="102" y="178">+ getAlter(): int</text>
+  <text x="102" y="205">+ toString(): String</text>
+
+  <!-- ===== Vererbungspfeil (hohle Dreieckspitze → Tier) ===== -->
+  <!-- Schaftlinie von Hund-Oberkante bis zur Dreiecksbasis -->
+  <line x1="210" y1="282" x2="210" y2="234" stroke="#333" stroke-width="1.5"/>
+  <!-- Hohles Dreieck oben (Spitze = Tier-Seite) -->
+  <polygon points="210,216 200,234 220,234" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+  <!-- Label -->
+  <text x="218" y="255" font-size="11" fill="#555">«extends»</text>
+
+  <!-- ===== Abgeleitete Klasse Hund ===== -->
+  <!-- Header -->
+  <rect x="90" y="282" width="240" height="32" fill="#dce8f5" stroke="#333" stroke-width="1.5"/>
+  <text x="210" y="304" text-anchor="middle" font-size="14" font-weight="bold">Hund</text>
+
+  <!-- Attribute-Abschnitt -->
+  <rect x="90" y="314" width="240" height="30" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+  <text x="102" y="334">- rasse: String</text>
+
+  <!-- Methoden-Abschnitt -->
+  <rect x="90" y="344" width="240" height="88" fill="#ffffff" stroke="#333" stroke-width="1.5"/>
+  <text x="102" y="366">+ Hund(name: String, alter: int,</text>
+  <text x="102" y="384">       rasse: String)</text>
+  <text x="102" y="406">+ getRasse(): String</text>
+  <text x="102" y="428">+ toString(): String</text>
+
+</svg>
+
+<p>Die Klasse <strong>Tier</strong> ist bereits vollständig implementiert und steht zur Verfügung:</p>
+<pre>public class Tier {
+    private String name;
+    private int alter;
+
+    public Tier(String name, int alter) {
+        this.name = name;
+        this.alter = alter;
+    }
+
+    public String getName()  { return name; }
+    public int    getAlter() { return alter; }
+
+    @Override
+    public String toString() {
+        return "Tier: " + name + ", Alter: " + alter;
+    }
+}</pre>
+
+<p><strong>Aufgabe:</strong> Implementieren Sie die Klasse <strong>Hund</strong>, die von <code>Tier</code> erbt.</p>
+<ul>
+  <li>Der Konstruktor <code>Hund(String name, int alter, String rasse)</code> ruft den Elternkonstruktor mit <code>super</code> auf und speichert die Rasse.</li>
+  <li>Die Methode <code>getRasse()</code> gibt die Rasse zurück.</li>
+  <li>Die Methode <code>toString()</code> gibt einen String der Form<br>
+      <code>Hund: &lt;name&gt;, Alter: &lt;alter&gt;, Rasse: &lt;rasse&gt;</code> zurück.<br>
+      Verwenden Sie dabei <code>getName()</code> und <code>getAlter()</code> der Basisklasse.</li>
+</ul>
+]]></text>
+    </questiontext>
+
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Musterlösung:</p>
+<pre>public class Hund extends Tier {
+    private String rasse;
+
+    public Hund(String name, int alter, String rasse) {
+        super(name, alter);
+        this.rasse = rasse;
+    }
+
+    public String getRasse() {
+        return rasse;
+    }
+
+    @Override
+    public String toString() {
+        return "Hund: " + getName() + ", Alter: " + getAlter() + ", Rasse: " + rasse;
+    }
+}</pre>
+<p>Wichtige Punkte:</p>
+<ul>
+  <li><code>extends Tier</code> stellt die Vererbungsbeziehung her.</li>
+  <li><code>super(name, alter)</code> ruft den Konstruktor der Basisklasse auf – das muss die erste Anweisung im Konstruktor sein.</li>
+  <li>Die Methoden <code>getName()</code> und <code>getAlter()</code> werden von <code>Tier</code> <strong>geerbt</strong> und können direkt verwendet werden.</li>
+  <li><code>toString()</code> überschreibt (<em>override</em>) die Methode der Basisklasse.</li>
+</ul>]]></text>
+    </generalfeedback>
+
+    <defaultgrade>4</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>0</allornothing>
+    <penaltyregime>0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>20</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+
+    <answerpreload><![CDATA[public class Hund extends Tier {
+    // Attribut(e)
+
+    // Konstruktor
+    public Hund(String name, int alter, String rasse) {
+
+    }
+
+    // Methoden
+}]]></answerpreload>
+
+    <!-- Tier-Basisklasse als Unterstützungscode für die Testausführung -->
+    <globalextra><![CDATA[public class Tier {
+    private String name;
+    private int alter;
+
+    public Tier(String name, int alter) {
+        this.name = name;
+        this.alter = alter;
+    }
+
+    public String getName()  { return name; }
+    public int    getAlter() { return alter; }
+
+    @Override
+    public String toString() {
+        return "Tier: " + name + ", Alter: " + alter;
+    }
+}]]></globalextra>
+
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[import os
+
+# ── Tier.java (Basisklasse) ───────────────────────────────────────────────────
+tier_code = '''public class Tier {
+    private String name;
+    private int alter;
+    public Tier(String name, int alter) {
+        this.name = name;
+        this.alter = alter;
+    }
+    public String getName()  { return name; }
+    public int getAlter() { return alter; }
+    @Override
+    public String toString() {
+        return "Tier: " + name + ", Alter: " + alter;
+    }
+}'''
+with open('Tier.java', 'w') as f:
+    f.write(tier_code)
+
+# ── Hund.java (Studenten-Code) ────────────────────────────────────────────────
+student_answer = """{{ STUDENT_ANSWER | e('py') }}"""
+with open('Hund.java', 'w') as f:
+    f.write(student_answer)
+
+# ── Test.java (Testfall) ──────────────────────────────────────────────────────
+testcode = """{{ TEST.testcode | e('py') }}"""
+test_class = '''public class Test {
+    public static void main(String[] args) throws Exception {
+        ''' + testcode + '''
+    }
+}'''
+with open('Test.java', 'w') as f:
+    f.write(test_class)
+
+# ── Kompilierung ───────────────────────────────────────────────────────────────
+ret = os.system('javac -encoding UTF-8 Tier.java Hund.java Test.java 2>&1')
+if ret == 0:
+    os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')
+]]></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+
+    <answer><![CDATA[public class Hund extends Tier {
+    private String rasse;
+
+    public Hund(String name, int alter, String rasse) {
+        super(name, alter);
+        this.rasse = rasse;
+    }
+
+    public String getRasse() {
+        return rasse;
+    }
+
+    @Override
+    public String toString() {
+        return "Hund: " + getName() + ", Alter: " + getAlter() + ", Rasse: " + rasse;
+    }
+}]]></answer>
+
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language>python3</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>10</cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>twig</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+
+    <testcases>
+
+      <!-- Testfall 1 (sichtbar): toString() der Gesamtklasse -->
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode>
+          <text><![CDATA[System.out.println(new Hund("Bello", 3, "Labrador").toString());]]></text>
+        </testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Hund: Bello, Alter: 3, Rasse: Labrador
+</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+
+      <!-- Testfall 2 (sichtbar): getRasse() – eigenes Attribut -->
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode>
+          <text><![CDATA[System.out.println(new Hund("Rex", 5, "Schäferhund").getRasse());]]></text>
+        </testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Schäferhund
+</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+
+      <!-- Testfall 3 (verborgen): getName() – geerbt von Tier -->
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode>
+          <text><![CDATA[System.out.println(new Hund("Luna", 2, "Pudel").getName());]]></text>
+        </testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Luna
+</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+
+      <!-- Testfall 4 (verborgen): getAlter() – geerbt von Tier -->
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode>
+          <text><![CDATA[System.out.println(new Hund("Max", 4, "Boxer").getAlter());]]></text>
+        </testcode>
+        <stdin><text></text></stdin>
+        <expected><text>4
+</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+
+    </testcases>
+
+    <tags>
+      <tag><text>Vererbung</text></tag>
+      <tag><text>Java</text></tag>
+      <tag><text>OOP</text></tag>
+      <tag><text>Klassen</text></tag>
+    </tags>
+
+  </question>
+
+</quiz>

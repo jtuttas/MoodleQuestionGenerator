@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- question: 1668482  -->
+  <question type="coderunner">
+    <name>
+      <text>Quersumme Bilden</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><span style="text-decoration: underline;"><strong>Aufgabe</strong></span>: Schreiben Sie in Java eine Methode <strong>qsum(String s)</strong>, die die Quersumme der Zahlen bildet, die im String übergeben wurde.</p>
+<p><em><strong>Bsp</strong></em>.:</p>
+<pre>int a=qsum("1234"); // a = 10<br>int b=qsum("1122"); // b = 6</pre><p><b><i>Hinweis</i></b>: Nutzen Sie für ihre Methode die Methode <a href="https://docs.oracle.com/javase/7/docs/api/java/lang/String.html#charAt(int)" target="_blank">charAt(index)</a> der Klasse String!</p>
+<p><em><strong>&nbsp;</strong></em></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>5</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>java_method</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload>public rückgabedatentype Methodenname(Übergabeparameter) {
+}</answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[public int qsum(String s) {
+    int sum=0;
+    for (int i = 0; i < s.length(); i++) {
+        sum+=Integer.parseInt(""+s.charAt(i));
+    }
+    return sum;
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>10</cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>twig</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text><![CDATA[System.out.println(qsum("123456"))]]></text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>21</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000" >
+      <testcode>
+                <text><![CDATA[System.out.println(qsum("98765"))]]></text>
+      </testcode>
+      <stdin>
+                <text></text>
+      </stdin>
+      <expected>
+                <text>35</text>
+      </expected>
+      <extra>
+                <text></text>
+      </extra>
+      <display>
+                <text>SHOW</text>
+      </display>
+    </testcase>
+    </testcases>
+    <tags>
+      <tag><text>Quersumme</text>
+</tag>
+      <tag><text>fobi</text>
+</tag>
+    </tags>
+  </question>
+
+</quiz>

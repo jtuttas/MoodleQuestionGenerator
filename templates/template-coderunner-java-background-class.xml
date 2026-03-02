@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 
+  TEMPLATE: CodeRunner - Java mit Hintergrundklasse (Vererbung etc.)
+  
+  WICHTIG: Wenn eine Elternklasse, ein Interface oder eine Helferklasse vorgegeben 
+  werden soll, reicht das Einfügen in <globalextra> nicht aus, da dies von 
+  der Jobe-Sandbox bei "java_class" nicht als eigene ausführbare .java-Datei 
+  geschrieben und mitkompiliert wird!
+  
+  Daher MUSS das <template> überschrieben werden (Python 3):
+  1. Die Hintergrundklasse(n) explizit auf die Platte schreiben.
+  2. Den Studentencode auf die Platte schreiben.
+  3. Die von CodeRunner generierte Test-Klasse schreiben.
+  4. Alle gemeinsam mittels javac kompilieren und ausführen.
+  Dabei MÜSSEN die JVM Speicherlimits (-Xmx128m -XX:CompressedClassSpaceSize=64m) 
+  übergeben werden, da sonst die Sandbox abstürzt.
+-->
+<quiz>
+  <question type="coderunner">
+    <name>
+      <text>[FRAGETITEL: z. B. Unterklasse mit Vererbung implementieren]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Aufgabe</strong>: Implementieren Sie die Java-Klasse <code>[Unterklasse]</code> als Unterklasse von <code>[Basisklasse]</code>.</p>
+
+<p><strong>Wichtig:</strong> Die <em>Elternklasse</em> <code>[Basisklasse]</code> ist im Hintergrund bereits vorhanden und darf von Ihnen <strong>nicht</strong> implementiert werden. Sie implementieren ausschließlich <code>[Unterklasse]</code>.</p>
+
+<h3>Gegeben (Elternklasse im Hintergrund)</h3>
+<ul>
+  <li><code>[Sichtbarkeit] class [Basisklasse]</code> mit den Attributen ...</li>
+  <li>Konstruktoren: ...</li>
+  <li>Methoden: ...</li>
+</ul>
+
+<h3>Anforderungen an <code>[Unterklasse]</code></h3>
+<ul>
+  <li><strong>Vererbung:</strong> <code>public class [Unterklasse] extends [Basisklasse]</code></li>
+  <li><strong>Konstruktor:</strong> ruft den Konstruktor der Elternklasse mit <code>super(...)</code> auf</li>
+  <li><strong>Methoden (Override):</strong> Implementieren/Überschreiben Sie ...</li>
+</ul>
+]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Überprüfen Sie, dass:</p>
+<ul>
+<li>die Unterklasse korrekt von der Basisklasse erbt</li>
+<li>die Konstruktoren korrekt eingebunden sind (<code>super()</code> bei Bedarf)</li>
+<li>alle geforderten Methoden den Spezifikationen entsprechen</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>10</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>20</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    
+    <!-- Code-Skelett für die Schüler -->
+    <answerpreload>public class [Unterklasse] extends [Basisklasse] {
+
+    public [Unterklasse]() {
+        // TODO: Konstruktor
+    }
+
+    // TODO: Weitere Methoden
+}
+</answerpreload>
+
+    <!-- (Optional) Code der Basisklasse hier zur Doku/Read-Only für Moodle, 
+         wird jedoch NICHT (!) beim Kompilieren berücksichtigt. Das richtige
+         Kompilieren der Basisklasse passiert unten im <template>! -->
+    <globalextra><![CDATA[
+/* Zur Referenz: Hintergrundklasse
+abstract class [Basisklasse] {
+    // ...
+}
+*/
+]]></globalextra>
+
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+
+    <!-- HIER beginnt der kritische Teil für die Jobe-Sandbox -->
+    <template><![CDATA[import os
+
+# ── 1. Hintergrundklasse auf Festplatte schreiben ──────────────────────────
+background_class_code = '''abstract class [Basisklasse] {
+    protected int sharedValue;
+    
+    public [Basisklasse](int initialValue) {
+        this.sharedValue = initialValue;
+    }
+    
+    public abstract void doSomething();
+}'''
+with open('[Basisklasse].java', 'w') as f:
+    f.write(background_class_code)
+
+# ── 2. Studenten-Code auf Festplatte schreiben ─────────────────────────────
+student_answer = """{{ STUDENT_ANSWER | e('py') }}"""
+with open('[Unterklasse].java', 'w') as f:
+    f.write(student_answer)
+
+# ── 3. CodeRunner Testfall auf Festplatte schreiben ────────────────────────
+testcode = """{{ TEST.testcode | e('py') }}"""
+test_class = '''public class Test {
+    public static void main(String[] args) throws Exception {
+        ''' + testcode + '''
+    }
+}'''
+with open('Test.java', 'w') as f:
+    f.write(test_class)
+
+# ── 4. Alles zusammen kompilieren incl. JVM Memory Limits (KRITISCH!) ──────
+# Fehlen die Memory-Limits, stürzt die 64-Bit Sandbox mit einem 1GB Class Space Allocation Fehler ab.
+ret = os.system('javac -J-Xmx128m -J-XX:CompressedClassSpaceSize=64m -encoding UTF-8 [Basisklasse].java [Unterklasse].java Test.java 2>&1')
+if ret == 0:
+    os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')
+]]></template>
+    
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    
+    <!-- Die Musterlösung -->
+    <answer><![CDATA[public class [Unterklasse] extends [Basisklasse] {
+
+    public [Unterklasse](int value) {
+        super(value);
+    }
+
+    @Override
+    public void doSomething() {
+        this.sharedValue += 1;
+    }
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <!-- GANZ WICHTIG: language tag muss auf python3 stehen wegen des <template> -->
+    <language>python3</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>10</cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>twig</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0" >
+        <testcode>
+          <text><![CDATA[[Basisklasse] obj = new [Unterklasse](10);
+obj.doSomething();
+System.out.println(obj.sharedValue);]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>11</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0" >
+        <testcode>
+          <text><![CDATA[[Unterklasse] obj = new [Unterklasse](0);
+obj.doSomething();
+obj.doSomething();
+System.out.println(obj.sharedValue);]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>2</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+    </testcases>
+    <tags>
+      <tag><text>OOP</text></tag>
+      <tag><text>Vererbung</text></tag>
+      <tag><text>CodeRunner</text></tag>
+    </tags>
+  </question>
+</quiz>

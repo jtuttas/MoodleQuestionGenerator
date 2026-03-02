@@ -48,6 +48,15 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - `=` markiert die richtige Option, `~` trennt Optionen.
 - Kein zusätzliches `<defaultgrade>` nötig.
 
+#### `coderunner` (speziell `java_class` mit Hintergrundklassen)
+- Wenn eine Elternklasse oder ein Interface vorgegeben werden soll (z. B. für Vererbung), darf dies **nicht** nur in `<globalextra>` stehen, da dies vom Java-Kompiler in der Sandbox nicht automatisch als ausführbare Datei erstellt wird.
+- Stattdessen **muss ein eigenes `<template>` in `<language>python3</language>`** verwendet werden, das die Hintergrundklasse, den Studenten-Code und den Testfall explizit auf die Platte schreibt und zusammen kompiliert.
+- **Kritisch für Java in Jobe-Sandbox:** Beim Aufruf von `javac` muss der JVM-Speicher limitiert werden, da die 64-Bit-Sandbox sonst oft beim Allokieren von 1 GB Class Space abstürzt (Fehler: `Could not allocate compressed class space`).
+- Beispiel für das notwendige `os.system`-Kommando im Python-Template:
+  `ret = os.system('javac -J-Xmx128m -J-XX:CompressedClassSpaceSize=64m -encoding UTF-8 AccountBase.java BankAccount.java Test.java 2>&1')`
+  `if ret == 0: os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')`
+- Das Python-Template (`<template>`) in XML muss linksbündig (ohne führende Leerzeichen) beginnen, anderenfalls produziert der CodeRunner einen `IndentationError` in Python.
+
 ## SVG-Regeln (Inline im Fragetext)
 - SVG immer inline im CDATA-Fragetext, mit:
   - `xmlns="http://www.w3.org/2000/svg"`

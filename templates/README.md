@@ -869,6 +869,64 @@ git commit -m "Neue Fragen zur Lichttechnik hinzugefügt"
 
 ---
 
+## 💻 CodeRunner Integration (Java Sandbox)
+
+Wenn Sie den Fragetyp **CodeRunner** (speziell `java_class` oder `java_method`) nutzen und zusätzliche Hintergrund-Klassen bereitstellen möchten (z. B. für Vererbungsaufgaben), gibt es einige Eigenheiten der Moodle-Jobe-Sandbox zu beachten:
+
+### Hintergrund-Klassen bereitstellen
+Oft soll eine Elternklasse (z. B. `AccountBase`) nicht vom Studierenden implementiert werden, sondern für die Testausführung zur Verfügung stehen. Das `<globalextra>`-Tag reicht hierfür bei `coderunnertype="java_class"` allein **nicht aus**, da es nicht automatisch mitkompiliert wird.
+
+### Eigenes Compiler-Template verwenden
+Überschreiben Sie das `<template>` mit einem eigenen Python-Skript (`<language>python3</language>`), das alle benötigten Dateien auf der Platte der Sandbox ablegt und zusammen kompiliert:
+
+```xml
+    <!-- WICHTIG: Die Sprache auf python3 stellen, sonst interpretiert Moodle das Template als Java! -->
+    <language>python3</language>
+    <coderunnertype>java_class</coderunnertype>
+    
+    <template><![CDATA[import os
+
+# 1. Basisklasse (Hintergrund) schreiben
+account_base_code = '''abstract class AccountBase {
+    // ... Implementierung ...
+}'''
+with open('AccountBase.java', 'w') as f:
+    f.write(account_base_code)
+
+# 2. Lösung des Studierenden schreiben
+student_answer = """{{ STUDENT_ANSWER | e('py') }}"""
+with open('BankAccount.java', 'w') as f:
+    f.write(student_answer)
+
+# 3. Testfall generieren
+testcode = """{{ TEST.testcode | e('py') }}"""
+test_class = '''public class Test {
+    public static void main(String[] args) throws Exception {
+        ''' + testcode + '''
+    }
+}'''
+with open('Test.java', 'w') as f:
+    f.write(test_class)
+
+# 4. Kompilieren (inkl. JVM-Speicherlimits für den Compiler)
+# WICHTIG: -J-Xmx128m -J-XX:CompressedClassSpaceSize=64m verhindert OutOfMemory/ClassSpace-Crashes in der Sandbox
+ret = os.system('javac -J-Xmx128m -J-XX:CompressedClassSpaceSize=64m -encoding UTF-8 AccountBase.java BankAccount.java Test.java 2>&1')
+if ret == 0:
+    # 5. Ausführen
+    os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')
+]]></template>
+```
+
+### Typische Sandbox-Fehler (Java)
+
+| Fehler | Ursache | Lösung |
+|--------|---------|--------|
+| **`IndentationError`** | Im Python-Template wurden Blöcke/Zeilen falsch eingerückt. | Python achtet streng auf Einrückungen. Das `<template>` ohne vorangestellte Leerzeichen direkt am Zeilenanfang beginnen (`ret = os.system(...)`). |
+| **`cannot find symbol`** (AccountBase) | Eigene Hintergrundklasse wird vom Java-Kompiler nicht gefunden. | Eigenes `<template>` verwenden, das alle Klassen (`AccountBase.java`, `StudentClass.java`, `Test.java`) erzeugt und zusammen via `javac` kompiliert. |
+| **`Could not allocate compressed class space: 1073741824 bytes`** | 64-Bit Java versucht standardmäßig 1GB Class Space zu allozieren, Moodle blockt. | Dem Java-Runner bzw. Compiler explizit Argumente mitgeben: `java -XX:CompressedClassSpaceSize=64m` (für den Compiler: `javac -J-XX:CompressedClassSpaceSize=64m`). |
+
+---
+
 ## ✅ Checkliste vor dem Import
 
 - [ ] Datei als **UTF-8** gespeichert

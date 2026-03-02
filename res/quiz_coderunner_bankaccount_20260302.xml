@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="coderunner">
+    <name>
+      <text>BankAccount-Klasse implementieren</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Aufgabe</strong>: Implementieren Sie eine Java-Klasse <code>BankAccount</code>, die ein Bankkonto repräsentiert.</p>
+<h3>Anforderungen:</h3>
+<ul>
+<li><strong>Zwei Konstruktoren:</strong>
+  <ul>
+  <li><code>BankAccount(String accountHolder)</code> – Initialisiert ein Konto mit dem Kontoinhaber und einem Startguthaben von 0.0</li>
+  <li><code>BankAccount(String accountHolder, double initialBalance)</code> – Initialisiert ein Konto mit Kontoinhaber und Startguthaben</li>
+  </ul>
+</li>
+<li><strong>Methoden:</strong>
+  <ul>
+  <li><code>void deposit(double amount)</code> – Einzahlung auf das Konto (Betrag zur Balance addieren)</li>
+  <li><code>boolean withdraw(double amount)</code> – Abhebung vom Konto (true bei erfolgreich, false wenn Kontostand nicht ausreichend)</li>
+  <li><code>double getBalance()</code> – gibt den aktuellen Kontostand zurück</li>
+  <li><code>String getAccountHolder()</code> – gibt den Kontoinhaber zurück</li>
+  <li><code>String toString()</code> – gibt einen String zurück im Format: &quot;Kontoinhaber: [Name], Saldo: [Betrag]€&quot;</li>
+  </ul>
+</li>
+</ul>
+<p><strong>Hinweis:</strong> Die Balance muss privat sein. Nutzen Sie eine Instanzvariable vom Typ <code>double</code>.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Überprüfen Sie, dass:</p>
+<ul>
+<li>Beide Konstruktoren korrekt initialisieren</li>
+<li>Einzahlungen und Abhebungen richtig gehandhabt werden</li>
+<li>Abhebungen nicht möglich sind, wenn der Saldo zu niedrig ist</li>
+<li>Die toString()-Methode das richtige Format hat</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>10</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>35</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload>public class BankAccount {
+    private String accountHolder;
+    private double balance;
+    
+    // Konstruktoren und Methoden hier einfügen
+}
+</answerpreload>
+    <globalextra></globalextra>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[public class BankAccount {
+    private String accountHolder;
+    private double balance;
+    
+    // Konstruktor 1: Nur mit Kontoinhaber, Startguthaben 0.0
+    public BankAccount(String accountHolder) {
+        this.accountHolder = accountHolder;
+        this.balance = 0.0;
+    }
+    
+    // Konstruktor 2: Mit Kontoinhaber und Startguthaben
+    public BankAccount(String accountHolder, double initialBalance) {
+        this.accountHolder = accountHolder;
+        this.balance = initialBalance;
+    }
+    
+    // Einzahlung
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+    
+    // Abhebung
+    public boolean withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+    
+    // Kontostand abfragen
+    public double getBalance() {
+        return balance;
+    }
+    
+    // Kontoinhaber abfragen
+    public String getAccountHolder() {
+        return accountHolder;
+    }
+    
+    // String-Repräsentation
+    public String toString() {
+        return "Kontoinhaber: " + accountHolder + ", Saldo: " + balance + "€";
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>10</cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>twig</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[BankAccount acc1 = new BankAccount("Alice");
+System.out.println(acc1.getBalance());
+System.out.println(acc1.getAccountHolder());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>0.0
+Alice</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[BankAccount acc2 = new BankAccount("Bob", 500.0);
+System.out.println(acc2.getBalance());
+System.out.println(acc2.toString());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>500.0
+Kontoinhaber: Bob, Saldo: 500.0€</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[BankAccount acc3 = new BankAccount("Carol", 1000.0);
+acc3.deposit(250.0);
+System.out.println(acc3.getBalance());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>1250.0</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[BankAccount acc4 = new BankAccount("Dave", 800.0);
+boolean success1 = acc4.withdraw(300.0);
+boolean success2 = acc4.withdraw(600.0);
+System.out.println(success1);
+System.out.println(success2);
+System.out.println(acc4.getBalance());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>true
+false
+500.0</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="2.0" >
+        <testcode>
+          <text><![CDATA[BankAccount acc5 = new BankAccount("Eve", 200.0);
+acc5.deposit(300.0);
+acc5.withdraw(150.0);
+acc5.withdraw(100.0);
+System.out.println(acc5.toString());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>Kontoinhaber: Eve, Saldo: 250.0€</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="2.0" >
+        <testcode>
+          <text><![CDATA[BankAccount acc6 = new BankAccount("Frank");
+acc6.deposit(1000.0);
+boolean result = acc6.withdraw(1200.0);
+System.out.println(result);
+System.out.println(acc6.getBalance());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>false
+1000.0</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+    </testcases>
+    <tags>
+      <tag><text>Klasse</text></tag>
+      <tag><text>Konstruktor</text></tag>
+      <tag><text>Methoden</text></tag>
+      <tag><text>OOP</text></tag>
+    </tags>
+  </question>
+</quiz>

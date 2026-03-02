@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+  <question type="coderunner">
+    <name>
+      <text>BankAccount mit Vererbung implementieren</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Aufgabe</strong>: Implementieren Sie eine Java-Klasse <code>BankAccount</code> als <strong>Unterklasse</strong> einer bereits vorhandenen Elternklasse.</p>
+
+<p><strong>Wichtig:</strong> Die <em>Elternklasse</em> <code>AccountBase</code> ist im Hintergrund bereits vorhanden und darf von Ihnen <strong>nicht</strong> implementiert oder verändert werden. Sie implementieren ausschließlich <code>BankAccount</code>.</p>
+
+<h3>Gegeben (Elternklasse im Hintergrund)</h3>
+<ul>
+  <li><code>abstract class AccountBase</code> mit den <strong>geschützten</strong> Attributen <code>accountHolder</code> (String) und <code>balance</code> (double)</li>
+  <li>Konstruktoren: <code>AccountBase(String accountHolder)</code> und <code>AccountBase(String accountHolder, double initialBalance)</code></li>
+  <li>Getter: <code>String getAccountHolder()</code> und <code>double getBalance()</code></li>
+  <li>Abstrakte Methoden: <code>void deposit(double amount)</code> und <code>boolean withdraw(double amount)</code></li>
+</ul>
+
+<h3>Anforderungen an <code>BankAccount</code></h3>
+<ul>
+  <li><strong>Vererbung:</strong> <code>public class BankAccount extends AccountBase</code></li>
+  <li><strong>Zwei Konstruktoren:</strong>
+    <ul>
+      <li><code>BankAccount(String accountHolder)</code> – ruft den passenden <code>super</code>-Konstruktor auf (Startguthaben 0.0)</li>
+      <li><code>BankAccount(String accountHolder, double initialBalance)</code> – ruft den passenden <code>super</code>-Konstruktor auf</li>
+    </ul>
+  </li>
+  <li><strong>Methoden (Override):</strong>
+    <ul>
+      <li><code>void deposit(double amount)</code> – Einzahlung (Betrag zur Balance addieren)</li>
+      <li><code>boolean withdraw(double amount)</code> – Abhebung (true bei Erfolg, false wenn Kontostand nicht ausreicht)</li>
+      <li><code>String toString()</code> – Format: <code>"Kontoinhaber: [Name], Saldo: [Betrag]€"</code></li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong>Hinweis:</strong> <code>accountHolder</code> und <code>balance</code> sind bereits in der Elternklasse vorhanden. Legen Sie diese Attribute in <code>BankAccount</code> nicht erneut an.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Überprüfen Sie, dass:</p>
+<ul>
+<li><code>BankAccount</code> korrekt von <code>AccountBase</code> erbt und die Konstruktoren <code>super(...)</code> aufrufen</li>
+<li><code>deposit</code> und <code>withdraw</code> die geerbte Variable <code>balance</code> korrekt verändern</li>
+<li><code>withdraw</code> bei zu geringem Saldo <code>false</code> liefert</li>
+<li><code>toString()</code> exakt dem geforderten Format entspricht</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>10</defaultgrade>
+    <penalty>0</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0, 0, 10, 20, ...</penaltyregime>
+    <precheck>0</precheck>
+    <hidecheck>0</hidecheck>
+    <showsource>0</showsource>
+    <answerboxlines>40</answerboxlines>
+    <answerboxcolumns>100</answerboxcolumns>
+    <answerpreload>public class BankAccount extends AccountBase {
+
+    // Konstruktor 1: nur mit Kontoinhaber (Startguthaben 0.0)
+    public BankAccount(String accountHolder) {
+        // TODO
+    }
+
+    // Konstruktor 2: mit Kontoinhaber und Startguthaben
+    public BankAccount(String accountHolder, double initialBalance) {
+        // TODO
+    }
+
+    @Override
+    public void deposit(double amount) {
+        // TODO
+    }
+
+    @Override
+    public boolean withdraw(double amount) {
+        // TODO
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        // TODO
+        return "";
+    }
+}
+</answerpreload>
+
+    <globalextra><![CDATA[
+abstract class AccountBase {
+    protected final String accountHolder;
+    protected double balance;
+
+    public AccountBase(String accountHolder) {
+        this(accountHolder, 0.0);
+    }
+
+    public AccountBase(String accountHolder, double initialBalance) {
+        this.accountHolder = accountHolder;
+        this.balance = initialBalance;
+    }
+
+    public final String getAccountHolder() {
+        return accountHolder;
+    }
+
+    public final double getBalance() {
+        return balance;
+    }
+
+    public abstract void deposit(double amount);
+
+    public abstract boolean withdraw(double amount);
+}
+]]></globalextra>
+
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template><![CDATA[import os
+
+# ── AccountBase.java (Basisklasse) ────────────────────────────────────────
+account_base_code = '''abstract class AccountBase {
+    protected final String accountHolder;
+    protected double balance;
+
+    public AccountBase(String accountHolder) {
+        this(accountHolder, 0.0);
+    }
+
+    public AccountBase(String accountHolder, double initialBalance) {
+        this.accountHolder = accountHolder;
+        this.balance = initialBalance;
+    }
+
+    public final String getAccountHolder() {
+        return accountHolder;
+    }
+
+    public final double getBalance() {
+        return balance;
+    }
+
+    public abstract void deposit(double amount);
+
+    public abstract boolean withdraw(double amount);
+}'''
+with open('AccountBase.java', 'w') as f:
+    f.write(account_base_code)
+
+# ── BankAccount.java (Studenten-Code) ──────────────────────────────────────
+student_answer = """{{ STUDENT_ANSWER | e('py') }}"""
+with open('BankAccount.java', 'w') as f:
+    f.write(student_answer)
+
+# ── Test.java (Testfall) ───────────────────────────────────────────────────
+testcode = """{{ TEST.testcode | e('py') }}"""
+test_class = '''public class Test {
+    public static void main(String[] args) throws Exception {
+        ''' + testcode + '''
+    }
+}'''
+with open('Test.java', 'w') as f:
+    f.write(test_class)
+
+# ── Kompilierung ────────────────────────────────────────────────────────────
+ret = os.system('javac -J-Xmx128m -J-XX:CompressedClassSpaceSize=64m -encoding UTF-8 AccountBase.java BankAccount.java Test.java 2>&1')
+if ret == 0:
+    os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')
+]]></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[public class BankAccount extends AccountBase {
+
+    // Konstruktor 1: nur mit Kontoinhaber (Startguthaben 0.0)
+    public BankAccount(String accountHolder) {
+        super(accountHolder);
+    }
+
+    // Konstruktor 2: mit Kontoinhaber und Startguthaben
+    public BankAccount(String accountHolder, double initialBalance) {
+        super(accountHolder, initialBalance);
+    }
+
+    @Override
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    @Override
+    public boolean withdraw(double amount) {
+        if (amount > 0 && balance >= amount) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Kontoinhaber: " + accountHolder + ", Saldo: " + balance + "€";
+    }
+}
+]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language>python3</language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs>10</cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <hoisttemplateparams>1</hoisttemplateparams>
+    <extractcodefromjson>1</extractcodefromjson>
+    <templateparamslang>twig</templateparamslang>
+    <templateparamsevalpertry>0</templateparamsevalpertry>
+    <templateparamsevald>{}</templateparamsevald>
+    <twigall>0</twigall>
+    <uiplugin></uiplugin>
+    <uiparameters></uiparameters>
+    <attachments>0</attachments>
+    <attachmentsrequired>0</attachmentsrequired>
+    <maxfilesize>10240</maxfilesize>
+    <filenamesregex></filenamesregex>
+    <filenamesexplain></filenamesexplain>
+    <displayfeedback>1</displayfeedback>
+    <giveupallowed>0</giveupallowed>
+    <prototypeextra></prototypeextra>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[AccountBase acc1 = new BankAccount("Alice");
+System.out.println(acc1.getBalance());
+System.out.println(acc1.getAccountHolder());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>0.0
+Alice</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[BankAccount acc2 = new BankAccount("Bob", 500.0);
+System.out.println(acc2.getBalance());
+System.out.println(acc2.toString());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>500.0
+Kontoinhaber: Bob, Saldo: 500.0€</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[AccountBase acc3 = new BankAccount("Carol", 1000.0);
+acc3.deposit(250.0);
+System.out.println(acc3.getBalance());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>1250.0</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.5" >
+        <testcode>
+          <text><![CDATA[AccountBase acc4 = new BankAccount("Dave", 800.0);
+boolean success1 = acc4.withdraw(300.0);
+boolean success2 = acc4.withdraw(600.0);
+System.out.println(success1);
+System.out.println(success2);
+System.out.println(acc4.getBalance());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>true
+false
+500.0</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="2.0" >
+        <testcode>
+          <text><![CDATA[BankAccount acc5 = new BankAccount("Eve", 200.0);
+acc5.deposit(300.0);
+acc5.withdraw(150.0);
+acc5.withdraw(100.0);
+System.out.println(acc5.toString());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>Kontoinhaber: Eve, Saldo: 250.0€</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="2.0" >
+        <testcode>
+          <text><![CDATA[AccountBase acc6 = new BankAccount("Frank");
+acc6.deposit(1000.0);
+boolean result = acc6.withdraw(1200.0);
+System.out.println(result);
+System.out.println(acc6.getBalance());]]></text>
+        </testcode>
+        <stdin>
+          <text></text>
+        </stdin>
+        <expected>
+          <text>false
+1000.0</text>
+        </expected>
+        <extra>
+          <text></text>
+        </extra>
+        <display>
+          <text>SHOW</text>
+        </display>
+      </testcase>
+    </testcases>
+    <tags>
+      <tag><text>OOP</text></tag>
+      <tag><text>Vererbung</text></tag>
+      <tag><text>Konstruktor</text></tag>
+      <tag><text>Methoden</text></tag>
+      <tag><text>CodeRunner</text></tag>
+    </tags>
+  </question>
+</quiz>
