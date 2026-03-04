@@ -1,0 +1,593 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+  <question type="coderunner">
+    <name>
+      <text>Java Vererbung: Vehicle und Car</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Implementieren Sie die Vererbung gemäß Klassendiagramm:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="170" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arr_vc" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="35" y="20" width="150" height="70" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="50" x2="185" y2="50" stroke="#333" stroke-width="1"/>
+  <text x="110" y="40" text-anchor="middle" font-weight="bold">Vehicle</text>
+  <text x="43" y="70"># brand: String</text>
+  <text x="43" y="85">+ info(): String</text>
+  <rect x="235" y="20" width="150" height="70" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="235" y1="50" x2="385" y2="50" stroke="#333" stroke-width="1"/>
+  <text x="310" y="40" text-anchor="middle" font-weight="bold">Car</text>
+  <text x="243" y="70">- model: String</text>
+  <text x="243" y="85">+ info(): String</text>
+  <line x1="310" y1="100" x2="110" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arr_vc)"/>
+  <text x="215" y="118" text-anchor="middle">extends</text>
+</svg>
+<p>Anforderungen:</p>
+<ul>
+  <li><code>Vehicle</code> mit <code>protected String brand</code>, Konstruktor <code>Vehicle(String brand)</code> und <code>info()</code> mit Rückgabe <code>"Vehicle: " + brand</code>.</li>
+  <li><code>Car</code> erbt von <code>Vehicle</code>, hat <code>private String model</code> und Konstruktor <code>Car(String brand, String model)</code>.</li>
+  <li><code>Car</code> überschreibt <code>info()</code> mit <code>"Car: " + brand + " " + model</code>.</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Nutzen Sie <code>extends</code>, rufen Sie im Unterklassen-Konstruktor <code>super(brand)</code> auf und überschreiben Sie <code>info()</code> korrekt.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>22</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[class Vehicle {
+    protected String brand;
+
+    public Vehicle(String brand) {
+        this.brand = brand;
+    }
+
+    public String info() {
+        return "Vehicle: " + brand;
+    }
+}
+
+public class Car extends Vehicle {
+    private String model;
+
+    public Car(String brand, String model) {
+        super(brand);
+        this.model = model;
+    }
+
+    @Override
+    public String info() {
+        return "Car: " + brand + " " + model;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Vehicle v = new Vehicle("Audi");
+Car c = new Car("BMW", "M3");
+System.out.println(v.info());
+System.out.print(c.info());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Vehicle: Audi
+Car: BMW M3</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Vehicle v = new Car("VW", "Golf");
+System.out.print(v.info());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Car: VW Golf</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java Vererbung: Employee und Manager</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Setzen Sie das Diagramm in Java um:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="170" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arr_em" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="35" y="20" width="170" height="75" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="52" x2="205" y2="52" stroke="#333" stroke-width="1"/>
+  <text x="120" y="41" text-anchor="middle" font-weight="bold">Employee</text>
+  <text x="43" y="71"># salary: double</text>
+  <text x="43" y="87">+ getAnnualIncome(): double</text>
+  <rect x="245" y="20" width="170" height="75" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="245" y1="52" x2="415" y2="52" stroke="#333" stroke-width="1"/>
+  <text x="330" y="41" text-anchor="middle" font-weight="bold">Manager</text>
+  <text x="253" y="71">- bonus: double</text>
+  <text x="253" y="87">+ getAnnualIncome(): double</text>
+  <line x1="330" y1="106" x2="120" y2="106" stroke="#333" stroke-width="1.5" marker-end="url(#arr_em)"/>
+  <text x="225" y="124" text-anchor="middle">extends</text>
+</svg>
+<ul>
+  <li><code>Employee</code>: Feld <code>protected double salary</code>, Konstruktor <code>Employee(double salary)</code>, Methode <code>getAnnualIncome()</code> gibt <code>salary * 12</code> zurück.</li>
+  <li><code>Manager</code> erbt von <code>Employee</code>, hat Feld <code>private double bonus</code>, Konstruktor <code>Manager(double salary, double bonus)</code>.</li>
+  <li><code>Manager</code> überschreibt <code>getAnnualIncome()</code> und liefert <code>salary * 12 + bonus</code>.</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Polymorphie testen Sie mit einer <code>Employee</code>-Referenz auf ein <code>Manager</code>-Objekt.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>20</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[class Employee {
+    protected double salary;
+
+    public Employee(double salary) {
+        this.salary = salary;
+    }
+
+    public double getAnnualIncome() {
+        return salary * 12;
+    }
+}
+
+public class Manager extends Employee {
+    private double bonus;
+
+    public Manager(double salary, double bonus) {
+        super(salary);
+        this.bonus = bonus;
+    }
+
+    @Override
+    public double getAnnualIncome() {
+        return salary * 12 + bonus;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Employee e = new Employee(3000);
+Manager m = new Manager(4000, 5000);
+System.out.println(e.getAnnualIncome());
+System.out.print(m.getAnnualIncome());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>36000.0
+53000.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Employee e = new Manager(2500, 1200);
+System.out.print(e.getAnnualIncome());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>31200.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java Vererbung: Abstrakte Klasse Animal</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Implementieren Sie eine abstrakte Basisklasse mit zwei Unterklassen:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="190" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arr_an" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="155" y="20" width="150" height="74" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="155" y1="52" x2="305" y2="52" stroke="#333" stroke-width="1"/>
+  <text x="230" y="41" text-anchor="middle" font-weight="bold">Animal (abstract)</text>
+  <text x="163" y="71"># name: String</text>
+  <text x="163" y="87">+ speak(): String</text>
+  <rect x="35" y="120" width="150" height="60" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="150" x2="185" y2="150" stroke="#333" stroke-width="1"/>
+  <text x="110" y="140" text-anchor="middle" font-weight="bold">Dog</text>
+  <text x="43" y="169">+ speak(): String</text>
+  <rect x="275" y="120" width="150" height="60" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="275" y1="150" x2="425" y2="150" stroke="#333" stroke-width="1"/>
+  <text x="350" y="140" text-anchor="middle" font-weight="bold">Cat</text>
+  <text x="283" y="169">+ speak(): String</text>
+  <line x1="110" y1="120" x2="220" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arr_an)"/>
+  <line x1="350" y1="120" x2="240" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arr_an)"/>
+</svg>
+<ul>
+  <li><code>abstract class Animal</code> mit <code>protected String name</code> und Konstruktor.</li>
+  <li>Abstrakte Methode <code>String speak()</code>.</li>
+  <li><code>Dog</code> und <code>Cat</code> erben von <code>Animal</code> und implementieren <code>speak()</code>.</li>
+  <li>Rückgaben: <code>Dog</code> -> <code>"Woof " + name</code>, <code>Cat</code> -> <code>"Meow " + name</code>.</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Eine abstrakte Methode besitzt nur die Signatur; die Unterklassen liefern die konkrete Implementierung.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>28</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[abstract class Animal {
+    protected String name;
+
+    public Animal(String name) {
+        this.name = name;
+    }
+
+    public abstract String speak();
+}
+
+class Dog extends Animal {
+    public Dog(String name) {
+        super(name);
+    }
+
+    @Override
+    public String speak() {
+        return "Woof " + name;
+    }
+}
+
+public class Cat extends Animal {
+    public Cat(String name) {
+        super(name);
+    }
+
+    @Override
+    public String speak() {
+        return "Meow " + name;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Animal a1 = new Dog("Bello");
+Animal a2 = new Cat("Mimi");
+System.out.println(a1.speak());
+System.out.print(a2.speak());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Woof Bello
+Meow Mimi</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Dog d = new Dog("Rex");
+System.out.print(d.speak());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Woof Rex</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java Vererbung: Account und SavingsAccount</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Implementieren Sie ein Basiskonto und eine spezialisierte Unterklasse:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="430" height="180" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arr_as" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="30" y="20" width="175" height="86" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="30" y1="52" x2="205" y2="52" stroke="#333" stroke-width="1"/>
+  <text x="117" y="41" text-anchor="middle" font-weight="bold">Account</text>
+  <text x="38" y="70"># balance: double</text>
+  <text x="38" y="86">+ withdraw(a): boolean</text>
+  <text x="38" y="101">+ getBalance(): double</text>
+  <rect x="245" y="20" width="175" height="86" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="245" y1="52" x2="420" y2="52" stroke="#333" stroke-width="1"/>
+  <text x="332" y="41" text-anchor="middle" font-weight="bold">SavingsAccount</text>
+  <text x="253" y="70">- minBalance: double</text>
+  <text x="253" y="86">+ withdraw(a): boolean</text>
+  <text x="253" y="101">(mit Mindestguthaben)</text>
+  <line x1="332" y1="118" x2="117" y2="118" stroke="#333" stroke-width="1.5" marker-end="url(#arr_as)"/>
+  <text x="225" y="137" text-anchor="middle">extends</text>
+</svg>
+<ul>
+  <li><code>Account</code> mit <code>protected double balance</code>, Konstruktor <code>Account(double balance)</code>.</li>
+  <li><code>withdraw(double amount)</code> in <code>Account</code>: nur bei <code>amount &gt; 0</code> und genug Guthaben; Rückgabe <code>true/false</code>.</li>
+  <li><code>SavingsAccount</code> erbt von <code>Account</code>, hat <code>private double minBalance</code>.</li>
+  <li>Überschreiben Sie <code>withdraw</code>: Abhebung nur, wenn danach <code>balance - amount &gt;= minBalance</code>.</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Im Override kann die Unterklasse strengere Regeln definieren als die Basisklasse.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>26</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[class Account {
+    protected double balance;
+
+    public Account(double balance) {
+        this.balance = balance;
+    }
+
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}
+
+public class SavingsAccount extends Account {
+    private double minBalance;
+
+    public SavingsAccount(double balance, double minBalance) {
+        super(balance);
+        this.minBalance = minBalance;
+    }
+
+    @Override
+    public boolean withdraw(double amount) {
+        if (amount > 0 && amount <= balance && balance - amount >= minBalance) {
+            balance -= amount;
+            return true;
+        }
+        return false;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[SavingsAccount s = new SavingsAccount(1000, 200);
+System.out.println(s.withdraw(500));
+System.out.println(s.withdraw(350));
+System.out.print(s.getBalance());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>true
+false
+500.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Account a = new SavingsAccount(600, 100);
+a.withdraw(450);
+System.out.print(a.getBalance());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>600.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java Vererbung: GeometricShape und Rectangle</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Erstellen Sie eine abstrakte Oberklasse und zwei konkrete Unterklassen:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="470" height="190" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arr_gs" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto">
+      <polygon points="0 0,10 3.5,0 7" fill="#333"/>
+    </marker>
+  </defs>
+  <rect x="160" y="20" width="150" height="74" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="160" y1="52" x2="310" y2="52" stroke="#333" stroke-width="1"/>
+  <text x="235" y="41" text-anchor="middle" font-weight="bold">GeometricShape</text>
+  <text x="168" y="71">+ area(): double</text>
+  <text x="168" y="87">(abstract)</text>
+  <rect x="35" y="120" width="170" height="60" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="35" y1="150" x2="205" y2="150" stroke="#333" stroke-width="1"/>
+  <text x="120" y="140" text-anchor="middle" font-weight="bold">Rectangle</text>
+  <text x="43" y="168">+ area(): double</text>
+  <rect x="265" y="120" width="170" height="60" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="265" y1="150" x2="435" y2="150" stroke="#333" stroke-width="1"/>
+  <text x="350" y="140" text-anchor="middle" font-weight="bold">Triangle</text>
+  <text x="273" y="168">+ area(): double</text>
+  <line x1="120" y1="120" x2="225" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arr_gs)"/>
+  <line x1="350" y1="120" x2="245" y2="100" stroke="#333" stroke-width="1.5" marker-end="url(#arr_gs)"/>
+</svg>
+<ul>
+  <li><code>abstract class GeometricShape</code> mit abstrakter Methode <code>double area()</code>.</li>
+  <li><code>Rectangle(double width, double height)</code> mit Fläche <code>width * height</code>.</li>
+  <li><code>Triangle(double base, double height)</code> mit Fläche <code>base * height / 2</code>.</li>
+</ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Beide Unterklassen müssen <code>area()</code> überschreiben, damit dynamischer Methodenaufruf mit Basistyp funktioniert.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>26</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[abstract class GeometricShape {
+    public abstract double area();
+}
+
+class Rectangle extends GeometricShape {
+    private double width;
+    private double height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public double area() {
+        return width * height;
+    }
+}
+
+public class Triangle extends GeometricShape {
+    private double base;
+    private double height;
+
+    public Triangle(double base, double height) {
+        this.base = base;
+        this.height = height;
+    }
+
+    @Override
+    public double area() {
+        return base * height / 2;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[GeometricShape r = new Rectangle(5, 4);
+GeometricShape t = new Triangle(10, 3);
+System.out.println(r.area());
+System.out.print(t.area());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>20.0
+15.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Triangle t = new Triangle(7, 2);
+System.out.print(t.area());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>7.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+</quiz>
