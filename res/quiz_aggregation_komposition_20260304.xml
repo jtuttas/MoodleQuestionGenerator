@@ -25,8 +25,8 @@
   <text x="10" y="52" font-size="14" font-weight="bold" fill="#c00">①</text>
   <rect x="36" y="32" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
   <text x="80" y="52" text-anchor="middle" font-weight="bold">Ganzes</text>
-  <polygon points="124,47 132,40 140,47 132,54" fill="#fff" stroke="#333" stroke-width="1.5"/>
-  <line x1="140" y1="47" x2="220" y2="47" stroke="#333" stroke-width="1.5"/>
+  <polygon points="134,47 142,40 150,47 142,54" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="47" x2="220" y2="47" stroke="#333" stroke-width="1.5"/>
   <rect x="220" y="32" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
   <text x="264" y="52" text-anchor="middle" font-weight="bold">Teil</text>
   <text x="145" y="43" font-size="11">1</text>
@@ -36,8 +36,8 @@
   <text x="10" y="118" font-size="14" font-weight="bold" fill="#c00">②</text>
   <rect x="36" y="98" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
   <text x="80" y="118" text-anchor="middle" font-weight="bold">Ganzes</text>
-  <polygon points="124,113 132,106 140,113 132,120" fill="#333" stroke="#333" stroke-width="1.5"/>
-  <line x1="140" y1="113" x2="220" y2="113" stroke="#333" stroke-width="1.5"/>
+  <polygon points="134,113 142,106 150,113 142,120" fill="#333" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="113" x2="220" y2="113" stroke="#333" stroke-width="1.5"/>
   <rect x="220" y="98" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
   <text x="264" y="118" text-anchor="middle" font-weight="bold">Teil</text>
   <text x="145" y="109" font-size="11">1</text>
@@ -219,8 +219,8 @@
   <text x="210" y="30" text-anchor="middle" font-weight="bold">Haus</text>
 
   <!-- Linie Haus → Zimmer (links): Komposition (gefüllte Raute an Haus) -->
-  <line x1="190" y1="40" x2="100" y2="80" stroke="#333" stroke-width="1.5"/>
-  <polygon points="186,43 194,37 198,46 190,52" fill="#333" stroke="#333" stroke-width="1.5"/>
+  <line x1="186" y1="46" x2="100" y2="80" stroke="#333" stroke-width="1.5"/>
+  <polygon points="186,46 192,40 198,46 192,52" fill="#333" stroke="#333" stroke-width="1.5"/>
   <!-- Multiplizitäten Komposition -->
   <text x="148" y="56" font-size="11">1</text>
   <text x="102" y="72" font-size="11">1..*</text>
@@ -229,8 +229,8 @@
   <text x="100" y="100" text-anchor="middle" font-weight="bold">Zimmer</text>
 
   <!-- Linie Haus → Einrichtung (rechts): Aggregation (offene Raute an Haus) -->
-  <line x1="230" y1="40" x2="320" y2="80" stroke="#333" stroke-width="1.5"/>
-  <polygon points="226,43 234,37 238,46 230,52" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="238" y1="46" x2="320" y2="80" stroke="#333" stroke-width="1.5"/>
+  <polygon points="226,46 232,40 238,46 232,52" fill="#fff" stroke="#333" stroke-width="1.5"/>
   <!-- Multiplizitäten Aggregation -->
   <text x="248" y="56" font-size="11">1</text>
   <text x="308" y="72" font-size="11">0..*</text>
