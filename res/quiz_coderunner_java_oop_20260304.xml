@@ -3,7 +3,7 @@
 
   <question type="coderunner">
     <name>
-      <text>Java OOP: Kapselung mit Zaehler</text>
+      <text>Java OOP: Kapselung mit Zähler</text>
     </name>
     <questiontext format="html">
       <text><![CDATA[<p>Erstellen Sie eine Klasse <code>Counter</code> mit gekapseltem Zustand:</p><ul><li>Privates Attribut <code>value</code> vom Typ <code>int</code>, initial <code>0</code>.</li><li>Methode <code>increment()</code> erhöht den Wert um 1.</li><li>Methode <code>getValue()</code> liefert den aktuellen Wert.</li></ul>]]></text>
