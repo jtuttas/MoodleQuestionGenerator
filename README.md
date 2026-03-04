@@ -11,6 +11,7 @@ MoodleQuestionGenerator/
 ├── res/                              # Generierte Moodle-XML-Fragedateien
 │   ├── quiz_aggregation_komposition_20260223.xml
 │   ├── quiz_aggregation_komposition_20260304.xml
+│   ├── quiz_coderunner_java_oop_20260304.xml
 │   ├── quiz_vlan_systemintegration_20260223.xml
 │   ├── quiz_nm_beziehungen_20260224.xml
 │   └── quiz_troubleshooting_ip_netzwerke_20260225.xml
@@ -35,6 +36,7 @@ MoodleQuestionGenerator/
 |---|---|---|---|---|
 | `quiz_aggregation_komposition_20260223.xml` | Aggregation & Komposition (OOP) | FI Anwendungsentwicklung | 5 | ddmatch, ddwtos, multichoice, cloze |
 | `quiz_aggregation_komposition_20260304.xml` | Aggregation & Komposition (OOP) | FI Anwendungsentwicklung | 5 | ddmatch, ddwtos, multichoice, cloze, multichoice |
+| `quiz_coderunner_java_oop_20260304.xml` | Objektorientierung in Java | FI Anwendungsentwicklung | 5 | coderunner |
 | `quiz_vlan_systemintegration_20260223.xml` | VLANs & IEEE 802.1Q | FI Systemintegration | 5 | ddmatch, ddwtos, multichoice, cloze |
 | `quiz_nm_beziehungen_20260224.xml` | N:M-Beziehungen (relationale DB) | FI Anwendungsentwicklung | 5 | ddmatch, multichoice, ddwtos, cloze |
 | `quiz_troubleshooting_ip_netzwerke_20260225.xml` | Troubleshooting IP-Netzwerke | FI Systemintegration | 5 | ddmatch, multichoice, cloze, ddwtos |
@@ -49,6 +51,7 @@ MoodleQuestionGenerator/
 | `ddwtos` | Drag-and-drop in Lückentext (`[[1]]`, `[[2]]`, …) |
 | `multichoice` | Multiple Choice, Einzel- oder Mehrfachauswahl |
 | `cloze` | Eingebettete Fragen im Lückentext (`{n:MULTICHOICE:…}`) |
+| `coderunner` | Programmieraufgabe mit automatischen Testfällen (z. B. Java) |
 
 ---
 
