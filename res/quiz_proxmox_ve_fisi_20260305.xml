@@ -1,0 +1,871 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ==================== LEICHTE FRAGEN (1-5) ==================== -->
+
+<!-- ── Frage 1: matching (leicht) ── Virtualisierungsbegriffe ── -->
+  <question type="matching">
+    <name>
+      <text>Virtualisierungsbegriffe zuordnen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie die Beschreibungen den richtigen Fachbegriffen zu.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Vgl. Arbeitsblatt Themenbereich 1: Virtualisierungsgrundlagen – KVM vs. LXC.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <subquestion format="html">
+      <text><![CDATA[<p>Software-Schicht, die mehrere Betriebssysteme auf einer physischen Hardware betreibt</p>]]></text>
+      <answer>
+        <text>Hypervisor (QEMU)</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Linux-Kernelmodul, das Hardware-Erweiterungen (Intel VT-x / AMD-V) nutzt</p>]]></text>
+      <answer>
+        <text>KVM</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Standard für optimierte virtuelle Gerätetreiber mit deutlich höherem Durchsatz</p>]]></text>
+      <answer>
+        <text>VirtIO</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Kernel-Mechanismus, der jedem Container eine eigene Sicht auf Prozesse und Netzwerk gibt</p>]]></text>
+      <answer>
+        <text>Namespaces</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Mechanismus zur Begrenzung und Zuteilung von CPU, RAM und I/O pro Container</p>]]></text>
+      <answer>
+        <text>cgroups</text>
+      </answer>
+    </subquestion>
+    <!-- Distraktoren -->
+    <subquestion format="html">
+      <text></text>
+      <answer>
+        <text>Cloud-Init</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text></text>
+      <answer>
+        <text>ZFS</text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ── Frage 2: multichoice/single (leicht) ── Gastbetriebssysteme ── -->
+  <question type="multichoice">
+    <name>
+      <text>Gastbetriebssysteme – KVM und LXC</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche Aussage zu den unterstützten Gast-Betriebssystemen in Proxmox ist <strong>korrekt</strong>?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>LXC-Container teilen den Host-Kernel und unterstützen daher ausschließlich Linux. KVM emuliert vollständige Hardware und kann beliebige Betriebssysteme ausführen.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>LXC unterstützt ausschließlich Linux als Gast-OS, KVM kann beliebige Betriebssysteme ausführen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. LXC teilt den Host-Kernel und kann daher nur Linux-Gäste betreiben.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>KVM unterstützt ausschließlich Linux als Gast-OS, LXC kann beliebige Betriebssysteme ausführen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Es ist genau umgekehrt: KVM kann beliebige OS ausführen, LXC nur Linux.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Sowohl KVM als auch LXC unterstützen Windows, Linux und FreeBSD gleichermaßen.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. LXC-Container teilen den Host-Kernel und können nur Linux-Gäste betreiben.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>LXC unterstützt Linux und FreeBSD als Gäste, während KVM auf Windows spezialisiert ist.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. KVM unterstützt beliebige OS (Linux, Windows, BSD etc.), LXC nur Linux.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ── Frage 3: matching (leicht) ── Storage-Typen ── -->
+  <question type="matching">
+    <name>
+      <text>Proxmox Storage-Typen zuordnen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie jeden Proxmox-Storage-Typ seinem typischen Einsatzzweck zu.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Vgl. Arbeitsblatt Themenbereich 2: Storage-Typen in Proxmox (Tabelle).</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <subquestion format="html">
+      <text><![CDATA[<p>Lokale ISOs und Backups (File-Level, nicht geteilt)</p>]]></text>
+      <answer>
+        <text>Directory</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Lokale VM-Disks mit Snapshot-Support (Block-Level)</p>]]></text>
+      <answer>
+        <text>LVM-thin</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Lokaler Storage mit nativen Snapshots und Klonen</p>]]></text>
+      <answer>
+        <text>ZFS</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Geteilter Netzwerkspeicher (File-Level)</p>]]></text>
+      <answer>
+        <text>NFS</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Verteilter, replizierter Block-Storage (geteilt)</p>]]></text>
+      <answer>
+        <text>Ceph/RBD</text>
+      </answer>
+    </subquestion>
+    <!-- Distraktoren -->
+    <subquestion format="html">
+      <text></text>
+      <answer>
+        <text>iSCSI</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text></text>
+      <answer>
+        <text>GlusterFS</text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ── Frage 4: multichoice/single (leicht) ── Quorum Definition ── -->
+  <question type="multichoice">
+    <name>
+      <text>Definition: Quorum im Proxmox-Cluster</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Was bezeichnet der Begriff <strong>Quorum</strong> im Kontext eines Proxmox-Clusters?</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Quorum ist die Mindestanzahl an Stimmen, die eine Cluster-Partition benötigt, um Änderungen am Cluster-Zustand vornehmen zu dürfen.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Die Mindestanzahl an Stimmen, die eine Cluster-Partition benötigt, um Schreiboperationen durchführen zu dürfen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Ohne Stimmenmehrheit wechselt die Partition in den Read-Only-Modus.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die maximale Anzahl an Nodes, die gleichzeitig in einem Proxmox-Cluster betrieben werden dürfen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Quorum beschreibt die nötige Stimmenmehrheit, nicht die maximale Node-Anzahl.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Ein Backup-Verfahren, das die Konfiguration aller Cluster-Nodes regelmäßig automatisch sichert</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Quorum ist ein Abstimmungsmechanismus zur Split-Brain-Vermeidung, kein Backup-Verfahren.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="0" format="html">
+      <text><![CDATA[<p>Die Zeitspanne, die ein Node nach einem Neustart warten muss, bevor er dem Cluster beitritt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Quorum bezeichnet die Mindestanzahl an Stimmen für Schreiboperationen im Cluster.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ── Frage 5: matching (leicht) ── IaC-Werkzeuge ── -->
+  <question type="matching">
+    <name>
+      <text>IaC-Werkzeuge und Begriffe zuordnen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie die Beschreibungen den richtigen Werkzeugen bzw. Begriffen zu.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Vgl. Arbeitsblatt Themenbereich 4: Automatisierung – IaC und Cloud-Init.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <subquestion format="html">
+      <text><![CDATA[<p>Infrastruktur-Provisionierung (deklarative Ressourcendefinition)</p>]]></text>
+      <answer>
+        <text>Terraform</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Konfigurationsmanagement (Software und Einstellungen verwalten)</p>]]></text>
+      <answer>
+        <text>Ansible</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Lokale Entwicklungsumgebungen automatisiert bereitstellen</p>]]></text>
+      <answer>
+        <text>Vagrant</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Automatische Erstkonfiguration einer VM beim ersten Systemstart</p>]]></text>
+      <answer>
+        <text>Cloud-Init</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Datenbankbasiertes Cluster-Dateisystem zur Echtzeit-Konfigurationssynchronisation</p>]]></text>
+      <answer>
+        <text>pmxcfs</text>
+      </answer>
+    </subquestion>
+    <!-- Distraktoren -->
+    <subquestion format="html">
+      <text></text>
+      <answer>
+        <text>Docker</text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text></text>
+      <answer>
+        <text>Kubernetes</text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ==================== MITTLERE FRAGEN (6-10) ==================== -->
+
+<!-- ── Frage 6: cloze (mittel) ── LXC-Sicherheitsmechanismen ── -->
+  <question type="cloze">
+    <name>
+      <text>LXC-Sicherheitsmechanismen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Sicherheit und Isolation bei LXC-Containern</strong></p>
+<p>LXC-Container sind keine echten virtuellen Maschinen – sie teilen den {1:MULTICHOICE:=Kernel~Hypervisor~BIOS~Bootloader} des Host-Systems.</p>
+<p>Die Isolation erfolgt durch verschiedene Linux-Mechanismen: {2:MULTICHOICE:Virtuelle Netzwerkkarten~cgroups~=Namespaces~AppArmor} sorgen dafür, dass jeder Container eine eigene Sicht auf Prozesse, Netzwerk und Dateisystem erhält.</p>
+<p>Die Begrenzung und Zuteilung von CPU, RAM und I/O-Ressourcen pro Container übernehmen die {3:MULTICHOICE:Namespaces~=Control Groups (cgroups)~Seccomp-Filter~SELinux-Policies}.</p>
+<p>Bei sogenannten unprivilegierten Containern wird UID 0 (root) im Container auf einen {4:MULTICHOICE:=unprivilegierten~privilegierten~administrativen~virtuellen} Host-Benutzer abgebildet, sodass ein Container-Ausbruch keine Root-Rechte auf dem Host besitzt.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>LXC nutzt den Host-Kernel, Namespaces für Prozess-/Netzwerk-Isolation, cgroups für Ressourcenbegrenzung und unprivilegierte Container als zusätzliche Sicherheitsschicht. Vgl. Arbeitsblatt Themenbereich 1: LXC – Linux Container.</p>]]></text>
+    </generalfeedback>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ── Frage 7: ddwtos (mittel) ── Backup-Modi ── -->
+  <question type="ddwtos">
+    <name>
+      <text>Backup-Modi in Proxmox (vzdump)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Backup-Modi in Proxmox</strong></p>
+<p>Proxmox nutzt <code>vzdump</code> für VM-Backups und bietet drei Modi:</p>
+<p>Im [[1]]-Modus wird die VM heruntergefahren, das Backup erstellt und die VM anschließend neu gestartet. Die Datenkonsistenz ist dabei [[2]].</p>
+<p>Im [[3]]-Modus bleibt die VM während des Backups aktiv. Die Ausfallzeit ist [[4]].</p>
+<p>Für konsistente Backups im laufenden Betrieb sollte der [[5]] in der VM installiert sein, der das Dateisystem per <code>fsfreeze</code> kurz einfriert.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Stop-Modus: VM wird heruntergefahren, garantierte Konsistenz. Snapshot-Modus: VM läuft weiter, minimale Ausfallzeit, QEMU-Gast-Agent empfohlen für fsfreeze.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <!-- Richtige Antworten: Position = Lösung für [[N]] -->
+    <!-- [[1]] = Stop, [[2]] = garantiert, [[3]] = Snapshot, [[4]] = minimal, [[5]] = QEMU-Gast-Agent -->
+    <dragbox>
+      <text>Stop</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>garantiert</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>Snapshot</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>minimal</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>QEMU-Gast-Agent</text>
+      <group>3</group>
+    </dragbox>
+    <!-- Distraktoren -->
+    <dragbox>
+      <text>Suspend</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>eingeschränkt</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>nicht gegeben</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>Cloud-Init-Agent</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>Proxmox-Cluster-Daemon</text>
+      <group>3</group>
+    </dragbox>
+  </question>
+
+
+<!-- ── Frage 8: multichoice/multiple (mittel) ── Snapshot ≠ Backup ── -->
+  <question type="multichoice">
+    <name>
+      <text>Warum ist ein Snapshot kein vollwertiges Backup?</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Der Projektleiter fragt, ob die täglichen ZFS-Snapshots als Backup-Ersatz ausreichen. Welche Argumente sprechen <strong>dagegen</strong>?</p>
+<p><em>Hinweis: Es sind mehrere Antworten richtig.</em></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Snapshots liegen auf demselben Speicher wie die VM, sind nicht portabel und werden von vzdump nicht automatisch mitgesichert. Merksatz: Snapshot = schnelles Rollback, Backup = Schutz vor Katastrophe.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="33.33333" format="html">
+      <text><![CDATA[<p>Snapshot und Original liegen auf derselben physischen Festplatte – ein Hardwareausfall vernichtet beides gleichzeitig.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Snapshots bieten keinen Schutz vor Hardware-Ausfällen des lokalen Storage.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="33.33333" format="html">
+      <text><![CDATA[<p>Ein Snapshot ist an das Proxmox-System gebunden und kann nicht eigenständig auf einem anderen System wiederhergestellt werden.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Snapshots sind kein portables Archiv – nur vzdump erzeugt ein transportables Backup.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="33.33333" format="html">
+      <text><![CDATA[<p>Proxmox-Backups (vzdump) schließen vorhandene Snapshots nicht automatisch ein – nur vzdump erzeugt ein transportables Archiv.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Snapshots werden von vzdump nicht mitgesichert; die Backup-Logs weisen darauf hin.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Snapshots können nur bei gestoppter VM erstellt werden und verursachen deshalb stets eine lange Ausfallzeit der Dienste.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Live-Snapshots können bei laufender VM erstellt werden – Ausfallzeit ist nicht das Problem.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Snapshots unterstützen nur das qcow2-Format und sind mit ZFS-Storage grundsätzlich nicht kompatibel.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. ZFS unterstützt native Snapshots und ist dafür besonders gut geeignet.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ── Frage 9: ddwtos (mittel) ── Split-Brain und Quorum ── -->
+  <question type="ddwtos">
+    <name>
+      <text>Split-Brain und Quorum im 3-Node-Cluster</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Cluster-Szenario bei NetCom</strong></p>
+<p>Bei einem Netzwerkausfall kann sich ein Cluster in isolierte Partitionen aufteilen. Dieses Problem wird als [[1]] bezeichnet.</p>
+<p>Ohne Schutzmechanismus könnten beide Seiten gleichzeitig [[2]] durchführen, was zu Datenkorrumpierung führen kann.</p>
+<p>Die Lösung: Nur die Partition mit der [[3]] darf weiterarbeiten. Die Minderheit wechselt in den [[4]]-Modus.</p>
+<p>Im NetCom-Cluster mit 3 Nodes verbleiben beim Ausfall eines Nodes [[5]] Stimmen – das Quorum ist damit erreicht.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Split-Brain wird durch Quorum verhindert: Nur die Partition mit Stimmenmehrheit darf Schreiboperationen durchführen. Bei 3 Nodes reichen 2 verbleibende Stimmen für das Quorum.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <!-- Richtige Antworten: Position = Lösung für [[N]] -->
+    <!-- [[1]] = Split-Brain, [[2]] = Schreiboperationen, [[3]] = Stimmenmehrheit, [[4]] = Read-Only, [[5]] = 2 von 3 -->
+    <dragbox>
+      <text>Split-Brain</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>Schreiboperationen</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>Stimmenmehrheit</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>Read-Only</text>
+      <group>4</group>
+    </dragbox>
+    <dragbox>
+      <text>2 von 3</text>
+      <group>5</group>
+    </dragbox>
+    <!-- Distraktoren -->
+    <dragbox>
+      <text>Failover</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>Race Condition</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>Live-Migrationen</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>Snapshots</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>höchsten Node-ID</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>meisten VMs</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>Maintenance</text>
+      <group>4</group>
+    </dragbox>
+    <dragbox>
+      <text>Standby</text>
+      <group>4</group>
+    </dragbox>
+    <dragbox>
+      <text>1 von 3</text>
+      <group>5</group>
+    </dragbox>
+    <dragbox>
+      <text>3 von 3</text>
+      <group>5</group>
+    </dragbox>
+  </question>
+
+
+<!-- ── Frage 10: multichoice/multiple (mittel) ── Clustervorteile ── -->
+  <question type="multichoice">
+    <name>
+      <text>Vorteile eines Proxmox-Clusters</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche der folgenden Aussagen sind <strong>Vorteile</strong> eines Proxmox-Clusters gegenüber isolierten physischen Einzelservern?</p>
+<p><em>Hinweis: Es sind mehrere Antworten richtig.</em></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Ein Proxmox-Cluster bietet u. a. zentrale Verwaltung, Live-Migration, High Availability und Multi-Master-Architektur ohne Single-Point-of-Failure.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="25" format="html">
+      <text><![CDATA[<p>Zentrale Web-Oberfläche zur Verwaltung aller Nodes und VMs</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Alle Nodes werden über eine gemeinsame Oberfläche verwaltet.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="25" format="html">
+      <text><![CDATA[<p>Live-Migration laufender VMs ohne Ausfallzeit bei Wartungsarbeiten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Bei Shared Storage können VMs unterbrechungsfrei verschoben werden.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="25" format="html">
+      <text><![CDATA[<p>High Availability: Automatischer Neustart von VMs auf anderen Nodes</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. HA sorgt für automatischen VM-Neustart auf verfügbaren Nodes bei Ausfall.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="25" format="html">
+      <text><![CDATA[<p>Multi-Master-Architektur ohne Single-Point-of-Failure in der Verwaltung</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Jeder Node kann administrative Aufgaben übernehmen.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Automatische Verdopplung des Arbeitsspeichers durch Cluster-RAM-Sharing</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Ein Cluster verdoppelt nicht den RAM – jeder Node behält seinen eigenen Speicher.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Alle VMs laufen automatisch auf allen Nodes gleichzeitig für maximale Performance</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. Eine VM läuft stets auf genau einem Node – nicht auf mehreren gleichzeitig.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ── Frage 11: ddwtos (mittel) ── Cloud-Init Workflow ── -->
+  <question type="ddwtos">
+    <name>
+      <text>Cloud-Init Deployment-Workflow in Proxmox</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Cloud-Init Deployment in Proxmox</strong></p>
+<p>NetCom erstellt ein Ubuntu-22.04-Template für Webserver-VMs. Ergänzen Sie die Schritte des Deployment-Workflows:</p>
+<p><strong>Schritt 1:</strong> Eine Basis-VM mit installiertem Cloud-Init-Paket wird als Proxmox-[[1]] konvertiert.</p>
+<p><strong>Schritt 2:</strong> Für jeden Kunden wird eine neue VM als [[2]] erzeugt – dabei werden nur die Unterschiede (Deltas) zum Original gespeichert.</p>
+<p><strong>Schritt 3:</strong> Proxmox generiert automatisch eine [[3]] mit den kundenspezifischen Konfigurationsdaten (IP, SSH-Key, Hostname).</p>
+<p><strong>Schritt 4:</strong> Beim ersten Boot liest [[4]] die Konfiguration und wendet alle Einstellungen automatisch an.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Workflow: Template erstellen → Linked Clone erzeugen → Cloud-Init-ISO wird automatisch generiert → Cloud-Init konfiguriert die VM beim ersten Boot.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <!-- Richtige Antworten: Position = Lösung für [[N]] -->
+    <!-- [[1]] = Template, [[2]] = Linked Clone, [[3]] = Cloud-Init-ISO, [[4]] = Cloud-Init -->
+    <dragbox>
+      <text>Template</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>Linked Clone</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>Cloud-Init-ISO</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>Cloud-Init</text>
+      <group>4</group>
+    </dragbox>
+    <!-- Distraktoren -->
+    <dragbox>
+      <text>Snapshot</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>Backup-Archiv</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>Full Clone</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>Live-Migration</text>
+      <group>2</group>
+    </dragbox>
+    <dragbox>
+      <text>ZFS-Snapshot-Datei</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>vzdump-Backup-Datei</text>
+      <group>3</group>
+    </dragbox>
+    <dragbox>
+      <text>QEMU-Gast-Agent</text>
+      <group>4</group>
+    </dragbox>
+    <dragbox>
+      <text>vzdump</text>
+      <group>4</group>
+    </dragbox>
+  </question>
+
+
+<!-- ==================== SCHWERE FRAGEN (12-15) ==================== -->
+
+<!-- ── Frage 12: multichoice/multiple (schwer) ── NetCom Einsatzentscheidung ── -->
+  <question type="multichoice">
+    <name>
+      <text>NetCom – Einsatzentscheidung KVM oder LXC</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Situation:</strong> NetCom Solutions soll für verschiedene Kunden Systeme in Betrieb nehmen. Welche der folgenden Zuordnungen von Dienst zu Virtualisierungstechnologie sind <strong>korrekt</strong>?</p>
+<p><em>Hinweis: Es sind mehrere Antworten richtig.</em></p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Windows und FreeBSD (pfSense) benötigen KVM, da LXC nur Linux unterstützt. Linux-Dienste ohne besondere Isolationsanforderungen (Apache, Postfix) eignen sich für ressourcenschonende LXC-Container.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>abc</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Die Antwort ist richtig.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Die Antwort ist teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Antwort ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="33.33333" format="html">
+      <text><![CDATA[<p>Windows Server 2022 mit DATEV → KVM, da LXC nur Linux-Gäste unterstützt</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Windows kann nicht in einem LXC-Container betrieben werden.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="33.33333" format="html">
+      <text><![CDATA[<p>Apache-Webserver auf Ubuntu 22.04 → LXC, da ein Linux-Dienst mit geringem Overhead</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. Ein einfacher Linux-Webdienst profitiert vom geringen Ressourcenverbrauch eines Containers.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="33.33333" format="html">
+      <text><![CDATA[<p>pfSense VPN-Gateway → KVM, da pfSense auf FreeBSD basiert und kein Linux ist</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Richtig. LXC unterstützt ausschließlich Linux-Gäste; FreeBSD erfordert KVM.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>pfSense VPN-Gateway → LXC, da Firewall-Dienste wenig Ressourcen benötigen</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. pfSense basiert auf FreeBSD – LXC unterstützt ausschließlich Linux-Gäste.</p>]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Windows Server 2022 mit DATEV → LXC, da Container schneller starten</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[<p>Falsch. LXC kann ausschließlich Linux-Gäste betreiben, nicht Windows.</p>]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ── Frage 13: cloze (schwer) ── DATEV-VM Backup und Storage ── -->
+  <question type="cloze">
+    <name>
+      <text>NetCom – DATEV-VM Backup und Storage</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Szenario:</strong> Die DATEV-VM von Müller &amp; Partner (Buchhaltungssoftware) läuft auf Node-1 mit lokalem ZFS-Storage. Das nächtliche Backup darf die VM maximal 30 Minuten unterbrechen. Für die Finanzdaten hat die Datenkonsistenz höchste Priorität.</p>
+<p>Für das nächtliche Backup eignet sich der {1:MULTICHOICE:=Stop-Modus~Suspend-Modus~Snapshot-Modus} am besten, da bei Finanzdaten die {2:MULTICHOICE:=garantierte Datenkonsistenz~minimale Ausfallzeit~maximale Performance} Vorrang hat und 30 Minuten Ausfallzeit nachts akzeptabel sind.</p>
+<p>Im Stop-Modus wird die VM {3:MULTICHOICE:=heruntergefahren~pausiert~im laufenden Betrieb gesichert}, das Backup erstellt und die VM anschließend automatisch neu gestartet.</p>
+<p>Das Backup-Archiv sollte auf dem {4:MULTICHOICE:lokalen ZFS-Storage~=gemeinsamen NFS-Server~LVM-thin-Pool} gespeichert werden, damit es bei einem Ausfall von Node-1 noch verfügbar ist.</p>
+<p>Für eine Live-Migration der DATEV-VM auf einen anderen Node ohne Ausfallzeit ist {5:MULTICHOICE:lokaler ZFS-Storage~LVM-thin-Storage~=geteilter Storage (Shared Storage)} Voraussetzung, da beide Nodes gleichzeitig auf das Disk-Image zugreifen müssen.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Bei Finanzdaten (DATEV) hat garantierte Konsistenz Vorrang. Der Stop-Modus fährt die VM herunter und sichert so einen konsistenten Zustand – 30 Minuten Ausfallzeit nachts sind akzeptabel. Das Backup gehört auf den NFS-Server (nicht lokal). Live-Migration erfordert Shared Storage.</p>]]></text>
+    </generalfeedback>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ── Frage 14: cloze (schwer) ── Quorum-Berechnung und QDevice ── -->
+  <question type="cloze">
+    <name>
+      <text>Quorum-Berechnung und QDevice</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Quorum-Szenarien im Proxmox-Cluster</strong></p>
+<p><strong>Szenario 1 – 3-Node-Cluster:</strong> NetCom betreibt drei Nodes. Node-2 fällt wegen eines Speicherfehlers aus. Es verbleiben {1:MULTICHOICE:1 von 3~=2 von 3~3 von 3} Stimmen. Das Quorum ist {2:MULTICHOICE:=erreicht~nicht erreicht}, der Cluster {3:MULTICHOICE:stoppt den Schreibbetrieb~=läuft weiter}.</p>
+<p><strong>Szenario 2 – 2-Node-Cluster:</strong> Hätte NetCom nur 2 Nodes eingesetzt, verblieben beim Ausfall eines Nodes {4:MULTICHOICE:=1 von 2~2 von 2~0 von 2} Stimmen – {5:MULTICHOICE:Quorum erreicht~=keine Mehrheit}. Der Cluster würde den {6:MULTICHOICE:=Schreibbetrieb einstellen~Lesebetrieb einstellen~Cluster komplett abschalten}.</p>
+<p><strong>Lösung für 2-Node-Cluster:</strong> Ein externes {7:MULTICHOICE:NFS-Share~Backup-System~=QDevice} stellt eine dritte Stimme bereit. Dabei handelt es sich um einen leichtgewichtigen Prozess, der z. B. auf einem {8:MULTICHOICE:Windows-Server~=Raspberry Pi~Proxmox-Node mit VMs} laufen kann.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>3 Nodes: 2/3 Stimmen = Quorum OK, Cluster läuft weiter. 2 Nodes: 1/2 = keine Mehrheit, Schreibbetrieb wird eingestellt. Ein QDevice (z. B. Raspberry Pi) löst das 2-Node-Problem durch eine zusätzliche Stimme. Vgl. Arbeitsblatt Themenbereich 3.</p>]]></text>
+    </generalfeedback>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ── Frage 15: cloze (schwer) ── IaC-Vorteile und Clone-Verfahren ── -->
+  <question type="cloze">
+    <name>
+      <text>NetCom – IaC-Vorteile und Clone-Verfahren</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p><strong>Szenario:</strong> NetCom gewinnt fünf neue Kunden gleichzeitig. Pro Kunde werden drei VMs benötigt – insgesamt also 15 VMs. Bisher dauert die manuelle Einrichtung 4 Stunden pro Kunde.</p>
+<p>Statt jede VM manuell über die GUI einzurichten, beschreibt NetCom die Infrastruktur in {1:MULTICHOICE:=maschinenlesbaren Konfigurationsdateien~manuellen Checklisten~E-Mail-Vorlagen}. Dieser Ansatz wird als {2:MULTICHOICE:=Infrastructure as Code (IaC)~Software as a Service (SaaS)~Platform as a Service (PaaS)} bezeichnet.</p>
+<p>Ein zentraler Vorteil: Dieselbe Konfiguration erzeugt jederzeit und überall identische Umgebungen – diese Eigenschaft nennt man {3:MULTICHOICE:Skalierbarkeit~=Reproduzierbarkeit~Portabilität}. Änderungen an der Infrastruktur-Konfiguration werden in {4:MULTICHOICE:=Git~einer Moodle-Datenbank~einer Excel-Tabelle} versioniert, sodass ein Rollback jederzeit möglich ist.</p>
+<p>Beim Deployment nutzt NetCom {5:MULTICHOICE:Full Clones~=Linked Clones~Live-Migrationen}, die nur die Unterschiede (Deltas) zum Template-Image speichern. Im Vergleich zu einer Vollkopie spart dies vor allem {6:MULTICHOICE:CPU-Zyklen~=Speicherplatz und Zeit~Netzwerkbandbreite}, da das Template-Image als gemeinsame Basis erhalten bleibt.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>IaC beschreibt Infrastruktur in versionierbaren Konfigurationsdateien (Git). Reproduzierbarkeit ist ein zentraler Vorteil. Linked Clones speichern nur Deltas und sparen so Speicherplatz und Deployment-Zeit gegenüber Full Clones. Vgl. Arbeitsblatt Themenbereich 4.</p>]]></text>
+    </generalfeedback>
+    <penalty>0.1000000</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+</quiz>
