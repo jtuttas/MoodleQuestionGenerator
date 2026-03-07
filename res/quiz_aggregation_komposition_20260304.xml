@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ================================================================
+     Thema   : Aggregation und Komposition (UML / OOP)
+     Zielgruppe: Fachinformatiker Anwendungsentwicklung
+     Fragen  : 5  (ddmatch | ddwtos | multichoice | cloze | multichoice)
+     Erstellt: 2026-02-23
+     ================================================================ -->
+
+
+<!-- ==================== FRAGE 1: ddmatch (leicht) ==================== -->
+<!-- UML-Beziehungssymbole den richtigen Begriffen zuordnen             -->
+
+  <question type="ddmatch">
+    <name>
+      <text>Aggregation &amp; Komposition – UML-Symbole zuordnen (leicht)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Ordnen Sie jedem nummerierten UML-Beziehungssymbol den richtigen Begriff zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="200"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+
+  <!-- ① Aggregation: offene Raute -->
+  <text x="10" y="52" font-size="14" font-weight="bold" fill="#c00">①</text>
+  <rect x="36" y="32" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="80" y="52" text-anchor="middle" font-weight="bold">Ganzes</text>
+  <polygon points="134,47 142,40 150,47 142,54" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="47" x2="220" y2="47" stroke="#333" stroke-width="1.5"/>
+  <rect x="220" y="32" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="264" y="52" text-anchor="middle" font-weight="bold">Teil</text>
+  <text x="145" y="43" font-size="11">1</text>
+  <text x="200" y="43" font-size="11">0..*</text>
+
+  <!-- ② Komposition: gefüllte Raute -->
+  <text x="10" y="118" font-size="14" font-weight="bold" fill="#c00">②</text>
+  <rect x="36" y="98" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="80" y="118" text-anchor="middle" font-weight="bold">Ganzes</text>
+  <polygon points="134,113 142,106 150,113 142,120" fill="#333" stroke="#333" stroke-width="1.5"/>
+  <line x1="150" y1="113" x2="220" y2="113" stroke="#333" stroke-width="1.5"/>
+  <rect x="220" y="98" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="264" y="118" text-anchor="middle" font-weight="bold">Teil</text>
+  <text x="145" y="109" font-size="11">1</text>
+  <text x="200" y="109" font-size="11">1..*</text>
+
+  <!-- ③ Assoziation: einfache Linie -->
+  <text x="10" y="183" font-size="14" font-weight="bold" fill="#c00">③</text>
+  <rect x="36" y="163" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="80" y="183" text-anchor="middle" font-weight="bold">KlasseA</text>
+  <line x1="124" y1="178" x2="220" y2="178" stroke="#333" stroke-width="1.5"/>
+  <rect x="220" y="163" width="88" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="264" y="183" text-anchor="middle" font-weight="bold">KlasseB</text>
+</svg>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>① Aggregation</strong> – offene (hohle) Raute: „Kann-Teil-von"-Beziehung.
+      Das Teil kann ohne das Ganze existieren (loser Lebenszyklus).</li>
+  <li><strong>② Komposition</strong> – gefüllte (schwarze) Raute: „Muss-Teil-von"-Beziehung.
+      Das Teil existiert nur im Kontext des Ganzen (gemeinsamer Lebenszyklus).</li>
+  <li><strong>③ Assoziation</strong> – einfache Linie ohne Raute: allgemeine Beziehung,
+      keine Besitz- oder Abhängigkeitsaussage.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Richtig!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+
+    <subquestion format="html">
+      <text><![CDATA[<p>① – offene (hohle) Raute am „Ganzen"</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Aggregation</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>② – gefüllte (schwarze) Raute am „Ganzen"</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Komposition</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>③ – einfache Linie ohne Raute</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Assoziation</p>]]></text>
+      </answer>
+    </subquestion>
+    <!-- Distractor -->
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>Vererbung</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+
+<!-- ==================== FRAGE 2: ddwtos (mittel) ==================== -->
+<!-- Lückentext am Fuhrpark–Auto–Motor-Klassendiagramm                  -->
+
+  <question type="ddwtos">
+    <name>
+      <text>Aggregation &amp; Komposition – Lückentext am Klassendiagramm (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie das Klassendiagramm und ergänzen Sie die Lücken:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="90"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+
+  <!-- Fuhrpark -->
+  <rect x="10" y="44" width="96" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="58" y="64" text-anchor="middle" font-weight="bold">Fuhrpark</text>
+  <!-- Aggregation-Raute (offen) an Fuhrpark -->
+  <polygon points="106,59 114,52 122,59 114,66" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="122" y1="59" x2="170" y2="59" stroke="#333" stroke-width="1.5"/>
+  <text x="126" y="55" font-size="11">1</text>
+  <text x="152" y="55" font-size="11">0..*</text>
+
+  <!-- Auto -->
+  <rect x="170" y="44" width="80" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="210" y="64" text-anchor="middle" font-weight="bold">Auto</text>
+  <!-- Kompositions-Raute (gefüllt) an Auto -->
+  <polygon points="250,59 258,52 266,59 258,66" fill="#333" stroke="#333" stroke-width="1.5"/>
+  <line x1="266" y1="59" x2="324" y2="59" stroke="#333" stroke-width="1.5"/>
+  <text x="270" y="55" font-size="11">1</text>
+  <text x="305" y="55" font-size="11">1..*</text>
+
+  <!-- Motor -->
+  <rect x="324" y="44" width="80" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="364" y="64" text-anchor="middle" font-weight="bold">Motor</text>
+
+</svg>
+
+<p>Die Beziehung zwischen <strong>Fuhrpark</strong> und <strong>Auto</strong> ist eine [[1]],
+   da Autos auch ohne den Fuhrpark existieren können.</p>
+
+<p>Die Beziehung zwischen <strong>Auto</strong> und <strong>Motor</strong> ist eine [[2]],
+   da ein Motor nur im Kontext seines Autos existiert.</p>
+
+<p>Die <strong>offene</strong> Raute steht für [[3]], die <strong>gefüllte</strong> Raute für [[4]].</p>
+
+<p>Bei [[5]] wird das Teilobjekt beim Löschen des Ganzen
+   <strong>automatisch mitgelöscht</strong>.</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>
+  <strong>Aggregation</strong> (offene Raute): loser Lebenszyklus – Teile können eigenständig existieren.<br/>
+  <strong>Komposition</strong> (gefüllte Raute): gemeinsamer Lebenszyklus – Teile werden mit dem Ganzen vernichtet.
+</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Richtig!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+
+    <!-- Gruppe 1: Aggregation (korrekt) | Komposition (Distractor) -->
+    <dragbox><text>Aggregation</text><group>1</group></dragbox>
+    <dragbox><text>Komposition</text><group>1</group></dragbox>
+
+    <!-- Gruppe 2: Komposition (korrekt) | Assoziation (Distractor) -->
+    <dragbox><text>Komposition</text><group>2</group></dragbox>
+    <dragbox><text>Assoziation</text><group>2</group></dragbox>
+
+    <!-- Gruppe 3: Aggregation (korrekt) | Komposition (Distractor) -->
+    <dragbox><text>Aggregation</text><group>3</group></dragbox>
+    <dragbox><text>Komposition</text><group>3</group></dragbox>
+
+    <!-- Gruppe 4: Komposition (korrekt) | Vererbung (Distractor) -->
+    <dragbox><text>Komposition</text><group>4</group></dragbox>
+    <dragbox><text>Vererbung</text><group>4</group></dragbox>
+
+    <!-- Gruppe 5: Komposition (korrekt) | Aggregation (Distractor) -->
+    <dragbox><text>Komposition</text><group>5</group></dragbox>
+    <dragbox><text>Aggregation</text><group>5</group></dragbox>
+  </question>
+
+
+<!-- ==================== FRAGE 3: multichoice (mittel) ==================== -->
+<!-- Richtige Aussagen zu einem Haus–Zimmer–Einrichtung-Diagramm            -->
+
+  <question type="multichoice">
+    <name>
+      <text>Aggregation &amp; Komposition – Aussagen zum Klassendiagramm (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Betrachten Sie das Klassendiagramm. <strong>Welche zwei Aussagen sind korrekt?</strong></p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="120"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="ah3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0,8 3,0 6" fill="#333"/>
+    </marker>
+  </defs>
+
+  <!-- Haus (Mitte oben) -->
+  <rect x="160" y="10" width="100" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="210" y="30" text-anchor="middle" font-weight="bold">Haus</text>
+
+  <!-- Linie Haus → Zimmer (links): Komposition (gefüllte Raute an Haus) -->
+  <line x1="186" y1="46" x2="100" y2="80" stroke="#333" stroke-width="1.5"/>
+  <polygon points="186,46 192,40 198,46 192,52" fill="#333" stroke="#333" stroke-width="1.5"/>
+  <!-- Multiplizitäten Komposition -->
+  <text x="148" y="56" font-size="11">1</text>
+  <text x="102" y="72" font-size="11">1..*</text>
+  <!-- Zimmer -->
+  <rect x="50" y="80" width="100" height="30" fill="#fff3e0" stroke="#333" stroke-width="1.5"/>
+  <text x="100" y="100" text-anchor="middle" font-weight="bold">Zimmer</text>
+
+  <!-- Linie Haus → Einrichtung (rechts): Aggregation (offene Raute an Haus) -->
+  <line x1="238" y1="46" x2="320" y2="80" stroke="#333" stroke-width="1.5"/>
+  <polygon points="226,46 232,40 238,46 232,52" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <!-- Multiplizitäten Aggregation -->
+  <text x="248" y="56" font-size="11">1</text>
+  <text x="308" y="72" font-size="11">0..*</text>
+  <!-- Einrichtung -->
+  <rect x="280" y="80" width="120" height="30" fill="#e8f5e9" stroke="#333" stroke-width="1.5"/>
+  <text x="340" y="100" text-anchor="middle" font-weight="bold">Einrichtung</text>
+</svg>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>Komposition (Haus–Zimmer)</strong>: Ein Zimmer existiert ausschließlich als Teil eines Hauses.
+      Wird das Haus-Objekt gelöscht, werden alle Zimmer-Objekte automatisch mitgelöscht.</li>
+  <li><strong>Aggregation (Haus–Einrichtung)</strong>: Einrichtungsgegenstände sind unabhängig und können
+      abgezogen oder einem anderen Haus zugeordnet werden.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>false</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>none</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+
+    <!-- 2 richtige Antworten à 50 % -->
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>Zimmer-Objekte können ohne ein Haus-Objekt nicht existieren (Komposition).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Richtig! Bei Komposition hängt der Lebenszyklus des Teils vollständig vom Ganzen ab.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="50" format="html">
+      <text><![CDATA[<p>Einrichtungsgegenstände können unabhängig vom Haus existieren und bei Bedarf entnommen werden.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Richtig! Aggregation erlaubt einen eigenständigen Lebenszyklus der Teile.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- 2 falsche Antworten à −50 % -->
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Die gefüllte Raute kennzeichnet die Aggregationsbeziehung (Haus–Einrichtung).</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch! Die <strong>gefüllte</strong> Raute steht für <strong>Komposition</strong> (Haus–Zimmer), die offene Raute für Aggregation.]]></text>
+      </feedback>
+    </answer>
+    <answer fraction="-50" format="html">
+      <text><![CDATA[<p>Bei Aggregation wird das Teilobjekt (Einrichtung) automatisch mitgelöscht, wenn das Haus gelöscht wird.</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch! Automatisches Mitlöschen gilt nur für <strong>Komposition</strong>. Bei Aggregation bleibt das Teilobjekt erhalten.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+<!-- ==================== FRAGE 4: cloze (mittel) ==================== -->
+<!-- Eigenschaften: Lebenszyklus, Symbol, Multiplizität                 -->
+
+  <question type="cloze">
+    <name>
+      <text>Aggregation &amp; Komposition – Eigenschaften (mittel)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Beantworten Sie die folgenden Fragen zu Aggregation und Komposition:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="440" height="120"
+     style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+
+  <!-- Bestellung → Bestellposition (Komposition) -->
+  <rect x="10" y="20" width="130" height="30" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="75" y="40" text-anchor="middle" font-weight="bold">Bestellung</text>
+  <polygon points="140,35 148,28 156,35 148,42" fill="#333" stroke="#333" stroke-width="1.5"/>
+  <line x1="156" y1="35" x2="240" y2="35" stroke="#333" stroke-width="1.5"/>
+  <text x="162" y="30" font-size="11">1</text>
+  <text x="218" y="30" font-size="11">1..*</text>
+  <rect x="240" y="20" width="140" height="30" fill="#fff3e0" stroke="#333" stroke-width="1.5"/>
+  <text x="310" y="40" text-anchor="middle" font-weight="bold">Bestellposition</text>
+
+  <!-- Schule → Schüler (Aggregation) -->
+  <rect x="10" y="85" width="80" height="28" fill="#dce8fc" stroke="#333" stroke-width="1.5"/>
+  <text x="50" y="104" text-anchor="middle" font-weight="bold">Schule</text>
+  <polygon points="90,99 98,92 106,99 98,106" fill="#fff" stroke="#333" stroke-width="1.5"/>
+  <line x1="106" y1="99" x2="180" y2="99" stroke="#333" stroke-width="1.5"/>
+  <text x="110" y="95" font-size="11">1</text>
+  <text x="162" y="95" font-size="11">0..*</text>
+  <rect x="180" y="85" width="80" height="28" fill="#e8f5e9" stroke="#333" stroke-width="1.5"/>
+  <text x="220" y="104" text-anchor="middle" font-weight="bold">Schüler</text>
+</svg>
+
+<p><strong>1.</strong> Welches Symbol kennzeichnet im UML-Klassendiagramm die Komposition?<br/>
+{1:MULTICHOICE:Offene (hohle) Raute~=Gefüllte (schwarze) Raute~Hohler Dreieckspfeil~Einfache Linie}</p>
+
+<p><strong>2.</strong> Was passiert mit den <code>Bestellposition</code>-Objekten, wenn das zugehörige
+<code>Bestellung</code>-Objekt gelöscht wird?<br/>
+{1:MULTICHOICE:Sie bleiben erhalten~Sie werden einer anderen Bestellung zugeordnet~=Sie werden automatisch mitgelöscht~Dies hängt vom Entwickler ab}</p>
+
+<p><strong>3.</strong> Ein <code>Schüler</code> verlässt die Schule. Was gilt bei Aggregation?<br/>
+{1:MULTICHOICE:=Das Schüler-Objekt bleibt erhalten~Das Schüler-Objekt wird automatisch gelöscht~Alle Schüler werden gelöscht~Die Schule wird ebenfalls gelöscht}</p>
+
+<p><strong>4.</strong> Welche Multiplizität steht beim „Ganzen" typischerweise auf der
+Kompositions-Seite?<br/>
+{1:MULTICHOICE:0..*~1..*~0..1~=1}</p>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>Komposition-Symbol</strong>: gefüllte (schwarze) Raute am „Ganzen".</li>
+  <li><strong>Lebenszyklus Komposition</strong>: Teile (Bestellpositionen) werden mit dem Ganzen (Bestellung) zerstört.</li>
+  <li><strong>Lebenszyklus Aggregation</strong>: Teile (Schüler) überleben das Ende der Beziehung.</li>
+  <li><strong>Multiplizität</strong>: Bei Komposition ist die Seite des Ganzen immer genau <code>1</code>
+      – ein Teil gehört immer zu genau einem Ganzen.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+  </question>
+
+
+<!-- ==================== FRAGE 5: multichoice (schwer) ==================== -->
+<!-- Java-Code: Welche Implementierung zeigt Komposition?                    -->
+
+  <question type="multichoice">
+    <name>
+      <text>Aggregation &amp; Komposition – Java-Code identifizieren (schwer)</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Welche der folgenden Java-Implementierungen realisiert eine <strong>Komposition</strong>
+zwischen <code>Auto</code> und <code>Motor</code>?</p>
+
+<p><strong>Option A</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #c00;font-size:12px;">public class Auto {
+    private Motor motor;
+
+    public Auto(Motor motor) {   // Motor wird von außen übergeben
+        this.motor = motor;
+    }
+}</pre>
+
+<p><strong>Option B</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #c00;font-size:12px;">public class Auto {
+    private Motor motor;
+
+    public Auto() {
+        this.motor = new Motor();  // Motor wird intern erzeugt
+    }
+
+    // Motor-Objekt ist nicht von außen zugänglich oder austauschbar
+}</pre>
+
+<p><strong>Option C</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #c00;font-size:12px;">public class Werkstatt {
+    public void repariere(Motor motor) {  // Motor nur als Parameter
+        motor.pruefen();
+    }
+}</pre>
+
+<p><strong>Option D</strong></p>
+<pre style="background:#f5f5f5;padding:8px;border-left:3px solid #c00;font-size:12px;">public class Elektroauto extends Auto {  // Vererbung
+    private int akkuKapazitaet;
+}</pre>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<ul>
+  <li><strong>Option A – Aggregation</strong>: Der <code>Motor</code> wird von außen übergeben
+      (Constructor Injection). Das Motor-Objekt existiert unabhängig vom <code>Auto</code>
+      und kann auch nach der Zerstörung des <code>Auto</code>-Objekts weiter existieren.</li>
+  <li><strong>Option B – Komposition ✓</strong>: Der <code>Motor</code> wird intern erzeugt
+      und ist fest an das <code>Auto</code>-Objekt gebunden. Wird das <code>Auto</code> zerstört,
+      wird der <code>Motor</code> automatisch mitgelöscht (kein externer Zugriff).</li>
+  <li><strong>Option C – Assoziation</strong>: Die <code>Werkstatt</code> nutzt den
+      <code>Motor</code> nur kurzzeitig als Parameter – keine Besitzbeziehung.</li>
+  <li><strong>Option D – Vererbung</strong>: <code>extends</code> beschreibt eine
+      Is-a-Beziehung, keine Teil-Ganzes-Beziehung.</li>
+</ul>]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <single>true</single>
+    <shuffleanswers>true</shuffleanswers>
+    <answernumbering>none</answernumbering>
+    <showstandardinstruction>1</showstandardinstruction>
+    <correctfeedback format="html">
+      <text>Korrekt!</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Teilweise richtig.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Falsch.</text>
+    </incorrectfeedback>
+
+    <!-- Richtige Antwort: Option B (Komposition) -->
+    <answer fraction="100" format="html">
+      <text><![CDATA[<p>Option B – <code>Motor</code> wird intern mit <code>new Motor()</code> erzeugt und ist nicht austauschbar</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Richtig! Der intern erzeugte und nicht nach außen freigegebene <code>Motor</code> hat denselben Lebenszyklus wie das <code>Auto</code> → Komposition.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- Falsche Antwort: Option A (Aggregation) -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Option A – <code>Motor</code> wird per Constructor-Parameter übergeben</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch. Da der <code>Motor</code> von außen übergeben wird, kann er unabhängig existieren → das ist <strong>Aggregation</strong>, nicht Komposition.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- Falsche Antwort: Option C (Assoziation) -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Option C – <code>Motor</code> wird nur als Methodenparameter verwendet</p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch. Eine kurzlebige Parameternutzung ohne Besitzverhältnis ist eine <strong>Assoziation</strong>.]]></text>
+      </feedback>
+    </answer>
+
+    <!-- Falsche Antwort: Option D (Vererbung) -->
+    <answer fraction="-33.33333" format="html">
+      <text><![CDATA[<p>Option D – <code>Elektroauto extends Auto</code></p>]]></text>
+      <feedback format="html">
+        <text><![CDATA[Falsch. <code>extends</code> beschreibt <strong>Vererbung</strong> (Is-a-Beziehung), keine Teil-Ganzes-Beziehung.]]></text>
+      </feedback>
+    </answer>
+  </question>
+
+
+</quiz>

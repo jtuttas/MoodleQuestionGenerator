@@ -41,6 +41,7 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - Punkte: richtige Antworten sollen zusammen **≈ 100%** ergeben (z. B. 2×50 oder 3×33.33333).
 - Falsche Antworten können negative fractions haben (z. B. `-25`, `-50`).
 - Antworttexte dürfen **nicht** mit `+`, `-`, `~` beginnen (Moodle-Sonderzeichen).
+- **Antworttextlänge neutralisieren:** Die richtige Antwort darf **nicht erkennbar die längste** sein. Alle Distraktoren müssen eine ähnliche Länge und Detailtiefe haben wie die korrekte Antwort – sonst ist die Lösung durch reines Abzählen der Zeichen erratbar.
 
 #### `cloze`
 - Eingebettete Syntax im Fragetext, z. B.:
@@ -91,6 +92,15 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - **Keine Legenden**, die direkt auf die richtige Antwort hinweisen (z. B. „Pfeile = Fremdschlüsselbezüge" in einer Farbe, die mit der zu identifizierenden Sonderrolle assoziiert ist).
 - **Alle gleichwertigen Elemente** (z. B. mehrere Tabellen, Klassen, Knoten) erhalten **einheitliche Farben und Rahmen** – es sei denn, die Aufgabe lautet ausdrücklich, den Unterschied der Farbe zu erklären.
 - **Vor der Fertigstellung prüfen:** Könnte ein Schüler die richtige Antwort allein aus dem Diagramm ableiten, ohne die Frage zu lösen? Wenn ja → Grafik anpassen.
+### Überschneidungsfreiheit in SVG-Grafiken (kritisch)
+**Kein grafisches Element darf ein anderes überlagern oder unleserlich machen.**
+- **Koordinaten rechnerisch prüfen:** Rechtecke, Ellipsen, Texte und Verbindungslinien dürfen sich nicht überlappen.
+- **Mindestabstände einhalten:** Zwischen Boxen ≥ 10 px; Beschriftungen vollständig innerhalb der Box oder mit ≥ 5 px Abstand zur nächsten Box; Linien kreuzen keine Boxen, wenn eine Umgehung möglich ist.
+- **Beschriftungen nicht durch Linien kreuzen lassen:** Verbindungslinien dürfen keine Texte schneiden; bei Bedarf Texte rechts/links/oberhalb der Grafik platzieren.
+- **SVG `width`/`height` groß genug wählen**, sodass alle Elemente inkl. Markerspitzen innerhalb des sichtbaren Bereichs liegen (`refX`/`refY` des Markers einkalkulieren).
+- **Textlänge schätzen:** Bei `font-size:13px` ≈ 7–8 px pro Zeichen; Boxbreite ≥ Textlänge × 8 px + 16 px Innenabstand.
+- **Callout-Nummern (①②…)** dürfen keine anderen Elemente überdecken – Platz vor dem Element reservieren.
+
 ## Validierung (vor dem finalen Ergebnis)
 Führe eine schnelle XML-Validierung aus (Beispiel in PowerShell):
 
@@ -102,6 +112,7 @@ Wenn möglich: zusätzlich nach `<text>` ohne CDATA suchen, sobald HTML vorkommt
 
 ## Standard-Ausgabeformat im Chat
 - Erzeuge/aktualisiere die XML-Datei unter `res/`.
+- **Aktualisiere anschließend den Abschnitt „Enthaltene Fragendateien" in `README.md`**: neue Zeile in die Tabelle eintragen (Dateiname, Thema, Zielgruppe, Anzahl Fragen, Fragetypen) sowie den Eintrag in der Verzeichnisstruktur ergänzen.
 - Gib am Ende kurz an:
   - Dateiname
   - Anzahl Fragen + verwendete Fragetypen

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+  <question type="coderunner">
+    <name>
+      <text>Java OOP: Kapselung mit Zähler</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Erstellen Sie eine Klasse <code>Counter</code> mit gekapseltem Zustand:</p><ul><li>Privates Attribut <code>value</code> vom Typ <code>int</code>, initial <code>0</code>.</li><li>Methode <code>increment()</code> erhöht den Wert um 1.</li><li>Methode <code>getValue()</code> liefert den aktuellen Wert.</li></ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Wichtig ist die Kapselung: <code>value</code> muss <code>private</code> sein.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>14</answerboxlines>
+    <answerboxcolumns>80</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[public class Counter {
+    private int value = 0;
+
+    public void increment() {
+        value++;
+    }
+
+    public int getValue() {
+        return value;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Counter c = new Counter();
+c.increment();
+c.increment();
+System.out.print(c.getValue());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>2</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Counter c = new Counter();
+System.out.print(c.getValue());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>0</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java OOP: Vererbung Person Student</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Implementieren Sie folgende Klassen:</p><ul><li><code>Person</code> mit geschütztem Attribut <code>name</code> und Konstruktor <code>Person(String name)</code>.</li><li>Methode <code>String describe()</code> in <code>Person</code>, Rückgabe: <code>"Person: " + name</code>.</li><li><code>Student</code> erbt von <code>Person</code>, hat zusätzlich <code>int grade</code> und Konstruktor <code>Student(String name, int grade)</code>.</li><li><code>Student</code> überschreibt <code>describe()</code> mit <code>"Student: " + name + " (" + grade + ")"</code>.</li></ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Nutzen Sie <code>extends</code> und <code>@Override</code> für Polymorphie.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>24</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[class Person {
+    protected String name;
+
+    public Person(String name) {
+        this.name = name;
+    }
+
+    public String describe() {
+        return "Person: " + name;
+    }
+}
+
+public class Student extends Person {
+    private int grade;
+
+    public Student(String name, int grade) {
+        super(name);
+        this.grade = grade;
+    }
+
+    @Override
+    public String describe() {
+        return "Student: " + name + " (" + grade + ")";
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Person p = new Person("Lena");
+Student s = new Student("Tom", 2);
+System.out.println(p.describe());
+System.out.print(s.describe());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Person: Lena
+Student: Tom (2)</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Person p = new Student("Mia", 1);
+System.out.print(p.describe());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>Student: Mia (1)</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java OOP: Konstruktoren und Methoden in BankAccount</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Schreiben Sie eine Klasse <code>BankAccount</code>:</p><ul><li>Privates Feld <code>balance</code> (double), Startwert via Konstruktor.</li><li><code>deposit(double amount)</code>: erhöht den Kontostand nur bei <code>amount &gt; 0</code>.</li><li><code>withdraw(double amount)</code>: reduziert den Kontostand nur, wenn <code>amount &gt; 0</code> und genug Guthaben vorhanden ist.</li><li><code>getBalance()</code> gibt den Kontostand zurück.</li></ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Prüfen Sie Randfälle, damit der Kontostand nicht negativ wird.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>22</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[public class BankAccount {
+    private double balance;
+
+    public BankAccount(double balance) {
+        this.balance = balance;
+    }
+
+    public void deposit(double amount) {
+        if (amount > 0) {
+            balance += amount;
+        }
+    }
+
+    public void withdraw(double amount) {
+        if (amount > 0 && amount <= balance) {
+            balance -= amount;
+        }
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[BankAccount a = new BankAccount(100.0);
+a.deposit(20.0);
+a.withdraw(50.0);
+System.out.print(a.getBalance());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>70.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[BankAccount a = new BankAccount(40.0);
+a.withdraw(60.0);
+a.deposit(-5.0);
+System.out.print(a.getBalance());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>40.0</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java OOP: Abstraktion mit abstrakter Klasse</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Implementieren Sie eine abstrakte Klasse <code>Shape</code> mit abstrakter Methode <code>double area()</code>. Erstellen Sie außerdem:</p><ul><li><code>Rectangle</code> mit Feldern <code>width</code> und <code>height</code>, Konstruktor und korrekter Implementierung von <code>area()</code>.</li><li><code>Circle</code> mit Feld <code>radius</code>, Konstruktor und <code>area()</code> als <code>Math.PI * radius * radius</code>.</li></ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Abstraktion bedeutet: gemeinsame Schnittstelle in <code>Shape</code>, konkrete Berechnung in Unterklassen.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>26</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[abstract class Shape {
+    public abstract double area();
+}
+
+class Rectangle extends Shape {
+    private double width;
+    private double height;
+
+    public Rectangle(double width, double height) {
+        this.width = width;
+        this.height = height;
+    }
+
+    @Override
+    public double area() {
+        return width * height;
+    }
+}
+
+public class Circle extends Shape {
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Shape r = new Rectangle(3, 4);
+Shape c = new Circle(1);
+System.out.println(r.area());
+System.out.print(String.format("%.2f", c.area()));]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>12.0
+3.14</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Shape c = new Circle(2);
+System.out.print(String.format("%.2f", c.area()));]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>12.57</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+  <question type="coderunner">
+    <name>
+      <text>Java OOP: Komposition Team und MemberCount</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p>Erstellen Sie eine Klasse <code>Team</code>, die eine Komposition zu ihren Mitgliedern hält:</p><ul><li>Privates Feld <code>members</code> als <code>java.util.ArrayList&lt;String&gt;</code>.</li><li>Konstruktor initialisiert die Liste.</li><li><code>addMember(String name)</code> fügt nur nicht-leere Namen hinzu.</li><li><code>getMemberCount()</code> liefert die Anzahl der Mitglieder.</li></ul>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[<p>Komposition: Das Team verwaltet die Lebensdauer seiner internen Liste selbst.</p>]]></text>
+    </generalfeedback>
+    <defaultgrade>1.0000000</defaultgrade>
+    <penalty>0.0000000</penalty>
+    <hidden>0</hidden>
+    <coderunnertype>java_class</coderunnertype>
+    <prototypetype>0</prototypetype>
+    <allornothing>1</allornothing>
+    <penaltyregime>0,10,20,...</penaltyregime>
+    <precheck>0</precheck>
+    <showsource>0</showsource>
+    <answerboxlines>18</answerboxlines>
+    <answerboxcolumns>90</answerboxcolumns>
+    <answerpreload></answerpreload>
+    <useace></useace>
+    <resultcolumns></resultcolumns>
+    <template></template>
+    <iscombinatortemplate></iscombinatortemplate>
+    <allowmultiplestdins></allowmultiplestdins>
+    <answer><![CDATA[public class Team {
+    private java.util.ArrayList<String> members;
+
+    public Team() {
+        members = new java.util.ArrayList<String>();
+    }
+
+    public void addMember(String name) {
+        if (name != null && !name.isEmpty()) {
+            members.add(name);
+        }
+    }
+
+    public int getMemberCount() {
+        return members.size();
+    }
+}]]></answer>
+    <validateonsave>1</validateonsave>
+    <testsplitterre></testsplitterre>
+    <language></language>
+    <acelang></acelang>
+    <sandbox></sandbox>
+    <grader></grader>
+    <cputimelimitsecs></cputimelimitsecs>
+    <memlimitmb></memlimitmb>
+    <sandboxparams></sandboxparams>
+    <templateparams></templateparams>
+    <uiplugin></uiplugin>
+    <testcases>
+      <testcase testtype="0" useasexample="1" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Team t = new Team();
+t.addMember("Ali");
+t.addMember("Bo");
+System.out.print(t.getMemberCount());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>2</text></expected>
+        <extra><text></text></extra>
+        <display><text>SHOW</text></display>
+      </testcase>
+      <testcase testtype="0" useasexample="0" hiderestiffail="0" mark="1.0000000">
+        <testcode><text><![CDATA[Team t = new Team();
+t.addMember("");
+t.addMember(null);
+System.out.print(t.getMemberCount());]]></text></testcode>
+        <stdin><text></text></stdin>
+        <expected><text>0</text></expected>
+        <extra><text></text></extra>
+        <display><text>HIDE</text></display>
+      </testcase>
+    </testcases>
+  </question>
+
+</quiz>
