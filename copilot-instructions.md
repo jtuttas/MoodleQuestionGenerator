@@ -101,14 +101,58 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 - **Textlänge schätzen:** Bei `font-size:13px` ≈ 7–8 px pro Zeichen; Boxbreite ≥ Textlänge × 8 px + 16 px Innenabstand.
 - **Callout-Nummern (①②…)** dürfen keine anderen Elemente überdecken – Platz vor dem Element reservieren.
 
-## Validierung (vor dem finalen Ergebnis)
-Führe eine schnelle XML-Validierung aus (Beispiel in PowerShell):
+## Strukturreferenz (vor der Generierung lesen)
 
-```powershell
-python -c "import xml.etree.ElementTree as ET; ET.parse(r'res\\DATEI.xml'); print('XML valid')"
+Die Datei `moodle-xml-struktur-referenz.md` im Repo-Root enthält:
+- Vollständige XML-Skelette für alle Fragetypen (ddmatch, ddwtos, multichoice, cloze)
+- CDATA-Pflichtregeln und häufige Importfehler
+- **Vollständiger Import-Workflow** (XML → Container → Quiz) inkl. aller Fallstricke
+- SVG-Inline-Regeln kompakt
+- Qualitätscheckliste und Schnell-Template
+
+**Immer zuerst konsultieren**, bevor XML generiert wird – spart Iterationen.
+
+## KRITISCH beim XML-Erstellen (bestätigte Fallstricke)
+
+### 1. `<!-- question: N -->` Marker sind PFLICHT
+
+`quiz_import.php` erkennt Fragen nur durch diese Kommentare:
+```xml
+<!-- question: q1 -->
+<question type="ddmatch">...</question>
+<!-- question: q2 -->
+<question type="multichoice">...</question>
 ```
+**Ohne Marker → 0 Fragen importiert (kein Fehler, stilles Versagen).**
+Marker direkt beim Generieren einfügen, nicht nachträglich vergessen.
 
-Wenn möglich: zusätzlich nach `<text>` ohne CDATA suchen, sobald HTML vorkommt.
+### 2. Cloze MULTICHOICE IMMER auf einer Zeile
+
+```xml
+<!-- FALSCH: Zeilenumbrüche innerhalb {…} → =Richtig wird nicht erkannt -->
+{1:MULTICHOICE:Option A
+~=Richtig~Option C}
+
+<!-- RICHTIG: alles auf einer Zeile -->
+{1:MULTICHOICE:Option A~Option B~=Richtig~Option C}
+```
+Fehlermeldung: *„Eine der Antworten sollte mit 100% bewertet werden"*
+
+## Validierung (vor dem finalen Ergebnis)
+
+```bash
+# 1. XML-Syntax
+python3 -c "import xml.etree.ElementTree as ET; ET.parse('res/DATEI.xml'); print('OK')"
+
+# 2. Marker vorhanden?
+grep -c "<!-- question:" res/DATEI.xml   # Zahl muss = Anzahl Fragen sein
+
+# 3. Cloze single-line?
+grep -n "MULTICHOICE" res/DATEI.xml     # jede Zeile muss { und } enthalten
+
+# 4. CDATA-Lücken
+grep -n "<text>[^<]*<[a-z]" res/DATEI.xml
+```
 
 ## Standard-Ausgabeformat im Chat
 - Erzeuge/aktualisiere die XML-Datei unter `res/`.
