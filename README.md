@@ -42,6 +42,7 @@ MoodleQuestionGenerator/
 | `quiz_vlan_systemintegration_20260223.xml` | VLANs & IEEE 802.1Q | FI Systemintegration | 5 | ddmatch, ddwtos, multichoice, cloze |
 | `quiz_nm_beziehungen_20260224.xml` | N:M-Beziehungen (relationale DB) | FI Anwendungsentwicklung | 5 | ddmatch, multichoice, ddwtos, cloze |
 | `quiz_troubleshooting_ip_netzwerke_20260225.xml` | Troubleshooting IP-Netzwerke | FI Systemintegration | 5 | ddmatch, multichoice, cloze, ddwtos |
+| `quiz_ipv6_lf9_erweiterung_20260302.xml` | IPv6: EUI-64, SLAAC, NDP, Übergänge | FI Systemintegration (LF9) | 8 | ddmatch, multichoice, ddwtos, cloze |
 
 ---
 
@@ -80,6 +81,8 @@ Die Symbole werden als `<symbol id="...">` in den `<defs>`-Block des jeweiligen 
 1. Moodle aufrufen → Kurs → **Fragensammlung** → **Fragen importieren**
 2. Format: **Moodle XML**
 3. Gewünschte XML-Datei aus `res/` hochladen
+
+Alternativ: lokales Moodle-Quiz per **Kurs sichern → MBZ → Kurs wiederherstellen** auf die Produktiv-Instanz übertragen.
 
 ---
 

@@ -25,7 +25,7 @@ Siehe Abschnitt **"SVG-Diagramme in Fragen einbinden"** für technische Details.
 | `template-numerical-numerisch.xml` | numerical | Numerische Antworten mit Toleranz |
 | `template-ddimageortext-drag-auf-bild.xml` | ddimageortext | Drag-and-Drop auf Bilder |
 | `template-cloze-eingebettete-antworten.xml` | cloze | Eingebettete Antworten (komplex) |
-| `template-ordering-anordnung.xml` | ordering ⚠️ | Elemente in richtige Reihenfolge bringen (Plugin benötigt) |
+| `template-ordering-anordnung.xml` | ordering | Elemente in richtige Reihenfolge bringen |
 | `template-cloze-mit-svg.xml` | cloze + SVG | Cloze mit SVG-Flussdiagramm (Formen und Prozessschritte) |
 | `template-ddimageortext-drag-auf-svg.xml` | ddimageortext + SVG | Drag-Drop auf SVG-Grafik (Farben zuordnen) |
 | `template-ddmatch-zuordnung-mit-svg.xml` | ddmatch + SVG | Zuordnung mit geometrischen Formen (Kreis, Quadrat, Dreieck) |
@@ -33,8 +33,7 @@ Siehe Abschnitt **"SVG-Diagramme in Fragen einbinden"** für technische Details.
 | `template-multichoice-mit-svg.xml` | multichoice + SVG | Multiple-Choice mit Workflow-Diagramm (START → Schritte) |
 
 
-> **⚠️ Hinweis:** Der Fragetyp **ordering** erfordert ein zusätzliches Moodle-Plugin.  
-> Installation: [https://moodle.org/plugins/qtype_ordering](https://moodle.org/plugins/qtype_ordering)
+> **ℹ️ Hinweis:** Der Fragetyp **ordering** ist seit Moodle 4.0 im Core enthalten und erfordert kein zusätzliches Plugin.
 
 ## 🚀 Schnellstart
 
@@ -463,11 +462,8 @@ Drag-Items **ohne** zugehörige Drop-Zone = Distractors (falsche Antworten).
 
 ### Template: ordering (Anordnung)
 
-**⚠️ WICHTIG:** Dieser Fragetyp erfordert das **Moodle-Plugin "Ordering"**
-- Plugin-Installation: [https://moodle.org/plugins/qtype_ordering](https://moodle.org/plugins/qtype_ordering)
-- Standardmäßig nicht in Moodle enthalten
-
 **Verwendung:** Elemente in die richtige Reihenfolge bringen
+> Seit Moodle 4.0 im Core enthalten – kein Plugin nötig.
 
 **Beispiele:**
 - Prozessschritte chronologisch ordnen
@@ -806,7 +802,7 @@ Beim Import werden alle Fragen gleichzeitig importiert.
 | **Drop-Labels verdecken Diagramm** | Nummernkreise über Inhalt platziert | Kreise in Leerräume: Ränder, außerhalb, auf Pfeilen |
 | **Distractors ohne Hinweis** | Überzählige drag-Items, aber kein Hinweistext | Im questiontext ankündigen: `<em>Es gibt X zusätzliche Begriffe, die nicht passen.</em>` |
 | **Ankündigungssatz trotz fehlender Distractors** | Distractors entfernt, Text vergessen | Beim Entfernen von Distractors auch Ankündigungssatz löschen |
-| **ordering: Import-Fehler** | Plugin nicht installiert | Plugin installieren: [moodle.org/plugins/qtype_ordering](https://moodle.org/plugins/qtype_ordering) |
+| **ordering: Import-Fehler** | Moodle-Version < 4.0 | Seit Moodle 4.0 im Core – kein Plugin nötig. Moodle-Version prüfen. |
 | **ordering: "String erwartet"** | layouttype/selecttype/gradingtype als Text statt Zahl | Werte müssen Integer sein: `<layouttype>0</layouttype>` (nicht "VERTICAL") |
 | **multichoice: Option wird nicht angezeigt** | Antwortoption beginnt mit `+`, `-`, `~` | Moodle-Sonderzeichen → Option umbenennen (z.B. `"positiv (+)"` statt `"+ positiv"`) |
 | **10 Fragen erkannt, 0 importiert** | Mindestens 1 Frage hat Fehler → gesamter Import bricht ab | Fragen einzeln importieren um fehlerhafte zu identifizieren<br>XML validieren |
