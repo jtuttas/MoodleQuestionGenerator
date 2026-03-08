@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Moodle Fragen Generator</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: Arial, sans-serif;
+      font-size: 14px;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: #f0f2f5;
+    }
+
+    header {
+      background: #1a5276;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 1.1rem;
+      font-weight: bold;
+      flex-shrink: 0;
+    }
+
+    .main {
+      display: flex;
+      flex: 1;
+      overflow: hidden;
+    }
+
+    /* ── LEFT PANEL ─────────────────────────────────────── */
+    .panel-left {
+      width: 45%;
+      min-width: 340px;
+      background: #fff;
+      border-right: 1px solid #d5d8dc;
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .panel-left h2 { font-size: 0.95rem; color: #555; margin-bottom: -4px; }
+
+    label {
+      display: block;
+      font-weight: bold;
+      font-size: 0.85rem;
+      color: #333;
+      margin-bottom: 4px;
+    }
+
+    textarea, select {
+      width: 100%;
+      padding: 8px 10px;
+      border: 1px solid #bdc3c7;
+      border-radius: 4px;
+      font-size: 0.9rem;
+      background: #fff;
+    }
+    textarea { height: 110px; resize: vertical; }
+    textarea:focus, select:focus { outline: 2px solid #1a5276; border-color: #1a5276; }
+
+    .row-2 { display: flex; gap: 12px; }
+    .row-2 > div { flex: 1; }
+
+    #errorMsg {
+      color: #c0392b;
+      font-size: 0.83rem;
+      min-height: 18px;
+    }
+
+    button#generateBtn {
+      padding: 10px;
+      background: #1a5276;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 0.95rem;
+      cursor: pointer;
+      width: 100%;
+    }
+    button#generateBtn:hover:not(:disabled) { background: #154360; }
+    button#generateBtn:disabled { background: #aaa; cursor: not-allowed; }
+
+    /* ── RIGHT PANEL ─────────────────────────────────────── */
+    .panel-right {
+      flex: 1;
+      padding: 20px 24px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .panel-right h2 { font-size: 0.95rem; color: #555; }
+
+    .tabs { display: flex; gap: 0; }
+    .tab {
+      padding: 7px 18px;
+      border: 1px solid #bdc3c7;
+      background: #eaecee;
+      cursor: pointer;
+      font-size: 0.85rem;
+      border-radius: 4px 4px 0 0;
+    }
+    .tab + .tab { margin-left: -1px; }
+    .tab.active { background: #fff; border-bottom-color: #fff; font-weight: bold; color: #1a5276; }
+
+    .preview-box {
+      border: 1px solid #bdc3c7;
+      border-radius: 0 4px 4px 4px;
+      background: #fff;
+      padding: 18px;
+      flex: 1;
+      min-height: 200px;
+    }
+
+    .placeholder { color: #aaa; font-style: italic; }
+
+    /* rendered preview */
+    #previewContent h3 { font-size: 0.95rem; margin-bottom: 6px; color: #1a5276; }
+    #previewContent ul { padding-left: 20px; }
+    #previewContent li { margin-bottom: 4px; }
+    .answer-correct { color: #1e8449; font-weight: bold; }
+
+    /* xml view */
+    #xmlContent {
+      white-space: pre-wrap;
+      word-break: break-all;
+      font-size: 0.78rem;
+      color: #2c3e50;
+      line-height: 1.5;
+    }
+
+    .action-row { display: flex; gap: 8px; margin-top: 10px; }
+    .btn-small {
+      padding: 6px 14px;
+      font-size: 0.82rem;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      color: #fff;
+    }
+    .btn-copy { background: #27ae60; }
+    .btn-copy:hover { background: #1e8449; }
+    .btn-download { background: #2e86c1; }
+    .btn-download:hover { background: #1a5276; }
+
+    /* spinner */
+    #spinner {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      color: #555;
+      font-size: 0.9rem;
+      padding: 10px 0;
+    }
+    #spinner.active { display: flex; }
+    .spin {
+      width: 18px; height: 18px;
+      border: 3px solid #ccc;
+      border-top-color: #1a5276;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* saved questions */
+    .saved-section { margin-top: 18px; }
+    .saved-section h2 { font-size: 0.88rem; color: #555; margin-bottom: 6px; }
+    #savedList {
+      list-style: none;
+      max-height: 220px;
+      overflow-y: auto;
+      border: 1px solid #d5d8dc;
+      border-radius: 4px;
+      background: #fff;
+    }
+    #savedList li {
+      padding: 7px 10px;
+      border-bottom: 1px solid #eaecee;
+      cursor: pointer;
+      font-size: 0.82rem;
+      color: #2c3e50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    #savedList li:last-child { border-bottom: none; }
+    #savedList li:hover { background: #eaf0fb; }
+    #savedList li .meta { color: #888; font-size: 0.76rem; white-space: nowrap; margin-left: 8px; }
+    #savedList .empty { color: #aaa; font-style: italic; padding: 8px 10px; cursor: default; }
+  </style>
+</head>
+<body>
+
+<header>Moodle Fragen Generator – KI-gestützt</header>
+
+<div class="main">
+
+  <!-- ── LEFT PANEL ───────────────────────────────────── -->
+  <div class="panel-left">
+    <h2>Aufgabe konfigurieren</h2>
+
+    <div>
+      <label for="description">Aufgabenbeschreibung</label>
+      <textarea id="description"
+        placeholder="Beschreibe die gewünschte Frage, z. B.: Erstelle eine Multiple-Choice-Frage zum OSI-Schichtmodell für IT-Auszubildende."></textarea>
+    </div>
+
+    <div>
+      <label for="questionType">Fragetyp</label>
+      <select id="questionType" onchange="updateTypeGuidance()">
+        <option value="multichoice">Multiple Choice (multichoice)</option>
+        <option value="cloze">Lückentext (cloze)</option>
+        <option value="ddwtos">Drag &amp; Drop in Text (ddwtos)</option>
+        <option value="ddmatch">Zuordnung (ddmatch)</option>
+        <option value="numerical">Numerisch (numerical)</option>
+        <option value="shortanswer">Kurzantwort (shortanswer)</option>
+        <option value="coderunner">CodeRunner (Java/Python)</option>
+      </select>
+    </div>
+
+    <div>
+      <label for="typeTemplate">Template-Hinweis (automatisch)</label>
+      <textarea id="typeTemplate" readonly></textarea>
+    </div>
+
+    <div>
+      <label for="typeExample">Beispiel (automatisch)</label>
+      <textarea id="typeExample" readonly></textarea>
+    </div>
+
+    <div class="row-2">
+      <div>
+        <label for="difficulty">Schwierigkeitsgrad</label>
+        <select id="difficulty">
+          <option value="leicht">Leicht</option>
+          <option value="mittel" selected>Mittel</option>
+          <option value="schwer">Schwer</option>
+        </select>
+      </div>
+      <div>
+        <label for="modelSource">Modellquelle</label>
+        <select id="modelSource" onchange="updateModelOptions()">
+          <option value="ollama" selected>Ollama (Lokal)</option>
+          <option value="openai">OpenAI (API)</option>
+        </select>
+      </div>
+    </div>
+
+    <div>
+      <label for="modelName">Modell</label>
+      <select id="modelName">
+        <option value="gpt-4o">gpt-4o</option>
+        <option value="gpt-4o-mini">gpt-4o-mini</option>
+        <option value="gpt-3.5-turbo">gpt-3.5-turbo</option>
+      </select>
+    </div>
+
+    <div id="openaiWarning" style="display:none;background:#fef9e7;border:1px solid #f0b429;border-radius:4px;padding:8px 10px;font-size:0.82rem;color:#7d5a00;"></div>
+
+    <div id="errorMsg"></div>
+
+    <button id="generateBtn" onclick="generate()">Frage generieren</button>
+
+    <!-- Gespeicherte Fragen -->
+    <div class="saved-section">
+      <h2>Gespeicherte Fragen <button onclick="loadSaved()" style="font-size:0.75rem;padding:2px 8px;cursor:pointer;border:1px solid #bdc3c7;border-radius:3px;background:#f4f6f7;">↻ Aktualisieren</button></h2>
+      <ul id="savedList"><li class="empty">Noch keine Fragen gespeichert.</li></ul>
+    </div>
+  </div>
+
+  <!-- ── RIGHT PANEL ───────────────────────────────────── -->
+  <div class="panel-right">
+    <h2>Vorschau</h2>
+
+    <div class="tabs">
+      <div class="tab active" id="tabBtnPreview" onclick="switchTab('preview')">Vorschau</div>
+      <div class="tab" id="tabBtnXml" onclick="switchTab('xml')">XML</div>
+    </div>
+
+    <div class="preview-box">
+      <div id="tabPreview">
+        <p class="placeholder">Hier erscheint die generierte Frage …</p>
+      </div>
+      <div id="tabXml" style="display:none;">
+        <pre id="xmlContent"><span class="placeholder">Hier erscheint das Moodle-XML …</span></pre>
+        <div class="action-row">
+          <button class="btn-small btn-copy" onclick="copyXml()">XML kopieren</button>
+          <button class="btn-small btn-download" onclick="downloadXml()">XML herunterladen</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="spinner">
+      <div class="spin"></div>
+      KI generiert Frage …
+    </div>
+  </div>
+
+</div><!-- .main -->
+
+<script>
+  const BACKEND = window.location.port === "8000" ? "" : "http://localhost:8000";
+
+  // Fallback used only when OpenAI API is unreachable but key is valid
+  const OPENAI_MODELS_FALLBACK = ["gpt-4o", "gpt-4o-mini", "gpt-4.1", "gpt-4.1-mini", "gpt-3.5-turbo"];
+
+  function showOpenAIBanner(type, msg) {
+    const warn = document.getElementById("openaiWarning");
+    const styles = {
+      error:   { bg: "#fdecea", border: "#e74c3c", color: "#7b2020" },
+      warning: { bg: "#fef9e7", border: "#f0b429", color: "#7d5a00" },
+      success: { bg: "#eafaf1", border: "#27ae60", color: "#1a5c38" },
+    };
+    const s = styles[type] || styles.warning;
+    warn.style.cssText =
+      `display:block;background:${s.bg};border:1px solid ${s.border};` +
+      `border-radius:4px;padding:8px 10px;font-size:0.82rem;color:${s.color};`;
+    warn.textContent = msg;
+  }
+
+  const TYPE_TEMPLATE_HINTS = {
+    multichoice: "Template: Eine Frage mit 4 Antwortoptionen, davon mindestens eine korrekt. Nutze fraction-Werte passend zur Bewertung.",
+    cloze: "Template: Lückentext mit Moodle-Cloze-Syntax wie {1:MULTICHOICE:...~=Richtig...} direkt im Fragetext.",
+    ddwtos: "Template: Text mit Lücken [[1]], [[2]] plus dragbox-Einträge je Gruppe inklusive Distraktoren.",
+    ddmatch: "Template: Zuordnungsfrage mit subquestion/answer-Paaren (Begriff -> Definition).",
+    numerical: "Template: Numerische Frage mit einer richtigen Zahl und Toleranzbereich.",
+    shortanswer: "Template: Kurzantwort mit mindestens einer exakten korrekten Lösung.",
+    coderunner: "Template: CodeRunner-Aufgabe mit Aufgabenstellung, Startercode und automatisch auswertbaren Tests."
+  };
+
+  const TYPE_EXAMPLES = {
+    multichoice: "Beispiel: Welche OSI-Schicht ist fuer Routing zustaendig? A) Sicherung B) Vermittlung C) Sitzung D) Darstellung",
+    cloze: "Beispiel: Die IPv4-Adresse 192.168.1.0/24 hat die Netzmaske {1:SHORTANSWER:=255.255.255.0}.",
+    ddwtos: "Beispiel: Ziehe die Fachbegriffe in den Satz: Ein [[1]] verbindet Netzwerke auf Layer [[2]].",
+    ddmatch: "Beispiel: Ordne Protokolle zu: HTTP -> Anwendungsschicht, IP -> Vermittlungsschicht.",
+    numerical: "Beispiel: Wie viele Hosts sind in einem /27-Netz maximal nutzbar?",
+    shortanswer: "Beispiel: Wie heisst das Protokoll fuer sichere Webverbindungen?",
+    coderunner: "Beispiel: Implementiere in Java eine Methode isPrime(int n) und pruefe sie mit Unit-Tests."
+  };
+
+  // initialize with Ollama models
+  updateModelOptions();
+  updateTypeGuidance();
+
+  function updateTypeGuidance() {
+    const type = document.getElementById("questionType").value;
+    document.getElementById("typeTemplate").value = TYPE_TEMPLATE_HINTS[type] || "Kein Template-Hinweis hinterlegt.";
+    document.getElementById("typeExample").value = TYPE_EXAMPLES[type] || "Kein Beispiel hinterlegt.";
+  }
+
+  async function updateModelOptions() {
+    const source = document.getElementById("modelSource").value;
+    const sel = document.getElementById("modelName");
+    const warn = document.getElementById("openaiWarning");
+    warn.style.display = "none";
+    sel.innerHTML = '<option disabled>Lade Modelle …</option>';
+
+    if (source === "ollama") {
+      try {
+        const resp = await fetch(`${BACKEND}/ollama/models`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const data = await resp.json();
+        const models = data.models ?? [];
+        if (!models.length) {
+          sel.innerHTML = '<option disabled>Keine Modelle gefunden</option>';
+          return;
+        }
+        populateSelect(sel, models);
+      } catch (e) {
+        sel.innerHTML = '<option disabled>Ollama nicht erreichbar</option>';
+      }
+    } else {
+      // OpenAI: fetch model list dynamically (validates key implicitly)
+      try {
+        const resp = await fetch(`${BACKEND}/openai/models`);
+        if (!resp.ok) {
+          const err = await resp.json().catch(() => ({}));
+          const msg = err.detail || `HTTP ${resp.status}`;
+          if (resp.status === 503) {
+            showOpenAIBanner("error",
+              "⚠️ Kein API-Key konfiguriert. Bitte OPENAI_API_KEY in der .env-Datei setzen und Backend neu starten.");
+          } else if (resp.status === 401) {
+            showOpenAIBanner("error", "❌ API-Key ungültig oder abgelaufen: " + msg);
+          } else {
+            showOpenAIBanner("warning", "⚠️ Modelle konnten nicht geladen werden: " + msg +
+              " – Standardliste wird verwendet.");
+            populateSelect(sel, OPENAI_MODELS_FALLBACK);
+          }
+          sel.innerHTML = sel.innerHTML || '<option disabled>Keine Modelle verfügbar</option>';
+          return;
+        }
+        const data = await resp.json();
+        const models = data.models ?? [];
+        if (!models.length) {
+          showOpenAIBanner("warning", "⚠️ Keine geeigneten Chat-Modelle gefunden – Standardliste wird verwendet.");
+          populateSelect(sel, OPENAI_MODELS_FALLBACK);
+        } else {
+          populateSelect(sel, models);
+          showOpenAIBanner("success", "✓ API-Key gültig – " + models.length + " Modelle verfügbar.");
+        }
+      } catch (e) {
+        showOpenAIBanner("warning",
+          "⚠️ Netzwerkfehler beim Laden der Modelle – Standardliste wird verwendet.");
+        populateSelect(sel, OPENAI_MODELS_FALLBACK);
+      }
+    }
+  }
+
+  function populateSelect(sel, models) {
+    sel.innerHTML = "";
+    models.forEach(m => {
+      const opt = document.createElement("option");
+      opt.value = m;
+      opt.textContent = m;
+      sel.appendChild(opt);
+    });
+  }
+
+  function switchTab(tab) {
+    const isPreview = tab === "preview";
+    document.getElementById("tabBtnPreview").classList.toggle("active", isPreview);
+    document.getElementById("tabBtnXml").classList.toggle("active", !isPreview);
+    document.getElementById("tabPreview").style.display = isPreview ? "" : "none";
+    document.getElementById("tabXml").style.display = isPreview ? "none" : "";
+  }
+
+  async function generate() {
+    const description = document.getElementById("description").value.trim();
+    const questionType = document.getElementById("questionType").value;
+    const difficulty = document.getElementById("difficulty").value;
+    const modelSource = document.getElementById("modelSource").value;
+    const modelName = document.getElementById("modelName").value?.trim();
+    const errorMsg = document.getElementById("errorMsg");
+    errorMsg.textContent = "";
+
+    if (!description) {
+      errorMsg.textContent = "Bitte eine Aufgabenbeschreibung eingeben.";
+      return;
+    }
+    if (description.length < 10) {
+      errorMsg.textContent = "Bitte mindestens 10 Zeichen in der Aufgabenbeschreibung eingeben.";
+      return;
+    }
+    if (!questionType) {
+      errorMsg.textContent = "Bitte einen Fragetyp auswaehlen.";
+      return;
+    }
+    if (!["leicht", "mittel", "schwer"].includes(difficulty)) {
+      errorMsg.textContent = "Bitte einen gueltigen Schwierigkeitsgrad auswaehlen.";
+      return;
+    }
+    if (!["ollama", "openai"].includes(modelSource)) {
+      errorMsg.textContent = "Bitte eine gueltige Modellquelle auswaehlen.";
+      return;
+    }
+    if (!modelName) {
+      errorMsg.textContent = "Bitte ein Modell auswaehlen.";
+      return;
+    }
+
+    const btn = document.getElementById("generateBtn");
+    const spinner = document.getElementById("spinner");
+    btn.disabled = true;
+    spinner.classList.add("active");
+
+    const payload = {
+      description,
+      question_type: questionType,
+      difficulty,
+      model_source: modelSource,
+      model_name: modelName,
+    };
+
+    try {
+      const resp = await fetch(`${BACKEND}/generate`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+
+      if (!resp.ok) {
+        const err = await resp.json().catch(() => ({}));
+        throw new Error(err.detail || `HTTP ${resp.status}`);
+      }
+
+      const data = await resp.json();
+      renderResult(data.xml);
+      loadSaved();
+    } catch (e) {
+      errorMsg.textContent = "Fehler: " + e.message;
+    } finally {
+      btn.disabled = false;
+      spinner.classList.remove("active");
+    }
+  }
+
+  function renderResult(xml) {
+    // ── XML tab ──
+    document.getElementById("xmlContent").textContent = xml;
+
+    // ── Preview tab ──
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(xml, "application/xml");
+    const parseErr = doc.querySelector("parsererror");
+    let html = "";
+
+    if (parseErr) {
+      html = `<p style="color:red;">XML-Fehler: ${escapeHtml(parseErr.textContent)}</p>`;
+    } else {
+      const qname = doc.querySelector("question > name text")?.textContent ?? "";
+      if (qname) html += `<h3>${escapeHtml(qname)}</h3><hr style="margin:8px 0">`;
+
+      const qtext = doc.querySelector("questiontext text")?.textContent ?? "";
+      if (qtext) html += `<div style="margin-bottom:12px;">${qtext}</div>`;
+
+      const answers = [...doc.querySelectorAll("answer")];
+      if (answers.length) {
+        html += `<p style="font-weight:bold;margin-bottom:4px;">Antworten:</p><ul>`;
+        answers.forEach(a => {
+          const frac = parseFloat(a.getAttribute("fraction") || "0");
+          const text = a.querySelector("text")?.textContent ?? "";
+          const cls  = frac > 0 ? " class=\"answer-correct\"" : "";
+          html += `<li${cls}>${frac > 0 ? "✓ " : ""}${escapeHtml(text)}</li>`;
+        });
+        html += "</ul>";
+      }
+
+      if (!qtext && !answers.length) {
+        html = `<pre style="font-size:0.78rem;">${escapeHtml(xml)}</pre>`;
+      }
+    }
+
+    document.getElementById("tabPreview").innerHTML = html;
+    switchTab("preview");
+  }
+
+  function escapeHtml(str) {
+    return String(str)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;");
+  }
+
+  async function copyXml() {
+    const xml = document.getElementById("xmlContent").textContent;
+    await navigator.clipboard.writeText(xml);
+    const btn = event.target;
+    const orig = btn.textContent;
+    btn.textContent = "Kopiert ✓";
+    setTimeout(() => { btn.textContent = orig; }, 2000);
+  }
+
+  function downloadXml() {
+    const xml  = document.getElementById("xmlContent").textContent;
+    const blob = new Blob([xml], { type: "application/xml" });
+    const a    = document.createElement("a");
+    a.href     = URL.createObjectURL(blob);
+    const qtype = document.getElementById("questionType").value || "frage";
+    const date  = new Date().toISOString().slice(0, 10).replace(/-/g, "");
+    a.download = `${qtype}-${date}.xml`;
+    a.click();
+    URL.revokeObjectURL(a.href);
+  }
+
+  // ── Saved Questions ───────────────────────────────────────
+  async function loadSaved() {
+    try {
+      const resp = await fetch(`${BACKEND}/questions?limit=30`);
+      if (!resp.ok) return;
+      const items = await resp.json();
+      const list = document.getElementById("savedList");
+      if (!items.length) {
+        list.innerHTML = '<li class="empty">Noch keine Fragen gespeichert.</li>';
+        return;
+      }
+      list.innerHTML = items.map(q => {
+        const d = new Date(q.created_at);
+        const ts = d.toLocaleDateString("de-DE") + " " + d.toLocaleTimeString("de-DE", {hour:"2-digit", minute:"2-digit"});
+        const desc = q.description.length > 55 ? q.description.slice(0, 55) + "…" : q.description;
+        return `<li onclick="loadQuestion(${q.id})">
+          <span>${escapeHtml(desc)}</span>
+          <span class="meta">${escapeHtml(q.question_type)} · ${escapeHtml(q.difficulty)}<br>${ts}</span>
+        </li>`;
+      }).join("");
+    } catch (_) { /* silent – server may be starting */ }
+  }
+
+  async function loadQuestion(id) {
+    try {
+      const resp = await fetch(`${BACKEND}/questions/${id}`);
+      if (!resp.ok) return;
+      const q = await resp.json();
+      renderResult(q.xml_output);
+    } catch (e) {
+      document.getElementById("errorMsg").textContent = "Fehler beim Laden: " + e.message;
+    }
+  }
+
+  // Load saved questions on startup
+  loadSaved();
+</script>
+</body>
+</html>

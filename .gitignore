@@ -1,0 +1,46 @@
+# ── Sicherheitsrelevant ──────────────────────────────────────
+app/backend/.env
+
+# ── Python ───────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+*.egg
+dist/
+build/
+.eggs/
+.venv/
+venv/
+env/
+pip-wheel-metadata/
+
+# ── Datenbank / Laufzeit-Daten ───────────────────────────────
+app/backend/questions.db
+*.db
+*.sqlite
+*.sqlite3
+
+# ── Test-Ergebnisse ──────────────────────────────────────────
+app/test/results/
+
+# ── VS Code ──────────────────────────────────────────────────
+.vscode/
+
+# ── Betriebssystem ───────────────────────────────────────────
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ── Archiv-/Paketdateien ─────────────────────────────────────
+*.zip
+*.tar.gz
+*.rar
+
+# ── Docker ───────────────────────────────────────────────────
+app/backend/db-data/
+ollama-models/
+
+# ── Node / npm (falls künftig genutzt) ───────────────────────
+node_modules/
