@@ -31,6 +31,31 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
 - Lücken: `[[1]]`, `[[2]]`, ...
 - Für jede Lücke `[[n]]` müssen passende `<dragbox>`-Einträge mit `<group>n</group>` existieren.
 - **Jede Gruppe braucht mindestens einen Distractor** (falsches Angebot).
+- **`<dragbox>`-Struktur (Pflicht):**
+  ```xml
+  <dragbox>
+    <text>Wort</text>
+    <group>1</group>
+  </dragbox>
+  ```
+- **Richtige Antwort = absolute Position im XML:** Bei `ddwtos` ist Lücke `[[1]]` = die **1. `<dragbox>` im gesamten XML**, Lücke `[[2]]` = die **2. `<dragbox>`**, usw. – unabhängig von der Gruppe. Die Gruppe bestimmt nur Farbe und welche Dragboxen in eine Lücke passen, **nicht** die Zuordnung zur Lücke. Distractoren kommen **nach** allen richtigen Antworten. Korrekte Reihenfolge:
+  ```xml
+  <!-- Richtige Antworten zuerst (Position = Lückennummer) -->
+  <dragbox><text>extends</text><group>1</group></dragbox>       <!-- → [[1]] -->
+  <dragbox><text>@Override</text><group>2</group></dragbox>     <!-- → [[2]] -->
+  <dragbox><text>berechneFlaeche</text><group>3</group></dragbox> <!-- → [[3]] -->
+  <!-- Distractoren danach -->
+  <dragbox><text>implements</text><group>1</group></dragbox>
+  <dragbox><text>@Overload</text><group>2</group></dragbox>
+  <dragbox><text>getFlaeche</text><group>3</group></dragbox>
+  ```
+- **`infinite`-Flag (Pflicht korrekt!):** Moodle wertet `infinite` nach dem Prinzip `array_key_exists('infinite', ...)` aus – d.h. die **bloße Existenz** des Tags setzt das Flag auf true, egal welcher Wert drin steht.
+  - Wort darf **mehrfach** verwendet werden → `<infinite/>` (leeres Tag)
+  - Wort darf **nur einmal** verwendet werden → Tag **komplett weglassen** (kein `<infinite>0</infinite>`!)
+  - `<infinite>0</infinite>` setzt infinite trotzdem auf true → **verboten**
+  - `<infinite>1</infinite>` funktioniert **nicht zuverlässig** → immer `<infinite/>` verwenden
+- **Lücken werden nur im Plaintext erkannt.** `[[n]]`-Syntax funktioniert in `format="html"` innerhalb von `<pre>`-Blöcken – aber niemals innerhalb von HTML-Attributen oder verschachtelten Tags.
+- **`questiontext format="html"`** ist korrekt und ausreichend; `[[n]]` wird auch in HTML-CDATA erkannt.
 
 #### `multichoice`
 - Für Mehrfachauswahl: `<single>false</single>`.
@@ -45,7 +70,62 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
 - `=` markiert die richtige Option, `~` trennt Optionen.
 - Kein zusätzliches `<defaultgrade>` nötig.
 
-#### `coderunner` (speziell `java_class` mit Hintergrundklassen)
+#### Sourcecode in Aufgabentexten (Pflicht)
+- **Jeglicher Sourcecode** im Aufgabentext (`<questiontext>`), in Feedbacks (`<feedback>`, `<generalfeedback>`) und in Antwortoptionen (`<answer>`) **muss** in einen Markdown-konformen Fenced-Code-Block eingebettet werden:
+  ```
+  ```java
+  public class Beispiel { ... }
+  ```
+  ```
+- Dies gilt für alle Programmiersprachen (Java, Python, SQL, …). Das Sprachkürzel nach den drei Backticks ist **Pflicht** (z. B. ` ```java `, ` ```python `, ` ```sql `).
+- **Kein roher Code** außerhalb von Code-Blöcken: Inline-Bezeichner (Klassennamen, Methoden, Schlüsselwörter) bleiben in `<code>`-Tags, aber mehrzeilige Codeblöcke niemals als nackter Text oder nur in `<pre>` ohne Backtick-Fence.
+- In HTML-CDATA-Blöcken (`<questiontext>`, `<feedback>` usw.) wird der Fenced-Code-Block als Ganzes in ein `<pre><code class="language-java">…</code></pre>`-Konstrukt überführt, damit Moodle ihn korrekt rendert und ggf. Syntax-Highlighting anwendet.
+- **Konkretes Muster** für CDATA-Fragetext mit Javacode:
+  ```xml
+  <questiontext format="markdown">
+    <text><![CDATA[
+  Gegeben ist folgender Code:
+
+  ```java
+  public class Hund extends Tier {
+      private String rasse;
+  }
+  ```
+
+  Welche Aussage ist korrekt?
+    ]]></text>
+  </questiontext>
+  ```
+- Das `format`-Attribut des `<questiontext>`-Elements muss auf `"markdown"` gesetzt werden, sobald Fenced-Code-Blöcke genutzt werden, damit Moodle die Backtick-Syntax korrekt verarbeitet.
+
+#### `coderunner` – Erlaubte Fragetypen (verbindlich)
+Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so wie hier geschrieben, keine anderen:
+
+| Typ | Verwendung |
+|---|---|
+| `java_class` | **Standard für Java-Aufgaben.** Schüler schreibt eine einzelne Klasse. |
+| `java_method` | Schüler schreibt nur eine Methode (kein Klassenrumpf). |
+| `java_program` | Schüler schreibt ein vollständiges Programm inkl. `main`. |
+| `python3` | Python-3-Aufgaben. |
+| `python3_w_input` | Python-3 mit `input()`-Aufrufen. |
+| `python2` | Python-2-Aufgaben (Ausnahme, nur wenn explizit gefordert). |
+| `c_function` | C – einzelne Funktion. |
+| `c_program` | C – vollständiges Programm. |
+| `cpp_function` | C++ – einzelne Funktion. |
+| `cpp_program` | C++ – vollständiges Programm. |
+| `php` | PHP-Aufgaben. |
+| `sql` | SQL-Aufgaben. |
+| `nodejs` | JavaScript/Node.js-Aufgaben. |
+| `multilanguage` | Sprach-agnostische Aufgaben. |
+| `pascal_function` | Pascal – einzelne Funktion. |
+| `pascal_program` | Pascal – vollständiges Programm. |
+| `octave_function` | Octave/MATLAB-Aufgaben. |
+| `directed_graph` | Gerichtete Graphen. |
+| `undirected_graph` | Ungerichtete Graphen. |
+
+**Für alle Java-Vererbungsaufgaben gilt:** `<coderunnertype>java_class</coderunnertype>` – Schüler schreibt die Kindklasse, Elternklassen/Interfaces werden über das Python3-Template bereitgestellt.
+
+#### `coderunner` – Java mit Hintergrundklassen (`java_class`)
 - Wenn eine Elternklasse oder ein Interface vorgegeben werden soll (z. B. für Vererbung), darf dies **nicht** nur in `<globalextra>` stehen, da dies vom Java-Kompiler in der Sandbox nicht automatisch als ausführbare Datei erstellt wird.
 - Stattdessen **muss ein eigenes `<template>` in `<language>python3</language>`** verwendet werden, das die Hintergrundklasse, den Studenten-Code und den Testfall explizit auf die Platte schreibt und zusammen kompiliert.
 - **Kritisch für Java in Jobe-Sandbox:** Beim Aufruf von `javac` muss der JVM-Speicher limitiert werden, da die 64-Bit-Sandbox sonst oft beim Allokieren von 1 GB Class Space abstürzt (Fehler: `Could not allocate compressed class space`).
@@ -53,6 +133,31 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
   `ret = os.system('javac -J-Xmx128m -J-XX:CompressedClassSpaceSize=64m -encoding UTF-8 AccountBase.java BankAccount.java Test.java 2>&1')`
   `if ret == 0: os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')`
 - Das Python-Template (`<template>`) in XML muss linksbündig (ohne führende Leerzeichen) beginnen, anderenfalls produziert der CodeRunner einen `IndentationError` in Python.
+- **`<template>` muss immer in CDATA eingebettet sein:** `<template><![CDATA[\n ... \n]]></template>`. Ohne CDATA brechen `&`-Zeichen (z. B. in `-J-Xmx128m`) das XML.
+- **Keine Sonderzeichen im `<name>`-Tag:** Fragetitel dürfen **keine Nicht-ASCII-Zeichen** enthalten (kein `–` U+2013, kein `—`, keine Umlaute außerhalb von CDATA). Statt `–` immer einfaches `-` verwenden. Das `<name>`-Tag wird nicht in CDATA eingebettet und muss daher reines ASCII sein. Das `<answer>`-Tag darf in CodeRunner-Fragen **nicht** vorkommen. Moodle's Import-Parser interpretiert es als Array und wirft `mysqli::real_escape_string(): Argument #1 must be of type string, array given`. Die Musterlösung gehört ausschließlich in `<generalfeedback>`, nie in `<answer>`.
+- **Separate XML-Dateien pro Aufgabe:** CodeRunner-Fragen immer als einzelne XML-Dateien exportieren (eine Datei = eine Frage), nicht gebündelt mit anderen Fragetypen, um Import-Konflikte zu vermeiden.
+- **`<expected>` immer in CDATA:** Das `<expected><text>`-Element muss immer in CDATA eingebettet sein: `<expected><text><![CDATA[...]]></text></expected>`. Ohne CDATA führen Sonderzeichen (z. B. `–` U+2013, `|`, Umlaute) zu `mysqli`-Fehlern beim Import.
+- **Kein `textwrap.dedent()` mit Triple-Quotes im Template:** Triple-Quote-Strings im Python-Template dürfen nicht zusammen mit `printf`-Formatstrings (`%s`, `%f`, `%n`) verwendet werden – Moodle's Template-Engine kann `%`-Sequenzen fehlinterpretieren. Stattdessen **immer einfache String-Konkatenation** verwenden:
+  ```python
+  # RICHTIG: String-Konkatenation
+  src = (
+      "public class Beispiel {\n"
+      "    private String name;\n"
+      "}\n"
+  )
+  # EINZIGE Ausnahme: student_src darf Triple-Quotes nutzen
+  student_src = """{{ STUDENT_ANSWER }}"""
+  ```
+
+#### `stack` – XML-Tag-Regeln (kritisch)
+- **`<name>`-Tag statt `<n>`-Tag (Pflicht):** Neuere Moodle-Versionen (4.x) erwarten für STACK-Fragen durchgehend `<name>` statt `<n>`. Dies gilt für **alle** Ebenen:
+  - Fragetitel: `<name><text>Titel der Frage</text></name>`
+  - Input-Namen: `<name>ans1</name>`, `<name>ans2</name>` usw.
+  - PRT-Namen: `<name>prt1</name>`
+  - Node-Nummern: `<name>0</name>`, `<name>1</name>` usw.
+- Das Template `template-stackaufgabe_algorithmik.xml` verwendet noch den alten `<n>`-Tag – beim Generieren **immer** `<name>` verwenden, nie `<n>`.
+- **Keine Nicht-ASCII-Zeichen** im `<name>`-Tag (Fragetitel): kein `–`, `—`, keine Umlaute. Statt `–` immer `-` verwenden.
+
 
 ## SVG-Regeln (Inline im Fragetext)
 - SVG immer inline im CDATA-Fragetext, mit:
@@ -63,6 +168,29 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
 ### Marker/Pfeile
 - Definiere Marker in `<defs>` und verwende sie per `marker-end="url(#id)"`.
 - Für gestrichelte Beziehungen: `stroke-dasharray="6,3"`.
+
+### Flussdiagramme – Kontrollflusspfeile (kritisch)
+- **Pfeile dürfen NIEMALS durch Boxen, Rauten oder andere Elemente gehen.** Jede Linie muss außen um alle Elemente herumgeführt werden.
+- **Rücksprungpfeile** (z. B. Schleifenrücksprung zur Bedingung) müssen **seitlich außen** um sämtliche Elemente herumgeführt werden – typisch links oder rechts vorbei, mit ausreichend Abstand (≥ 12 px zur nächsten Box-Kante).
+- **Vor dem Abschluss rechnerisch prüfen:** Liegt die Rücksprunglinie bei x=X? Dann muss gelten: X < (linke Kante aller Elemente auf diesem Weg − 12 px). Gleiches gilt für rechts geführte Rücksprünge.
+- **Zuweisungen** in Flussdiagramm-Boxen immer mit `=` schreiben, **niemals** mit `←`: z. B. `s = s + a`, `a = a - 1`, **nicht** `s ← s + a`.
+- **Muster für einen korrekten Links-Rücksprung** (Schleife zurück zur Bedingungsraute bei y=150, linke Spitze bei x=190):
+  ```svg
+  <!-- a=a-1 Box linke Kante bei x=220, Box-Mitte y=308 -->
+  <line x1="220" y1="308" x2="8" y2="308"/>   <!-- nach links außen -->
+  <line x1="8" y1="308" x2="8" y2="150"/>      <!-- hoch, außen an allen Elementen vorbei -->
+  <line x1="8" y1="150" x2="190" y2="150" marker-end="url(#arr)"/>  <!-- zur Raute -->
+  ```
+
+- **Merge-Rauten immer nach UNTEN verlassen.** Die Zusammenführungsraute (leere Raute) wird stets an ihrer S-Spitze nach unten verlassen – niemals seitlich. Folgeelemente (weitere Merge-Rauten, Aktionsboxen) liegen direkt darunter auf gleicher x-Achse.
+- **Aktivitätsboxen (horizontale Zweige): Eintritt und Austritt auf GLEICHER Höhe.** Wenn eine Box von links/rechts (horizontal) betreten wird, muss sie auch auf derselben Seite **horizontal** verlassen werden – niemals an der Unterkante. Konkret: Austritt an der **gegenüberliegenden** kurzen Seite der Box (linke Kante bei linksseitigem Zweig), dann senkrecht auf dem Außenpfad weiterführen.
+  ```svg
+  <!-- Raute W-Spitze bei (204,80) → Box rechte Kante (164,80) → Box cy=80 -->
+  <line x1="204" y1="80" x2="164" y2="80" marker-end="url(#arr)"/>  <!-- Eintritt rechts -->
+  <rect x="60" y="64" width="104" height="32" .../>                  <!-- Box cy=80 -->
+  <line x1="60" y1="80" x2="30" y2="80"/>                           <!-- Austritt LINKS, gleiche Höhe y=80 -->
+  <line x1="30" y1="80" x2="30" y2="370"/>                          <!-- senkrecht auf Außenpfad -->
+  ```
 
 ### Netzwerktopologien – Cisco-Symbole (Pflicht)
 - Bei **jeder** Netzwerktopologie-Darstellung (VLANs, Routing, Switching, IP-Netze, etc.) **müssen** die Symbole aus `symbols/cisco/` verwendet werden.
@@ -164,6 +292,7 @@ Nach der XML-Erzeugung und Validierung wird **immer** eine vollständige, intera
 2. **`<div class="quiz-header">`** – weißer Metabereich unter Header
    - Emoji-Icon-Box (48×48px, orange), Quiz-Titel (h1), Untertitel (Klasse · Niveau · Anzahl)
    - Rechts: Badges für Zeitangabe und Gesamtpunkte
+   - **Zeitangabe-Badge:** `⏱ ca. X min` – Berechnung: **2 Minuten pro Frage** (Anzahl Fragen × 2). Beispiel: 2 Fragen → „ca. 4 min", 5 Fragen → „ca. 10 min".
 
 3. **`<div class="main-wrap">`** – 2-Spalten-Grid (`1fr 220px`), max-width 900px, zentriert
    - **Linke Spalte**: `.questions` – alle Fragekarten gestapelt

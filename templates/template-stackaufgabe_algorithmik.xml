@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- FRAGETYP: STACK
+
+VERWENDUNG: Algorithmische Aufgaben mit zufälligen Eingangsgrößen und diversen Ausgangsgrößen
+
+
+
+-->
+  <question type="stack">
+    <name>
+      <text>[Hier den Titel der Frage einfügen]</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[<p> [HIER DIE AUFGABENSTELLUNG EINFÜGEN]
+        
+        <span style="text-decoration: underline;"><strong>Aufgabe</strong></span>:&nbsp; <span dir="ltr">Gegeben ist der dargestellte Algorithmus. Welchen Wert haben die Variablen <strong>b</strong> und <strong>c?</strong></span></p><p><strong><em>Startwerte</em></strong>: a=\({@a1@}\), b=<strong>0</strong>, c=<strong>0</strong></p><p><strong style="font-size: 0.9375rem; color: rgb(33, 37, 41); font-family: SFMono-Regular, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; font-weight: bold;"><em><img src="@@PLUGINFILE@@/Strukto.png" alt="" width="908" height="206" role="presentation" class="img-responsive atto_image_button_text-bottom"><br></em></strong></p><p><strong style="font-size: 0.9375rem; color: rgb(33, 37, 41); font-family: SFMono-Regular, Menlo, Monaco, Consolas, &quot;Liberation Mono&quot;, &quot;Courier New&quot;, monospace; font-weight: bold;"><em>Antworten:</em></strong><br></p><p style=""><span>a) Die Variable b hat den Wert: [[input:ans1]]</span></p><p style="">[[validation:ans1]]</p><p></p>
+
+
+<p>b)&nbsp;Die Variable&nbsp;c hat den Wert: [[input:ans2]]</p><p><span style="font-size: 0.9375rem;">[[validation:ans2]]</span></p>
+
+<div>
+<div><br></div>
+</div>]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text></text>
+    </generalfeedback>
+    <defaultgrade>6</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <stackversion>
+      <text>2022082900</text>
+    </stackversion>
+    <questionvariables>
+      <text><![CDATA[
+
+[HIER DER ALGORITHMUS IN EINEM LISP ÄHNLICHEN SYNTAX]
+        
+a1 : rand(6)+1;
+a:a1
+b:0;
+c:0;
+
+
+prg:while a < 10 do (
+(b:b+1),
+(if (mod(a,2)=0) then 
+(a:a+1)
+else (
+(a:a+2),(c:c+1))
+));
+
+r1:b
+r2:c
+
+
+]]></text>
+    </questionvariables>
+    <specificfeedback format="html">
+      <text><![CDATA[<p>[[feedback:prt1]]</p>]]></text>
+    </specificfeedback>
+    <questionnote format="moodle_auto_format">
+      <text>1</text>
+    </questionnote>
+    <questiondescription format="moodle_auto_format">
+      <text></text>
+    </questiondescription>
+    <questionsimplify>1</questionsimplify>
+    <assumepositive>0</assumepositive>
+    <assumereal>0</assumereal>
+    <prtcorrect format="html">
+      <text><![CDATA[<p>Richtige Antwort, gut gemacht!</p>]]></text>
+    </prtcorrect>
+    <prtpartiallycorrect format="html">
+      <text><![CDATA[<p>Ihre Antwort ist teilweise korrekt.</p>]]></text>
+    </prtpartiallycorrect>
+    <prtincorrect format="html">
+      <text><![CDATA[<p>Falsche Antwort.</p>]]></text>
+    </prtincorrect>
+    <decimals>.</decimals>
+    <scientificnotation>*10</scientificnotation>
+    <multiplicationsign>dot</multiplicationsign>
+    <sqrtsign>1</sqrtsign>
+    <complexno>i</complexno>
+    <inversetrig>cos-1</inversetrig>
+    <logicsymbol>lang</logicsymbol>
+    <matrixparens>[</matrixparens>
+    <variantsselectionseed></variantsselectionseed>
+    <input>
+      <name>ans1</name>
+      <type>algebraic</type>
+      <tans>b</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <input>
+      <name>ans2</name>
+      <type>algebraic</type>
+      <tans>c</tans>
+      <boxsize>4</boxsize>
+      <strictsyntax>1</strictsyntax>
+      <insertstars>0</insertstars>
+      <syntaxhint></syntaxhint>
+      <syntaxattribute>0</syntaxattribute>
+      <forbidwords></forbidwords>
+      <allowwords></allowwords>
+      <forbidfloat>1</forbidfloat>
+      <requirelowestterms>0</requirelowestterms>
+      <checkanswertype>0</checkanswertype>
+      <mustverify>0</mustverify>
+      <showvalidation>0</showvalidation>
+      <options></options>
+    </input>
+    <prt>
+      <name>prt1</name>
+      <value>3.0000000</value>
+      <autosimplify>1</autosimplify>
+      <feedbackstyle>1</feedbackstyle>
+      <feedbackvariables>
+        <text></text>
+      </feedbackvariables>
+      <node>
+        <name>0</name>
+        <description></description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans1</sans>
+        <tans>b</tans>
+        <testoptions></testoptions>
+        <quiet>1</quiet>
+        <truescoremode>=</truescoremode>
+        <truescore>0.4</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>1</truenextnode>
+        <trueanswernote>prt1-1-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>zu a) Super !</p>]]></text>
+        </truefeedback>
+        <falsescoremode>=</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>1</falsenextnode>
+        <falseanswernote>prt1-1-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[<p>zu a) Leider falsch! Wenn a den Wert&nbsp;\({@a1@}\) hat, dann hat die Variable b am Ende des Programms den Wert&nbsp;\({@b@}\).</p>]]></text>
+        </falsefeedback>
+      </node>
+      <node>
+        <name>1</name>
+        <description></description>
+        <answertest>AlgEquiv</answertest>
+        <sans>ans2</sans>
+        <tans>c</tans>
+        <testoptions></testoptions>
+        <quiet>1</quiet>
+        <truescoremode>+</truescoremode>
+        <truescore>0.6</truescore>
+        <truepenalty></truepenalty>
+        <truenextnode>-1</truenextnode>
+        <trueanswernote>prt1-2-T</trueanswernote>
+        <truefeedback format="html">
+          <text><![CDATA[<p>zu b) Super!</p>]]></text>
+        </truefeedback>
+        <falsescoremode>-</falsescoremode>
+        <falsescore>0</falsescore>
+        <falsepenalty></falsepenalty>
+        <falsenextnode>-1</falsenextnode>
+        <falseanswernote>prt1-2-F</falseanswernote>
+        <falsefeedback format="html">
+          <text><![CDATA[zu b) Leider falsch! Wenn a den Wert&nbsp;\({@a1@}\) hat, dann hat die Variable c am Ende des Programms den Wert&nbsp;\({@c@}\).<br>]]></text>
+        </falsefeedback>
+      </node>
+    </prt>
+  </question>
+
+</quiz>
