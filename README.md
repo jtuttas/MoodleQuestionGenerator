@@ -11,11 +11,18 @@ MoodleQuestionGenerator/
 ├── res/                              # Generierte Moodle-XML-Fragedateien
 │   ├── quiz_aggregation_komposition_20260223.xml
 │   ├── quiz_aggregation_komposition_20260304.xml
+│   ├── quiz_coderunner_bankaccount_20260302.xml
+│   ├── quiz_coderunner_bankaccount_vererbung_20260302.xml
+│   ├── quiz_coderunner_bankaccount_vererbung_python_20260302.xml
+│   ├── quiz_coderunner_bankaccount_vererbung_python_svg_20260302.xml
+│   ├── quiz_coderunner_bankaccount_vererbung_svg_20260302.xml
 │   ├── quiz_coderunner_java_oop_20260304.xml
 │   ├── quiz_coderunner_java_vererbung_20260304.xml
-│   ├── quiz_vlan_systemintegration_20260223.xml
 │   ├── quiz_nm_beziehungen_20260224.xml
-│   └── quiz_troubleshooting_ip_netzwerke_20260225.xml
+│   ├── quiz_proxmox_ve_fisi_20260305.xml
+│   ├── quiz_troubleshooting_ip_netzwerke_20260225.xml
+│   ├── quiz_vererbung_java_20260302.xml
+│   └── quiz_vlan_systemintegration_20260223.xml
 │
 ├── symbols/
 │   └── cisco/                        # Cisco-Standard-Symbole als SVG
@@ -37,12 +44,18 @@ MoodleQuestionGenerator/
 |---|---|---|---|---|
 | `quiz_aggregation_komposition_20260223.xml` | Aggregation & Komposition (OOP) | FI Anwendungsentwicklung | 5 | ddmatch, ddwtos, multichoice, cloze |
 | `quiz_aggregation_komposition_20260304.xml` | Aggregation & Komposition (OOP) | FI Anwendungsentwicklung | 5 | ddmatch, ddwtos, multichoice, cloze, multichoice |
+| `quiz_coderunner_bankaccount_20260302.xml` | BankAccount-Klasse in Java | FI Anwendungsentwicklung | 1 | coderunner |
+| `quiz_coderunner_bankaccount_vererbung_20260302.xml` | BankAccount mit Vererbung (Java) | FI Anwendungsentwicklung | 1 | coderunner |
+| `quiz_coderunner_bankaccount_vererbung_python_20260302.xml` | BankAccount mit Vererbung (Python) | FI Anwendungsentwicklung | 1 | coderunner |
+| `quiz_coderunner_bankaccount_vererbung_python_svg_20260302.xml` | BankAccount mit Vererbung (Python, UML) | FI Anwendungsentwicklung | 1 | coderunner |
+| `quiz_coderunner_bankaccount_vererbung_svg_20260302.xml` | BankAccount mit Vererbung (Java, UML) | FI Anwendungsentwicklung | 1 | coderunner |
 | `quiz_coderunner_java_oop_20260304.xml` | Objektorientierung in Java | FI Anwendungsentwicklung | 5 | coderunner |
 | `quiz_coderunner_java_vererbung_20260304.xml` | OO Programmierung in Java (Schwerpunkt Vererbung) | FI Anwendungsentwicklung | 5 | coderunner |
-| `quiz_vlan_systemintegration_20260223.xml` | VLANs & IEEE 802.1Q | FI Systemintegration | 5 | ddmatch, ddwtos, multichoice, cloze |
 | `quiz_nm_beziehungen_20260224.xml` | N:M-Beziehungen (relationale DB) | FI Anwendungsentwicklung | 5 | ddmatch, multichoice, ddwtos, cloze |
+| `quiz_proxmox_ve_fisi_20260305.xml` | Proxmox VE – Virtualisierung | FI Systemintegration | 15 | matching, multichoice, cloze, ddwtos |
 | `quiz_troubleshooting_ip_netzwerke_20260225.xml` | Troubleshooting IP-Netzwerke | FI Systemintegration | 5 | ddmatch, multichoice, cloze, ddwtos |
-| `quiz_ipv6_lf9_erweiterung_20260302.xml` | IPv6: EUI-64, SLAAC, NDP, Übergänge | FI Systemintegration (LF9) | 8 | ddmatch, multichoice, ddwtos, cloze |
+| `quiz_vererbung_java_20260302.xml` | Java – Vererbung (Tier/Hund) | Mittelstufe / Oberstufe Informatik | 1 | coderunner |
+| `quiz_vlan_systemintegration_20260223.xml` | VLANs & IEEE 802.1Q | FI Systemintegration | 5 | ddmatch, ddwtos, multichoice, cloze |
 
 ---
 

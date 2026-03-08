@@ -18,7 +18,10 @@ Methode: **Extreme Programming (XP)** | Lastenheft-Version: **1.1**
 | `app/user-stories.md` | XP User Stories US-00 bis US-20 mit Story Points, Prio, Acceptance Tests |
 | `app/README.md` | Technische Projektdokumentation, Architektur, API, Iterationsfortschritt |
 | `app/backend/main.py` | FastAPI-Backend (einzige Backend-Sourcedatei) |
-| `app/frontend/index.html` | Vanilla-HTML/JS-Frontend (einzige Frontend-Sourcedatei) |
+| `app/backend/import_res.py` | Utility-Skript: importiert alle XMLs aus `res/` in `questions.db` |
+| `app/frontend/index.html` | HTML-Struktur des Frontends |
+| `app/frontend/styles.css` | CSS-Stile (ausgelagert) |
+| `app/frontend/script.js` | JavaScript-Logik (ausgelagert) |
 | `app/backend/requirements.txt` | Python-Abhängigkeiten |
 | `app/backend/.env` | Lokale Konfiguration (nicht im Repository) |
 | `app/backend/.env.example` | Konfigurationsvorlage mit allen Variablen |
@@ -46,7 +49,11 @@ Methode: **Extreme Programming (XP)** | Lastenheft-Version: **1.1**
   OpenAI ist Code-seitig vorbereitet, wird erst in Iteration 2 aktiviert.
 - **Single-File-Backend:** Alle Backend-Logik in `app/backend/main.py`  
   (DB-Modell, Routen, LLM-Calls, Prompt-Building, Static-Mount).
-- **Single-File-Frontend:** `app/frontend/index.html` enthält HTML + CSS + JS inline.
+- **Split-Frontend:** `app/frontend/` enthält drei separate Dateien:
+  - `index.html` – HTML-Struktur (verweist per `<link>`/`<script>` auf die anderen Dateien)
+  - `styles.css` – alle CSS-Stile
+  - `script.js` – alle JavaScript-Logik
+  FastAPI serviert das gesamte Verzeichnis als statische Dateien.
 - **Statische Dateien:** FastAPI serviert das Frontend aus `../frontend` (relative zum Backend-Verzeichnis).  
   BACKEND-URL wird im Frontend auto-detektiert: `window.location.port === "8000" ? "" : "http://localhost:8000"`.
 - **DB-Initialisierung:** Tabellen werden im `lifespan`-Context-Manager beim Start erstellt.

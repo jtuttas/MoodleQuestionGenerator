@@ -11,13 +11,16 @@ Methode: **Extreme Programming (XP)** | Stand: **08.03.2026**
 app/
 ├── backend/
 │   ├── main.py              # FastAPI-Backend (REST-API + statische Dateien)
+│   ├── import_res.py        # Utility: res/-XMLs in questions.db importieren
 │   ├── requirements.txt     # Python-Abhängigkeiten
 │   ├── .env                 # Lokale Konfiguration (nicht im Repository)
 │   ├── .env.example         # Konfigurationsvorlage
 │   ├── Dockerfile           # Container-Image (python:3.13-slim)
 │   └── questions.db         # SQLite-Datenbank (auto-erstellt)
 ├── frontend/
-│   └── index.html           # Vanilla-HTML/JS-Frontend (two-panel layout)
+│   ├── index.html           # HTML-Struktur (verweist auf styles.css + script.js)
+│   ├── styles.css           # CSS-Stile (ausgelagert)
+│   └── script.js            # JavaScript-Logik (ausgelagert)
 ├── docker-compose.yml       # Backend + Ollama als Docker-Stack
 ├── lastenheft_moodle_ki_webapp.md
 ├── user-stories.md
