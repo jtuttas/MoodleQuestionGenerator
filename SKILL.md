@@ -149,16 +149,6 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
   student_src = """{{ STUDENT_ANSWER }}"""
   ```
 
-#### `stack` – XML-Tag-Regeln (kritisch)
-- **`<name>`-Tag statt `<n>`-Tag (Pflicht):** Neuere Moodle-Versionen (4.x) erwarten für STACK-Fragen durchgehend `<name>` statt `<n>`. Dies gilt für **alle** Ebenen:
-  - Fragetitel: `<name><text>Titel der Frage</text></name>`
-  - Input-Namen: `<name>ans1</name>`, `<name>ans2</name>` usw.
-  - PRT-Namen: `<name>prt1</name>`
-  - Node-Nummern: `<name>0</name>`, `<name>1</name>` usw.
-- Das Template `template-stackaufgabe_algorithmik.xml` verwendet noch den alten `<n>`-Tag – beim Generieren **immer** `<name>` verwenden, nie `<n>`.
-- **Keine Nicht-ASCII-Zeichen** im `<name>`-Tag (Fragetitel): kein `–`, `—`, keine Umlaute. Statt `–` immer `-` verwenden.
-
-
 ## SVG-Regeln (Inline im Fragetext)
 - SVG immer inline im CDATA-Fragetext, mit:
   - `xmlns="http://www.w3.org/2000/svg"`
@@ -169,40 +159,66 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
 - Definiere Marker in `<defs>` und verwende sie per `marker-end="url(#id)"`.
 - Für gestrichelte Beziehungen: `stroke-dasharray="6,3"`.
 
-### Flussdiagramme – Kontrollflusspfeile (kritisch)
-- **Pfeile dürfen NIEMALS durch Boxen, Rauten oder andere Elemente gehen.** Jede Linie muss außen um alle Elemente herumgeführt werden.
-- **Rücksprungpfeile** (z. B. Schleifenrücksprung zur Bedingung) müssen **seitlich außen** um sämtliche Elemente herumgeführt werden – typisch links oder rechts vorbei, mit ausreichend Abstand (≥ 12 px zur nächsten Box-Kante).
-- **Vor dem Abschluss rechnerisch prüfen:** Liegt die Rücksprunglinie bei x=X? Dann muss gelten: X < (linke Kante aller Elemente auf diesem Weg − 12 px). Gleiches gilt für rechts geführte Rücksprünge.
-- **Zuweisungen** in Flussdiagramm-Boxen immer mit `=` schreiben, **niemals** mit `←`: z. B. `s = s + a`, `a = a - 1`, **nicht** `s ← s + a`.
-- **Muster für einen korrekten Links-Rücksprung** (Schleife zurück zur Bedingungsraute bei y=150, linke Spitze bei x=190):
-  ```svg
-  <!-- a=a-1 Box linke Kante bei x=220, Box-Mitte y=308 -->
-  <line x1="220" y1="308" x2="8" y2="308"/>   <!-- nach links außen -->
-  <line x1="8" y1="308" x2="8" y2="150"/>      <!-- hoch, außen an allen Elementen vorbei -->
-  <line x1="8" y1="150" x2="190" y2="150" marker-end="url(#arr)"/>  <!-- zur Raute -->
-  ```
-
-- **Merge-Rauten immer nach UNTEN verlassen.** Die Zusammenführungsraute (leere Raute) wird stets an ihrer S-Spitze nach unten verlassen – niemals seitlich. Folgeelemente (weitere Merge-Rauten, Aktionsboxen) liegen direkt darunter auf gleicher x-Achse.
-- **Aktivitätsboxen (horizontale Zweige): Eintritt und Austritt auf GLEICHER Höhe.** Wenn eine Box von links/rechts (horizontal) betreten wird, muss sie auch auf derselben Seite **horizontal** verlassen werden – niemals an der Unterkante. Konkret: Austritt an der **gegenüberliegenden** kurzen Seite der Box (linke Kante bei linksseitigem Zweig), dann senkrecht auf dem Außenpfad weiterführen.
-  ```svg
-  <!-- Raute W-Spitze bei (204,80) → Box rechte Kante (164,80) → Box cy=80 -->
-  <line x1="204" y1="80" x2="164" y2="80" marker-end="url(#arr)"/>  <!-- Eintritt rechts -->
-  <rect x="60" y="64" width="104" height="32" .../>                  <!-- Box cy=80 -->
-  <line x1="60" y1="80" x2="30" y2="80"/>                           <!-- Austritt LINKS, gleiche Höhe y=80 -->
-  <line x1="30" y1="80" x2="30" y2="370"/>                          <!-- senkrecht auf Außenpfad -->
-  ```
-
 ### Netzwerktopologien – Cisco-Symbole (Pflicht)
 - Bei **jeder** Netzwerktopologie-Darstellung (VLANs, Routing, Switching, IP-Netze, etc.) **müssen** die Symbole aus `symbols/cisco/` verwendet werden.
-- Verfügbare Symbole (Pfad relativ zum Workspace-Root):
-  | Datei | Symbol | viewBox |
+- Verfügbare Symbole:
+  | Datei | Symbol | viewBox | Empfohlene Rendergröße |
+  |---|---|---|---|
+  | `symbols/cisco/router.svg` | Cisco Router (3D-Zylinder, blau) | `0 0 60 41` | `width="84" height="57"` |
+  | `symbols/cisco/switch.svg` | Cisco L2-Switch (3D-Gehäuse, blau) | `0 0 77 39` | `width="66" height="34"` |
+  | `symbols/cisco/pc.svg` | Cisco PC/Workstation (3D-Arbeitsplatz, blau) | `0 0 59 53` | `width="78" height="70"` |
+
+- **Einbettung: ausschließlich via Base64-`<image>`-Tag** (Pflicht, keine andere Methode):
+  1. SVG-Datei binär lesen und als Base64 kodieren (Python: `base64.b64encode(data).decode()`)
+  2. Data-URI bauen: `data:image/svg+xml;base64,<BASE64>`
+  3. Im Topologie-SVG als `<image href="<DATA-URI>" x="..." y="..." width="..." height="..."/>` einsetzen
+
+  **Python-Snippet (immer so verwenden):**
+  ```python
+  import base64
+
+  symbols = {}
+  for name in ['pc', 'switch', 'router']:
+      with open(f'/mnt/skills/user/moodle-fragen-generator/symbols/cisco/{name}.svg', 'rb') as f:
+          data = f.read()
+      symbols[name] = 'data:image/svg+xml;base64,' + base64.b64encode(data).decode()
+
+  PC = symbols['pc']
+  SW = symbols['switch']
+  RT = symbols['router']
+  ```
+
+  **Verwendung im SVG-String:**
+  ```python
+  svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="580" height="200" ...>
+    <!-- PC bei (x=18, y=53), 78×70 px -->
+    <image href="{PC}" x="18" y="53" width="78" height="70"/>
+    <text x="57" y="134" text-anchor="middle" font-size="12" font-weight="bold">PC-A</text>
+    <text x="57" y="147" text-anchor="middle" font-size="10" fill="#495057">192.168.1.10</text>
+
+    <!-- Switch bei (x=158, y=71), 66×34 px -->
+    <image href="{SW}" x="158" y="71" width="66" height="34"/>
+    <text x="191" y="115" text-anchor="middle" font-size="12" font-weight="bold">SW-A</text>
+
+    <!-- Router bei (x=252, y=61), 84×57 px -->
+    <image href="{RT}" x="252" y="61" width="84" height="57"/>
+    <text x="291" y="126" text-anchor="middle" font-size="12" font-weight="bold">Router R1</text>
+
+    <!-- Verbindungslinien als <line>-Elemente -->
+    <line x1="96" y1="88" x2="158" y2="88" stroke="#495057" stroke-width="2"/>
+  </svg>'''
+  ```
+
+- **Ankerpunkte** (Mitte des Symbols, für Verbindungslinien-Berechnung):
+  | Symbol | Horizontale Mitte | Vertikale Mitte (Anschluss) |
   |---|---|---|
-  | `symbols/cisco/router.svg` | Cisco Router (3D-Zylinder, blau) | `0 0 60 41` |
-  | `symbols/cisco/switch.svg` | Cisco L2-Switch (3D-Gehäuse, blau) | `0 0 77 39` |
-  | `symbols/cisco/pc.svg` | Cisco PC/Workstation (3D-Arbeitsplatz, blau) | `0 0 59 53` |
-- **Einbettung:** Symbol-Pfade werden 1:1 aus der jeweiligen SVG-Datei als `<symbol id="...">` in den `<defs>`-Block des Fragen-SVG übernommen (CSS-Klassen als direkte Attribute auflösen, `xlink:href`-Referenzen intern umbenennen, damit pro Diagramm eindeutige IDs entstehen).
-- **Keine selbst gezeichneten** Router/Switch/PC-Primitive (Kreise, Rechtecke, etc.) – ausschließlich die Inhalte aus `symbols/cisco/`.
-- Trunk-Links und einfache Verbindungslinien werden weiterhin als SVG-`<line>`-Elemente gezeichnet (kein Symbol notwendig).
+  | PC (78×70) | x + 39 | y + 35 |
+  | Switch (66×34) | x + 33 | y + 17 |
+  | Router (84×57) | x + 42 | y + 28 |
+
+- **Keine selbst gezeichneten** Router/Switch/PC-Primitive (Kreise, Rechtecke, etc.) – ausschließlich die Cisco-Symbole via Base64-`<image>`.
+- Trunk-Links und einfache Verbindungslinien werden als SVG-`<line>`-Elemente gezeichnet (kein Symbol notwendig).
+- Labels (Gerätename, IP-Adresse) werden als `<text>`-Elemente **unterhalb** des Symbols platziert, vertikal versetzt: Name bei `symbol_y + symbol_height + 12`, IP bei `symbol_y + symbol_height + 24`.
 
 ### UML/Diagramm-Konsistenz
 - Klassendiagramme:
@@ -292,7 +308,6 @@ Nach der XML-Erzeugung und Validierung wird **immer** eine vollständige, intera
 2. **`<div class="quiz-header">`** – weißer Metabereich unter Header
    - Emoji-Icon-Box (48×48px, orange), Quiz-Titel (h1), Untertitel (Klasse · Niveau · Anzahl)
    - Rechts: Badges für Zeitangabe und Gesamtpunkte
-   - **Zeitangabe-Badge:** `⏱ ca. X min` – Berechnung: **2 Minuten pro Frage** (Anzahl Fragen × 2). Beispiel: 2 Fragen → „ca. 4 min", 5 Fragen → „ca. 10 min".
 
 3. **`<div class="main-wrap">`** – 2-Spalten-Grid (`1fr 220px`), max-width 900px, zentriert
    - **Linke Spalte**: `.questions` – alle Fragekarten gestapelt
