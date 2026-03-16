@@ -16,6 +16,10 @@ MoodleQuestionGenerator/
 │   ├── quiz_vlan_systemintegration_20260223.xml
 │   ├── quiz_nm_beziehungen_20260224.xml
 │   └── quiz_troubleshooting_ip_netzwerke_20260225.xml
+│   ├── quiz_vlsm_systemintegration_20260316.html
+│   └── quiz_vlsm_systemintegration_20260316.xml
+│   ├── quiz_vlsm_systemintegration_weiterfuehrend_20260316.html
+│   └── quiz_vlsm_systemintegration_weiterfuehrend_20260316.xml
 │
 ├── symbols/
 │   └── cisco/                        # Cisco-Standard-Symbole als SVG
@@ -43,6 +47,10 @@ MoodleQuestionGenerator/
 | `quiz_nm_beziehungen_20260224.xml` | N:M-Beziehungen (relationale DB) | FI Anwendungsentwicklung | 5 | ddmatch, multichoice, ddwtos, cloze |
 | `quiz_troubleshooting_ip_netzwerke_20260225.xml` | Troubleshooting IP-Netzwerke | FI Systemintegration | 5 | ddmatch, multichoice, cloze, ddwtos |
 | `quiz_ipv6_lf9_erweiterung_20260302.xml` | IPv6: EUI-64, SLAAC, NDP, Übergänge | FI Systemintegration (LF9) | 8 | ddmatch, multichoice, ddwtos, cloze |
+| `quiz_klassendiagramm_ddwtos_20260315.xml` | UML-Klassendiagramme: Assoziationen (Komposition, Aggregation, Assoziation, Vererbung) | FOS/BOS Informatik / OOP | 3 | ddwtos, ddmatch |
+| `quiz_klassendiagramm_tierheim_komposition_20260316.xml` | UML-Klassendiagramm Tierheim/Tierakte/Pfleger – korrekte Komposition (Tierakte), Aggregation (Pfleger), Assoziation | FOS/BOS Informatik / OOP | 1 | ddwtos |
+| `quiz_vlsm_systemintegration_20260316.xml` | VLSM: anspruchsvolle Netzplanung mit Teilnetzvergabe | FI Systemintegration | 3 | multichoice, ddwtos, cloze |
+| `quiz_vlsm_systemintegration_weiterfuehrend_20260316.xml` | VLSM: weiterfuehrende Teilnetzplanung ohne Multiple Choice | FI Systemintegration | 3 | ddmatch, ddwtos, ordering |
 
 ---
 

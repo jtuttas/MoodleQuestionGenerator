@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- ================================================================
+     Moodle 4.x Quiz: VLSM weiterfuehrende Aufgaben
+     Zielgruppe: Fachinformatiker Systemintegration
+     Fragetypen: ddmatch | ddwtos | ordering
+     Erstellt: 2026-03-16
+     ================================================================ -->
+
+  <question type="ddmatch">
+    <name>
+      <text>VLSM - Segmente den Teilnetzen zuordnen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[
+<p>Ein Standort nutzt das Basisnetz <strong>172.31.200.0/22</strong>. Die Teilnetze werden per VLSM in <strong>absteigender Hostzahl</strong> und immer ab der kleinsten freien Netzadresse vergeben.</p>
+<p>Ordnen Sie jedem Segment das korrekte Teilnetz zu.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="290" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <symbol id="vlsm4-router" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" fill="#fff"/>
+    </symbol>
+    <symbol id="vlsm4-switch" viewBox="0 0 77 39" overflow="visible">
+      <g fill="#126d99" stroke="#fff" stroke-width=".787" stroke-linejoin="miter">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" fill="#fff"/>
+    </symbol>
+  </defs>
+  <rect x="20" y="18" width="720" height="252" rx="8" fill="#f8fbfd" stroke="#d7e3ea"/>
+  <text x="380" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4054">Standortplanung 172.31.200.0/22</text>
+  <use href="#vlsm4-router" x="346" y="112" width="68" height="46"/>
+  <text x="380" y="171" text-anchor="middle" font-size="12" font-weight="bold">Standort-Router</text>
+  <line x1="316" y1="132" x2="164" y2="86" stroke="#35586b" stroke-width="2"/>
+  <line x1="316" y1="144" x2="164" y2="220" stroke="#35586b" stroke-width="2"/>
+  <line x1="444" y1="132" x2="596" y2="86" stroke="#35586b" stroke-width="2"/>
+  <line x1="444" y1="144" x2="596" y2="220" stroke="#35586b" stroke-width="2" stroke-dasharray="6,3"/>
+  <use href="#vlsm4-switch" x="128" y="64" width="84" height="44"/>
+  <text x="170" y="121" text-anchor="middle" font-size="12" font-weight="bold">Verwaltung</text>
+  <text x="170" y="136" text-anchor="middle" font-size="11" fill="#4e6573">120 Hosts</text>
+  <use href="#vlsm4-switch" x="128" y="198" width="84" height="44"/>
+  <text x="170" y="255" text-anchor="middle" font-size="12" font-weight="bold">VoIP</text>
+  <text x="170" y="270" text-anchor="middle" font-size="11" fill="#4e6573">60 Hosts</text>
+  <use href="#vlsm4-switch" x="554" y="64" width="84" height="44"/>
+  <text x="596" y="121" text-anchor="middle" font-size="12" font-weight="bold">WLAN</text>
+  <text x="596" y="136" text-anchor="middle" font-size="11" fill="#4e6573">28 Hosts</text>
+  <use href="#vlsm4-router" x="562" y="204" width="68" height="46"/>
+  <text x="596" y="261" text-anchor="middle" font-size="12" font-weight="bold">Transit</text>
+  <text x="596" y="276" text-anchor="middle" font-size="11" fill="#4e6573">2 Hosts</text>
+</svg>
+      ]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[
+<p>Korrekte Zuordnung im vergebenen Plan:</p>
+<ul>
+  <li>Verwaltung: <code>172.31.200.0/25</code></li>
+  <li>VoIP: <code>172.31.200.128/26</code></li>
+  <li>WLAN: <code>172.31.200.192/27</code></li>
+  <li>Transit: <code>172.31.200.224/30</code></li>
+</ul>
+      ]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.1</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>true</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Alle Zuordnungen sind korrekt.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Ein Teil der Zuordnungen ist korrekt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Mindestens eine Zuordnung passt nicht zur VLSM-Planung.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <subquestion format="html">
+      <text><![CDATA[<p>Verwaltung</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>172.31.200.0/25</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>VoIP</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>172.31.200.128/26</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>WLAN</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>172.31.200.192/27</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p>Transit</p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>172.31.200.224/30</p>]]></text>
+      </answer>
+    </subquestion>
+    <subquestion format="html">
+      <text><![CDATA[<p></p>]]></text>
+      <answer format="html">
+        <text><![CDATA[<p>172.31.201.0/27</p>]]></text>
+      </answer>
+    </subquestion>
+  </question>
+
+  <question type="ddwtos">
+    <name>
+      <text>VLSM - Luecken im Adressplan fuellen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[
+<p>Das Basisnetz <strong>10.90.16.0/21</strong> wird fuer vier Segmente in absteigender Hostzahl aufgeteilt. Verwenden Sie jeweils das kleinste passende Teilnetz.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="292" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <symbol id="vlsm5-router" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" fill="#fff"/>
+    </symbol>
+    <symbol id="vlsm5-switch" viewBox="0 0 77 39" overflow="visible">
+      <g fill="#126d99" stroke="#fff" stroke-width=".787" stroke-linejoin="miter">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" fill="#fff"/>
+    </symbol>
+  </defs>
+  <rect x="20" y="18" width="720" height="252" rx="8" fill="#f8fbfd" stroke="#d7e3ea"/>
+  <text x="380" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4054">Adressplan 10.90.16.0/21</text>
+  <use href="#vlsm5-router" x="346" y="110" width="68" height="46"/>
+  <text x="380" y="169" text-anchor="middle" font-size="12" font-weight="bold">Backbone</text>
+  <line x1="316" y1="132" x2="164" y2="88" stroke="#35586b" stroke-width="2"/>
+  <line x1="316" y1="144" x2="164" y2="218" stroke="#35586b" stroke-width="2"/>
+  <line x1="444" y1="132" x2="596" y2="88" stroke="#35586b" stroke-width="2"/>
+  <line x1="444" y1="144" x2="596" y2="218" stroke="#35586b" stroke-width="2" stroke-dasharray="6,3"/>
+  <use href="#vlsm5-switch" x="128" y="66" width="84" height="44"/>
+  <text x="170" y="123" text-anchor="middle" font-size="12" font-weight="bold">Labor</text>
+  <text x="170" y="138" text-anchor="middle" font-size="11" fill="#4e6573">180 Hosts</text>
+  <use href="#vlsm5-switch" x="128" y="198" width="84" height="44"/>
+  <text x="170" y="255" text-anchor="middle" font-size="12" font-weight="bold">Office</text>
+  <text x="170" y="270" text-anchor="middle" font-size="11" fill="#4e6573">90 Hosts</text>
+  <use href="#vlsm5-switch" x="554" y="66" width="84" height="44"/>
+  <text x="596" y="123" text-anchor="middle" font-size="12" font-weight="bold">Kameras</text>
+  <text x="596" y="138" text-anchor="middle" font-size="11" fill="#4e6573">30 Hosts</text>
+  <use href="#vlsm5-router" x="562" y="202" width="68" height="46"/>
+  <text x="596" y="259" text-anchor="middle" font-size="12" font-weight="bold">PtP</text>
+  <text x="596" y="274" text-anchor="middle" font-size="11" fill="#4e6573">2 Hosts</text>
+</svg>
+<p>Labor: [[1]]</p>
+<p>Office: [[2]]</p>
+<p>Kameras: [[3]]</p>
+<p>PtP: [[4]]</p>
+      ]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[
+<p>Der korrekte Plan lautet:</p>
+<ul>
+  <li>Labor: <code>10.90.16.0/24</code></li>
+  <li>Office: <code>10.90.17.0/25</code></li>
+  <li>Kameras: <code>10.90.17.128/27</code></li>
+  <li>PtP: <code>10.90.17.160/30</code></li>
+</ul>
+      ]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.25</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <correctfeedback format="html">
+      <text>Alle Luecken sind korrekt gefuellt.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Ein Teil des Adressplans stimmt bereits.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Mindestens eine Netzadresse oder ein Praefix ist falsch.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <dragbox><text>10.90.16.0/24</text><group>1</group></dragbox>
+    <dragbox><text>10.90.17.0/25</text><group>2</group></dragbox>
+    <dragbox><text>10.90.17.128/27</text><group>3</group></dragbox>
+    <dragbox><text>10.90.17.160/30</text><group>4</group></dragbox>
+    <dragbox><text>10.90.16.0/25</text><group>1</group></dragbox>
+    <dragbox><text>10.90.17.0/26</text><group>2</group></dragbox>
+    <dragbox><text>10.90.17.128/28</text><group>3</group></dragbox>
+    <dragbox><text>10.90.17.164/30</text><group>4</group></dragbox>
+  </question>
+
+  <question type="ordering">
+    <name>
+      <text>VLSM - Vergabeschritte in die richtige Reihenfolge bringen</text>
+    </name>
+    <questiontext format="html">
+      <text><![CDATA[
+<p>Aus dem Netz <strong>192.168.140.0/24</strong> sollen die Segmente Support (62 Hosts), Schulung (30 Hosts), IoT (14 Hosts) und Link (2 Hosts) geplant werden.</p>
+<p>Bringen Sie die folgenden Vergabeschritte in die korrekte Reihenfolge der VLSM-Planung.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="760" height="260" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <symbol id="vlsm6-router" viewBox="0 0 60 41" overflow="visible">
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="#0e6f9c"/>
+      <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="#0e6f9c"/>
+      <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+      <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" fill="#fff"/>
+    </symbol>
+    <symbol id="vlsm6-switch" viewBox="0 0 77 39" overflow="visible">
+      <g fill="#126d99" stroke="#fff" stroke-width=".787" stroke-linejoin="miter">
+        <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+        <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+      </g>
+      <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" fill="#fff"/>
+    </symbol>
+  </defs>
+  <rect x="20" y="18" width="720" height="220" rx="8" fill="#f8fbfd" stroke="#d7e3ea"/>
+  <text x="380" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4054">Planung 192.168.140.0/24</text>
+  <use href="#vlsm6-router" x="346" y="96" width="68" height="46"/>
+  <line x1="316" y1="118" x2="166" y2="82" stroke="#35586b" stroke-width="2"/>
+  <line x1="316" y1="128" x2="166" y2="190" stroke="#35586b" stroke-width="2"/>
+  <line x1="444" y1="118" x2="594" y2="82" stroke="#35586b" stroke-width="2"/>
+  <line x1="444" y1="128" x2="594" y2="190" stroke="#35586b" stroke-width="2" stroke-dasharray="6,3"/>
+  <use href="#vlsm6-switch" x="124" y="60" width="84" height="44"/>
+  <text x="166" y="118" text-anchor="middle" font-size="12" font-weight="bold">Support</text>
+  <text x="166" y="133" text-anchor="middle" font-size="11" fill="#4e6573">62 Hosts</text>
+  <use href="#vlsm6-switch" x="124" y="168" width="84" height="44"/>
+  <text x="166" y="226" text-anchor="middle" font-size="12" font-weight="bold">Schulung</text>
+  <use href="#vlsm6-switch" x="552" y="60" width="84" height="44"/>
+  <text x="594" y="118" text-anchor="middle" font-size="12" font-weight="bold">IoT</text>
+  <text x="594" y="133" text-anchor="middle" font-size="11" fill="#4e6573">14 Hosts</text>
+  <use href="#vlsm6-router" x="560" y="172" width="68" height="46"/>
+  <text x="594" y="229" text-anchor="middle" font-size="12" font-weight="bold">Link</text>
+</svg>
+      ]]></text>
+    </questiontext>
+    <generalfeedback format="html">
+      <text><![CDATA[
+<p>Korrekte Reihenfolge:</p>
+<ol>
+  <li>Support: <code>192.168.140.0/26</code></li>
+  <li>Schulung: <code>192.168.140.64/27</code></li>
+  <li>IoT: <code>192.168.140.96/28</code></li>
+  <li>Link: <code>192.168.140.112/30</code></li>
+</ol>
+      ]]></text>
+    </generalfeedback>
+    <defaultgrade>1</defaultgrade>
+    <penalty>0.3333333</penalty>
+    <hidden>0</hidden>
+    <idnumber></idnumber>
+    <shuffleanswers>1</shuffleanswers>
+    <layouttype>0</layouttype>
+    <selecttype>0</selecttype>
+    <selectcount>0</selectcount>
+    <gradingtype>0</gradingtype>
+    <showgrading>1</showgrading>
+    <correctfeedback format="html">
+      <text>Die Reihenfolge ist vollstaendig korrekt.</text>
+    </correctfeedback>
+    <partiallycorrectfeedback format="html">
+      <text>Ein Teil der Reihenfolge stimmt.</text>
+    </partiallycorrectfeedback>
+    <incorrectfeedback format="html">
+      <text>Die Schritte sind noch nicht in der richtigen Reihenfolge.</text>
+    </incorrectfeedback>
+    <shownumcorrect/>
+    <answer fraction="1" format="html">
+      <text><![CDATA[<p>Support mit 62 Hosts erhaelt zuerst das Netz <code>192.168.140.0/26</code>.</p>]]></text>
+      <feedback format="html"><text></text></feedback>
+      <md5key></md5key>
+    </answer>
+    <answer fraction="2" format="html">
+      <text><![CDATA[<p>Schulung folgt mit <code>192.168.140.64/27</code>.</p>]]></text>
+      <feedback format="html"><text></text></feedback>
+      <md5key></md5key>
+    </answer>
+    <answer fraction="3" format="html">
+      <text><![CDATA[<p>IoT wird danach als <code>192.168.140.96/28</code> vergeben.</p>]]></text>
+      <feedback format="html"><text></text></feedback>
+      <md5key></md5key>
+    </answer>
+    <answer fraction="4" format="html">
+      <text><![CDATA[<p>Zum Schluss erhaelt der Link das Netz <code>192.168.140.112/30</code>.</p>]]></text>
+      <feedback format="html"><text></text></feedback>
+      <md5key></md5key>
+    </answer>
+  </question>
+
+</quiz>

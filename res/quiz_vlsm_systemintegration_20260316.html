@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VLSM fuer Systemintegration - Vorschau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --moodle-orange: #f98012;
+      --moodle-orange-dark: #d4600a;
+      --moodle-blue: #0f6cbf;
+      --moodle-blue-light: #e8f4fd;
+      --moodle-green: #1d7a1d;
+      --moodle-green-light: #d4edda;
+      --moodle-red: #ca3120;
+      --moodle-red-light: #fde8e6;
+      --moodle-gray: #6a737b;
+      --moodle-gray-light: #f3f3f3;
+      --moodle-border: #dee2e6;
+      --moodle-text: #1d2125;
+      --moodle-white: #ffffff;
+      --radius: 4px;
+      --shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.5;
+      color: var(--moodle-text);
+      background: #e9eaec;
+    }
+    .site-header {
+      height: 52px;
+      background: var(--moodle-orange);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+    }
+    .site-header .logo { color: white; font-weight: 700; font-size: 18px; }
+    .site-header .breadcrumb { color: rgba(255,255,255,.8); font-size: 12px; }
+    .quiz-header {
+      background: white;
+      border-bottom: 1px solid var(--moodle-border);
+      padding: 20px 24px;
+    }
+    .quiz-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .quiz-icon {
+      width: 48px;
+      height: 48px;
+      background: var(--moodle-orange);
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+      color: white;
+    }
+    .quiz-meta h1 { margin: 0; font-size: 22px; line-height: 1.2; }
+    .quiz-meta p { margin: 4px 0 0; color: var(--moodle-gray); font-size: 13px; }
+    .quiz-badges {
+      margin-left: auto;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      background: var(--moodle-gray-light);
+      border: 1px solid var(--moodle-border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+    .main-wrap {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 16px 24px;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 20px;
+      align-items: start;
+    }
+    .question-card,
+    .sidebar-card,
+    .submit-wrap {
+      background: white;
+      border: 1px solid var(--moodle-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .question-card {
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+    .question-header {
+      background: var(--moodle-gray-light);
+      border-bottom: 1px solid var(--moodle-border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .q-num { color: var(--moodle-orange); font-weight: 700; font-size: 15px; }
+    .q-title { flex: 1; font-weight: 600; min-width: 160px; }
+    .q-type-badge {
+      font-size: 11px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 10px;
+      border: 1px solid;
+    }
+    .type-mc { background: #e8f4fd; color: #0f6cbf; border-color: #0f6cbf; }
+    .type-dnd { background: #f0fdf4; color: #166534; border-color: #166534; }
+    .type-cloze { background: #fdf4ff; color: #6b21a8; border-color: #9333ea; }
+    .q-points { color: var(--moodle-gray); font-size: 13px; }
+    .question-body { padding: 20px 22px; }
+    .question-footer {
+      background: var(--moodle-gray-light);
+      border-top: 1px solid var(--moodle-border);
+      padding: 8px 16px;
+      display: flex;
+      justify-content: space-between;
+      color: var(--moodle-gray);
+      font-size: 12px;
+    }
+    .diagram-wrap {
+      border: 1px solid var(--moodle-border);
+      border-radius: var(--radius);
+      background: #fafafa;
+      overflow: hidden;
+      margin: 12px 0 14px;
+    }
+    .answer-option {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      border: 1px solid var(--moodle-border);
+      border-radius: var(--radius);
+      background: white;
+      cursor: pointer;
+      margin-bottom: 10px;
+      transition: border-color .15s, background .15s;
+    }
+    .answer-option:hover { border-color: var(--moodle-blue); }
+    .answer-option.correct { background: var(--moodle-green-light); border-color: var(--moodle-green); }
+    .answer-option.incorrect { background: var(--moodle-red-light); border-color: var(--moodle-red); }
+    .answer-option.disabled { cursor: default; opacity: .78; }
+    .answer-radio {
+      width: 22px;
+      height: 22px;
+      border: 2px solid var(--moodle-border);
+      border-radius: 50%;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      margin-top: 1px;
+    }
+    .answer-option.correct .answer-radio { border-color: var(--moodle-green); background: var(--moodle-green); }
+    .answer-option.incorrect .answer-radio { border-color: var(--moodle-red); background: var(--moodle-red); }
+    .answer-option .answer-text { flex: 1; }
+    .drop-slot {
+      display: inline-block;
+      min-width: 150px;
+      min-height: 28px;
+      padding: 3px 10px;
+      margin: 2px 0;
+      border: 2px dashed var(--moodle-border);
+      border-radius: 3px;
+      background: #f8f9fa;
+      text-align: center;
+      font-size: 13px;
+      font-weight: 600;
+      color: #9aa3a8;
+      cursor: pointer;
+      transition: border-color .15s, background .15s;
+    }
+    .drop-slot:hover { border-color: var(--moodle-blue); background: var(--moodle-blue-light); }
+    .drop-slot.filled { color: var(--moodle-text); }
+    .drop-slot.correct-slot { border-style: solid; border-color: var(--moodle-green); background: var(--moodle-green-light); color: var(--moodle-green); }
+    .drop-slot.wrong-slot { border-style: solid; border-color: var(--moodle-red); background: var(--moodle-red-light); color: var(--moodle-red); }
+    .chip-pool {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: var(--moodle-gray-light);
+      border: 1px solid var(--moodle-border);
+      border-radius: var(--radius);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .chip-pool-label {
+      width: 100%;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--moodle-gray);
+      margin-bottom: 2px;
+    }
+    .drag-chip {
+      display: inline-block;
+      padding: 5px 12px;
+      border: 2px solid;
+      border-radius: 3px;
+      background: white;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      user-select: none;
+      transition: opacity .15s, transform .15s;
+    }
+    .drag-chip.selected { transform: translateY(-1px); }
+    .drag-chip.used { opacity: .32; pointer-events: none; }
+    .drag-chip[data-group="1"] { color: #0f6cbf; border-color: #0f6cbf; }
+    .drag-chip[data-group="1"].selected { background: #0f6cbf; color: white; }
+    .drag-chip[data-group="2"] { color: #166534; border-color: #166534; }
+    .drag-chip[data-group="2"].selected { background: #166534; color: white; }
+    .drag-chip[data-group="3"] { color: #9333ea; border-color: #9333ea; }
+    .drag-chip[data-group="3"].selected { background: #9333ea; color: white; }
+    .drag-chip[data-group="4"] { color: #b45309; border-color: #b45309; }
+    .drag-chip[data-group="4"].selected { background: #b45309; color: white; }
+    .check-btn,
+    .submit-btn {
+      display: inline-block;
+      border: none;
+      border-radius: var(--radius);
+      background: var(--moodle-blue);
+      color: white;
+      padding: 8px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    .check-btn:hover,
+    .submit-btn:hover { background: #0a56a0; }
+    .submit-btn { background: var(--moodle-orange); padding: 10px 28px; }
+    .submit-btn:hover { background: var(--moodle-orange-dark); }
+    .feedback-box {
+      display: none;
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-left: 4px solid;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      animation: fadeIn .2s ease;
+    }
+    .feedback-box.show { display: block; }
+    .feedback-box.correct { background: var(--moodle-green-light); border-color: var(--moodle-green); color: #0d4f0d; }
+    .feedback-box.incorrect { background: var(--moodle-red-light); border-color: var(--moodle-red); color: #7b1e13; }
+    .feedback-box.info { background: var(--moodle-blue-light); border-color: var(--moodle-blue); color: #08407a; }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-4px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    pre {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 13px;
+      background: #1e1e2e;
+      color: #cdd6f4;
+      border-radius: 4px;
+      padding: 16px 18px;
+      overflow-x: auto;
+      line-height: 1.7;
+      margin: 12px 0;
+      white-space: pre-wrap;
+    }
+    code {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 13px;
+      background: #f3f4f6;
+      border: 1px solid #e5e7eb;
+      border-radius: 3px;
+      padding: 1px 5px;
+    }
+    .cloze-select {
+      min-width: 170px;
+      font-family: 'Source Code Pro', monospace;
+      font-size: 13px;
+      background: white;
+      color: var(--moodle-text);
+      border: 1px solid var(--moodle-border);
+      border-radius: 4px;
+      padding: 3px 6px;
+      margin: 0 4px;
+      vertical-align: middle;
+    }
+    .correct-cloze { border-color: var(--moodle-green); background: var(--moodle-green-light); color: #0d4f0d; }
+    .wrong-cloze { border-color: var(--moodle-red); background: var(--moodle-red-light); color: #7b1e13; }
+    .sidebar { position: sticky; top: 20px; }
+    .sidebar-card { padding: 16px; }
+    .sidebar-title {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--moodle-gray);
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      margin-bottom: 12px;
+    }
+    .q-nav {
+      display: grid;
+      grid-template-columns: repeat(5, 34px);
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .q-nav button {
+      width: 34px;
+      height: 34px;
+      border: 1px solid var(--moodle-border);
+      background: var(--moodle-gray-light);
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 700;
+      color: var(--moodle-text);
+    }
+    .q-nav button:hover { background: var(--moodle-blue-light); color: var(--moodle-blue); }
+    .q-nav button.done { background: var(--moodle-orange); color: white; border-color: var(--moodle-orange); }
+    .sidebar-info {
+      font-size: 13px;
+      color: var(--moodle-gray);
+      line-height: 1.6;
+      margin-bottom: 14px;
+    }
+    .progress-label { font-size: 13px; font-weight: 600; margin-bottom: 6px; }
+    .progress-track {
+      height: 10px;
+      border-radius: 999px;
+      background: var(--moodle-gray-light);
+      overflow: hidden;
+    }
+    .progress-bar {
+      height: 100%;
+      width: 0;
+      background: var(--moodle-orange);
+      transition: width .2s ease;
+    }
+    .submit-wrap { padding: 24px; text-align: center; }
+    .submit-wrap p { margin: 0 0 14px; color: var(--moodle-gray); }
+    .status-good { color: var(--moodle-green); font-weight: 600; }
+    @media (max-width: 700px) {
+      .main-wrap { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .quiz-badges { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="logo">moodle Vorschau</div>
+    <div class="breadcrumb">Netzwerktechnik / VLSM / schwere Aufgaben</div>
+  </header>
+
+  <div class="quiz-header">
+    <div class="quiz-header-inner">
+      <div class="quiz-icon">🌐</div>
+      <div class="quiz-meta">
+        <h1>VLSM fuer Systemintegration</h1>
+        <p>FI Systemintegration · schwer · 3 Fragen</p>
+      </div>
+      <div class="quiz-badges">
+        <div class="badge">⏱ ca. 6 min</div>
+        <div class="badge">3 Punkte</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="main-wrap">
+    <div class="questions">
+      <article class="question-card" id="q1">
+        <div class="question-header">
+          <div class="q-num">Frage 1</div>
+          <div class="q-title">Korrekter Vergabeplan fuer ein Campusnetz</div>
+          <div class="q-type-badge type-mc">multichoice</div>
+          <div class="q-points">1 Punkt</div>
+        </div>
+        <div class="question-body">
+          <p>Aus dem Basisnetz <strong>10.44.0.0/22</strong> sollen vier Segmente per VLSM gebildet werden. Vergeben wird in absteigender Hostzahl und jeweils mit dem kleinsten passenden Netz.</p>
+          <div class="diagram-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="760" height="280" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:0 auto;">
+              <defs>
+                <symbol id="p1-router" viewBox="0 0 60 41" overflow="visible">
+                  <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="#0e6f9c"/>
+                  <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+                  <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="#0e6f9c"/>
+                  <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+                  <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" fill="#fff"/>
+                </symbol>
+                <symbol id="p1-switch" viewBox="0 0 77 39" overflow="visible">
+                  <g fill="#126d99" stroke="#fff" stroke-width=".787" stroke-linejoin="miter">
+                    <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+                    <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+                  </g>
+                  <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" fill="#fff"/>
+                </symbol>
+                <symbol id="p1-pc" viewBox="0 0 59 53" overflow="visible">
+                  <path d="M49.573 44.459v-9.443H0v9.443h49.573z" fill="#0f73a0" stroke="#fff" stroke-width=".787" stroke-linejoin="miter"/>
+                  <path d="M34.229 40.131h12.59M34.229 39.737h12.59" fill="none" stroke="#fff" stroke-width=".787" stroke-linecap="square" stroke-linejoin="miter"/>
+                  <path d="M57.835 35.409v-8.262l-8.262 7.869v9.443l8.262-9.049zM40.917 51.933v-1.967l4.328-6.295v3.934l-4.328 4.328zm0-1.967v1.967H1.18v-1.967h39.737zm0 0H1.18l4.328-6.295h39.737l-4.328 6.295zm16.918-22.819H8.262L0 35.016h49.573l8.262-7.869zm-14.95 3.148V5.508H9.049v24.787h33.836z" fill="#0f73a0" stroke="#fff" stroke-width=".787" stroke-linejoin="miter"/>
+                  <path d="M11.798 11.023c0-2.754 2.361-3.148 2.361-3.148h22.819c3.148 0 3.148 3.148 3.148 3.148v14.164c0 1.574-2.754 2.361-2.754 2.361H14.552c-1.967 0-2.754-2.361-2.754-2.361z" fill="#0f73a0" stroke="#fff" stroke-width=".787" stroke-linejoin="miter"/>
+                  <path d="M48.786 0H14.557L9.049 5.508h33.836L48.786 0z" fill="#0f73a0" stroke="#fff" stroke-width=".787" stroke-linejoin="miter"/>
+                  <path d="M48.787 25.18V0l-5.901 5.508v24.787l5.901-5.115z" fill="#0b719f" stroke="#fff" stroke-width=".787" stroke-linejoin="miter"/>
+                </symbol>
+              </defs>
+              <rect x="20" y="18" width="720" height="244" rx="8" fill="#f8fbfd" stroke="#d7e3ea"/>
+              <text x="380" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4054">Basisnetz 10.44.0.0/22</text>
+              <use href="#p1-router" x="343" y="108" width="74" height="50"/>
+              <text x="380" y="171" text-anchor="middle" font-size="12" font-weight="bold">Core-Router</text>
+              <line x1="380" y1="108" x2="380" y2="74" stroke="#35586b" stroke-width="2"/>
+              <line x1="312" y1="132" x2="150" y2="74" stroke="#35586b" stroke-width="2"/>
+              <line x1="312" y1="144" x2="150" y2="204" stroke="#35586b" stroke-width="2"/>
+              <line x1="448" y1="132" x2="610" y2="74" stroke="#35586b" stroke-width="2"/>
+              <line x1="448" y1="144" x2="610" y2="204" stroke="#35586b" stroke-width="2" stroke-dasharray="6,3"/>
+              <use href="#p1-switch" x="112" y="50" width="92" height="47"/>
+              <text x="158" y="112" text-anchor="middle" font-size="12" font-weight="bold">Forschung</text>
+              <text x="158" y="127" text-anchor="middle" font-size="11" fill="#4e6573">110 Hosts</text>
+              <use href="#p1-switch" x="112" y="180" width="92" height="47"/>
+              <text x="158" y="242" text-anchor="middle" font-size="12" font-weight="bold">Entwicklung</text>
+              <text x="158" y="257" text-anchor="middle" font-size="11" fill="#4e6573">58 Hosts</text>
+              <use href="#p1-switch" x="566" y="50" width="92" height="47"/>
+              <text x="612" y="112" text-anchor="middle" font-size="12" font-weight="bold">Schulung</text>
+              <text x="612" y="127" text-anchor="middle" font-size="11" fill="#4e6573">26 Hosts</text>
+              <use href="#p1-router" x="578" y="186" width="68" height="45"/>
+              <text x="612" y="243" text-anchor="middle" font-size="12" font-weight="bold">WAN-Link</text>
+              <text x="612" y="258" text-anchor="middle" font-size="11" fill="#4e6573">2 Hosts</text>
+              <use href="#p1-pc" x="54" y="54" width="40" height="36"/>
+              <use href="#p1-pc" x="54" y="184" width="40" height="36"/>
+              <use href="#p1-pc" x="672" y="54" width="40" height="36"/>
+              <use href="#p1-pc" x="672" y="190" width="40" height="36"/>
+            </svg>
+          </div>
+          <p><strong>Welche Antwort beschreibt den einzig korrekten, lueckenlosen und nicht ueberlappenden VLSM-Plan?</strong></p>
+          <div class="answer-option" data-q="1" data-correct="true">
+            <div class="answer-radio"></div>
+            <div class="answer-text">Forschung: <code>10.44.0.0/25</code>, Entwicklung: <code>10.44.0.128/26</code>, Schulung: <code>10.44.0.192/27</code>, WAN-Link: <code>10.44.0.224/30</code></div>
+          </div>
+          <div class="answer-option" data-q="1">
+            <div class="answer-radio"></div>
+            <div class="answer-text">Forschung: <code>10.44.0.0/26</code>, Entwicklung: <code>10.44.0.64/26</code>, Schulung: <code>10.44.0.128/27</code>, WAN-Link: <code>10.44.0.160/30</code></div>
+          </div>
+          <div class="answer-option" data-q="1">
+            <div class="answer-radio"></div>
+            <div class="answer-text">Forschung: <code>10.44.0.0/25</code>, Entwicklung: <code>10.44.0.64/26</code>, Schulung: <code>10.44.0.128/27</code>, WAN-Link: <code>10.44.0.160/30</code></div>
+          </div>
+          <div class="answer-option" data-q="1">
+            <div class="answer-radio"></div>
+            <div class="answer-text">Forschung: <code>10.44.0.0/25</code>, Entwicklung: <code>10.44.0.128/27</code>, Schulung: <code>10.44.0.160/27</code>, WAN-Link: <code>10.44.0.192/30</code></div>
+          </div>
+          <div class="feedback-box info" id="feedback-q1">Richtig ist nur die erste Variante: <code>/25</code>, <code>/26</code>, <code>/27</code> und <code>/30</code> decken den Bedarf exakt und ohne Ueberlappung ab.</div>
+        </div>
+        <div class="question-footer">
+          <span id="status-q1">Noch nicht beantwortet</span>
+          <span>Single Choice</span>
+        </div>
+      </article>
+
+      <article class="question-card" id="q2">
+        <div class="question-header">
+          <div class="q-num">Frage 2</div>
+          <div class="q-title">Teilnetze in die Netzplanung einsetzen</div>
+          <div class="q-type-badge type-dnd">ddwtos</div>
+          <div class="q-points">1 Punkt</div>
+        </div>
+        <div class="question-body">
+          <p>Basisnetz <strong>172.20.48.0/23</strong>. Vergeben Sie die Netze von der kleinsten freien Netzadresse an und wieder in absteigender Hostzahl.</p>
+          <div class="diagram-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="760" height="300" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:0 auto;">
+              <defs>
+                <symbol id="p2-router" viewBox="0 0 60 41" overflow="visible">
+                  <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="#0e6f9c"/>
+                  <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+                  <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="#0e6f9c"/>
+                  <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+                  <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" fill="#fff"/>
+                </symbol>
+                <symbol id="p2-switch" viewBox="0 0 77 39" overflow="visible">
+                  <g fill="#126d99" stroke="#fff" stroke-width=".787" stroke-linejoin="miter">
+                    <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+                    <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+                  </g>
+                  <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" fill="#fff"/>
+                </symbol>
+              </defs>
+              <rect x="20" y="20" width="720" height="260" rx="8" fill="#f8fbfd" stroke="#d7e3ea"/>
+              <text x="380" y="42" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4054">Planung ab 172.20.48.0/23</text>
+              <use href="#p2-router" x="346" y="112" width="68" height="46"/>
+              <text x="380" y="172" text-anchor="middle" font-size="12" font-weight="bold">Standort-Router</text>
+              <line x1="380" y1="112" x2="380" y2="72" stroke="#35586b" stroke-width="2"/>
+              <line x1="316" y1="132" x2="164" y2="92" stroke="#35586b" stroke-width="2"/>
+              <line x1="316" y1="144" x2="164" y2="224" stroke="#35586b" stroke-width="2"/>
+              <line x1="444" y1="132" x2="596" y2="92" stroke="#35586b" stroke-width="2"/>
+              <line x1="444" y1="144" x2="596" y2="224" stroke="#35586b" stroke-width="2" stroke-dasharray="6,3"/>
+              <use href="#p2-switch" x="128" y="70" width="84" height="44"/>
+              <text x="170" y="128" text-anchor="middle" font-size="12" font-weight="bold">Rechenzentrum</text>
+              <text x="170" y="143" text-anchor="middle" font-size="11" fill="#4e6573">90 Hosts</text>
+              <use href="#p2-switch" x="128" y="202" width="84" height="44"/>
+              <text x="170" y="260" text-anchor="middle" font-size="12" font-weight="bold">Aussendienst</text>
+              <text x="170" y="275" text-anchor="middle" font-size="11" fill="#4e6573">45 Hosts</text>
+              <use href="#p2-switch" x="554" y="70" width="84" height="44"/>
+              <text x="596" y="128" text-anchor="middle" font-size="12" font-weight="bold">IoT-Sensorik</text>
+              <text x="596" y="143" text-anchor="middle" font-size="11" fill="#4e6573">12 Hosts</text>
+              <use href="#p2-router" x="562" y="206" width="68" height="46"/>
+              <text x="596" y="264" text-anchor="middle" font-size="12" font-weight="bold">Backup-Link</text>
+              <text x="596" y="279" text-anchor="middle" font-size="11" fill="#4e6573">2 Hosts</text>
+            </svg>
+          </div>
+          <p>Rechenzentrum: <span class="drop-slot" data-slot="1" data-group="1">[[1]]</span></p>
+          <p>Aussendienst: <span class="drop-slot" data-slot="2" data-group="2">[[2]]</span></p>
+          <p>IoT-Sensorik: <span class="drop-slot" data-slot="3" data-group="3">[[3]]</span></p>
+          <p>Backup-Link: <span class="drop-slot" data-slot="4" data-group="4">[[4]]</span></p>
+          <div class="chip-pool">
+            <div class="chip-pool-label">Begriffe</div>
+            <div class="drag-chip" data-group="1" data-correct="true">172.20.48.0/25</div>
+            <div class="drag-chip" data-group="2" data-correct="true">172.20.48.128/26</div>
+            <div class="drag-chip" data-group="3" data-correct="true">172.20.48.192/28</div>
+            <div class="drag-chip" data-group="4" data-correct="true">172.20.48.208/30</div>
+            <div class="drag-chip" data-group="1">172.20.48.0/26</div>
+            <div class="drag-chip" data-group="2">172.20.48.128/27</div>
+            <div class="drag-chip" data-group="3">172.20.48.192/27</div>
+            <div class="drag-chip" data-group="4">172.20.48.212/30</div>
+          </div>
+          <button class="check-btn" id="check-ddwtos">Antwort pruefen</button>
+          <div class="feedback-box info" id="feedback-q2">Korrekt ist nur die Folge <code>/25</code>, <code>/26</code>, <code>/28</code> und <code>/30</code> aufsteigend ab <code>172.20.48.0</code>.</div>
+        </div>
+        <div class="question-footer">
+          <span id="status-q2">Noch nicht beantwortet</span>
+          <span>Drag and Drop</span>
+        </div>
+      </article>
+
+      <article class="question-card" id="q3">
+        <div class="question-header">
+          <div class="q-num">Frage 3</div>
+          <div class="q-title">Eingebettete Analyse eines Vergabeplans</div>
+          <div class="q-type-badge type-cloze">cloze</div>
+          <div class="q-points">1 Punkt</div>
+        </div>
+        <div class="question-body">
+          <p>Analysieren Sie die Planung fuer das Ausgangsnetz <strong>192.168.70.0/24</strong>.</p>
+          <div class="diagram-wrap">
+            <svg xmlns="http://www.w3.org/2000/svg" width="760" height="292" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:0 auto;">
+              <defs>
+                <symbol id="p3-router" viewBox="0 0 60 41" overflow="visible">
+                  <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="#0e6f9c"/>
+                  <path d="M58.274 11.419c0 6.3-12.994 11.419-29.137 11.419S0 17.719 0 11.419v16.537c0 6.3 12.994 11.419 29.137 11.419s29.137-5.119 29.137-11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+                  <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="#0e6f9c"/>
+                  <path d="M29.137 22.837c16.144 0 29.137-5.119 29.137-11.419S45.281 0 29.137 0 0 5.119 0 11.419s12.994 11.419 29.137 11.419z" fill="none" stroke="#fff" stroke-width=".788" stroke-linejoin="miter"/>
+                  <path d="M22.448 7.081l2.363 3.544-9.056 1.969 1.969-1.575L3.942 8.656 7.486 5.9l13.388 2.362 1.575-1.181zm12.994 8.662L33.473 12.2l8.269-1.969-1.181 1.575 13.388 2.362-3.15 2.363-13.781-2.363-1.575 1.575zM30.717 5.113l9.056-2.362.394 3.544-2.363-.394-4.331 3.938-4.331-.787 4.331-3.544-2.756-.394zM26.78 19.288l-8.662 1.575-.394-4.331 2.756.787 4.725-4.331 4.331.787-5.119 4.725 2.362.788z" fill="#fff"/>
+                </symbol>
+                <symbol id="p3-switch" viewBox="0 0 77 39" overflow="visible">
+                  <g fill="#126d99" stroke="#fff" stroke-width=".787" stroke-linejoin="miter">
+                    <path d="M56.662 36.594v-18.1H.394v18.1h56.268z"/>
+                    <path d="M0 18.494L22.822 0h52.334L56.268 18.494H0zm56.662 18.887L75.156 16.92V0L56.662 18.494v18.887z"/>
+                  </g>
+                  <path d="M33.053 13.772l-1.181.787H18.101l-1.574 1.574-3.935-1.574 7.87-2.361-1.574 1.574h14.166zm11.018-7.083L42.89 7.869H29.118l-1.574 1.18-3.935-1.574 7.87-1.967-1.574 1.18h14.166zm-8.657 4.722l1.18-.787H50.76l1.18-1.574 3.935 1.574-7.476 2.361 1.18-1.574H35.414zm7.476-7.083l1.181-.787h13.772l1.574-1.574 3.935 1.967-7.87 1.967 1.574-1.574H42.89z" fill="#fff"/>
+                </symbol>
+              </defs>
+              <rect x="20" y="18" width="720" height="252" rx="8" fill="#f8fbfd" stroke="#d7e3ea"/>
+              <text x="380" y="40" text-anchor="middle" font-size="15" font-weight="bold" fill="#1f4054">Ausgangsnetz 192.168.70.0/24</text>
+              <use href="#p3-router" x="346" y="110" width="68" height="46"/>
+              <text x="380" y="169" text-anchor="middle" font-size="12" font-weight="bold">Distribution</text>
+              <line x1="380" y1="110" x2="380" y2="70" stroke="#35586b" stroke-width="2"/>
+              <line x1="316" y1="132" x2="164" y2="88" stroke="#35586b" stroke-width="2"/>
+              <line x1="316" y1="144" x2="164" y2="218" stroke="#35586b" stroke-width="2"/>
+              <line x1="444" y1="132" x2="596" y2="88" stroke="#35586b" stroke-width="2"/>
+              <line x1="444" y1="144" x2="596" y2="218" stroke="#35586b" stroke-width="2" stroke-dasharray="6,3"/>
+              <use href="#p3-switch" x="128" y="66" width="84" height="44"/>
+              <text x="170" y="124" text-anchor="middle" font-size="12" font-weight="bold">Produktion</text>
+              <text x="170" y="139" text-anchor="middle" font-size="11" fill="#4e6573">100 Hosts</text>
+              <use href="#p3-switch" x="128" y="198" width="84" height="44"/>
+              <text x="170" y="256" text-anchor="middle" font-size="12" font-weight="bold">Vertrieb</text>
+              <text x="170" y="271" text-anchor="middle" font-size="11" fill="#4e6573">50 Hosts</text>
+              <use href="#p3-switch" x="554" y="66" width="84" height="44"/>
+              <text x="596" y="124" text-anchor="middle" font-size="12" font-weight="bold">IoT</text>
+              <text x="596" y="139" text-anchor="middle" font-size="11" fill="#4e6573">20 Hosts</text>
+              <use href="#p3-router" x="562" y="202" width="68" height="46"/>
+              <text x="596" y="260" text-anchor="middle" font-size="12" font-weight="bold">Transit</text>
+              <text x="596" y="275" text-anchor="middle" font-size="11" fill="#4e6573">2 Hosts</text>
+            </svg>
+          </div>
+          <pre>1. Zuerst wird das Teilnetz fuer <select class="cloze-select" data-answer="Produktion">
+  <option value="">Bitte waehlen</option>
+  <option>Produktion</option>
+  <option>Vertrieb</option>
+  <option>IoT</option>
+  <option>Transit</option>
+</select> vergeben.
+2. Das Segment Vertrieb mit 50 Hosts benoetigt den Praefix <select class="cloze-select" data-answer="/26">
+  <option value="">Bitte waehlen</option>
+  <option>/25</option>
+  <option>/26</option>
+  <option>/27</option>
+  <option>/28</option>
+</select>.
+3. Bei fortlaufender Vergabe liegt das IoT-Netz bei <select class="cloze-select" data-answer="192.168.70.192/27">
+  <option value="">Bitte waehlen</option>
+  <option>192.168.70.128/27</option>
+  <option>192.168.70.160/27</option>
+  <option>192.168.70.192/27</option>
+  <option>192.168.70.224/27</option>
+</select>.
+4. Die Punkt-zu-Punkt-Verbindung verwendet als kleinstes passendes Netz <select class="cloze-select" data-answer="/30">
+  <option value="">Bitte waehlen</option>
+  <option>/29</option>
+  <option>/28</option>
+  <option>/30</option>
+  <option>/31</option>
+</select>.</pre>
+          <div class="feedback-box info" id="feedback-q3">Die korrekte Reihenfolge ist Produktion, dann Vertrieb mit <code>/26</code>, anschliessend IoT bei <code>192.168.70.192/27</code> und zuletzt Transit mit <code>/30</code>.</div>
+        </div>
+        <div class="question-footer">
+          <span id="status-q3">Noch nicht beantwortet</span>
+          <span>Cloze</span>
+        </div>
+      </article>
+
+      <div class="submit-wrap">
+        <p>Alle Fragen bearbeitet? Die Vorschau simuliert die direkte Rueckmeldung in Moodle.</p>
+        <button class="submit-btn" id="submit-quiz">Abgabe simulieren</button>
+      </div>
+    </div>
+
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Fragennavigation</div>
+        <div class="q-nav">
+          <button type="button" data-nav="1">1</button>
+          <button type="button" data-nav="2">2</button>
+          <button type="button" data-nav="3">3</button>
+        </div>
+        <div class="sidebar-info">
+          Kurs: Netzwerktechnik<br>
+          Klasse: FI Systemintegration<br>
+          Fragen: 3<br>
+          Punkte: 3
+        </div>
+        <div class="progress-label">Fortschritt: <span id="progress-label">0/3</span></div>
+        <div class="progress-track">
+          <div class="progress-bar" id="progress-bar"></div>
+        </div>
+      </div>
+    </aside>
+  </div>
+
+  <script>
+    const answered = new Set();
+
+    function updateProgress() {
+      document.getElementById('progress-label').textContent = `${answered.size}/3`;
+      document.getElementById('progress-bar').style.width = `${(answered.size / 3) * 100}%`;
+    }
+
+    function markAnswered(n) {
+      answered.add(String(n));
+      const nav = document.querySelector(`[data-nav="${n}"]`);
+      if (nav) {
+        nav.classList.add('done');
+      }
+      updateProgress();
+    }
+
+    document.querySelectorAll('.q-nav button').forEach((button) => {
+      button.addEventListener('click', () => {
+        const target = document.getElementById(`q${button.dataset.nav}`);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+
+    document.querySelectorAll('.answer-option[data-q="1"]').forEach((option) => {
+      option.addEventListener('click', () => {
+        if (option.classList.contains('disabled')) {
+          return;
+        }
+        const all = document.querySelectorAll('.answer-option[data-q="1"]');
+        all.forEach((item) => {
+          item.classList.add('disabled');
+          item.style.pointerEvents = 'none';
+          const radio = item.querySelector('.answer-radio');
+          if (item.dataset.correct === 'true') {
+            item.classList.add('correct');
+            radio.textContent = '✓';
+          }
+        });
+        if (option.dataset.correct === 'true') {
+          option.classList.add('correct');
+          option.querySelector('.answer-radio').textContent = '✓';
+          document.getElementById('feedback-q1').className = 'feedback-box correct show';
+          document.getElementById('feedback-q1').textContent = 'Richtig. Nur diese Kombination ist groessenrichtig und nicht ueberlappend.';
+        } else {
+          option.classList.add('incorrect');
+          option.querySelector('.answer-radio').textContent = '✗';
+          document.getElementById('feedback-q1').className = 'feedback-box incorrect show';
+          document.getElementById('feedback-q1').textContent = 'Falsch. Mindestens ein Netz ist zu klein oder ueberlappt mit einem anderen.';
+        }
+        document.getElementById('status-q1').innerHTML = '<span class="status-good">Beantwortet</span>';
+        markAnswered(1);
+      });
+    });
+
+    let selectedChip = null;
+    const chips = Array.from(document.querySelectorAll('.drag-chip'));
+    const slots = Array.from(document.querySelectorAll('.drop-slot'));
+
+    function clearChipSelection() {
+      chips.forEach((chip) => chip.classList.remove('selected'));
+      selectedChip = null;
+    }
+
+    function releaseChip(slot) {
+      if (!slot.dataset.chipText) {
+        return;
+      }
+      const chip = chips.find((item) => item.textContent === slot.dataset.chipText && item.dataset.group === slot.dataset.chipGroup);
+      if (chip) {
+        chip.classList.remove('used');
+      }
+      delete slot.dataset.chipText;
+      delete slot.dataset.chipGroup;
+      delete slot.dataset.correct;
+      slot.textContent = `[[${slot.dataset.slot}]]`;
+      slot.classList.remove('filled', 'correct-slot', 'wrong-slot');
+    }
+
+    chips.forEach((chip) => {
+      chip.addEventListener('click', () => {
+        if (chip.classList.contains('used')) {
+          return;
+        }
+        clearChipSelection();
+        chip.classList.add('selected');
+        selectedChip = chip;
+      });
+    });
+
+    slots.forEach((slot) => {
+      slot.addEventListener('click', () => {
+        if (!selectedChip) {
+          return;
+        }
+        releaseChip(slot);
+        slot.textContent = selectedChip.textContent;
+        slot.classList.add('filled');
+        slot.dataset.chipText = selectedChip.textContent;
+        slot.dataset.chipGroup = selectedChip.dataset.group;
+        slot.dataset.correct = String(selectedChip.dataset.correct === 'true');
+        selectedChip.classList.add('used');
+        clearChipSelection();
+      });
+    });
+
+    document.getElementById('check-ddwtos').addEventListener('click', () => {
+      let allFilled = true;
+      let allCorrect = true;
+      slots.forEach((slot) => {
+        slot.classList.remove('correct-slot', 'wrong-slot');
+        if (!slot.dataset.chipText) {
+          allFilled = false;
+          allCorrect = false;
+          return;
+        }
+        if (slot.dataset.correct === 'true' && slot.dataset.group === slot.dataset.chipGroup) {
+          slot.classList.add('correct-slot');
+        } else {
+          slot.classList.add('wrong-slot');
+          allCorrect = false;
+        }
+      });
+      const feedback = document.getElementById('feedback-q2');
+      if (!allFilled) {
+        feedback.className = 'feedback-box incorrect show';
+        feedback.textContent = 'Bitte fuellen Sie zuerst alle vier Luecken.';
+        return;
+      }
+      if (allCorrect) {
+        feedback.className = 'feedback-box correct show';
+        feedback.textContent = 'Richtig. Die Netze wurden exakt in absteigender Groesse vergeben.';
+      } else {
+        feedback.className = 'feedback-box incorrect show';
+        feedback.textContent = 'Mindestens eine Zuordnung ist noch falsch. Vergleichen Sie Hostbedarf und Praefix erneut.';
+      }
+      document.getElementById('status-q2').innerHTML = '<span class="status-good">Beantwortet</span>';
+      markAnswered(2);
+    });
+
+    function evaluateCloze() {
+      const selects = Array.from(document.querySelectorAll('.cloze-select'));
+      let allFilled = true;
+      let allCorrect = true;
+      selects.forEach((select) => {
+        select.classList.remove('correct-cloze', 'wrong-cloze');
+        if (!select.value) {
+          allFilled = false;
+          allCorrect = false;
+          return;
+        }
+        if (select.value === select.dataset.answer) {
+          select.classList.add('correct-cloze');
+        } else {
+          select.classList.add('wrong-cloze');
+          allCorrect = false;
+        }
+      });
+      const feedback = document.getElementById('feedback-q3');
+      if (allFilled) {
+        if (allCorrect) {
+          feedback.className = 'feedback-box correct show';
+          feedback.textContent = 'Richtig. Die vier Entscheidungen zum VLSM-Plan sind konsistent.';
+        } else {
+          feedback.className = 'feedback-box incorrect show';
+          feedback.textContent = 'Noch nicht korrekt. Mindestens eine Auswahl passt nicht zum VLSM-Vorgehen.';
+        }
+        document.getElementById('status-q3').innerHTML = '<span class="status-good">Beantwortet</span>';
+        markAnswered(3);
+      }
+    }
+
+    document.querySelectorAll('.cloze-select').forEach((select) => {
+      select.addEventListener('change', evaluateCloze);
+    });
+
+    document.getElementById('submit-quiz').addEventListener('click', () => {
+      if (answered.size < 3) {
+        alert('Es sind noch nicht alle Fragen beantwortet.');
+        return;
+      }
+      alert('Vorschau abgeschlossen: Alle drei Fragen wurden bearbeitet.');
+    });
+
+    updateProgress();
+  </script>
+</body>
+</html>

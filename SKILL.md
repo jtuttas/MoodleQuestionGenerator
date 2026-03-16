@@ -206,7 +206,10 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
 
 ### UML/Diagramm-Konsistenz
 - Klassendiagramme:
-  - Wenn Aggregation/Komposition gezeichnet ist, muss das passende Attribut in der „Ganzes“-Klasse modelliert sein.
+  - Wenn Aggregation/Komposition gezeichnet ist, muss das passende Attribut in der „Ganzes"-Klasse modelliert sein (z. B. `tiere: Tier[]` für Komposition, `pfleger: Pfleger[]` für Aggregation).
+  - **Auch die „Teil"-Klasse** trägt bei einer Assoziation (`→`) das passende Referenzattribut, wenn die Beziehung aus der Klasse heraus navigierbar sein soll (z. B. `pfleger: Pfleger` in `Tier`).
+  - **Alle Attribute einheitlich formatieren:** Assoziationsattribute (Typ = Klassenname) dürfen **nicht kursiv oder grau** dargestellt werden — in UML gibt es keine Konvention, die Objektreferenzattribute optisch von primitiven Attributen unterscheidet.
+  - **Bevorzugtes Layout:** Klassen, die über Aggregation/Komposition verbunden sind, horizontal nebeneinander anordnen. Die Raute (◆/◇) sitzt dabei **horizontal** zwischen Linie und Klassenbox — nicht als schräge Diagonale. Die Assoziation (`→`) zwischen Klassen auf gleicher Ebene wird als U-förmige Linie unterhalb der Boxen geführt.
   - Vererbung: Kindklasse dupliziert keine Attribute der Elternklasse.
   - Multiplizitäten stehen nahe an den Klassen, nicht in der Linienmitte.
 - Use-Case:
@@ -225,6 +228,7 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
 - **Keine Legenden**, die direkt auf die richtige Antwort hinweisen (z. B. „Pfeile = Fremdschlüsselbezüge" in einer Farbe, die mit der zu identifizierenden Sonderrolle assoziiert ist).
 - **Alle gleichwertigen Elemente** (z. B. mehrere Tabellen, Klassen, Knoten) erhalten **einheitliche Farben und Rahmen** – es sei denn, die Aufgabe lautet ausdrücklich, den Unterschied der Farbe zu erklären.
 - **Vor der Fertigstellung prüfen:** Könnte ein Schüler die richtige Antwort allein aus dem Diagramm ableiten, ohne die Frage zu lösen? Wenn ja → Grafik anpassen.
+- **Multiplizitätslabels weglassen, wenn sie Teil der Lösung sind:** Wenn eine Lücke `[[n]]` die korrekte Antwort `"1"`, `"0..*"` o. ä. enthält, dürfen diese Werte **nicht** im Diagramm als Label sichtbar sein — sonst ist die Lösung direkt ablesbar.
 
 ### Überschneidungsfreiheit in SVG-Grafiken (kritisch)
 **Kein grafisches Element darf ein anderes überlagern oder unleserlich machen.**

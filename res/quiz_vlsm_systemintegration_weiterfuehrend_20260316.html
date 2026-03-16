@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VLSM weiterfuehrend - Vorschau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --orange: #f98012;
+      --blue: #0f6cbf;
+      --blue-light: #e8f4fd;
+      --green: #1d7a1d;
+      --green-light: #d4edda;
+      --red: #ca3120;
+      --red-light: #fde8e6;
+      --gray: #6a737b;
+      --gray-light: #f3f3f3;
+      --border: #dee2e6;
+      --text: #1d2125;
+      --radius: 4px;
+      --shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: 'Source Sans 3', Arial, sans-serif; background: #e9eaec; color: var(--text); }
+    .topbar { height: 52px; background: var(--orange); color: white; display: flex; align-items: center; justify-content: space-between; padding: 0 24px; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 20px 16px 28px; }
+    .hero, .card, .sidebar, .submit { background: white; border: 1px solid var(--border); border-radius: var(--radius); box-shadow: var(--shadow); }
+    .hero { padding: 20px 24px; margin-bottom: 18px; display: flex; align-items: center; gap: 16px; flex-wrap: wrap; }
+    .hero .icon { width: 48px; height: 48px; border-radius: 4px; background: var(--orange); color: white; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+    .hero h1 { margin: 0; font-size: 22px; }
+    .hero p { margin: 4px 0 0; color: var(--gray); font-size: 13px; }
+    .layout { display: grid; grid-template-columns: 1fr 220px; gap: 18px; align-items: start; }
+    .card { overflow: hidden; margin-bottom: 18px; }
+    .head { background: var(--gray-light); border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; gap: 10px; align-items: center; flex-wrap: wrap; }
+    .body { padding: 20px 22px; }
+    .foot { background: var(--gray-light); border-top: 1px solid var(--border); padding: 8px 16px; display: flex; justify-content: space-between; color: var(--gray); font-size: 12px; }
+    .num { color: var(--orange); font-weight: 700; }
+    .title { flex: 1; font-weight: 600; }
+    .badge { border: 1px solid; border-radius: 10px; font-size: 11px; font-weight: 700; padding: 2px 8px; }
+    .b-match { color: #a16207; background: #fefce8; border-color: #ca8a04; }
+    .b-ddwtos { color: #166534; background: #f0fdf4; border-color: #166534; }
+    .b-order { color: #7c3aed; background: #f5f3ff; border-color: #7c3aed; }
+    .diagram { border: 1px solid var(--border); border-radius: var(--radius); background: #fafafa; overflow: hidden; margin: 12px 0 14px; }
+    .feedback { display: none; margin-top: 14px; padding: 10px 14px; border-left: 4px solid; border-radius: 0 4px 4px 0; }
+    .feedback.show { display: block; }
+    .feedback.ok { background: var(--green-light); border-color: var(--green); color: #0d4f0d; }
+    .feedback.bad { background: var(--red-light); border-color: var(--red); color: #7b1e13; }
+    .feedback.info { background: var(--blue-light); border-color: var(--blue); color: #08407a; }
+    table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    th, td { border: 1px solid var(--border); padding: 9px 12px; text-align: left; }
+    th { background: var(--gray-light); }
+    .match-select, .order-select { width: 100%; padding: 6px 8px; border: 1px solid var(--border); border-radius: 4px; }
+    .chip-pool { margin-top: 18px; padding: 12px 14px; background: var(--gray-light); border: 1px solid var(--border); border-radius: 4px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .chip-pool .label { width: 100%; color: var(--gray); font-size: 12px; font-weight: 700; }
+    .chip { padding: 5px 12px; border: 2px solid; border-radius: 3px; background: white; cursor: pointer; font-weight: 600; font-size: 13px; user-select: none; }
+    .chip.used { opacity: .32; pointer-events: none; }
+    .chip.selected { transform: translateY(-1px); }
+    .chip[data-group="1"] { color: #0f6cbf; border-color: #0f6cbf; }
+    .chip[data-group="2"] { color: #166534; border-color: #166534; }
+    .chip[data-group="3"] { color: #7c3aed; border-color: #7c3aed; }
+    .chip[data-group="4"] { color: #b45309; border-color: #b45309; }
+    .chip.selected[data-group="1"] { background: #0f6cbf; color: white; }
+    .chip.selected[data-group="2"] { background: #166534; color: white; }
+    .chip.selected[data-group="3"] { background: #7c3aed; color: white; }
+    .chip.selected[data-group="4"] { background: #b45309; color: white; }
+    .slot { display: inline-block; min-width: 160px; min-height: 28px; padding: 3px 10px; border: 2px dashed var(--border); border-radius: 3px; background: #f8f9fa; cursor: pointer; text-align: center; font-weight: 600; color: #9aa3a8; }
+    .slot.filled { color: var(--text); }
+    .slot.ok { border-style: solid; border-color: var(--green); background: var(--green-light); color: var(--green); }
+    .slot.bad { border-style: solid; border-color: var(--red); background: var(--red-light); color: var(--red); }
+    .btn { border: none; border-radius: 4px; background: var(--blue); color: white; padding: 8px 18px; font-weight: 700; cursor: pointer; }
+    .btn:hover { background: #0a56a0; }
+    .order-list { margin: 12px 0 0; display: grid; gap: 10px; }
+    .order-item { border: 1px solid var(--border); border-radius: 4px; padding: 12px; background: white; display: grid; grid-template-columns: 1fr auto; gap: 12px; align-items: center; }
+    .order-actions { display: flex; gap: 6px; }
+    .mini-btn { border: 1px solid var(--border); background: var(--gray-light); border-radius: 4px; cursor: pointer; padding: 4px 10px; font-weight: 700; }
+    .sidebar { padding: 16px; position: sticky; top: 18px; }
+    .sidebar h3 { margin: 0 0 12px; font-size: 12px; text-transform: uppercase; letter-spacing: .08em; color: var(--gray); }
+    .nav { display: grid; grid-template-columns: repeat(3, 34px); gap: 8px; margin-bottom: 14px; }
+    .nav button { width: 34px; height: 34px; border-radius: 4px; border: 1px solid var(--border); background: var(--gray-light); cursor: pointer; font-weight: 700; }
+    .nav button.done { background: var(--orange); color: white; border-color: var(--orange); }
+    .progress { height: 10px; background: var(--gray-light); border-radius: 999px; overflow: hidden; }
+    .progress > div { height: 100%; width: 0; background: var(--orange); transition: width .2s ease; }
+    .submit { padding: 24px; text-align: center; }
+    .submit p { color: var(--gray); margin-top: 0; }
+    @media (max-width: 760px) { .layout { grid-template-columns: 1fr; } .sidebar { position: static; } }
+  </style>
+</head>
+<body>
+  <div class="topbar"><div>moodle Vorschau</div><div>VLSM / weiterfuehrend</div></div>
+  <div class="wrap">
+    <div class="hero">
+      <div class="icon">IP</div>
+      <div>
+        <h1>VLSM weiterfuehrende Aufgaben</h1>
+        <p>FI Systemintegration · 3 Fragen · ddmatch, ddwtos, ordering</p>
+      </div>
+    </div>
+    <div class="layout">
+      <div>
+        <section class="card" id="q1">
+          <div class="head"><div class="num">Frage 1</div><div class="title">Segmente den Teilnetzen zuordnen</div><div class="badge b-match">ddmatch</div></div>
+          <div class="body">
+            <p>Ordnen Sie jedem Segment aus dem Basisnetz <strong>172.31.200.0/22</strong> das korrekte Teilnetz zu.</p>
+            <div class="diagram"><img alt="VLSM Diagramm Frage 1" style="display:block;width:100%;height:auto" src="data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='760' height='220'%3E%3Crect x='20' y='18' width='720' height='182' rx='8' fill='%23f8fbfd' stroke='%23d7e3ea'/%3E%3Ctext x='380' y='40' text-anchor='middle' font-family='Arial,sans-serif' font-size='15' font-weight='bold' fill='%231f4054'%3E172.31.200.0/22%3C/text%3E%3Crect x='130' y='60' width='90' height='42' fill='%23126d99' stroke='%23fff'/%3E%3Crect x='130' y='140' width='90' height='42' fill='%23126d99' stroke='%23fff'/%3E%3Crect x='540' y='60' width='90' height='42' fill='%23126d99' stroke='%23fff'/%3E%3Cellipse cx='585' cy='160' rx='40' ry='22' fill='%230e6f9c' stroke='%23fff'/%3E%3Ctext x='175' y='86' text-anchor='middle' font-family='Arial,sans-serif' font-size='12' fill='white'%3EVerwaltung%3C/text%3E%3Ctext x='175' y='101' text-anchor='middle' font-family='Arial,sans-serif' font-size='11' fill='white'%3E120 Hosts%3C/text%3E%3Ctext x='175' y='166' text-anchor='middle' font-family='Arial,sans-serif' font-size='12' fill='white'%3EVoIP%3C/text%3E%3Ctext x='175' y='181' text-anchor='middle' font-family='Arial,sans-serif' font-size='11' fill='white'%3E60 Hosts%3C/text%3E%3Ctext x='585' y='86' text-anchor='middle' font-family='Arial,sans-serif' font-size='12' fill='white'%3EWLAN%3C/text%3E%3Ctext x='585' y='101' text-anchor='middle' font-family='Arial,sans-serif' font-size='11' fill='white'%3E28 Hosts%3C/text%3E%3Ctext x='585' y='165' text-anchor='middle' font-family='Arial,sans-serif' font-size='12' fill='white'%3ETransit%3C/text%3E%3Ctext x='585' y='180' text-anchor='middle' font-family='Arial,sans-serif' font-size='11' fill='white'%3E2 Hosts%3C/text%3E%3Cline x1='250' y1='82' x2='510' y2='82' stroke='%2335586b' stroke-width='2'/%3E%3Cline x1='250' y1='162' x2='510' y2='162' stroke='%2335586b' stroke-width='2' stroke-dasharray='6,3'/%3E%3C/svg%3E"></div>
+            <table>
+              <thead><tr><th>Segment</th><th>Teilnetz</th></tr></thead>
+              <tbody>
+                <tr><td>Verwaltung</td><td><select class="match-select" data-answer="172.31.200.0/25"><option value="">Bitte waehlen</option><option>172.31.200.0/25</option><option>172.31.200.128/26</option><option>172.31.200.192/27</option><option>172.31.200.224/30</option><option>172.31.201.0/27</option></select></td></tr>
+                <tr><td>VoIP</td><td><select class="match-select" data-answer="172.31.200.128/26"><option value="">Bitte waehlen</option><option>172.31.200.0/25</option><option>172.31.200.128/26</option><option>172.31.200.192/27</option><option>172.31.200.224/30</option><option>172.31.201.0/27</option></select></td></tr>
+                <tr><td>WLAN</td><td><select class="match-select" data-answer="172.31.200.192/27"><option value="">Bitte waehlen</option><option>172.31.200.0/25</option><option>172.31.200.128/26</option><option>172.31.200.192/27</option><option>172.31.200.224/30</option><option>172.31.201.0/27</option></select></td></tr>
+                <tr><td>Transit</td><td><select class="match-select" data-answer="172.31.200.224/30"><option value="">Bitte waehlen</option><option>172.31.200.0/25</option><option>172.31.200.128/26</option><option>172.31.200.192/27</option><option>172.31.200.224/30</option><option>172.31.201.0/27</option></select></td></tr>
+              </tbody>
+            </table>
+            <button class="btn" id="check-match">Zuordnung pruefen</button>
+            <div class="feedback info" id="fb1">Korrekt sind /25, /26, /27 und /30 in genau dieser Zuordnung.</div>
+          </div>
+          <div class="foot"><span id="st1">Noch nicht beantwortet</span><span>1 Punkt</span></div>
+        </section>
+
+        <section class="card" id="q2">
+          <div class="head"><div class="num">Frage 2</div><div class="title">Luecken im Adressplan fuellen</div><div class="badge b-ddwtos">ddwtos</div></div>
+          <div class="body">
+            <p>Fuellen Sie den Adressplan fuer <strong>10.90.16.0/21</strong> mit den korrekten Teilnetzen.</p>
+            <p>Labor: <span class="slot" data-slot="1" data-group="1">[[1]]</span></p>
+            <p>Office: <span class="slot" data-slot="2" data-group="2">[[2]]</span></p>
+            <p>Kameras: <span class="slot" data-slot="3" data-group="3">[[3]]</span></p>
+            <p>PtP: <span class="slot" data-slot="4" data-group="4">[[4]]</span></p>
+            <div class="chip-pool">
+              <div class="label">Teilnetze</div>
+              <div class="chip" data-group="1" data-correct="true">10.90.16.0/24</div>
+              <div class="chip" data-group="2" data-correct="true">10.90.17.0/25</div>
+              <div class="chip" data-group="3" data-correct="true">10.90.17.128/27</div>
+              <div class="chip" data-group="4" data-correct="true">10.90.17.160/30</div>
+              <div class="chip" data-group="1">10.90.16.0/25</div>
+              <div class="chip" data-group="2">10.90.17.0/26</div>
+              <div class="chip" data-group="3">10.90.17.128/28</div>
+              <div class="chip" data-group="4">10.90.17.164/30</div>
+            </div>
+            <button class="btn" id="check-ddwtos">Antwort pruefen</button>
+            <div class="feedback info" id="fb2">Der korrekte Plan lautet 10.90.16.0/24, 10.90.17.0/25, 10.90.17.128/27 und 10.90.17.160/30.</div>
+          </div>
+          <div class="foot"><span id="st2">Noch nicht beantwortet</span><span>1 Punkt</span></div>
+        </section>
+
+        <section class="card" id="q3">
+          <div class="head"><div class="num">Frage 3</div><div class="title">Vergabeschritte in Reihenfolge bringen</div><div class="badge b-order">ordering</div></div>
+          <div class="body">
+            <p>Ordnen Sie die vier Vergabeschritte fuer <strong>192.168.140.0/24</strong> in korrekter VLSM-Reihenfolge.</p>
+            <div class="order-list" id="order-list">
+              <div class="order-item"><div>Support mit 62 Hosts erhaelt zuerst das Netz <code>192.168.140.0/26</code>.</div><div class="order-actions"><button class="mini-btn up">↑</button><button class="mini-btn down">↓</button></div></div>
+              <div class="order-item"><div>Schulung folgt mit <code>192.168.140.64/27</code>.</div><div class="order-actions"><button class="mini-btn up">↑</button><button class="mini-btn down">↓</button></div></div>
+              <div class="order-item"><div>IoT wird danach als <code>192.168.140.96/28</code> vergeben.</div><div class="order-actions"><button class="mini-btn up">↑</button><button class="mini-btn down">↓</button></div></div>
+              <div class="order-item"><div>Zum Schluss erhaelt der Link das Netz <code>192.168.140.112/30</code>.</div><div class="order-actions"><button class="mini-btn up">↑</button><button class="mini-btn down">↓</button></div></div>
+            </div>
+            <button class="btn" id="check-order">Reihenfolge pruefen</button>
+            <div class="feedback info" id="fb3">Die korrekte Reihenfolge ist Support, Schulung, IoT, Link.</div>
+          </div>
+          <div class="foot"><span id="st3">Noch nicht beantwortet</span><span>1 Punkt</span></div>
+        </section>
+
+        <div class="submit"><p>Diese Vorschau simuliert das Bearbeiten der drei neuen Aufgaben.</p><button class="btn" id="finish">Abgabe simulieren</button></div>
+      </div>
+
+      <aside class="sidebar">
+        <h3>Navigation</h3>
+        <div class="nav">
+          <button data-nav="1">1</button>
+          <button data-nav="2">2</button>
+          <button data-nav="3">3</button>
+        </div>
+        <div style="font-size:13px;color:var(--gray);line-height:1.6;margin-bottom:14px;">FI Systemintegration<br>3 Fragen<br>3 Punkte</div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:6px;">Fortschritt: <span id="progress-label">0/3</span></div>
+        <div class="progress"><div id="progress-bar"></div></div>
+      </aside>
+    </div>
+  </div>
+
+  <script>
+    const answered = new Set();
+    function markAnswered(id) {
+      answered.add(String(id));
+      document.querySelector(`[data-nav="${id}"]`).classList.add('done');
+      document.getElementById('progress-label').textContent = `${answered.size}/3`;
+      document.getElementById('progress-bar').style.width = `${answered.size / 3 * 100}%`;
+    }
+    document.querySelectorAll('[data-nav]').forEach((btn) => {
+      btn.addEventListener('click', () => document.getElementById(`q${btn.dataset.nav}`).scrollIntoView({ behavior: 'smooth' }));
+    });
+
+    document.getElementById('check-match').addEventListener('click', () => {
+      const selects = Array.from(document.querySelectorAll('.match-select'));
+      let complete = true;
+      let ok = true;
+      selects.forEach((select) => {
+        select.style.borderColor = '#dee2e6';
+        if (!select.value) { complete = false; ok = false; return; }
+        if (select.value === select.dataset.answer) {
+          select.style.borderColor = '#1d7a1d';
+          select.style.background = '#d4edda';
+        } else {
+          select.style.borderColor = '#ca3120';
+          select.style.background = '#fde8e6';
+          ok = false;
+        }
+      });
+      const feedback = document.getElementById('fb1');
+      feedback.className = `feedback ${ok ? 'ok' : 'bad'} show`;
+      feedback.textContent = complete ? (ok ? 'Richtig. Alle Teilnetze sind korrekt zugeordnet.' : 'Mindestens eine Zuordnung ist falsch.') : 'Bitte treffen Sie zuerst alle Zuordnungen.';
+      document.getElementById('st1').textContent = 'Beantwortet';
+      markAnswered(1);
+    });
+
+    let activeChip = null;
+    const chips = Array.from(document.querySelectorAll('.chip'));
+    const slots = Array.from(document.querySelectorAll('.slot'));
+    chips.forEach((chip) => chip.addEventListener('click', () => {
+      if (chip.classList.contains('used')) return;
+      chips.forEach((item) => item.classList.remove('selected'));
+      chip.classList.add('selected');
+      activeChip = chip;
+    }));
+    slots.forEach((slot) => slot.addEventListener('click', () => {
+      if (!activeChip) return;
+      if (slot.dataset.text) {
+        const old = chips.find((chip) => chip.textContent === slot.dataset.text && chip.dataset.group === slot.dataset.groupUsed);
+        if (old) old.classList.remove('used');
+      }
+      slot.textContent = activeChip.textContent;
+      slot.dataset.text = activeChip.textContent;
+      slot.dataset.groupUsed = activeChip.dataset.group;
+      slot.dataset.correct = String(activeChip.dataset.correct === 'true');
+      slot.classList.add('filled');
+      activeChip.classList.add('used');
+      chips.forEach((item) => item.classList.remove('selected'));
+      activeChip = null;
+    }));
+    document.getElementById('check-ddwtos').addEventListener('click', () => {
+      let complete = true;
+      let ok = true;
+      slots.forEach((slot) => {
+        slot.classList.remove('ok', 'bad');
+        if (!slot.dataset.text) { complete = false; ok = false; return; }
+        if (slot.dataset.correct === 'true' && slot.dataset.group === slot.dataset.groupUsed) {
+          slot.classList.add('ok');
+        } else {
+          slot.classList.add('bad');
+          ok = false;
+        }
+      });
+      const feedback = document.getElementById('fb2');
+      feedback.className = `feedback ${ok ? 'ok' : 'bad'} show`;
+      feedback.textContent = complete ? (ok ? 'Richtig. Der Adressplan ist vollstaendig korrekt.' : 'Mindestens eine Luecke ist falsch befuellt.') : 'Bitte fuellen Sie zuerst alle vier Luecken.';
+      document.getElementById('st2').textContent = 'Beantwortet';
+      markAnswered(2);
+    });
+
+    const orderList = document.getElementById('order-list');
+    orderList.addEventListener('click', (event) => {
+      const button = event.target.closest('button');
+      if (!button) return;
+      const item = button.closest('.order-item');
+      if (button.classList.contains('up') && item.previousElementSibling) {
+        orderList.insertBefore(item, item.previousElementSibling);
+      }
+      if (button.classList.contains('down') && item.nextElementSibling) {
+        orderList.insertBefore(item.nextElementSibling, item);
+      }
+    });
+    document.getElementById('check-order').addEventListener('click', () => {
+      const texts = Array.from(orderList.querySelectorAll('.order-item > div:first-child')).map((node) => node.textContent.trim());
+      const expected = [
+        'Support mit 62 Hosts erhaelt zuerst das Netz 192.168.140.0/26.',
+        'Schulung folgt mit 192.168.140.64/27.',
+        'IoT wird danach als 192.168.140.96/28 vergeben.',
+        'Zum Schluss erhaelt der Link das Netz 192.168.140.112/30.'
+      ];
+      const ok = texts.every((text, index) => text === expected[index]);
+      const feedback = document.getElementById('fb3');
+      feedback.className = `feedback ${ok ? 'ok' : 'bad'} show`;
+      feedback.textContent = ok ? 'Richtig. Die Reihenfolge der Vergabe ist korrekt.' : 'Die Reihenfolge stimmt noch nicht.';
+      document.getElementById('st3').textContent = 'Beantwortet';
+      markAnswered(3);
+    });
+
+    document.getElementById('finish').addEventListener('click', () => {
+      alert(answered.size === 3 ? 'Vorschau abgeschlossen.' : 'Es sind noch nicht alle Fragen bearbeitet.');
+    });
+  </script>
+</body>
+</html>

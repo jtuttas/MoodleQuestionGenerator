@@ -1,0 +1,889 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UML-Klassendiagramme: Drag &amp; Drop – Vorschau</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --moodle-orange: #f98012;
+      --moodle-orange-dark: #d4600a;
+      --moodle-blue: #0f6cbf;
+      --moodle-blue-light: #e8f4fd;
+      --moodle-green: #1d7a1d;
+      --moodle-green-light: #d4edda;
+      --moodle-red: #ca3120;
+      --moodle-red-light: #fde8e6;
+      --moodle-gray: #6a737b;
+      --moodle-gray-light: #f3f3f3;
+      --moodle-border: #dee2e6;
+      --moodle-text: #1d2125;
+      --moodle-white: #ffffff;
+      --radius: 4px;
+      --shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-size: 15px;
+      color: var(--moodle-text);
+      background: #e9eaec;
+      line-height: 1.5;
+    }
+
+    /* ── Site header ── */
+    .site-header {
+      height: 52px;
+      background: var(--moodle-orange);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 24px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 4px rgba(0,0,0,.2);
+    }
+    .site-header .logo { font-weight: 700; font-size: 18px; color: white; letter-spacing: -.3px; }
+    .site-header .breadcrumb { font-size: 12px; color: rgba(255,255,255,.75); }
+
+    /* ── Quiz header ── */
+    .quiz-header {
+      background: white;
+      border-bottom: 1px solid var(--moodle-border);
+      padding: 20px 24px;
+    }
+    .quiz-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .quiz-icon {
+      width: 48px; height: 48px;
+      background: var(--moodle-orange);
+      border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 24px; flex-shrink: 0;
+    }
+    .quiz-meta h1 { font-size: 20px; font-weight: 700; line-height: 1.2; }
+    .quiz-meta p { font-size: 13px; color: var(--moodle-gray); margin-top: 2px; }
+    .quiz-badges { margin-left: auto; display: flex; gap: 8px; flex-wrap: wrap; }
+    .badge {
+      background: var(--moodle-gray-light);
+      border: 1px solid var(--moodle-border);
+      border-radius: 20px;
+      padding: 4px 12px;
+      font-size: 13px; font-weight: 600; white-space: nowrap;
+    }
+
+    /* ── Main layout ── */
+    .main-wrap {
+      max-width: 900px;
+      margin: 20px auto;
+      padding: 0 16px;
+      display: grid;
+      grid-template-columns: 1fr 220px;
+      gap: 20px;
+      align-items: start;
+    }
+
+    /* ── Question cards ── */
+    .question-card {
+      background: white;
+      border: 1px solid var(--moodle-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      margin-bottom: 20px;
+    }
+    .question-header {
+      background: var(--moodle-gray-light);
+      border-bottom: 1px solid var(--moodle-border);
+      padding: 10px 16px;
+      display: flex; align-items: center; gap: 10px;
+      flex-wrap: wrap;
+    }
+    .q-num { font-weight: 700; color: var(--moodle-orange); font-size: 15px; flex-shrink: 0; }
+    .q-title { flex: 1; font-weight: 600; font-size: 14px; min-width: 120px; }
+    .q-type-badge {
+      font-size: 11px; font-weight: 600;
+      padding: 2px 8px; border-radius: 10px; border: 1px solid;
+    }
+    .type-dnd   { background: #f0fdf4; color: #166534; border-color: #166534; }
+    .type-match { background: #fefce8; color: #854d0e; border-color: #ca8a04; }
+    .q-points { font-size: 13px; color: var(--moodle-gray); flex-shrink: 0; }
+    .question-body { padding: 20px 22px; }
+    .question-footer {
+      background: var(--moodle-gray-light);
+      border-top: 1px solid var(--moodle-border);
+      padding: 8px 16px;
+      display: flex; justify-content: space-between;
+      font-size: 12px; color: var(--moodle-gray);
+    }
+
+    /* ── Drop slots ── */
+    .drop-slot {
+      display: inline-block;
+      min-width: 110px; min-height: 27px;
+      border: 2px dashed var(--moodle-border);
+      border-radius: 3px;
+      background: #f8f9fa;
+      padding: 2px 10px;
+      vertical-align: middle;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600;
+      text-align: center;
+      transition: border-color .15s, background .15s;
+      color: #aaa;
+    }
+    .drop-slot.filled { color: var(--moodle-text); }
+    .drop-slot:hover  { border-color: var(--moodle-blue); background: var(--moodle-blue-light); }
+    .drop-slot.correct-slot {
+      background: var(--moodle-green-light); border-color: var(--moodle-green);
+      border-style: solid; color: var(--moodle-green);
+    }
+    .drop-slot.wrong-slot {
+      background: var(--moodle-red-light); border-color: var(--moodle-red);
+      border-style: solid; color: var(--moodle-red);
+    }
+    .drop-slot.drag-over {
+      border-color: var(--moodle-orange); border-style: solid;
+      background: #fff8f3; color: var(--moodle-text);
+    }
+
+    /* ── Chip pool ── */
+    .chip-pool {
+      margin-top: 18px;
+      padding: 12px 14px;
+      background: var(--moodle-gray-light);
+      border-radius: var(--radius);
+      border: 1px solid var(--moodle-border);
+      display: flex; flex-wrap: wrap; gap: 8px;
+    }
+    .chip-pool-label {
+      font-size: 12px; font-weight: 600; color: var(--moodle-gray);
+      width: 100%; margin-bottom: 2px;
+    }
+    .drag-chip {
+      display: inline-block;
+      padding: 4px 13px;
+      border-radius: 3px; border: 2px solid;
+      background: white;
+      cursor: pointer;
+      font-size: 13px; font-weight: 600;
+      transition: all .15s; user-select: none;
+    }
+    .drag-chip:hover:not(.used) { opacity: .82; }
+    .drag-chip.used { opacity: .3; cursor: not-allowed; pointer-events: none; }
+    /* Group colour scheme */
+    .drag-chip[data-group="1"]          { color: #0f6cbf; border-color: #0f6cbf; }
+    .drag-chip[data-group="1"].selected { background: #0f6cbf; color: white; }
+    .drag-chip[data-group="2"]          { color: #166534; border-color: #166534; }
+    .drag-chip[data-group="2"].selected { background: #166534; color: white; }
+    .drag-chip[data-group="3"]          { color: #6b21a8; border-color: #9333ea; }
+    .drag-chip[data-group="3"].selected { background: #6b21a8; color: white; }
+
+    /* ── Buttons ── */
+    .check-btn {
+      display: inline-block;
+      margin-top: 14px;
+      padding: 7px 20px;
+      background: var(--moodle-blue); color: white;
+      border: none; border-radius: var(--radius);
+      font-size: 14px; font-weight: 600; cursor: pointer;
+      transition: background .15s;
+    }
+    .check-btn:hover { background: #0a56a0; }
+
+    /* ── Feedback box ── */
+    .feedback-box {
+      display: none;
+      margin-top: 14px;
+      padding: 10px 14px;
+      border-left: 4px solid;
+      border-radius: 0 var(--radius) var(--radius) 0;
+      font-size: 14px;
+      animation: fadeIn .2s ease;
+    }
+    .feedback-box.show    { display: block; }
+    .feedback-box.correct   { background: var(--moodle-green-light); border-color: var(--moodle-green); color: #0d4f0d; }
+    .feedback-box.incorrect { background: var(--moodle-red-light);   border-color: var(--moodle-red);   color: #7b1e13; }
+    .feedback-box.info      { background: var(--moodle-blue-light);  border-color: var(--moodle-blue);  color: #08407a; }
+    @keyframes fadeIn { from { opacity:0; transform:translateY(-4px); } to { opacity:1; transform:translateY(0); } }
+
+    /* ── Match table ── */
+    .match-table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    .match-table th {
+      background: var(--moodle-gray-light);
+      padding: 8px 12px; text-align: left;
+      font-size: 13px; border: 1px solid var(--moodle-border);
+    }
+    .match-table td {
+      padding: 9px 12px;
+      border: 1px solid var(--moodle-border);
+      vertical-align: middle; font-size: 14px;
+    }
+    .match-table tr:nth-child(even) td { background: #fafafa; }
+    .match-select {
+      width: 100%; padding: 6px 8px;
+      border: 1px solid var(--moodle-border); border-radius: var(--radius);
+      font-size: 13px; background: white; color: var(--moodle-text);
+    }
+    .match-select.correct-select { border-color: var(--moodle-green); background: var(--moodle-green-light); }
+    .match-select.wrong-select   { border-color: var(--moodle-red);   background: var(--moodle-red-light);   }
+
+    /* ── SVG diagram wrapper ── */
+    .diagram-wrap { border: 1px solid var(--moodle-border); border-radius: var(--radius); background: #fafafa; margin: 12px 0; overflow: hidden; }
+
+    /* ── Code blocks ── */
+    pre {
+      font-family: 'Source Code Pro', monospace;
+      font-size: 13px;
+      background: #1e1e2e; color: #cdd6f4;
+      border-radius: var(--radius);
+      padding: 16px 18px; overflow-x: auto; line-height: 1.7;
+      margin: 12px 0;
+    }
+    code { font-family: 'Source Code Pro', monospace; font-size: 13px; }
+    pre code { background: none; border: none; padding: 0; color: inherit; }
+
+    /* ── Sidebar ── */
+    .sidebar { position: sticky; top: 72px; }
+    .sidebar-card {
+      background: white;
+      border: 1px solid var(--moodle-border);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 16px;
+    }
+    .sidebar-title {
+      font-size: 11px; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .5px; color: var(--moodle-gray); margin-bottom: 12px;
+    }
+    .q-nav { display: grid; grid-template-columns: repeat(5, 34px); gap: 4px; margin-bottom: 16px; }
+    .q-nav-item {
+      width: 34px; height: 34px;
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid var(--moodle-border); border-radius: var(--radius);
+      background: var(--moodle-gray-light);
+      font-size: 13px; font-weight: 600; cursor: pointer;
+      transition: all .15s;
+    }
+    .q-nav-item:hover   { background: var(--moodle-blue-light); color: var(--moodle-blue); }
+    .q-nav-item.answered { background: var(--moodle-orange); color: white; border-color: var(--moodle-orange); }
+    .sidebar-info { font-size: 12px; color: var(--moodle-gray); line-height: 2; }
+    .sidebar-info strong { color: var(--moodle-text); }
+    .progress-label { font-size: 12px; color: var(--moodle-gray); margin-top: 14px; margin-bottom: 4px; }
+    .progress-bar-wrap { height: 8px; background: var(--moodle-border); border-radius: 4px; overflow: hidden; }
+    .progress-bar-fill  { height: 100%; background: var(--moodle-orange); border-radius: 4px; transition: width .3s; width: 0%; }
+
+    /* ── Submit bar ── */
+    .submit-bar {
+      background: white; border: 1px solid var(--moodle-border);
+      border-radius: var(--radius); box-shadow: var(--shadow);
+      padding: 20px; text-align: center; margin-bottom: 40px;
+    }
+    .submit-btn {
+      padding: 10px 32px;
+      background: var(--moodle-orange); color: white;
+      border: none; border-radius: var(--radius);
+      font-size: 15px; font-weight: 700; cursor: pointer;
+      transition: background .15s;
+    }
+    .submit-btn:hover { background: var(--moodle-orange-dark); }
+
+    /* ── Q-text spacing ── */
+    .q-text p { line-height: 2.1; }
+
+    /* ── Responsive ── */
+    @media (max-width: 700px) {
+      .main-wrap { grid-template-columns: 1fr; }
+      .sidebar   { position: static; }
+      .quiz-badges { display: none; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════ SITE HEADER ═══════════════════ -->
+<header class="site-header">
+  <div class="logo">moodle Vorschau</div>
+  <div class="breadcrumb">FOS/BOS Informatik &rsaquo; OOP &rsaquo; UML-Klassendiagramme</div>
+</header>
+
+<!-- ═══════════════════ QUIZ HEADER ═══════════════════ -->
+<div class="quiz-header">
+  <div class="quiz-header-inner">
+    <div class="quiz-icon">📐</div>
+    <div class="quiz-meta">
+      <h1>UML-Klassendiagramme – Drag &amp; Drop</h1>
+      <p>FOS/BOS Informatik · OOP / Assoziationen · Niveau mittel · 3 Fragen</p>
+    </div>
+    <div class="quiz-badges">
+      <span class="badge">⏱ ca. 6 min</span>
+      <span class="badge">🎯 3 Punkte</span>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════ MAIN WRAP ═══════════════════ -->
+<div class="main-wrap">
+  <div class="questions">
+
+    <!-- ═══════════════════════════════════════════════════
+         FRAGE 1  ddwtos – Diagramm lesen, Assoziationen benennen
+         ═══════════════════════════════════════════════════ -->
+    <div class="question-card" id="q1">
+      <div class="question-header">
+        <span class="q-num">Frage 1</span>
+        <span class="q-title">Klassendiagramm lesen – Assoziationen benennen</span>
+        <span class="q-type-badge type-dnd">Drag &amp; Drop</span>
+        <span class="q-points">1 Punkt</span>
+      </div>
+      <div class="question-body">
+        <p>Betrachte das folgende UML-Klassendiagramm und fülle die Lücken im Beschreibungstext:</p>
+
+        <!-- SVG Klasssendiagramm Tierheim -->
+        <div class="diagram-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 700 210"
+               style="font-family:Arial,sans-serif;font-size:13px;display:block;">
+            <defs>
+              <marker id="arr-q1" orient="auto" markerWidth="6" markerHeight="6"
+                      viewBox="0 0 6 6" refX="6" refY="3">
+                <path d="M0,0 L6,3 L0,6 z" fill="#333"/>
+              </marker>
+            </defs>
+            <!-- Tier (links) -->
+            <rect x="10" y="20" width="175" height="110" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="10" y="20" width="175" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="97" y="39" text-anchor="middle" font-weight="bold" font-size="13">Tier</text>
+            <line x1="10" y1="48" x2="185" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="22" y="66" font-size="12">- name: String</text>
+            <text x="22" y="83" font-size="12">- tierart: String</text>
+            <text x="22" y="100" font-size="12">- alter: int</text>
+            <text x="22" y="117" font-size="12">- pfleger: Pfleger</text>
+            <!-- Tierheim (mitte) -->
+            <rect x="258" y="20" width="185" height="130" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="258" y="20" width="185" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="350" y="39" text-anchor="middle" font-weight="bold" font-size="13">Tierheim</text>
+            <line x1="258" y1="48" x2="443" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="270" y="66" font-size="12">- name: String</text>
+            <text x="270" y="83" font-size="12">- ort: String</text>
+            <text x="270" y="100" font-size="12">- kapazitaet: int</text>
+            <text x="270" y="117" font-size="12">- tiere: Tier[]</text>
+            <text x="270" y="134" font-size="12">- pfleger: Pfleger[]</text>
+            <!-- Pfleger (rechts) -->
+            <rect x="516" y="20" width="175" height="90" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="516" y="20" width="175" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="603" y="39" text-anchor="middle" font-weight="bold" font-size="13">Pfleger</text>
+            <line x1="516" y1="48" x2="691" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="528" y="66" font-size="12">- name: String</text>
+            <text x="528" y="83" font-size="12">- qualifikation: String</text>
+            <!-- Komposition ◆: Tier ----◆[Tierheim] – Linie zuerst, Raute ON TOP -->
+            <line x1="185" y1="72" x2="234" y2="72" stroke="#333" stroke-width="1.5"/>
+            <polygon points="234,72 246,65 258,72 246,79" fill="#333"/>
+            <!-- Aggregation ◇: [Tierheim]◇---- Pfleger – Linie zuerst, Raute ON TOP -->
+            <line x1="467" y1="72" x2="516" y2="72" stroke="#333" stroke-width="1.5"/>
+            <polygon points="443,72 455,65 467,72 455,79" fill="white" stroke="#333" stroke-width="1.5"/>
+            <!-- Assoziation →: Tier → Pfleger, U-förmig unterhalb -->
+            <path d="M97,130 L97,185 L603,185 L603,110" stroke="#333" stroke-width="1.5" fill="none"
+                  marker-end="url(#arr-q1)"/>
+          </svg>
+        </div>
+
+        <!-- Lückentext Q1 -->
+        <div class="q-text">
+          <p>Das ausgefüllte Diamantsymbol (◆) zwischen Tierheim und
+            <span class="drop-slot" data-slot="1" data-qid="1" onclick="fillSlot(this,1)"></span>
+            symbolisiert eine
+            <span class="drop-slot" data-slot="2" data-qid="1" onclick="fillSlot(this,1)"></span>.
+            Die verbundenen Teil-Objekte können nicht ohne ein Tierheim-Objekt existieren.</p>
+          <p>Das leere Diamantsymbol (◇) zwischen Tierheim und
+            <span class="drop-slot" data-slot="3" data-qid="1" onclick="fillSlot(this,1)"></span>
+            symbolisiert eine
+            <span class="drop-slot" data-slot="4" data-qid="1" onclick="fillSlot(this,1)"></span>.
+            Die verbundenen Teil-Objekte können unabhängig vom Tierheim existieren.</p>
+          <p>Die einfache Linie zwischen Pfleger und Tier stellt eine
+            <span class="drop-slot" data-slot="5" data-qid="1" onclick="fillSlot(this,1)"></span>
+            dar. Sie drückt eine Nutzungsbeziehung ohne Besitzverhältnis aus.</p>
+          <p>Die Multiplizität auf der Seite von Tierheim beträgt bei beiden Diamant-Beziehungen jeweils
+            <span class="drop-slot" data-slot="6" data-qid="1" onclick="fillSlot(this,1)"></span>.</p>
+        </div>
+
+        <!-- Chip pool Q1 -->
+        <div class="chip-pool" id="pool-q1">
+          <div class="chip-pool-label">Begriffe – anklicken zum Auswählen, dann Lücke anklicken:</div>
+          <!-- Gruppe 1: Klassennamen (blau) -->
+          <span class="drag-chip" data-id="q1c1" data-group="1" data-text="Tier"      onclick="selectChip(this)">Tier</span>
+          <span class="drag-chip" data-id="q1c2" data-group="1" data-text="Pfleger"   onclick="selectChip(this)">Pfleger</span>
+          <span class="drag-chip" data-id="q1c3" data-group="1" data-text="Veterinär" onclick="selectChip(this)">Veterinär</span>
+          <!-- Gruppe 2: Beziehungstypen (grün) -->
+          <span class="drag-chip" data-id="q1c4" data-group="2" data-text="Komposition" onclick="selectChip(this)">Komposition</span>
+          <span class="drag-chip" data-id="q1c5" data-group="2" data-text="Aggregation" onclick="selectChip(this)">Aggregation</span>
+          <span class="drag-chip" data-id="q1c6" data-group="2" data-text="Assoziation" onclick="selectChip(this)">Assoziation</span>
+          <span class="drag-chip" data-id="q1c7" data-group="2" data-text="Vererbung"   onclick="selectChip(this)">Vererbung</span>
+          <!-- Gruppe 3: Multiplizitäten (violett) -->
+          <span class="drag-chip" data-id="q1c8" data-group="3" data-text="1"    onclick="selectChip(this)">1</span>
+          <span class="drag-chip" data-id="q1c9" data-group="3" data-text="0..*" onclick="selectChip(this)">0..*</span>
+        </div>
+        <button class="check-btn"
+                onclick="checkDdwtos(1,['Tier','Komposition','Pfleger','Aggregation','Assoziation','1'])">
+          Antwort prüfen
+        </button>
+        <div class="feedback-box" id="fb-q1"></div>
+      </div>
+      <div class="question-footer">
+        <span class="footer-status" id="status-q1" style="color:var(--moodle-gray);">Noch nicht beantwortet</span>
+        <span>Typ: Drag &amp; Drop into Text (ddwtos)</span>
+      </div>
+    </div><!-- /q1 -->
+
+
+    <!-- ═══════════════════════════════════════════════════
+         FRAGE 2  ddmatch – UML-Symbole Bedeutungen zuordnen
+         ═══════════════════════════════════════════════════ -->
+    <div class="question-card" id="q2">
+      <div class="question-header">
+        <span class="q-num">Frage 2</span>
+        <span class="q-title">UML-Symbole und ihre Bedeutungen zuordnen</span>
+        <span class="q-type-badge type-match">Zuordnung</span>
+        <span class="q-points">1 Punkt</span>
+      </div>
+      <div class="question-body">
+        <p>Ordne jedem UML-Beziehungssymbol aus dem Klassendiagramm die korrekte Bedeutung zu:</p>
+
+        <!-- SVG (gleiche Grafik wie Frage 1) -->
+        <div class="diagram-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 700 210"
+               style="font-family:Arial,sans-serif;font-size:13px;display:block;">
+            <defs>
+              <marker id="arr-q2" orient="auto" markerWidth="6" markerHeight="6"
+                      viewBox="0 0 6 6" refX="6" refY="3">
+                <path d="M0,0 L6,3 L0,6 z" fill="#333"/>
+              </marker>
+            </defs>
+            <!-- Tier (links) -->
+            <rect x="10" y="20" width="175" height="110" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="10" y="20" width="175" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="97" y="39" text-anchor="middle" font-weight="bold" font-size="13">Tier</text>
+            <line x1="10" y1="48" x2="185" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="22" y="66" font-size="12">- name: String</text>
+            <text x="22" y="83" font-size="12">- tierart: String</text>
+            <text x="22" y="100" font-size="12">- alter: int</text>
+            <text x="22" y="117" font-size="12">- pfleger: Pfleger</text>
+            <!-- Tierheim (mitte) -->
+            <rect x="258" y="20" width="185" height="130" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="258" y="20" width="185" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="350" y="39" text-anchor="middle" font-weight="bold" font-size="13">Tierheim</text>
+            <line x1="258" y1="48" x2="443" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="270" y="66" font-size="12">- name: String</text>
+            <text x="270" y="83" font-size="12">- ort: String</text>
+            <text x="270" y="100" font-size="12">- kapazitaet: int</text>
+            <text x="270" y="117" font-size="12">- tiere: Tier[]</text>
+            <text x="270" y="134" font-size="12">- pfleger: Pfleger[]</text>
+            <!-- Pfleger (rechts) -->
+            <rect x="516" y="20" width="175" height="90" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="516" y="20" width="175" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="603" y="39" text-anchor="middle" font-weight="bold" font-size="13">Pfleger</text>
+            <line x1="516" y1="48" x2="691" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="528" y="66" font-size="12">- name: String</text>
+            <text x="528" y="83" font-size="12">- qualifikation: String</text>
+            <!-- Komposition ◆: Tier ----◆[Tierheim] – Linie zuerst, Raute ON TOP -->
+            <line x1="185" y1="72" x2="234" y2="72" stroke="#333" stroke-width="1.5"/>
+            <polygon points="234,72 246,65 258,72 246,79" fill="#333"/>
+            <!-- Aggregation ◇: [Tierheim]◇---- Pfleger – Linie zuerst, Raute ON TOP -->
+            <line x1="467" y1="72" x2="516" y2="72" stroke="#333" stroke-width="1.5"/>
+            <polygon points="443,72 455,65 467,72 455,79" fill="white" stroke="#333" stroke-width="1.5"/>
+            <!-- Assoziation →: Tier → Pfleger, U-förmig unterhalb -->
+            <path d="M97,130 L97,185 L603,185 L603,110" stroke="#333" stroke-width="1.5" fill="none"
+                  marker-end="url(#arr-q2)"/>
+          </svg>
+        </div>
+
+        <!-- Match table -->
+        <table class="match-table">
+          <thead>
+            <tr>
+              <th style="width:36%">UML-Symbol</th>
+              <th>Bedeutung – bitte auswählen</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Ausgefülltes Diamantsymbol (◆)</strong></td>
+              <td>
+                <select class="match-select" data-sub="0" onchange="checkDdmatch(2)">
+                  <option value="">— bitte auswählen —</option>
+                  <option>Die Teil-Objekte können ohne das Ganze-Objekt nicht existieren.</option>
+                  <option>Die Teil-Objekte können unabhängig vom Ganzen existieren.</option>
+                  <option>Nutzungsbeziehung ohne Besitzverhältnis zwischen den Klassen.</option>
+                  <option>Kein oder beliebig viele Objekte der assoziierten Klasse.</option>
+                  <option>Diese Klasse kann von mehreren Elternklassen gleichzeitig erben.</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Leeres Diamantsymbol (◇)</strong></td>
+              <td>
+                <select class="match-select" data-sub="1" onchange="checkDdmatch(2)">
+                  <option value="">— bitte auswählen —</option>
+                  <option>Die Teil-Objekte können ohne das Ganze-Objekt nicht existieren.</option>
+                  <option>Die Teil-Objekte können unabhängig vom Ganzen existieren.</option>
+                  <option>Nutzungsbeziehung ohne Besitzverhältnis zwischen den Klassen.</option>
+                  <option>Kein oder beliebig viele Objekte der assoziierten Klasse.</option>
+                  <option>Diese Klasse kann von mehreren Elternklassen gleichzeitig erben.</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Einfache Linie mit Pfeil (→)</strong></td>
+              <td>
+                <select class="match-select" data-sub="2" onchange="checkDdmatch(2)">
+                  <option value="">— bitte auswählen —</option>
+                  <option>Die Teil-Objekte können ohne das Ganze-Objekt nicht existieren.</option>
+                  <option>Die Teil-Objekte können unabhängig vom Ganzen existieren.</option>
+                  <option>Nutzungsbeziehung ohne Besitzverhältnis zwischen den Klassen.</option>
+                  <option>Kein oder beliebig viele Objekte der assoziierten Klasse.</option>
+                  <option>Diese Klasse kann von mehreren Elternklassen gleichzeitig erben.</option>
+                </select>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Multiplizität 0..*</strong></td>
+              <td>
+                <select class="match-select" data-sub="3" onchange="checkDdmatch(2)">
+                  <option value="">— bitte auswählen —</option>
+                  <option>Die Teil-Objekte können ohne das Ganze-Objekt nicht existieren.</option>
+                  <option>Die Teil-Objekte können unabhängig vom Ganzen existieren.</option>
+                  <option>Nutzungsbeziehung ohne Besitzverhältnis zwischen den Klassen.</option>
+                  <option>Kein oder beliebig viele Objekte der assoziierten Klasse.</option>
+                  <option>Diese Klasse kann von mehreren Elternklassen gleichzeitig erben.</option>
+                </select>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="feedback-box" id="fb-q2"></div>
+      </div>
+      <div class="question-footer">
+        <span class="footer-status" id="status-q2" style="color:var(--moodle-gray);">Noch nicht beantwortet</span>
+        <span>Typ: Drag &amp; Drop Matching (ddmatch)</span>
+      </div>
+    </div><!-- /q2 -->
+
+
+    <!-- ═══════════════════════════════════════════════════
+         FRAGE 3  ddwtos – Java-Code → Klassendiagramm beschreiben
+         Drei Klassen: Fahrzeug, Motor, Elektrofahrzeug
+         Assoziationen: Vererbung + Komposition
+         ═══════════════════════════════════════════════════ -->
+    <div class="question-card" id="q3">
+      <div class="question-header">
+        <span class="q-num">Frage 3</span>
+        <span class="q-title">Java-Code analysieren – Klassendiagramm beschreiben</span>
+        <span class="q-type-badge type-dnd">Drag &amp; Drop</span>
+        <span class="q-points">1 Punkt</span>
+      </div>
+      <div class="question-body">
+        <p>Betrachte das UML-Klassendiagramm und den dazugehörigen Java-Code. Fülle die Lücken im Beschreibungstext:</p>
+
+        <!-- UML Klassendiagramm Fahrzeug / Motor / Elektrofahrzeug -->
+        <div class="diagram-wrap">
+          <svg xmlns="http://www.w3.org/2000/svg" width="100%" viewBox="0 0 510 390"
+               style="font-family:Arial,sans-serif;font-size:13px;display:block;">
+            <!-- Fahrzeug -->
+            <rect x="30" y="20" width="200" height="115" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="30" y="20" width="200" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="130" y="39" text-anchor="middle" font-weight="bold" font-size="13">Fahrzeug</text>
+            <line x1="30" y1="48" x2="230" y2="48" stroke="#333" stroke-width="1"/>
+            <text x="42" y="64" font-size="12">- kennzeichen: String</text>
+            <text x="42" y="79" font-size="12">- marke: String</text>
+            <text x="42" y="94" font-size="12">- baujahr: int</text>
+            <text x="42" y="109" font-size="12">- motor: Motor</text>
+            <!-- Motor -->
+            <rect x="298" y="50" width="192" height="100" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="298" y="50" width="192" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="394" y="69" text-anchor="middle" font-weight="bold" font-size="13">Motor</text>
+            <line x1="298" y1="78" x2="490" y2="78" stroke="#333" stroke-width="1"/>
+            <text x="310" y="94" font-size="12">- hersteller: String</text>
+            <text x="310" y="109" font-size="12">- leistungKW: int</text>
+            <text x="310" y="124" font-size="12">- kraftstofftyp: String</text>
+            <!-- Elektrofahrzeug -->
+            <rect x="30" y="285" width="200" height="90" fill="white" stroke="#333" stroke-width="1.5"/>
+            <rect x="30" y="285" width="200" height="28" fill="#d0e8f8" stroke="#333" stroke-width="1.5"/>
+            <text x="130" y="304" text-anchor="middle" font-weight="bold" font-size="13">Elektrofahrzeug</text>
+            <line x1="30" y1="313" x2="230" y2="313" stroke="#333" stroke-width="1"/>
+            <text x="42" y="329" font-size="11">- akkuKapazitaetKWh: int</text>
+            <text x="42" y="344" font-size="12">- reichweiteKm: int</text>
+            <!-- Komposition: Linie zuerst, Raute ON TOP -->
+            <line x1="254" y1="92" x2="298" y2="92" stroke="#333" stroke-width="1.5"/>
+            <polygon points="230,92 242,99 254,92 242,85" fill="#333"/>
+            <text x="259" y="85" font-size="11">1</text>
+            <text x="287" y="85" font-size="11">1</text>
+            <!-- Vererbung: Linie + hohles Dreieck, Spitze an Fahrzeug-Unterrand -->
+            <line x1="130" y1="285" x2="130" y2="149" stroke="#333" stroke-width="1.5"/>
+            <polygon points="130,135 122,149 138,149" fill="white" stroke="#333" stroke-width="1.5"/>
+          </svg>
+        </div>
+
+        <pre><code>public class Fahrzeug {
+    private String kennzeichen;
+    private String marke;
+    private int baujahr;
+    private Motor motor;        // Attribut-Referenz auf Motor
+}
+
+public class Motor {
+    private String hersteller;
+    private int leistungKW;
+    private String kraftstofftyp;
+}
+
+public class Elektrofahrzeug extends Fahrzeug {
+    private int akkuKapazitaetKWh;
+    private int reichweiteKm;
+}</code></pre>
+
+        <!-- Lückentext Q3 -->
+        <div class="q-text">
+          <p>Im Klassendiagramm erbt die Klasse
+            <span class="drop-slot" data-slot="1" data-qid="3" onclick="fillSlot(this,3)"></span>
+            von der Klasse
+            <span class="drop-slot" data-slot="2" data-qid="3" onclick="fillSlot(this,3)"></span>.
+            Diese Beziehung wird als
+            <span class="drop-slot" data-slot="3" data-qid="3" onclick="fillSlot(this,3)"></span>
+            bezeichnet.</p>
+          <p>Das ausgefüllte Diamantsymbol (◆) am rechten Rand von Fahrzeug zeigt eine Verbindung
+            zur Klasse
+            <span class="drop-slot" data-slot="4" data-qid="3" onclick="fillSlot(this,3)"></span>.
+            Da ein Motor-Objekt ohne das zugehörige Fahrzeug-Objekt nicht sinnvoll existieren
+            kann, handelt es sich um eine
+            <span class="drop-slot" data-slot="5" data-qid="3" onclick="fillSlot(this,3)"></span>.</p>
+          <p>Das Java-Schlüsselwort, das die Vererbungsbeziehung im Code ausdrückt, lautet
+            <span class="drop-slot" data-slot="6" data-qid="3" onclick="fillSlot(this,3)"></span>.</p>
+        </div>
+
+        <!-- Chip pool Q3 -->
+        <div class="chip-pool" id="pool-q3">
+          <div class="chip-pool-label">Begriffe – anklicken zum Auswählen, dann Lücke anklicken:</div>
+          <!-- Gruppe 1: Klassennamen (blau) -->
+          <span class="drag-chip" data-id="q3c1" data-group="1" data-text="Elektrofahrzeug" onclick="selectChip(this)">Elektrofahrzeug</span>
+          <span class="drag-chip" data-id="q3c2" data-group="1" data-text="Fahrzeug"        onclick="selectChip(this)">Fahrzeug</span>
+          <span class="drag-chip" data-id="q3c3" data-group="1" data-text="Motor"           onclick="selectChip(this)">Motor</span>
+          <span class="drag-chip" data-id="q3c4" data-group="1" data-text="Ladestation"     onclick="selectChip(this)">Ladestation</span>
+          <!-- Gruppe 2: Beziehungstypen (grün) -->
+          <span class="drag-chip" data-id="q3c5" data-group="2" data-text="Vererbung"   onclick="selectChip(this)">Vererbung</span>
+          <span class="drag-chip" data-id="q3c6" data-group="2" data-text="Komposition" onclick="selectChip(this)">Komposition</span>
+          <span class="drag-chip" data-id="q3c7" data-group="2" data-text="Aggregation" onclick="selectChip(this)">Aggregation</span>
+          <!-- Gruppe 3: Java-Schlüsselwörter (violett) -->
+          <span class="drag-chip" data-id="q3c8" data-group="3" data-text="extends"    onclick="selectChip(this)">extends</span>
+          <span class="drag-chip" data-id="q3c9" data-group="3" data-text="implements" onclick="selectChip(this)">implements</span>
+        </div>
+        <button class="check-btn"
+                onclick="checkDdwtos(3,['Elektrofahrzeug','Fahrzeug','Vererbung','Motor','Komposition','extends'])">
+          Antwort prüfen
+        </button>
+        <div class="feedback-box" id="fb-q3"></div>
+      </div>
+      <div class="question-footer">
+        <span class="footer-status" id="status-q3" style="color:var(--moodle-gray);">Noch nicht beantwortet</span>
+        <span>Typ: Drag &amp; Drop into Text (ddwtos)</span>
+      </div>
+    </div><!-- /q3 -->
+
+    <!-- Submit bar -->
+    <div class="submit-bar">
+      <button class="submit-btn" onclick="submitQuiz()">Quiz abgeben</button>
+    </div>
+
+  </div><!-- /questions -->
+
+  <!-- ═══════════════════ SIDEBAR ═══════════════════ -->
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Fragennavigation</div>
+      <div class="q-nav">
+        <div class="q-nav-item" id="nav-q1"
+             onclick="document.getElementById('q1').scrollIntoView({behavior:'smooth'})">1</div>
+        <div class="q-nav-item" id="nav-q2"
+             onclick="document.getElementById('q2').scrollIntoView({behavior:'smooth'})">2</div>
+        <div class="q-nav-item" id="nav-q3"
+             onclick="document.getElementById('q3').scrollIntoView({behavior:'smooth'})">3</div>
+      </div>
+      <div class="sidebar-info">
+        <div><strong>Kurs:</strong> FOS/BOS Informatik</div>
+        <div><strong>Thema:</strong> UML-Klassendiagramme</div>
+        <div><strong>Niveau:</strong> Mittel</div>
+        <div><strong>Fragen:</strong> 3</div>
+        <div><strong>Punkte:</strong> 3</div>
+      </div>
+      <div class="progress-label">Fortschritt: <span id="prog-count">0</span>/3</div>
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-fill" id="prog-bar"></div>
+      </div>
+    </div>
+  </aside>
+
+</div><!-- /main-wrap -->
+
+<!-- ═══════════════════ JAVASCRIPT ═══════════════════ -->
+<script>
+  /* ── State ── */
+  let selectedChip = null;
+  let dragChip     = null;
+  const answeredSet = new Set();
+
+  /* ── Core: Chip in Slot platzieren (Click + Drop) ── */
+  function placeChipInSlot(chip, slot) {
+    if (!chip) return;
+    const oldId = slot.dataset.chipId;
+    if (oldId) {
+      const oldChip = document.querySelector('.drag-chip[data-id="' + oldId + '"]');
+      if (oldChip) { oldChip.classList.remove('used'); }
+    }
+    slot.textContent = chip.dataset.text;
+    slot.dataset.chipId = chip.dataset.id;
+    slot.classList.add('filled');
+    slot.classList.remove('correct-slot', 'wrong-slot', 'drag-over');
+    chip.classList.add('used');
+    chip.classList.remove('selected');
+    dragChip     = null;
+    selectedChip = null;
+  }
+
+  /* ── Chip Selection (Click) ── */
+  function selectChip(chip) {
+    if (chip.classList.contains('used')) return;
+    if (selectedChip === chip) {
+      chip.classList.remove('selected');
+      selectedChip = null;
+      return;
+    }
+    if (selectedChip) selectedChip.classList.remove('selected');
+    selectedChip = chip;
+    chip.classList.add('selected');
+  }
+
+  /* ── Slot Filling (Click) ── */
+  function fillSlot(slot, qId) {
+    placeChipInSlot(selectedChip, slot);
+  }
+
+  /* ── Drag-Events ── */
+  function chipDragStart(event, chip) {
+    if (chip.classList.contains('used')) { event.preventDefault(); return; }
+    dragChip = chip;
+    if (selectedChip && selectedChip !== chip) selectedChip.classList.remove('selected');
+    selectedChip = chip;
+    chip.classList.add('selected');
+    event.dataTransfer.effectAllowed = 'move';
+    event.dataTransfer.setData('text/plain', chip.dataset.id);
+  }
+
+  function chipDrop(event, slot) {
+    event.preventDefault();
+    slot.classList.remove('drag-over');
+    placeChipInSlot(dragChip || selectedChip, slot);
+  }
+
+  /* ── Drag-and-Drop per DOMContentLoaded aktivieren ── */
+  document.addEventListener('DOMContentLoaded', function () {
+    document.querySelectorAll('.drag-chip').forEach(function (chip) {
+      chip.setAttribute('draggable', 'true');
+      chip.addEventListener('dragstart', function (e) { chipDragStart(e, chip); });
+    });
+    document.querySelectorAll('.drop-slot').forEach(function (slot) {
+      slot.addEventListener('dragover',  function (e) { e.preventDefault(); });
+      slot.addEventListener('dragenter', function (e) { e.preventDefault(); slot.classList.add('drag-over'); });
+      slot.addEventListener('dragleave', function ()  { slot.classList.remove('drag-over'); });
+      slot.addEventListener('drop',      function (e) { chipDrop(e, slot); });
+    });
+  });
+
+  /* ── Check ddwtos ── */
+  function checkDdwtos(qId, correctAnswers) {
+    const slots = document.querySelectorAll(`#q${qId} .drop-slot`);
+    let correct = 0, filled = 0;
+
+    slots.forEach(slot => {
+      const n    = parseInt(slot.dataset.slot);
+      const txt  = (slot.textContent || '').trim();
+      if (!txt) return;
+      filled++;
+      const ok = txt === correctAnswers[n - 1];
+      slot.classList.remove('correct-slot', 'wrong-slot');
+      slot.classList.add(ok ? 'correct-slot' : 'wrong-slot');
+      if (ok) correct++;
+    });
+
+    const fb = document.getElementById(`fb-q${qId}`);
+    if (filled === 0) {
+      fb.className = 'feedback-box info show';
+      fb.innerHTML = 'Bitte fülle zunächst mindestens eine Lücke aus.';
+      return;
+    }
+    const total = correctAnswers.length;
+    const allOk = correct === total && filled === total;
+    fb.className = `feedback-box ${allOk ? 'correct' : 'incorrect'} show`;
+    fb.innerHTML  = allOk
+      ? `✓ Alle ${total} Lücken richtig – ausgezeichnet!`
+      : `${correct} von ${total} Lücken korrekt. Überprüfe die rot markierten Felder.`;
+    if (allOk || filled >= total) markAnswered(qId);
+  }
+
+  /* ── Check ddmatch ── */
+  function checkDdmatch(qId) {
+    const CORRECT = {
+      "0": "Die Teil-Objekte können ohne das Ganze-Objekt nicht existieren.",
+      "1": "Die Teil-Objekte können unabhängig vom Ganzen existieren.",
+      "2": "Nutzungsbeziehung ohne Besitzverhältnis zwischen den Klassen.",
+      "3": "Kein oder beliebig viele Objekte der assoziierten Klasse."
+    };
+    const selects = document.querySelectorAll(`#q${qId} .match-select`);
+    let correct = 0, filled = 0;
+
+    selects.forEach(sel => {
+      if (!sel.value) return;
+      filled++;
+      const ok = sel.value === CORRECT[sel.dataset.sub];
+      sel.classList.remove('correct-select', 'wrong-select');
+      sel.classList.add(ok ? 'correct-select' : 'wrong-select');
+      if (ok) correct++;
+    });
+
+    if (filled === 0) return;
+    const total = Object.keys(CORRECT).length;
+    const allOk = correct === total && filled === total;
+    const fb = document.getElementById(`fb-q${qId}`);
+    fb.className = `feedback-box ${allOk ? 'correct' : (correct > 0 ? 'info' : 'incorrect')} show`;
+    fb.innerHTML  = allOk
+      ? `✓ Alle ${total} Zuordnungen korrekt!`
+      : `${correct} von ${total} Zuordnungen korrekt.`;
+    if (allOk) markAnswered(qId);
+  }
+
+  /* ── Progress ── */
+  function markAnswered(qId) {
+    if (answeredSet.has(qId)) return;
+    answeredSet.add(qId);
+    document.getElementById(`nav-q${qId}`).classList.add('answered');
+    document.getElementById(`status-q${qId}`).textContent    = 'Beantwortet';
+    document.getElementById(`status-q${qId}`).style.color    = 'var(--moodle-green)';
+    document.getElementById('prog-count').textContent = answeredSet.size;
+    document.getElementById('prog-bar').style.width   = (answeredSet.size / 3 * 100) + '%';
+  }
+
+  /* ── Submit ── */
+  function submitQuiz() {
+    if (answeredSet.size < 3) {
+      alert(`Noch ${3 - answeredSet.size} Frage(n) nicht abgeschlossen.\nBitte alle Fragen prüfen.`);
+      return;
+    }
+    alert('Quiz abgegeben! In Moodle würde jetzt die Gesamtauswertung erscheinen.');
+  }
+</script>
+</body>
+</html>
