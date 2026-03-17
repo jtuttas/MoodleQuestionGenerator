@@ -22,6 +22,11 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
 - Vermeide Importfehler („String erwartet“), indem du konsequent so schreibst:
   - `<text><![CDATA[ ... HTML ... ]]></text>`
 
+### Deutsche Umlaute und Sonderzeichen (Pflicht)
+- **Immer korrekte deutsche Umlaute verwenden:** ä, ö, ü, Ä, Ö, Ü, ß — niemals Ersatzschreibungen wie ae, oe, ue, ss.
+- Innerhalb von CDATA-Blöcken sind alle Unicode-Zeichen sicher. Das XML-Encoding `UTF-8` in der Deklaration stellt die korrekte Verarbeitung sicher.
+- Gilt für Fragetexte, Antwortoptionen, Feedbacks, Titel und die HTML-Vorschau gleichermaßen.
+
 ### Fragetyp-spezifische Regeln
 #### `ddmatch` (Zuordnung)
 - Verwende `<subquestion>` + `<answer>` Paare.
