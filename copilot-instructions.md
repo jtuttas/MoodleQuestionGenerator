@@ -6,6 +6,7 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
 ## Output / Ablage
 - **Alle erzeugten Fragedateien werden im Ordner `res/` gespeichert.**
 - Erzeuge pro Lieferung **eine** XML-Datei, z. B. `res/quiz_<thema>_<datum>.xml`.
+- Erzeuge zusätzlich **immer** eine HTML-Vorschau als zweite Ausgabedatei passend zur XML-Datei.
 - XML immer als **UTF-8** mit XML-Header schreiben.
 
 ## Vorgehen (Standard-Workflow)
@@ -17,6 +18,7 @@ Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien** erzeugt (Moo
    - pro Frage genau ein `<question type="..."> ... </question>`
 4. Wenn ein Diagramm hilft: **SVG inline** im Fragetext (siehe SVG-Regeln unten).
 5. Vor dem Abschluss: XML-Validierung durchführen (siehe Validierung).
+6. Nach der XML-Erzeugung und Validierung **immer** eine vollständige HTML-Vorschau erzeugen.
 
 ## Moodle-XML Pflichtregeln
 ### CDATA (kritisch)
@@ -156,8 +158,10 @@ grep -n "<text>[^<]*<[a-z]" res/DATEI.xml
 
 ## Standard-Ausgabeformat im Chat
 - Erzeuge/aktualisiere die XML-Datei unter `res/`.
+- Erzeuge zusätzlich immer eine HTML-Vorschau unter `res/`.
 - **Aktualisiere anschließend den Abschnitt „Enthaltene Fragendateien" in `README.md`**: neue Zeile in die Tabelle eintragen (Dateiname, Thema, Zielgruppe, Anzahl Fragen, Fragetypen) sowie den Eintrag in der Verzeichnisstruktur ergänzen.
 - Gib am Ende kurz an:
   - Dateiname
   - Anzahl Fragen + verwendete Fragetypen
   - ob SVG enthalten ist
+  - dass eine HTML-Vorschau erzeugt wurde
