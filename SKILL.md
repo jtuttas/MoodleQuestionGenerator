@@ -63,6 +63,7 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
 - Falsche Antworten können negative fractions haben (z. B. `-25`, `-50`).
 - Antworttexte dürfen **nicht** mit `+`, `-`, `~` beginnen (Moodle-Sonderzeichen).
 - **Antworttextlänge neutralisieren:** Die richtige Antwort darf **nicht erkennbar die längste** sein. Alle Distraktoren müssen eine ähnliche Länge und Detailtiefe haben wie die korrekte Antwort – sonst ist die Lösung durch reines Abzählen der Zeichen erratbar.
+- **Mischung beachten (kritisch):** Moodle mischt die Antwortoptionen bei `<shuffleanswers>true</shuffleanswers>` zufällig. Daher dürfen Antworten **keine positionsabhängigen Formulierungen** enthalten (z. B. nicht „Alle oben genannten", „Antwort A und C sind richtig", „Die erste Aussage …"). Jede Antwortoption muss **eigenständig verständlich** sein, unabhängig davon, an welcher Stelle sie im Quiz angezeigt wird. Auch in der HTML-Vorschau dürfen richtige und falsche Antworten **nicht** in fester Reihenfolge (z. B. erst alle richtigen, dann alle falschen) angezeigt werden – stattdessen in gemischter Reihenfolge darstellen.
 
 #### `cloze`
 - Eingebettete Syntax im Fragetext, z. B.:
@@ -152,8 +153,9 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
 ## SVG-Regeln (Inline im Fragetext)
 - SVG immer inline im CDATA-Fragetext, mit:
   - `xmlns="http://www.w3.org/2000/svg"`
-  - fixer `width`/`height`
+  - fixer `width`/`height` **und** `viewBox="0 0 <width> <height>"`
   - Style: `font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;`
+- **Responsive Skalierung (Pflicht):** In der HTML-Vorschau müssen alle SVGs skalierbar sein. Dazu im CSS: `svg { max-width: 100%; height: auto; }`. Das `viewBox`-Attribut ist zwingend erforderlich, damit die SVG bei kleinen Viewports proportional skaliert statt abgeschnitten zu werden.
 
 ### Marker/Pfeile
 - Definiere Marker in `<defs>` und verwende sie per `marker-end="url(#id)"`.
@@ -312,6 +314,7 @@ Nach der XML-Erzeugung und Validierung wird **immer** eine vollständige, intera
 2. **`<div class="quiz-header">`** – weißer Metabereich unter Header
    - Emoji-Icon-Box (48×48px, orange), Quiz-Titel (h1), Untertitel (Klasse · Niveau · Anzahl)
    - Rechts: Badges für Zeitangabe und Gesamtpunkte
+   - **Zeitberechnung:** Die angezeigte Bearbeitungszeit wird automatisch aus der Fragenanzahl berechnet: **2 Minuten pro Frage** (z. B. 5 Fragen → „10 Min.", 8 Fragen → „16 Min.").
 
 3. **`<div class="main-wrap">`** – 2-Spalten-Grid (`1fr 220px`), max-width 900px, zentriert
    - **Linke Spalte**: `.questions` – alle Fragekarten gestapelt
@@ -333,16 +336,25 @@ Nach der XML-Erzeugung und Validierung wird **immer** eine vollständige, intera
    - **Card-Body** (`.question-body`): `padding: 20px 22px`
    - **Card-Footer** (`.question-footer`): grauer Hintergrund, klein, Status links / Typ rechts
 
-6. **Submit-Leiste** am Ende der Fragenliste: weiße Karte, zentrierter orangefarbener Button
+6. **Lehrkraft-Werkzeuge (Pflicht, Sidebar-Karte):** Die HTML-Vorschau richtet sich an Lehrkräfte. In der Sidebar muss eine Karte „Lehrkraft-Werkzeuge" mit folgenden Buttons vorhanden sein:
+   - **„Lösung anzeigen / Lösung verbergen"** – Toggle-Schalter. Bei Aktivierung werden alle korrekten Antworten visuell hervorgehoben (grüner Rahmen/Hintergrund), bei Deaktivierung wird der Ausgangszustand wiederhergestellt.
+   - **„Neu beginnen"** – Setzt das gesamte Quiz in den Ausgangszustand zurück: alle Auswahlen, Feedback-Boxen, DnD-Zuordnungen, Fortschrittsanzeige und Navigations-Markierungen werden gelöscht. Ermöglicht der Lehrkraft, die Vorschau erneut durchzuspielen.
+   - **Keine Submit-/Abschließen-Leiste** – die Vorschau ist kein echtes Quiz.
 
 ### Interaktivität (verbindlich, via inline JavaScript)
 
 #### Multiple Choice (`multichoice`)
-- Antwortoptionen als `.answer-option` mit linkem Radio-Indikator (`.answer-radio`)
-- Klick → sofortige visuelle Auswertung (kein separater Check-Button):
-  - Richtig: `.correct` → `background: var(--moodle-green-light)`, grüner Rahmen, ✓ im Radio
-  - Falsch: `.incorrect` → `background: var(--moodle-red-light)`, roter Rahmen, ✗ im Radio
+- **Indikator-Typ:** Bei `<single>true</single>` (Einfachauswahl) → **Kreis** (Radio-Button-Optik, `border-radius:50%`). Bei `<single>false</single>` (Mehrfachauswahl) → **Quadrat** (Checkbox-Optik, `border-radius:3px`). Der Indikator muss den tatsächlichen Fragetyp widerspiegeln.
+- Antwortoptionen als `.answer-option` mit linkem Indikator (`.answer-indicator`)
+- **Einfachauswahl (`single=true`):** Klick → sofortige visuelle Auswertung (kein separater Check-Button):
+  - Richtig: `.correct` → `background: var(--moodle-green-light)`, grüner Rahmen, ✓ im Indikator
+  - Falsch: `.incorrect` → `background: var(--moodle-red-light)`, roter Rahmen, ✗ im Indikator
   - Alle anderen Optionen werden deaktiviert (`onclick = null`)
+- **Mehrfachauswahl (`single=false`) — KRITISCH:**
+  - Klick auf eine Option **togglet** nur den Auswahlstatus (`.selected`-Klasse + Häkchen im Indikator). Es findet **keine sofortige Auswertung** statt!
+  - Unter den Optionen erscheint ein Button **„Antwort prüfen"**, der erst nach Klick die Auswertung durchführt.
+  - Bei Auswertung: alle ausgewählten richtigen Optionen → `.correct`, alle ausgewählten falschen → `.incorrect`, nicht ausgewählte richtige → grüner Rahmen als Hinweis.
+  - **Niemals** bei Klick auf eine einzelne Option automatisch alle anderen korrekten Antworten aufdecken!
 - Feedback-Box (`.feedback-box`) erscheint animiert darunter (`.show`)
 - Status-Feld im Footer wechselt zu „Beantwortet" (grün)
 
