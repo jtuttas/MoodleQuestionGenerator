@@ -1,120 +1,68 @@
 # MoodleQuestionGenerator
 
-Dieses Repository dient der Erstellung von **Moodle-Quizfragen im XML-Format** (Moodle 4.x) – wahlweise mit eingebetteten **SVG-Diagrammen** (UML, Netzwerktopologien). Ein Copilot-Agent übernimmt die Generierung auf Basis von Thema, Zielgruppe und gewünschtem Schwierigkeitsgrad.
+Dieses Repository dient der Erstellung von Moodle-Quizfragen für Moodle 4.x.
+Die Ausgabe besteht standardmäßig aus einer XML-Datei für den Import und einer HTML-Vorschau zur Sichtprüfung.
 
----
+## Zweck
+- Generierung von Moodle-Quizfragen aus Themenvorgaben
+- Unterstützung für SVG-Diagramme im Fragetext
+- Erzeugung einer HTML-Vorschau zusätzlich zur XML-Datei
+- Ablage der erzeugten Dateien im Ordner `res/`
 
-## Verzeichnisstruktur
+## Führende Dokumente
+Die README ist bewusst nur eine Übersicht. Fachliche Regeln werden nicht doppelt gepflegt.
 
-```
-MoodleQuestionGenerator/
-├── res/                              # Generierte Moodle-XML-Fragedateien
-│   ├── quiz_aggregation_komposition_20260223.xml
-│   ├── quiz_aggregation_komposition_20260304.xml
-│   ├── quiz_coderunner_java_oop_20260304.xml
-│   ├── quiz_coderunner_java_vererbung_20260304.xml
-│   ├── quiz_vlan_systemintegration_20260223.xml
-│   ├── quiz_nm_beziehungen_20260224.xml
-│   └── quiz_troubleshooting_ip_netzwerke_20260225.xml
-│   ├── quiz_vlsm_systemintegration_20260316.html
-│   └── quiz_vlsm_systemintegration_20260316.xml
-│   ├── quiz_vlsm_systemintegration_weiterfuehrend_20260316.html
-│   └── quiz_vlsm_systemintegration_weiterfuehrend_20260316.xml
-│
-├── symbols/
-│   └── cisco/                        # Cisco-Standard-Symbole als SVG
-│       ├── router.svg                # Cisco Router  (viewBox 0 0 60 41)
-│       ├── switch.svg                # Cisco L2-Switch (viewBox 0 0 77 39)
-│       └── pc.svg                    # Cisco PC/Workstation (viewBox 0 0 59 53)
-│
-├── template-alle-fragetypen-mit-svg.xml   # Strukturvorlage für neue Fragendateien
-├── copilot-instructions.md               # Agent-Regeln (Workspace-Root)
-├── .github/copilot-instructions.md       # Agent-Regeln (GitHub-Standard-Pfad)
-└── moodle-xml-svg-fragen.instructions.md # Detaillierte Technische Referenz
-```
+Maßgeblich sind diese Dateien in dieser Reihenfolge:
+1. `.github/instructions/questions.instructions.md`
+2. `SKILL.md`
+3. `moodle-xml-struktur-referenz.md`
+4. `templates/README.md`
 
----
+Hinweis zum Dokumentstatus:
+- `moodle-xml-struktur-referenz.md` ist nur noch ein technischer Schnelllookup für XML-Struktur und Importprüfungen.
+- Die frühere Datei `moodle-xml-svg-fragen.instructions.md` wurde entfernt, damit keine konkurrierende Alt-Spezifikation mehr im Repository liegt.
+
+## Arbeitsprinzip
+Für neue Aufgaben werden passende Vorlagen aus dem Ordner `templates/` verwendet.
+Die frühere Sammelvorlage `template-alle-fragetypen-mit-svg.xml` wird nicht mehr verwendet.
+Erzeugte Ergebnisse werden unter `res/` gespeichert.
+Pro Lieferung werden in der Regel erzeugt:
+
+- eine XML-Datei im Format `quiz_<thema>_<datum>.xml`
+- eine HTML-Vorschau mit passendem Namen
+
+## Wichtige Ordner
+- `res/`: erzeugte XML-Dateien und HTML-Vorschauen
+- `templates/`: Vorlagen für Fragetypen und Aufgabenschemata
+- `symbols/cisco/`: Cisco-Symbole für Netzwerktopologien
+- `app/`: Anwendungslogik, Tests und Hilfswerkzeuge
 
 ## Enthaltene Fragendateien
+Dieser Abschnitt dient nur als knappe Übersicht und kann bei neuen Generierungen ergänzt werden.
 
 | Datei | Thema | Zielgruppe | Fragen | Fragetypen |
 |---|---|---|---|---|
-| `quiz_aggregation_komposition_20260223.xml` | Aggregation & Komposition (OOP) | FI Anwendungsentwicklung | 5 | ddmatch, ddwtos, multichoice, cloze |
-| `quiz_aggregation_komposition_20260304.xml` | Aggregation & Komposition (OOP) | FI Anwendungsentwicklung | 5 | ddmatch, ddwtos, multichoice, cloze, multichoice |
-| `quiz_coderunner_java_oop_20260304.xml` | Objektorientierung in Java | FI Anwendungsentwicklung | 5 | coderunner |
-| `quiz_coderunner_java_vererbung_20260304.xml` | OO Programmierung in Java (Schwerpunkt Vererbung) | FI Anwendungsentwicklung | 5 | coderunner |
-| `quiz_vlan_systemintegration_20260223.xml` | VLANs & IEEE 802.1Q | FI Systemintegration | 5 | ddmatch, ddwtos, multichoice, cloze |
-| `quiz_nm_beziehungen_20260224.xml` | N:M-Beziehungen (relationale DB) | FI Anwendungsentwicklung | 5 | ddmatch, multichoice, ddwtos, cloze |
-| `quiz_troubleshooting_ip_netzwerke_20260225.xml` | Troubleshooting IP-Netzwerke | FI Systemintegration | 5 | ddmatch, multichoice, cloze, ddwtos |
-| `quiz_ipv6_lf9_erweiterung_20260302.xml` | IPv6: EUI-64, SLAAC, NDP, Übergänge | FI Systemintegration (LF9) | 8 | ddmatch, multichoice, ddwtos, cloze |
-| `quiz_klassendiagramm_ddwtos_20260315.xml` | UML-Klassendiagramme: Assoziationen (Komposition, Aggregation, Assoziation, Vererbung) | FOS/BOS Informatik / OOP | 3 | ddwtos, ddmatch |
-| `quiz_klassendiagramm_tierheim_komposition_20260316.xml` | UML-Klassendiagramm Tierheim/Tierakte/Pfleger – korrekte Komposition (Tierakte), Aggregation (Pfleger), Assoziation | FOS/BOS Informatik / OOP | 1 | ddwtos |
-| `quiz_vlsm_systemintegration_20260316.xml` | VLSM: anspruchsvolle Netzplanung mit Teilnetzvergabe | FI Systemintegration | 3 | multichoice, ddwtos, cloze |
-| `quiz_vlsm_systemintegration_weiterfuehrend_20260316.xml` | VLSM: weiterfuehrende Teilnetzplanung ohne Multiple Choice | FI Systemintegration | 3 | ddmatch, ddwtos, ordering |
+| `quiz_klassendiagramm_ddwtos_20260315.xml` | UML-Klassendiagramme | FOS/BOS Informatik / OOP | 3 | ddwtos, ddmatch |
+| `quiz_klassendiagramm_tierheim_komposition_20260316.xml` | UML-Komposition, Aggregation, Assoziation | FOS/BOS Informatik / OOP | 1 | ddwtos |
+| `quiz_vlsm_systemintegration_20260316.xml` | VLSM-Netzplanung | FI Systemintegration | 3 | multichoice, ddwtos, cloze |
+| `quiz_vlsm_systemintegration_weiterfuehrend_20260316.xml` | VLSM-Netzplanung weiterführend | FI Systemintegration | 3 | ddmatch, ddwtos, ordering |
 
----
+## Nutzung
+Für eine neue Generierung sind typischerweise diese Angaben nötig:
 
-## Fragetypen
-
-| Typ | Beschreibung |
-|---|---|
-| `ddmatch` | Drag-and-drop Zuordnung (Begriff → Erklärung/Symbol) |
-| `ddwtos` | Drag-and-drop in Lückentext (`[[1]]`, `[[2]]`, …) |
-| `multichoice` | Multiple Choice, Einzel- oder Mehrfachauswahl |
-| `cloze` | Eingebettete Fragen im Lückentext (`{n:MULTICHOICE:…}`) |
-| `coderunner` | Programmieraufgabe mit automatischen Testfällen (z. B. Java) |
-
----
-
-## SVG-Diagramme
-
-SVG-Grafiken werden **inline im CDATA-Fragetext** eingebettet. Alle `<text>`-Elemente mit HTML-Inhalt müssen in `<![CDATA[...]]>` gewrappt sein.
-
-### Netzwerktopologien – Cisco-Symbole
-
-Bei Netzwerktopologie-Darstellungen werden **ausschließlich** die Symbole aus `symbols/cisco/` verwendet:
-
-| Symbol | Datei | viewBox |
-|---|---|---|
-| Cisco Router | `symbols/cisco/router.svg` | `0 0 60 41` |
-| Cisco L2-Switch | `symbols/cisco/switch.svg` | `0 0 77 39` |
-| Cisco PC/Workstation | `symbols/cisco/pc.svg` | `0 0 59 53` |
-
-Die Symbole werden als `<symbol id="...">` in den `<defs>`-Block des jeweiligen Fragen-SVG übernommen und per `<use href="#...">` referenziert. Pro Diagramm erhalten die IDs einen eindeutigen Suffix (z. B. `rtr1`, `sw2`, `pc3`), um Kollisionen bei mehreren SVGs im selben HTML-Dokument zu vermeiden.
-
----
+- Thema
+- Zielgruppe
+- Schwierigkeitsgrad
+- Anzahl Fragen
+- gewünschte Fragetypen
 
 ## Import in Moodle
+1. Kurs öffnen.
+2. Fragensammlung aufrufen.
+3. Fragen importieren wählen.
+4. Format `Moodle XML` auswählen.
+5. XML-Datei aus `res/` hochladen.
 
-1. Moodle aufrufen → Kurs → **Fragensammlung** → **Fragen importieren**
-2. Format: **Moodle XML**
-3. Gewünschte XML-Datei aus `res/` hochladen
-
-Alternativ: lokales Moodle-Quiz per **Kurs sichern → MBZ → Kurs wiederherstellen** auf die Produktiv-Instanz übertragen.
-
----
-
-## Neue Fragendateien generieren
-
-Der Copilot-Agent erstellt neue Fragendateien auf Anfrage. Benötigte Parameter:
-
-- **Thema** (z. B. „OSI-Modell", „Python OOP")
-- **Zielgruppe** (z. B. „FI Systemintegration", „Klasse 10")
-- **Schwierigkeitsgrad** (leicht / mittel / schwer)
-- **Anzahl Fragen**
-- **Fragetypen** (optional; Standard: Mix aus allen Typen)
-
-Die erzeugte Datei wird automatisch unter `res/quiz_<thema>_<datum>.xml` gespeichert.
-
-### XML-Validierung
-
-```powershell
-python -c "import xml.etree.ElementTree as ET; ET.parse(r'res\DATEI.xml'); print('XML valid')"
-```
-
----
-
-## Weiterführende Dokumentation
-
-- [moodle-xml-svg-fragen.instructions.md](moodle-xml-svg-fragen.instructions.md) – Technische Referenz: CDATA-Regeln, SVG-Bausteine, Fragetyp-Besonderheiten, Fehlerübersicht
-- [copilot-instructions.md](copilot-instructions.md) – Agent-Workflow und Qualitätsanforderungen
+## Hinweise
+- Die HTML-Vorschau ist für die Sichtprüfung gedacht, nicht für den Moodle-Import.
+- Detailregeln zu CDATA, SVG, CodeRunner, Fragetypen und HTML-Vorschau stehen ausschließlich in den führenden Dokumenten.

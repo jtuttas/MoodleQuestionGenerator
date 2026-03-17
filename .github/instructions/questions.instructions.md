@@ -2,16 +2,17 @@
 
 ## Zweck
 Diese Instruktionsdatei steuert die Arbeit im Repository knapp und konfliktfrei.
-Die fachlich führende Spezifikation für Moodle-XML, Fragetypen, SVG-Regeln, HTML-Vorschau und CodeRunner-Details ist `SKILL.md`.
+Diese Datei ist die **führende Instruktionsquelle** für Anfragen in diesem Repository.
+`SKILL.md` dient als ergänzende fachliche Detailreferenz für Moodle-XML, Fragetypen, SVG-Regeln, HTML-Vorschau und CodeRunner-Details.
 
 ## Priorität der Dokumente
 Arbeite in dieser Reihenfolge:
-1. `SKILL.md` als maßgebliche Fachspezifikation.
-2. `moodle-xml-struktur-referenz.md` als Struktur- und Importreferenz.
-3. `templates/README.md` und die XML-Dateien im Ordner `templates/` als konkrete Vorlagen.
-4. Diese Datei für die knappen repo-spezifischen Leitplanken unten.
+1. Diese Datei `.github/instructions/questions.instructions.md`.
+2. `SKILL.md` als ergänzende Fachspezifikation.
+3. `moodle-xml-struktur-referenz.md` als Struktur- und Importreferenz.
+4. `templates/README.md` und die XML-Dateien im Ordner `templates/` als konkrete Vorlagen.
 
-Falls ältere Hinweise in anderen Dateien abweichen, gilt `SKILL.md`.
+Falls andere Dateien abweichen, gilt diese Datei.
 
 ## Repo-spezifische Leitplanken
 - Erzeuge Moodle-Quizfragen als Moodle-4.x-XML.
