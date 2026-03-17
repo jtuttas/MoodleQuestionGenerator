@@ -237,6 +237,17 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
   - Entscheidung hat ≥2 ausgehende Kanten mit Bedingungen `[Ja]`/`[Nein]` (oder sinngemäß).
 
 ## Qualitätsanforderungen
+
+### Bepunktung (`<defaultgrade>`) – Pflicht
+**Die Punktzahl einer Frage muss der Anzahl der Bewertungseinheiten entsprechen:**
+- **`multichoice` (Mehrfachauswahl):** `<defaultgrade>` = Anzahl der **richtigen** Antwortoptionen. Beispiel: 3 richtige Antworten → `<defaultgrade>3</defaultgrade>`. Die `fraction`-Werte der richtigen Antworten summieren sich weiterhin zu ≈ 100 % (z. B. 3 × 33.33333).
+- **`multichoice` (Einfachauswahl):** `<defaultgrade>1</defaultgrade>`.
+- **`ddwtos` (Drag & Drop in Text):** `<defaultgrade>` = Anzahl der **Lücken** (`[[n]]`). Beispiel: 5 Lücken → `<defaultgrade>5</defaultgrade>`.
+- **`ddmatch` (Zuordnung):** `<defaultgrade>` = Anzahl der **Zuordnungspaare** (`<subquestion>`).
+- **`cloze`:** Punktzahl ergibt sich automatisch aus den eingebetteten Teilfragen.
+- **`coderunner`:** `<defaultgrade>` = Anzahl der Testfälle (oder nach Aufgabenkomplexität).
+- **HTML-Vorschau:** Die angezeigte Punktzahl pro Frage und die Gesamtpunktzahl im Quiz-Header und in der Sidebar müssen mit den `<defaultgrade>`-Werten übereinstimmen.
+
 - Inhaltliche Konsistenz: Diagramm ↔ Frage ↔ Lösungen/Feedback müssen zusammenpassen.
 - Keine „unsichtbaren“ Beziehungen: wenn eine Beziehung im Diagramm existiert, muss sie in Text/Antworten nachvollziehbar sein.
 - Keine unnötigen Features: Erzeuge genau die angeforderten Fragen und Fragetypen.
