@@ -11,10 +11,26 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
    - `<?xml version="1.0" encoding="UTF-8"?>`
    - `<quiz>` als Root
    - pro Frage genau ein `<question type="..."> ... </question>`
+   - Fragentitel-Tag: die 4 Buchstaben **n, a, m, e** (NICHT abgekürzt!) – siehe Pflichtregeln unten
 4. Wenn ein Diagramm hilft: **SVG inline** im Fragetext (siehe SVG-Regeln unten).
 5. Vor dem Abschluss: XML-Validierung durchführen (siehe Validierung).
 
 ## Moodle-XML Pflichtregeln
+
+### Fragentitel-Tag (KRITISCH – häufige Fehlerquelle)
+- Der XML-Tag für den Fragentitel heißt wörtlich **n-a-m-e** (4 Buchstaben), NICHT das Einzelzeichen "n".
+- Korrekte Schreibweise im XML (Buchstabe für Buchstabe: Kleiner-als, n, a, m, e, Größer-als):
+  ```xml
+  <question type="multichoice">
+    <!-- Tag-Name besteht aus den 4 Buchstaben: n, a, m, e -->
+    <na&#x6D;e>
+      <text>Mein Fragetitel</text>
+    </na&#x6D;e>
+  ```
+- **WARNUNG:** Dieses Dokument kann den Tag-Namen aufgrund von HTML-Rendering-Problemen verkürzt darstellen. Der tatsächliche Tag in Moodle-XML ist IMMER das englische Wort für "Name" mit 4 Buchstaben. Im Zweifelsfall orientiere dich an den Template-Dateien im Ordner `templates/` – dort ist der Tag korrekt geschrieben.
+- **Verifikation:** Nach dem Erzeugen der XML-Datei muss geprüft werden, dass der Tag 4 Buchstaben hat (Hex: `3c6e616d653e`). Ein Tag mit nur 1 Buchstabe (`3c6e3e`) ist FALSCH und führt dazu, dass Moodle keinen Fragentitel anzeigt.
+- **Reines ASCII im Titel-Tag:** Keine Umlaute, keine Nicht-ASCII-Zeichen (kein `–` U+2013, kein `—`). Statt `ü` → `ue`, statt `–` → `-`.
+
 ### CDATA (kritisch)
 - **Jedes** `<text>`-Element, das HTML enthält, **muss** in CDATA stehen:
   - `<questiontext><text>`: praktisch immer (enthält meist HTML/SVG)
@@ -140,7 +156,7 @@ Nur die folgenden `<coderunnertype>`-Werte dürfen verwendet werden – exakt so
   `if ret == 0: os.system('java -Xmx128m -XX:CompressedClassSpaceSize=64m -cp . Test')`
 - Das Python-Template (`<template>`) in XML muss linksbündig (ohne führende Leerzeichen) beginnen, anderenfalls produziert der CodeRunner einen `IndentationError` in Python.
 - **`<template>` muss immer in CDATA eingebettet sein:** `<template><![CDATA[\n ... \n]]></template>`. Ohne CDATA brechen `&`-Zeichen (z. B. in `-J-Xmx128m`) das XML.
-- **Keine Sonderzeichen im `<name>`-Tag:** Fragetitel dürfen **keine Nicht-ASCII-Zeichen** enthalten (kein `–` U+2013, kein `—`, keine Umlaute außerhalb von CDATA). Statt `–` immer einfaches `-` verwenden. Das `<name>`-Tag wird nicht in CDATA eingebettet und muss daher reines ASCII sein. Das `<answer>`-Tag darf in CodeRunner-Fragen **nicht** vorkommen. Moodle's Import-Parser interpretiert es als Array und wirft `mysqli::real_escape_string(): Argument #1 must be of type string, array given`. Die Musterlösung gehört ausschließlich in `<generalfeedback>`, nie in `<answer>`.
+- **Keine Sonderzeichen im Fragentitel-Tag (n-a-m-e):** Fragetitel dürfen **keine Nicht-ASCII-Zeichen** enthalten (kein `–` U+2013, kein `—`, keine Umlaute). Statt `–` immer einfaches `-` verwenden. Der Fragentitel-Tag wird nicht in CDATA eingebettet und muss reines ASCII sein. Siehe auch den Abschnitt "Fragentitel-Tag" oben. Das `<answer>`-Tag darf in CodeRunner-Fragen **nicht** vorkommen. Moodle's Import-Parser interpretiert es als Array und wirft `mysqli::real_escape_string(): Argument #1 must be of type string, array given`. Die Musterlösung gehört ausschließlich in `<generalfeedback>`, nie in `<answer>`.
 - **Separate XML-Dateien pro Aufgabe:** CodeRunner-Fragen immer als einzelne XML-Dateien exportieren (eine Datei = eine Frage), nicht gebündelt mit anderen Fragetypen, um Import-Konflikte zu vermeiden.
 - **`<expected>` immer in CDATA:** Das `<expected><text>`-Element muss immer in CDATA eingebettet sein: `<expected><text><![CDATA[...]]></text></expected>`. Ohne CDATA führen Sonderzeichen (z. B. `–` U+2013, `|`, Umlaute) zu `mysqli`-Fehlern beim Import.
 - **Kein `textwrap.dedent()` mit Triple-Quotes im Template:** Triple-Quote-Strings im Python-Template dürfen nicht zusammen mit `printf`-Formatstrings (`%s`, `%f`, `%n`) verwendet werden – Moodle's Template-Engine kann `%`-Sequenzen fehlinterpretieren. Stattdessen **immer einfache String-Konkatenation** verwenden:
@@ -281,6 +297,22 @@ python -c "import xml.etree.ElementTree as ET; ET.parse(r'res\\DATEI.xml'); prin
 ```
 
 Wenn möglich: zusätzlich nach `<text>` ohne CDATA suchen, sobald HTML vorkommt.
+
+### Fragentitel-Tag-Validierung (PFLICHT)
+Nach jeder XML-Erzeugung MUSS geprüft werden, dass der Fragentitel-Tag korrekt ist (4 Buchstaben: n,a,m,e). Verwende dazu dieses Skript:
+
+```python
+import xml.etree.ElementTree as ET
+tree = ET.parse('DATEI.xml')
+for q in tree.getroot().findall('question'):
+    n = q.find('name')  # sucht Tag mit 4 Buchstaben n-a-m-e
+    if n is not None and n.find('text') is not None:
+        print(f"OK: tag='{n.tag}', titel='{n.find('text').text}'")
+    else:
+        print(f"FEHLER: Frage hat keinen korrekten Fragentitel-Tag!")
+```
+
+Wenn die Ausgabe `tag='name'` (4 Buchstaben) zeigt, ist der Tag korrekt. Wenn `tag='n'` (1 Buchstabe) erscheint, muss die XML korrigiert werden – Moodle zeigt sonst keinen Fragentitel an.
 
 ## Standard-Ausgabeformat im Chat
 
