@@ -1,0 +1,722 @@
+\documentclass[a4paper,10pt,addpoints]{exam}
+% !TEX program = xelatex
+\newcommand{\Class}{FISI3AJ}
+\newcommand{\Classification}{LF10 Proxmox --- Prüfungsvorbereitung --- Zilinski}
+\newcommand{\Author}{Malte Zilinski}
+\newcommand{\Date}{27.02.2026}
+
+\input{includes/preamble}
+\printanswers
+\begin{document}
+
+% ===========================================================================
+\section*{Ausgangssituation: NetCom Solutions GmbH}
+% ===========================================================================
+
+Die \textbf{NetCom Solutions GmbH} ist ein IT-Dienstleister in Lingen.
+Das Unternehmen betreibt Managed Hosting und IT-Services für 40 Firmenkunden ---
+darunter Steuerberatungsbüros, Handwerksbetriebe und die Weber Spedition GmbH.
+
+Die veralteten physischen Server sollen durch eine moderne
+\textbf{Proxmox-VE-Infrastruktur} (Proxmox Virtual Environment: quelloffene
+Virtualisierungsplattform auf Debian-Basis) abgelöst werden.
+Geplant ist ein \textbf{3-Node-Cluster} --- ein \emph{Node} ist dabei ein einzelner
+physischer Server, der Mitglied des Clusters ist; hier also drei Server:
+Node-1, Node-2 und Node-3.
+Jeder Node erhält lokale NVMe-SSDs mit ZFS-Dateisystem; zusätzlich gibt es einen
+gemeinsamen NFS-Server für Backups und geteilten Storage.
+
+Als FISI-Azubi im 3.\ Lehrjahr unterstützen Sie das Migrationsprojekt.
+Ihre Aufgaben umfassen die Wahl der richtigen Virtualisierungstechnologie,
+die Planung der Backup-Strategie, die Sicherstellung der Hochverfügbarkeit
+des Clusters sowie die Automatisierung der Kundenbereitstellung.
+
+% ===========================================================================
+% Themenbereich 1
+% ===========================================================================
+\section*{Themenbereich 1: Virtualisierungsgrundlagen --- KVM vs.\ LXC}
+
+\begin{infoBox}{QEMU/KVM -- Vollvirtualisierung}{kvm}
+  \textbf{QEMU} ist ein quelloffener \emph{Hypervisor} (Software-Schicht, die mehrere
+  Betriebssysteme auf einer physischen Hardware betreibt und deren Ressourcen aufteilt).
+  In Proxmox wird QEMU stets zusammen mit dem Linux-Kernelmodul \textbf{KVM}
+  (Kernel-based Virtual Machine) betrieben.
+  KVM nutzt Hardware-Erweiterungen der CPU (Intel VT-x / AMD-V), um den Gästen
+  direkten Zugang zu Hardware-Ressourcen zu ermöglichen.
+
+  \medskip
+  \textbf{Emulierte vs.\ paravirtualisierte Geräte:}
+  \begin{itemize}
+    \item \emph{Emulierte Geräte:} Vollständige Software-Nachbildung realer Hardware
+      (z.\,B.\ IDE-Controller, klassische Netzwerkkarte). Kompatibel mit unveränderten
+      Gast-Betriebssystemen, jedoch mit Performance-Overhead.
+    \item \emph{Paravirtualisierte Geräte (VirtIO):} Der Gast \enquote{kennt} die
+      virtuelle Hardware und setzt spezielle, optimierte Treiber nach dem
+      \textbf{VirtIO}-Standard ein. Resultat: \textbf{deutlich höherer}
+      Durchsatz bei Festplatte und Netzwerk gegenüber emulierten Geräten.
+  \end{itemize}
+
+  \medskip
+  \textbf{Wann KVM wählen:} Vollständige OS-Isolation erforderlich, fremdes
+  Betriebssystem (Windows, BSD), Legacy-Anwendungen, oder wenn maximale
+  Sicherheitsisolation gefordert ist.
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Qemu/KVM_Virtual_Machines}{Proxmox Wiki -- QEMU/KVM Virtual Machines}\\
+  \hspace*{0.4em}\textit{Fokus: Einleitung (»What is QEMU/KVM?«) und
+    Unterabschnitt »Emulation vs.\ Paravirtualization«}
+\end{infoBox}
+
+\begin{infoBox}{LXC -- Linux Container}{lxc}
+  \textbf{LXC} (Linux Containers) sind keine echten virtuellen Maschinen ---
+  sie teilen den Kernel des Host-Systems und stellen isolierte
+  \emph{Prozessgruppen} mit eigenem Dateisystem, Netzwerk und Benutzerpool bereit.
+
+  \medskip
+  \textbf{Isolation durch Linux-Kernel-Mechanismen:}
+  \begin{itemize}
+    \item \emph{Namespaces} (Kernel-Mechanismus zur Isolation von Systemressourcen):
+      Jeder Container bekommt eine eigene Sicht auf Prozesse,
+      Netzwerk, Dateisystem und Benutzer-IDs.
+    \item \emph{Control Groups (cgroups)} (Mechanismus zur Ressourcenbegrenzung):
+      Begrenzung und Zuteilung von CPU, RAM und I/O-Ressourcen pro Container.
+    \item \emph{AppArmor / Seccomp:} Einschränkung gefährlicher Systemaufrufe.
+    \item \emph{Unprivilegierte Container:} UID 0 (root) im Container wird auf einen
+      unprivilegierten Host-Benutzer abgebildet --- ein Container-Ausbruch besitzt
+      somit keine Root-Rechte auf dem Host.
+  \end{itemize}
+
+  \medskip
+  \textbf{Sicherheitshinweis (Proxmox-Dokumentation):}
+  \enquote{Containers use the kernel of the host system.
+  This exposes an attack surface for malicious users. In general, full virtual
+  machines provide better isolation.}
+
+  \medskip
+  \textbf{Wann LXC wählen:} Viele gleichartige Linux-Dienste, geringer
+  Ressourcenverbrauch, schneller Start, oder wenn der Overhead eines eigenen
+  Kernels nicht benötigt wird.
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Linux_Container}{Proxmox Wiki -- Linux Container}\\
+  \hspace*{0.4em}\textit{Fokus: Abschnitte »Technology Overview« und
+    »Security \& Isolation: Containers vs.\ VMs«}
+\end{infoBox}
+
+\begin{infoBox}{Vergleich KVM vs.\ LXC}{vergleich-kvm-lxc}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabularx}{\textwidth}{lXX}
+    \toprule
+    \textbf{Merkmal}        & \textbf{KVM (Virtuelle Maschine)}           & \textbf{LXC (Container)} \\
+    \midrule
+    Kernel                  & Eigener Kernel im Gast                      & Geteilter Host-Kernel \\
+    Isolation               & Sehr hoch (Vollvirtualisierung)             & Mittel (Namespace-Isolation) \\
+    Gast-Betriebssystem     & Beliebig (Windows, Linux, BSD, \ldots)      & Nur Linux \\
+    Ressourcenverbrauch     & Höher (eigener Kernel, RAM-Overhead)        & Sehr gering \\
+    Startzeit               & Sekunden bis Minuten                        & Sekunden \\
+    Live-Migration          & Ja (bei Shared Storage)                     & Eingeschränkt \\
+    Snapshots               & Ja (qcow2 oder ZFS/LVM-thin)                & Ja (storage-abhängig) \\
+    \bottomrule
+  \end{tabularx}
+  \renewcommand{\arraystretch}{1}
+\end{infoBox}
+
+\begin{quote}
+  \textbf{Situation bei NetCom:}
+  \itshape
+  NetCom soll für zwei Kunden Systeme in Betrieb nehmen.
+  Kunde \emph{Müller \& Partner GbR} benötigt einen Windows Server~2022
+  für die Buchhaltungssoftware DATEV.
+  Kunde \emph{Bäckerei Thoma} benötigt einen Apache-Webserver (Ubuntu~22.04)
+  und einen Postfix-Mailserver (Debian).
+  Außerdem soll ein VPN-Gateway auf Basis von pfSense
+  (quelloffenes Firewall- und Routerbetriebssystem, basierend auf FreeBSD)
+  für die Weber Spedition GmbH betrieben werden.
+  Der Projektleiter bittet Sie, für jeden Dienst die geeignete
+  Virtualisierungstechnologie zu empfehlen.
+\end{quote}
+
+\qformat{\textbf{Aufgabe \thequestion~-- Virtualisierungsgrundlagen} \hfill \thepoints}
+\begin{questions}
+
+% ── Aufgabe 1 ──────────────────────────────────────────────────────────────
+\question
+\textbf{KVM vs.\ LXC --- Architektur und Paravirtualisierung}
+\begin{parts}
+  \part[3] Erläutern Sie den grundlegenden architektonischen Unterschied zwischen
+    einer KVM-VM und einem LXC-Container in Proxmox.
+    \fillwithdottedlines{1.1in}
+    \begin{solution}
+      Eine \textbf{KVM-VM} emuliert vollständige Hardware und führt einen eigenen,
+      vollständig vom Host getrennten Kernel aus (Vollvirtualisierung).
+      Ein \textbf{LXC-Container} teilt hingegen den Kernel des Host-Systems;
+      Isolation erfolgt ausschließlich durch Linux-Kernel-Mechanismen (Namespaces,
+      cgroups). VMs bieten stärkere Isolation auf Kosten von mehr
+      Ressourcenverbrauch und längeren Startzeiten.
+    \end{solution}
+
+  \part[2] Erklären Sie den Begriff \emph{Paravirtualisierung} und nennen Sie den
+    in Proxmox/KVM verwendeten Standard.
+    \fillwithdottedlines{0.8in}
+    \begin{solution}
+      Paravirtualisierung bedeutet, dass der Gast die virtuelle Hardware als solche
+      \enquote{kennt} und speziell dafür optimierte Treiber nutzt.
+      In Proxmox/KVM ist dies der \textbf{VirtIO}-Standard.
+      Dadurch werden deutlich höhere Performance-Werte bei Festplatte und Netzwerk
+      erzielt als mit emulierten Geräten.
+    \end{solution}
+\end{parts}
+
+% ── Aufgabe 2 ──────────────────────────────────────────────────────────────
+\question
+\textbf{Sicherheit und Einsatzentscheidung bei NetCom}
+\begin{parts}
+  \part[3] Begründen Sie, warum LXC-Container generell eine geringere
+    Sicherheitsisolation bieten als KVM-VMs.
+    \fillwithdottedlines{1in}
+    \begin{solution}
+      Container teilen den Kernel des Hosts. Gelingt einem Angreifer ein
+      \emph{Container-Escape} oder wird eine Kernel-Schwachstelle ausgenutzt,
+      hat er potenziell Zugriff auf den Host und alle anderen Container.
+      Bei einer KVM-VM muss ein Angriff zusätzlich die Hypervisor-Schicht
+      überwinden --- die Isolation ist dadurch grundlegend stärker.
+    \end{solution}
+
+  \part[4] Entscheiden Sie für jeden der folgenden NetCom-Dienste, ob
+    \textbf{KVM} oder \textbf{LXC} die geeignete Technologie ist.
+    Begründen Sie Ihre Wahl jeweils in einem Satz.
+    \begin{itemize}
+      \item Windows Server 2022 mit DATEV (Müller \& Partner GbR)
+      \item Apache-Webserver auf Ubuntu 22.04 (Bäckerei Thoma)
+      \item Postfix-Mailserver auf Debian (Bäckerei Thoma)
+      \item pfSense VPN-Gateway, basierend auf FreeBSD (Weber Spedition GmbH)
+    \end{itemize}
+    \fillwithdottedlines{1.4in}
+    \begin{solution}
+      \begin{itemize}
+        \item \textbf{Windows Server 2022 → KVM:}
+          Windows ist ein fremdes Betriebssystem; LXC unterstützt nur Linux.
+        \item \textbf{Apache (Ubuntu) → LXC:}
+          Linux-Dienst ohne besondere Isolationsanforderung; geringer Overhead.
+        \item \textbf{Postfix (Debian) → LXC:}
+          Linux-Dienst; viele gleichartige Mail-Container sparen RAM durch
+          geteilten Kernel.
+        \item \textbf{pfSense → KVM:}
+          pfSense basiert auf FreeBSD (kein Linux) --- LXC unterstützt
+          ausschließlich Linux-Gäste.
+      \end{itemize}
+    \end{solution}
+\end{parts}
+\end{questions}
+
+% ── Themenbereich 2 ─────────────────────────────────────────────────────────
+\section*{Themenbereich 2: Storage \& Backup}
+
+\begin{infoBox}{Storage-Typen in Proxmox}{storage}
+  Proxmox unterscheidet grundlegend zwischen \textbf{File-Level-} und
+  \textbf{Block-Level-Storage}:
+  \begin{itemize}
+    \item \emph{File-Level:} Zugriff auf ein vollständiges POSIX-Dateisystem;
+      VM-Images werden als Dateien gespeichert, z.\,B.\ im Format
+      \textbf{qcow2} (QEMU Copy-On-Write, Version~2: Proxmox-Festplattenformat
+      mit Snapshot- und Thin-Provisioning-Unterstützung).
+      Flexibel --- auch für ISOs und Backups verwendbar.
+    \item \emph{Block-Level:} Rohe Block-Geräte für VM-Disk-Images.
+      Kein direkter Dateizugriff, aber häufig bessere Snapshot-Performance.
+  \end{itemize}
+
+  \medskip
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabularx}{\textwidth}{llllX}
+    \toprule
+    \textbf{Typ}  & \textbf{Level} & \textbf{Geteilt} & \textbf{Snapshots} & \textbf{Typischer Einsatz} \\
+    \midrule
+    Directory     & File    & Nein & Ja (qcow2) & Lokale ISOs, Backups \\
+    LVM-thin      & Block   & Nein & Ja         & Lokale VM-Disks \\
+    ZFS (lokal)   & Beide   & Nein & Ja (nativ) & Snapshots, Klone \\
+    NFS           & File    & Ja   & Ja (qcow2) & Geteilter Netzwerkspeicher \\
+    Ceph/RBD      & Block   & Ja   & Ja         & Verteilter, replizierter Storage \\
+    \bottomrule
+  \end{tabularx}
+  \renewcommand{\arraystretch}{1}
+
+  \medskip
+  \textbf{Live-Migration} laufender VMs ohne Ausfallzeit erfordert
+  \textbf{geteilten Storage} (NFS, Ceph), da beide Nodes gleichzeitig auf das
+  VM-Disk-Image zugreifen müssen.
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Storage}{Proxmox Wiki -- Storage}\\
+  \hspace*{0.4em}\textit{Fokus: Abschnitte »File-Level vs.\ Block-Level Storage«
+    und die Tabelle »Key Storage Types Overview«}
+\end{infoBox}
+
+\begin{infoBox}{Backup-Modi in Proxmox (vzdump)}{backup}
+  Proxmox nutzt \textbf{vzdump} für VM- und Container-Backups.
+  Es gibt drei Backup-Modi:
+
+  \medskip
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabularx}{\textwidth}{lXXX}
+    \toprule
+    \textbf{Modus}    & \textbf{Vorgehen}                              & \textbf{Ausfallzeit} & \textbf{Konsistenz} \\
+    \midrule
+    \textbf{Stop}     & VM wird heruntergefahren; Backup läuft; VM
+                        startet neu                                     & Kurz    & Garantiert \\
+    \textbf{Suspend}  & VM wird pausiert vor dem Snapshot               & Mittel  & Hoch (Kompatibilität) \\
+    \textbf{Snapshot} & Backup läuft während die VM aktiv bleibt        & Minimal & Gut (mit Gast-Agent) \\
+    \bottomrule
+  \end{tabularx}
+  \renewcommand{\arraystretch}{1}
+
+  \medskip
+  \textbf{Empfehlung für Produktion:} \emph{Snapshot-Modus} mit aktiviertem
+  \textbf{QEMU-Gast-Agenten}.
+  Der Agent ruft im Gast \texttt{fsfreeze} auf
+  (\texttt{fsfreeze}: Linux-Befehl, der alle Schreibzugriffe auf das Dateisystem
+  temporär unterbricht, um einen konsistenten Snapshot-Zustand zu erzeugen)
+  und friert das Dateisystem kurz ein, sodass das Backup ohne inkonsistente
+  Daten erstellt wird.
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Backup_and_Restore}{Proxmox Wiki -- Backup and Restore}\\
+  \hspace*{0.4em}\textit{Fokus: Abschnitt »Three Primary Backup Modes«
+    (Stop, Suspend, Snapshot) mit jeweiligen Vor- und Nachteilen}
+\end{infoBox}
+
+\begin{infoBox}{Snapshot $\neq$ Backup}{snapshot-backup}
+  Ein \textbf{Snapshot} ist eine Point-in-Time-Aufnahme des VM-Zustands
+  (Disk, optional RAM, Konfiguration) für schnelles Rollback innerhalb desselben
+  Systems. Er ist \textbf{kein vollwertiges Backup}, weil:
+
+  \begin{itemize}
+    \item \emph{Gleicher Speicherort:} Snapshot und Original liegen auf derselben
+      physischen Festplatte --- ein Hardwareausfall löscht beides gleichzeitig.
+    \item \emph{Kein portables Archiv:} Ein Snapshot allein kann nicht auf einem
+      anderen System wiederhergestellt werden; er ist an das Proxmox-System gebunden.
+    \item \emph{Nicht in Backups enthalten:} Proxmox-Backups (vzdump) schließen
+      vorhandene Snapshots \emph{nicht} automatisch ein --- die Backup-Logs weisen
+      explizit darauf hin.
+  \end{itemize}
+
+  \medskip
+  \textbf{Merksatz:} \emph{Snapshot = schnelles Rollback. Backup = Schutz vor Katastrophe.}
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Live_Snapshots}{Proxmox Wiki -- Live Snapshots}\\
+  \hspace*{0.4em}\textit{Fokus: Abschnitte »Why Snapshots Aren't Backups«
+    und »Key Limitations«}
+\end{infoBox}
+
+\begin{quote}
+  \textbf{Situation bei NetCom:}
+  \itshape
+  Der Cluster ist in Betrieb. Die VM-Disks aller Kunden liegen auf dem lokalen
+  ZFS-Storage der jeweiligen Nodes.
+  Für Backups und geteilten Zugriff steht der gemeinsame NFS-Server bereit.
+  Die DATEV-VM von Müller \& Partner läuft auf Node-1 und soll nachts gesichert werden ---
+  eine Unterbrechung von mehr als 30~Minuten wäre für den Kunden nicht akzeptabel.
+  Der Projektleiter fragt außerdem kritisch:
+  \emph{\enquote{Reichen die ZFS-Snapshots nicht als tägliche Sicherung?
+  Warum brauchen wir überhaupt vzdump?}}
+\end{quote}
+
+\qformat{\textbf{Aufgabe \thequestion~-- Storage \& Backup} \hfill \thepoints}
+\begin{questions}
+\setcounter{question}{2}
+
+% ── Aufgabe 3 ──────────────────────────────────────────────────────────────
+\question
+\textbf{Storage-Typen und Live-Migration}
+\begin{parts}
+  \part[3] Erklären Sie den Unterschied zwischen \emph{File-Level-Storage} und
+    \emph{Block-Level-Storage} in Proxmox.
+    Nennen Sie je ein konkretes Beispiel aus der Tabelle.
+    \fillwithdottedlines{0.9in}
+    \begin{solution}
+      \textbf{File-Level:} Vollständiges POSIX-Dateisystem; Images werden als
+      Dateien (\texttt{.qcow2}) gespeichert. Flexibel einsetzbar (ISOs, Backups, VMs).
+      Beispiel: \emph{Directory}, \emph{NFS}. \\
+      \textbf{Block-Level:} Rohe Block-Devices ohne Dateisystem-Overhead;
+      nur für VM-Disk-Images geeignet.
+      Beispiel: \emph{LVM-thin}, \emph{Ceph/RBD}.
+    \end{solution}
+
+  \part[3] NetCom plant, die Webserver-VMs bei Wartungsarbeiten an einem Node
+    \emph{ohne Ausfallzeit} auf einen anderen Node zu verschieben.
+    Welcher Storage-Typ ist dafür Voraussetzung?
+    Begründen Sie und nennen Sie ein konkretes Beispiel aus dem NetCom-Cluster.
+    \fillwithdottedlines{0.8in}
+    \begin{solution}
+      Voraussetzung ist \textbf{geteilter Storage} (Shared Storage), auf den
+      beide Nodes gleichzeitig zugreifen können.
+      Beide Proxmox-Nodes müssen das VM-Disk-Image direkt lesen und schreiben
+      können, ohne es vorher kopieren zu müssen.
+      Im NetCom-Cluster: der gemeinsame \textbf{NFS-Server}.
+      Bei lokalem ZFS je Node müsste das Image übertragen werden, was einen
+      kurzen VM-Stopp erfordern würde.
+    \end{solution}
+\end{parts}
+
+% ── Aufgabe 4 ──────────────────────────────────────────────────────────────
+\question
+\textbf{Backup-Modus und Snapshot-Diskussion}
+\begin{parts}
+  \part[3] Welcher Backup-Modus eignet sich für die DATEV-VM von Müller \& Partner,
+    die nicht länger als 30~Minuten unterbrochen werden darf?
+    Begründen Sie und nennen Sie die Voraussetzung für maximale Datenkonsistenz.
+    \fillwithdottedlines{0.9in}
+    \begin{solution}
+      \textbf{Snapshot-Modus}: Die VM bleibt während des Backups aktiv ---
+      minimale Ausfallzeit.
+      Für maximale Datenkonsistenz muss der \textbf{QEMU-Gast-Agent} installiert
+      und aktiv sein, damit Proxmox das Gast-Dateisystem per \texttt{fsfreeze}
+      kurz einfrieren kann, bevor das Backup startet.
+    \end{solution}
+
+  \part[4] Antworten Sie dem Projektleiter: Erklären Sie anhand von
+    \textbf{drei} konkreten Argumenten, warum ein Proxmox-Snapshot
+    \textbf{kein} vollwertiges Backup ist und vzdump dennoch benötigt wird.
+    \fillwithdottedlines{1.1in}
+    \begin{solution}
+      \begin{enumerate}
+        \item \textbf{Gleicher Speicherort:} Der ZFS-Snapshot liegt auf derselben
+          NVMe-SSD wie die VM. Fällt Node-1 mit Datenverlust aus, sind Snapshot
+          und VM-Disk gleichzeitig verloren.
+        \item \textbf{Kein portables Archiv:} Ein Snapshot ist an den Proxmox-Host
+          gebunden. Im Katastrophenfall kann er nicht eigenständig auf einem
+          Ersatz-System genutzt werden.
+        \item \textbf{Nicht in vzdump-Backups enthalten:} Bestehende Snapshots
+          werden von vzdump nicht automatisch mitgesichert; nur vzdump erstellt
+          ein transportables Archiv auf dem NFS-Server.
+      \end{enumerate}
+    \end{solution}
+\end{parts}
+\end{questions}
+
+% ── Themenbereich 3 ─────────────────────────────────────────────────────────
+\section*{Themenbereich 3: Cluster \& Quorum}
+
+\begin{infoBox}{Proxmox Cluster -- Grundlagen}{cluster}
+  Ein \textbf{Proxmox Cluster} verbindet mehrere Proxmox-Nodes (Server) zu einem
+  gemeinsam verwalteten Verbund.
+  Die Konfiguration aller Nodes wird über \textbf{pmxcfs} synchronisiert ---
+  ein datenbankbasiertes Cluster-Dateisystem, das Änderungen (z.\,B.\ neue VMs,
+  Netzwerkkonfigurationen) in Echtzeit auf alle Nodes überträgt, sodass stets
+  alle Nodes denselben Konfigurationsstand haben.
+
+  \medskip
+  \textbf{Vorteile gegenüber isolierten Einzel-Servern:}
+  \begin{itemize}
+    \item Zentrale Web-Oberfläche für alle Nodes
+    \item \emph{Multi-Master} (kein einzelner Verwaltungsserver; jeder Node kann
+      administrative Aufgaben übernehmen, kein Single-Point-of-Failure)
+    \item Live-Migration laufender VMs ohne Ausfallzeit (bei Shared Storage)
+    \item \emph{High Availability (HA)}: Automatischer Neustart von VMs auf einem
+      anderen Node, wenn ein Node ausfällt
+    \item Cluster-weite Firewall und gemeinsames VM-Deployment
+  \end{itemize}
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Cluster_Manager}{Proxmox Wiki -- Cluster Manager}\\
+  \hspace*{0.4em}\textit{Fokus: Einleitung »Purpose of a Cluster« und
+    Abschnitt »Understanding Quorum«}
+\end{infoBox}
+
+\begin{infoBox}{Quorum und Split-Brain-Vermeidung}{quorum}
+  \textbf{Quorum} bezeichnet die \emph{Mindestanzahl an Stimmen}, die eine
+  Cluster-Partition erhalten muss, bevor sie Änderungen am Cluster-Zustand
+  vornehmen darf.
+
+  \medskip
+  \textbf{Das Split-Brain-Problem:}
+  Bei einem Netzwerkausfall kann sich ein Cluster in voneinander isolierte
+  Partitionen aufteilen.
+  Ohne Quorum würden beide Seiten gleichzeitig Schreiboperationen durchführen ---
+  Datenkonflikte und Datenkorrumpierung wären die Folge
+  (z.\,B.\ dieselbe VM wird auf zwei Nodes gleichzeitig gestartet).
+
+  \medskip
+  \textbf{Lösung:} Nur die Partition mit der \textbf{Stimmenmehrheit} darf weiter
+  schreiben; die Minderheit wechselt in den Read-Only-Modus.
+
+  \medskip
+  \textbf{Warum mindestens 3 Nodes?}
+  \begin{itemize}
+    \item \textbf{2 Nodes:} Fällt ein Node aus, verbleiben $1\,/\,2$ Stimmen ---
+      keine Mehrheit, der Cluster stoppt den Schreibbetrieb.
+    \item \textbf{3 Nodes:} Fällt ein Node aus, verbleiben $2\,/\,3$ Stimmen ---
+      Quorum erreicht, der Cluster läuft weiter.
+    \item \textbf{Lösung für 2-Node-Cluster:}
+      Ein externes \textbf{QDevice} stellt eine dritte Stimme bereit
+      (QDevice: leichtgewichtiger Prozess auf einem beliebigen Linux-System,
+      z.\,B.\ einem Raspberry Pi, der \emph{nur} als Stimmgeber fungiert,
+      selbst aber keine VMs betreibt).
+  \end{itemize}
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Cluster_Manager}{Proxmox Wiki -- Cluster Manager}\\
+  \hspace*{0.4em}\textit{Fokus: Abschnitte »Understanding Quorum«,
+    »The Three-Node Requirement« und »Preventing Split-Brain«}
+\end{infoBox}
+
+\begin{quote}
+  \textbf{Situation bei NetCom:}
+  \itshape
+  Drei Wochen nach Inbetriebnahme fällt \textbf{Node-2} um 14:30~Uhr wegen eines
+  Speicherfehlers aus.
+  Das Proxmox-Webinterface der verbleibenden Nodes meldet:
+  \emph{\enquote{Cluster Status: quorum OK (2/3)}}.
+  Die VMs, die auf Node-2 liefen, werden dank HA automatisch auf Node-1 und Node-3
+  neu gestartet --- der Betrieb läuft weiter.
+  Im Nachgespräch erinnert der Geschäftsführer daran, dass er vor dem Projektstart
+  vorgeschlagen hatte, aus Kostengründen nur zwei Nodes einzusetzen.
+\end{quote}
+
+\qformat{\textbf{Aufgabe \thequestion~-- Cluster \& Quorum} \hfill \thepoints}
+\begin{questions}
+\setcounter{question}{4}
+
+% ── Aufgabe 5 ──────────────────────────────────────────────────────────────
+\question
+\textbf{Quorum und Node-Ausfall bei NetCom}
+\begin{parts}
+  \part[3] Was versteht man unter einem \emph{Split-Brain}-Szenario?
+    Erklären Sie die Gefahr für den NetCom-Cluster anhand eines konkreten Beispiels.
+    \fillwithdottedlines{1in}
+    \begin{solution}
+      Split-Brain: Ein Netzwerkausfall teilt den Cluster in isolierte Partitionen,
+      wobei jede Seite glaubt, allein aktiv zu sein.
+      Konkret bei NetCom: Sind Node-1 und Node-3 von Node-2 getrennt, könnten
+      ohne Quorum beide Seiten die DATEV-VM starten und gleichzeitig auf dasselbe
+      Disk-Image schreiben --- Datenverlust oder -korrumpierung wäre die Folge.
+    \end{solution}
+
+  \part[4] Erläutern Sie dem Geschäftsführer, warum der Einsatz von
+    \textbf{drei statt zwei Nodes} im Nachhinein die richtige Entscheidung war.
+    Nennen Sie auch die Lösung, die Proxmox für einen 2-Node-Cluster anbietet.
+    \fillwithdottedlines{1.1in}
+    \begin{solution}
+      Bei \textbf{3 Nodes} besitzen Node-1 und Node-3 nach dem Ausfall von
+      Node-2 noch $2\,/\,3$ Stimmen --- Quorum erreicht, der Cluster läuft weiter.
+      HA konnte die VMs automatisch neu starten. \\
+      Bei \textbf{2 Nodes} hätte der Ausfall eines Nodes $1\,/\,2$ Stimmen
+      hinterlassen --- keine Mehrheit. Der Cluster hätte den Schreibbetrieb
+      eingestellt; alle Kunden-VMs wären ausgefallen. \\
+      Lösung für 2 Nodes: \textbf{QDevice} (z.\,B.\ Raspberry Pi) als externe
+      dritte Stimme.
+    \end{solution}
+\end{parts}
+
+% ── Aufgabe 6 ──────────────────────────────────────────────────────────────
+\question[3]
+\textbf{Clustervorteile für die Geschäftsführung}\\
+Der Geschäftsführer fragt nach dem Vorfall, welche weiteren Vorteile der Cluster
+gegenüber dem bisherigen Betrieb mit isolierten physischen Einzelservern bietet.
+Nennen Sie \textbf{drei} konkrete Vorteile.
+\fillwithdottedlines{0.9in}
+\begin{solution}
+  Drei aus: Zentrale Verwaltung aller Nodes über eine Web-Oberfläche,
+  Live-Migration laufender VMs ohne Ausfallzeit bei Wartungsarbeiten,
+  High Availability (automatischer VM-Neustart bei Node-Ausfall),
+  cluster-weite Firewall-Regeln, schnelles VM-Deployment durch Klonen
+  über alle Nodes, Echtzeit-Konfigurationsreplikation via pmxcfs.
+\end{solution}
+\end{questions}
+
+% ── Themenbereich 4 ─────────────────────────────────────────────────────────
+\section*{Themenbereich 4: Grundlagen der Automatisierung --- IaC \& Cloud-Init}
+
+\begin{infoBox}{Infrastructure as Code (IaC)}{iac}
+  \textbf{Infrastructure as Code} (IaC) bezeichnet den Ansatz, IT-Infrastruktur
+  (Server, Netzwerke, Storage, Konfigurationen) nicht manuell über eine GUI
+  einzurichten, sondern in \textbf{maschinenlesbaren Konfigurationsdateien}
+  zu beschreiben und diese wie Quellcode zu versionieren und auszuführen.
+
+  \medskip
+  \textbf{Vorteile gegenüber manueller GUI-Konfiguration:}
+  \begin{itemize}
+    \item \emph{Reproduzierbarkeit:} Dieselbe Konfiguration erzeugt jederzeit
+      und überall identische Umgebungen --- kein
+      \enquote{funktioniert nur auf meinem Server}.
+    \item \emph{Versionierung:} Infrastruktur-Änderungen werden in Git
+      verwaltet --- vollständige Änderungshistorie, Rollback jederzeit möglich.
+    \item \emph{Dokumentation:} Die Konfigurationsdatei \emph{ist} gleichzeitig
+      die Infrastruktur-Dokumentation.
+    \item \emph{Automatisierung:} Infrastruktur kann ohne manuelle Eingriffe
+      ausgerollt werden (z.\,B.\ in CI/CD-Pipelines).
+    \item \emph{Skalierbarkeit:} Statt eine VM manuell zu klonen, wird ein
+      Template programmatisch 100-mal instanziiert.
+  \end{itemize}
+
+  \medskip
+  \textbf{Bekannte Werkzeuge:} \textbf{Terraform} (Infrastruktur-Provisionierung),
+  \textbf{Ansible} (Konfigurationsmanagement), \textbf{Vagrant}
+  (lokale Entwicklungsumgebungen).
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://www.redhat.com/de/topics/automation/what-is-infrastructure-as-code-iac}{Red Hat -- Was ist IaC?}\\
+  \hspace*{0.4em}\textit{Fokus: Die ersten drei Abschnitte ---
+    Definition von IaC, Funktionsweise und Vorteile}
+\end{infoBox}
+
+\begin{infoBox}{Cloud-Init in Proxmox}{cloud-init}
+  \textbf{Cloud-Init} ist der de-facto-Standard zur \emph{automatischen
+  Erstkonfiguration} virtueller Maschinen beim ersten Systemstart
+  (\enquote{the de facto multi-distribution package that handles early
+  initialization of a virtual machine instance}).
+
+  \medskip
+  \textbf{Was Cloud-Init bei der Erstinitialisierung konfiguriert:}
+  \begin{itemize}
+    \item Netzwerkeinstellungen (IP-Adresse, Gateway, DNS)
+    \item SSH-Public-Keys (passwortloser Zugang)
+    \item Hostname, Benutzerkonten
+  \end{itemize}
+
+  \medskip
+  \textbf{Deployment-Workflow in Proxmox:}
+  \begin{enumerate}
+    \item \textbf{Template erstellen:} Basis-VM mit installiertem Cloud-Init-Paket
+      als Proxmox-Template konvertieren.
+    \item \textbf{Linked Clone:} Neue VM als verlinkten Klon erzeugen --- es werden
+      nur die \emph{Deltas} (Unterschiede/Änderungen gegenüber dem Template)
+      gespeichert; das Template-Image bleibt unverändert und wird gemeinsam genutzt.
+    \item \textbf{Cloud-Init-ISO:} Proxmox generiert automatisch eine ISO mit den
+      gewünschten Konfigurationsdaten (IP, SSH-Key, Hostname) und hängt sie als
+      virtuelle CD-ROM an die VM.
+    \item \textbf{Erster Boot:} Cloud-Init liest die ISO und wendet alle
+      Einstellungen automatisch an --- ohne manuelles Eingreifen.
+  \end{enumerate}
+
+  \medskip\small
+  \textbf{Quelle:} \href{https://pve.proxmox.com/wiki/Cloud-Init_Support}{Proxmox Wiki -- Cloud-Init Support}\\
+  \hspace*{0.4em}\textit{Fokus: Einleitung »What is Cloud-Init?«,
+    »Core Functionality« und »Deployment Workflow in Proxmox«}
+\end{infoBox}
+
+\begin{quote}
+  \textbf{Situation bei NetCom:}
+  \itshape
+  NetCom gewinnt in einem Monat fünf neue Kunden gleichzeitig.
+  Bisher dauert das manuelle Einrichten einer Standardumgebung ---
+  drei VMs je Kunde: Webserver, Datenbankserver, Monitoring-VM ---
+  rund \textbf{4~Stunden} pro Kunde.
+  Bei fünf Neukunden wären das 20~Stunden reine Handarbeit,
+  fehleranfällig und nicht dokumentiert.
+  Der Projektleiter schlägt vor, IaC (Terraform) in Kombination mit
+  Cloud-Init-Templates einzusetzen, um den Prozess auf unter
+  15~Minuten zu reduzieren.
+\end{quote}
+
+\qformat{\textbf{Aufgabe \thequestion~-- Automatisierung} \hfill \thepoints}
+\begin{questions}
+\setcounter{question}{6}
+
+% ── Aufgabe 7 ──────────────────────────────────────────────────────────────
+\question
+\textbf{Infrastructure as Code}
+\begin{parts}
+  \part[2] Definieren Sie den Begriff \emph{Infrastructure as Code} (IaC)
+    in eigenen Worten.
+    \fillwithdottedlines{0.8in}
+    \begin{solution}
+      IaC bezeichnet den Ansatz, IT-Infrastruktur durch versionierbare
+      Konfigurationsdateien zu beschreiben und automatisch auszurollen ---
+      anstatt sie manuell über eine GUI einzurichten.
+      Die Dateien können wie Quellcode in Git verwaltet werden:
+      wiederholbar ausführbar, versionierbar und nachvollziehbar.
+    \end{solution}
+
+  \part[3] Erläutern Sie, welche \textbf{drei} Eigenschaften von IaC im
+    NetCom-Szenario besonders wertvoll sind, und begründen Sie je in einem Satz.
+    \fillwithdottedlines{0.9in}
+    \begin{solution}
+      Drei aus:
+      \begin{itemize}
+        \item \textbf{Reproduzierbarkeit:} Jede der fünf neuen Kundenumgebungen
+          wird mit exakt derselben Konfiguration ausgerollt --- kein
+          Konfigurationsdrift zwischen Kunden.
+        \item \textbf{Skalierbarkeit:} Statt 5 × 4~h = 20~h manueller Arbeit
+          führt das Skript alle 15 VMs in unter 15~Minuten aus.
+        \item \textbf{Dokumentation:} Das Terraform-Template dokumentiert
+          gleichzeitig, was genau für jeden Kunden eingerichtet wurde.
+        \item \textbf{Versionierung:} Änderungen am Template werden in Git
+          nachverfolgt; ein Rollback auf eine frühere Konfiguration ist jederzeit
+          möglich.
+      \end{itemize}
+    \end{solution}
+\end{parts}
+
+% ── Aufgabe 8 ──────────────────────────────────────────────────────────────
+\question
+\textbf{Cloud-Init}
+\begin{parts}
+  \part[4] NetCom erstellt ein Ubuntu-22.04-Template mit vorinstalliertem
+    Apache, das als Basis für alle Webserver-VMs neuer Kunden dienen soll.
+    Beschreiben Sie den Cloud-Init-Deployment-Workflow in Proxmox:
+    Welche vier Schritte sind nötig, bis eine neue, fertig konfigurierte
+    Webserver-VM läuft?
+    \fillwithdottedlines{1.2in}
+    \begin{solution}
+      \begin{enumerate}
+        \item \textbf{Template:} Die Ubuntu-22.04-VM mit Cloud-Init und Apache
+          als Proxmox-Template konvertieren.
+        \item \textbf{Linked Clone:} Für jeden neuen Kunden eine neue VM als
+          verlinkten Klon anlegen (nur Deltas, kein vollständiges Image-Kopieren).
+        \item \textbf{Cloud-Init-ISO:} Proxmox erzeugt eine ISO mit kundenspezifischer
+          IP-Adresse, SSH-Public-Key und Hostname; als virtuelle CD-ROM eingehängt.
+        \item \textbf{Erster Boot:} Cloud-Init liest die ISO und konfiguriert
+          das System automatisch --- kein manuelles Eingreifen nötig.
+      \end{enumerate}
+    \end{solution}
+
+  \part[3] Erläutern Sie den Unterschied zwischen einem \emph{Linked Clone}
+    und einer \emph{Vollkopie} (Full Clone).
+    Warum ist der Linked Clone für das NetCom-Massendeployment besonders
+    vorteilhaft?
+    \fillwithdottedlines{1in}
+    \begin{solution}
+      Ein \textbf{Full Clone} kopiert das gesamte Disk-Image ---
+      zeitaufwändig und speicherintensiv. \\
+      Ein \textbf{Linked Clone} speichert nur die Deltas (Unterschiede) zum
+      Template-Image; das Template bleibt die gemeinsame Basis für alle Klone. \\
+      Vorteil für NetCom: Aus dem einen Ubuntu-22.04-Template können alle
+      Webserver-VMs der fünf Neukunden in Sekunden erzeugt werden, ohne
+      Gigabytes an Daten fünfmal zu kopieren --- das ermöglicht erst das
+      15-Minuten-Deployment-Ziel.
+    \end{solution}
+\end{parts}
+\end{questions}
+
+% ===========================================================================
+\section*{Bewertung}
+% ===========================================================================
+\hqword{Aufgabe Nr.:} \hpword{Punktzahl:} \htword{\textbf{Summe}}
+\hsword{Davon erreicht:} \cellwidth{2.2em}
+\begin{center}
+  \gradetable[h][questions]
+\end{center}
+
+% ===========================================================================
+\section*{Weiterführende Links (Quellen)}
+% ===========================================================================
+\begin{itemize}
+  \item \href{https://pve.proxmox.com/wiki/Qemu/KVM_Virtual_Machines}{Proxmox Wiki -- QEMU/KVM Virtual Machines}
+  \item \href{https://pve.proxmox.com/wiki/Linux_Container}{Proxmox Wiki -- Linux Container}
+  \item \href{https://pve.proxmox.com/wiki/Storage}{Proxmox Wiki -- Storage}
+  \item \href{https://pve.proxmox.com/wiki/Backup_and_Restore}{Proxmox Wiki -- Backup and Restore}
+  \item \href{https://pve.proxmox.com/wiki/Live_Snapshots}{Proxmox Wiki -- Live Snapshots}
+  \item \href{https://pve.proxmox.com/wiki/Cluster_Manager}{Proxmox Wiki -- Cluster Manager}
+  \item \href{https://www.redhat.com/de/topics/automation/what-is-infrastructure-as-code-iac}{Red Hat -- Was ist IaC? (Infrastructure as Code)}
+  \item \href{https://pve.proxmox.com/wiki/Cloud-Init_Support}{Proxmox Wiki -- Cloud-Init Support}
+\end{itemize}
+
+\end{document}
+
+%%% Local Variables:
+%%% coding: utf-8
+%%% mode: latex
+%%% TeX-engine: xetex
+%%% TeX-command-extra-options: "-shell-escape"
+%%% End:
