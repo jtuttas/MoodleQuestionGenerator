@@ -47,12 +47,12 @@
   <incorrectfeedback format="html"><text>Merke: 1=GND, 2=Hot(+), 3=Cold(−).</text></incorrectfeedback>
   <shownumcorrect/>
   <dragbox><text>Masse / GND</text><group>1</group></dragbox>
+  <dragbox><text>Hot (+)</text><group>2</group></dragbox>
+  <dragbox><text>Cold (−)</text><group>3</group></dragbox>
   <dragbox><text>Hot (+)</text><group>1</group></dragbox>
   <dragbox><text>Phantomspeisung</text><group>1</group></dragbox>
-  <dragbox><text>Hot (+)</text><group>2</group></dragbox>
   <dragbox><text>Masse / GND</text><group>2</group></dragbox>
   <dragbox><text>Cold (−)</text><group>2</group></dragbox>
-  <dragbox><text>Cold (−)</text><group>3</group></dragbox>
   <dragbox><text>Hot (+)</text><group>3</group></dragbox>
   <dragbox><text>Abschirmung</text><group>3</group></dragbox>
 </question>
@@ -163,15 +163,15 @@
   <incorrectfeedback format="html"><text>Leider falsch. Prüfe das Prinzip der symmetrischen Übertragung.</text></incorrectfeedback>
   <shownumcorrect/>
   <dragbox><text>zwei</text><group>1</group></dragbox>
+  <dragbox><text>Differenz</text><group>2</group></dragbox>
+  <dragbox><text>Gleichtaktsignal</text><group>3</group></dragbox>
+  <dragbox><text>Gleichtaktunterdrückung (CMRR)</text><group>4</group></dragbox>
   <dragbox><text>drei</text><group>1</group></dragbox>
   <dragbox><text>einem</text><group>1</group></dragbox>
-  <dragbox><text>Differenz</text><group>2</group></dragbox>
   <dragbox><text>Summe</text><group>2</group></dragbox>
   <dragbox><text>Amplitude</text><group>2</group></dragbox>
-  <dragbox><text>Gleichtaktsignal</text><group>3</group></dragbox>
   <dragbox><text>Gegentaktsignal</text><group>3</group></dragbox>
   <dragbox><text>Brummspannung</text><group>3</group></dragbox>
-  <dragbox><text>Gleichtaktunterdrückung (CMRR)</text><group>4</group></dragbox>
   <dragbox><text>Impedanzanpassung</text><group>4</group></dragbox>
   <dragbox><text>Phantomspeisung</text><group>4</group></dragbox>
 </question>
@@ -586,14 +586,14 @@
   <shownumcorrect/>
   <!-- Group 1: TS Tip -->
   <dragbox><text>Tip (Signal)</text><group>1</group></dragbox>
+  <dragbox><text>Ring (Cold −)</text><group>2</group></dragbox>
+  <dragbox><text>Tip (Hot +)</text><group>3</group></dragbox>
+  <!-- Group 2: TRS Ring -->
   <dragbox><text>Ring (Cold)</text><group>1</group></dragbox>
   <dragbox><text>Sleeve (GND)</text><group>1</group></dragbox>
-  <!-- Group 2: TRS Ring -->
-  <dragbox><text>Ring (Cold −)</text><group>2</group></dragbox>
   <dragbox><text>Tip (Hot +)</text><group>2</group></dragbox>
-  <dragbox><text>Sleeve (GND)</text><group>2</group></dragbox>
   <!-- Group 3: TRS Tip -->
-  <dragbox><text>Tip (Hot +)</text><group>3</group></dragbox>
+  <dragbox><text>Sleeve (GND)</text><group>2</group></dragbox>
   <dragbox><text>Ring (Cold −)</text><group>3</group></dragbox>
   <dragbox><text>Signal (unsymm.)</text><group>3</group></dragbox>
 </question>
@@ -983,15 +983,15 @@
   <incorrectfeedback format="html"><text>Leider falsch. Dante=Audio, ArtNet=Licht, NDI=Video, PoE=Strom.</text></incorrectfeedback>
   <shownumcorrect/>
   <dragbox><text>Dante (IP-Audio)</text><group>1</group></dragbox>
+  <dragbox><text>ArtNet (Licht-DMX über Ethernet)</text><group>2</group></dragbox>
+  <dragbox><text>NDI (IP-Video)</text><group>3</group></dragbox>
+  <dragbox><text>PoE (Power over Ethernet)</text><group>4</group></dragbox>
   <dragbox><text>ArtNet (Licht)</text><group>1</group></dragbox>
   <dragbox><text>NDI (Video)</text><group>1</group></dragbox>
-  <dragbox><text>ArtNet (Licht-DMX über Ethernet)</text><group>2</group></dragbox>
   <dragbox><text>Dante (IP-Audio)</text><group>2</group></dragbox>
   <dragbox><text>PoE (Strom)</text><group>2</group></dragbox>
-  <dragbox><text>NDI (IP-Video)</text><group>3</group></dragbox>
   <dragbox><text>ArtNet (Licht)</text><group>3</group></dragbox>
   <dragbox><text>Dante (Audio)</text><group>3</group></dragbox>
-  <dragbox><text>PoE (Power over Ethernet)</text><group>4</group></dragbox>
   <dragbox><text>NDI (Video)</text><group>4</group></dragbox>
   <dragbox><text>Dante (Audio)</text><group>4</group></dragbox>
 </question>

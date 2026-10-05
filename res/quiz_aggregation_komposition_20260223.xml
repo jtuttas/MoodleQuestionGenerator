@@ -177,22 +177,22 @@
 
     <!-- Gruppe 1: Aggregation (korrekt) | Komposition (Distractor) -->
     <dragbox><text>Aggregation</text><group>1</group></dragbox>
-    <dragbox><text>Komposition</text><group>1</group></dragbox>
+    <dragbox><text>Komposition</text><group>2</group></dragbox>
 
     <!-- Gruppe 2: Komposition (korrekt) | Assoziation (Distractor) -->
-    <dragbox><text>Komposition</text><group>2</group></dragbox>
-    <dragbox><text>Assoziation</text><group>2</group></dragbox>
+    <dragbox><text>Aggregation</text><group>3</group></dragbox>
+    <dragbox><text>Komposition</text><group>4</group></dragbox>
 
     <!-- Gruppe 3: Aggregation (korrekt) | Komposition (Distractor) -->
-    <dragbox><text>Aggregation</text><group>3</group></dragbox>
-    <dragbox><text>Komposition</text><group>3</group></dragbox>
+    <dragbox><text>Komposition</text><group>5</group></dragbox>
+    <dragbox><text>Komposition</text><group>1</group></dragbox>
 
     <!-- Gruppe 4: Komposition (korrekt) | Vererbung (Distractor) -->
-    <dragbox><text>Komposition</text><group>4</group></dragbox>
-    <dragbox><text>Vererbung</text><group>4</group></dragbox>
+    <dragbox><text>Assoziation</text><group>2</group></dragbox>
+    <dragbox><text>Komposition</text><group>3</group></dragbox>
 
     <!-- Gruppe 5: Komposition (korrekt) | Aggregation (Distractor) -->
-    <dragbox><text>Komposition</text><group>5</group></dragbox>
+    <dragbox><text>Vererbung</text><group>4</group></dragbox>
     <dragbox><text>Aggregation</text><group>5</group></dragbox>
   </question>
 

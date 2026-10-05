@@ -261,18 +261,18 @@
 
     <!-- Gruppe 1: Access-Port (korrekt) | Trunk-Port (Distractor) -->
     <dragbox><text>Access-Port</text><group>1</group></dragbox>
-    <dragbox><text>Trunk-Port</text><group>1</group></dragbox>
+    <dragbox><text>Trunk-Port</text><group>2</group></dragbox>
 
     <!-- Gruppe 2: Trunk-Port (korrekt) | Access-Port (Distractor) -->
-    <dragbox><text>Trunk-Port</text><group>2</group></dragbox>
-    <dragbox><text>Access-Port</text><group>2</group></dragbox>
+    <dragbox><text>Tagged</text><group>3</group></dragbox>
+    <dragbox><text>VLAN-ID</text><group>4</group></dragbox>
 
     <!-- Gruppe 3: Tagged (korrekt) | Untagged (Distractor) -->
-    <dragbox><text>Tagged</text><group>3</group></dragbox>
-    <dragbox><text>Untagged</text><group>3</group></dragbox>
+    <dragbox><text>Trunk-Port</text><group>1</group></dragbox>
+    <dragbox><text>Access-Port</text><group>2</group></dragbox>
 
     <!-- Gruppe 4: VLAN-ID (korrekt) | MAC-Adresse (Distractor) -->
-    <dragbox><text>VLAN-ID</text><group>4</group></dragbox>
+    <dragbox><text>Untagged</text><group>3</group></dragbox>
     <dragbox><text>MAC-Adresse</text><group>4</group></dragbox>
   </question>
 

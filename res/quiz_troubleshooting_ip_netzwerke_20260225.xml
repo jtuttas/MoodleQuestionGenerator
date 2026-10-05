@@ -369,31 +369,31 @@ Das Standard-Gateway ist als [[3]] eingetragen, richtig wäre jedoch [[4]].</p>]
       <group>1</group>
     </dragbox>
     <dragbox>
-      <text>/8</text>
-      <group>1</group>
-    </dragbox>
-    <!-- Group 2: korrekte Präfixlänge -->
-    <dragbox>
       <text>/24</text>
       <group>2</group>
     </dragbox>
-    <dragbox>
-      <text>/32</text>
-      <group>2</group>
-    </dragbox>
-    <!-- Group 3: falsches Gateway aus Ausgabe -->
+    <!-- Group 2: korrekte Präfixlänge -->
     <dragbox>
       <text>10.0.0.1</text>
       <group>3</group>
     </dragbox>
     <dragbox>
-      <text>10.0.2.1</text>
-      <group>3</group>
+      <text>10.0.1.1</text>
+      <group>4</group>
+    </dragbox>
+    <!-- Group 3: falsches Gateway aus Ausgabe -->
+    <dragbox>
+      <text>/8</text>
+      <group>1</group>
+    </dragbox>
+    <dragbox>
+      <text>/32</text>
+      <group>2</group>
     </dragbox>
     <!-- Group 4: richtiges Gateway -->
     <dragbox>
-      <text>10.0.1.1</text>
-      <group>4</group>
+      <text>10.0.2.1</text>
+      <group>3</group>
     </dragbox>
     <dragbox>
       <text>10.0.1.254</text>

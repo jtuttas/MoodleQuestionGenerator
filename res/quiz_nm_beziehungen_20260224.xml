@@ -252,12 +252,12 @@ dass ein Student sich für denselben Kurs nicht doppelt einschreiben kann.</p>]]
     <shownumcorrect/>
     <!-- Lücke [[1]]: PRIMARY   Distractor: UNIQUE -->
     <dragbox><text>PRIMARY</text><group>1</group></dragbox>
-    <dragbox><text>UNIQUE</text><group>1</group></dragbox>
-    <!-- Lücke [[2]]: FOREIGN   Distractor: INDEX -->
     <dragbox><text>FOREIGN</text><group>2</group></dragbox>
-    <dragbox><text>INDEX</text><group>2</group></dragbox>
-    <!-- Lücke [[3]]: REFERENCES   Distractor: CONSTRAINT -->
+    <!-- Lücke [[2]]: FOREIGN   Distractor: INDEX -->
     <dragbox><text>REFERENCES</text><group>3</group></dragbox>
+    <dragbox><text>UNIQUE</text><group>1</group></dragbox>
+    <!-- Lücke [[3]]: REFERENCES   Distractor: CONSTRAINT -->
+    <dragbox><text>INDEX</text><group>2</group></dragbox>
     <dragbox><text>CONSTRAINT</text><group>3</group></dragbox>
   </question>
 

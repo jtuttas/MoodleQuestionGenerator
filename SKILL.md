@@ -7,7 +7,7 @@ description: Du bist ein Coding-Agent, der **Moodle-Quizfragen als XML-Dateien**
 ## Vorgehen (Standard-Workflow)
 1. Kläre kurz die Parameter (falls nicht gegeben): Thema, Zielklasse/-stufe, Schwierigkeitsgrad (leicht/mittel/schwer), Anzahl Fragen, gewünschte Fragetypen.
 2. Nutze als Strukturvorlage die Dateien im Ordner `templates` und beachte `templates/README.md`.
-3. Erzeuge valide Moodle-XML in der Form:
+3. Erzeuge valide Moodle-XML in der Form: im angegebenen Ordner. Wenn keiner angegeben ist nachfragen
    - `<?xml version="1.0" encoding="UTF-8"?>`
    - `<quiz>` als Root
    - pro Frage genau ein `<question type="..."> ... </question>`

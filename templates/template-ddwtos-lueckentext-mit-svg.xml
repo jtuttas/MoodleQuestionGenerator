@@ -53,10 +53,10 @@
     
     <!-- group-Nummer muss zur Lückennummer [[n]] passen -->
     <dragbox><text>Eingabe</text><group>1</group></dragbox>
-    <dragbox><text>Speicherung</text><group>1</group></dragbox>       <!-- Distractor für Lücke 1 -->
-    <dragbox><text>Verarbeitung</text><group>2</group></dragbox>
-    <dragbox><text>Übertragung</text><group>2</group></dragbox>      <!-- Distractor für Lücke 2 -->
+    <dragbox><text>Verarbeitung</text><group>2</group></dragbox>       <!-- Distractor für Lücke 1 -->
     <dragbox><text>Ergebnisse</text><group>3</group></dragbox>
+    <dragbox><text>Speicherung</text><group>1</group></dragbox>      <!-- Distractor für Lücke 2 -->
+    <dragbox><text>Übertragung</text><group>2</group></dragbox>
     <dragbox><text>Rohdaten</text><group>3</group></dragbox>          <!-- Distractor für Lücke 3 -->
   </question>
 

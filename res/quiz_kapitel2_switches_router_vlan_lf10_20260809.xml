@@ -155,18 +155,32 @@ Erstellt: Februar 2026
     <group>1</group>
   </dragbox>
   <dragbox>
-    <text>Ziel</text>
-    <group>1</group>
+    <text>Eingangsport</text>
+    <group>2</group>
   </dragbox>
   <dragbox>
-    <text>IP</text>
-    <group>1</group>
+    <text>MAC-Address-Table</text>
+    <group>3</group>
   </dragbox>
   
   <!-- Gruppe 2: Was wird zusätzlich gespeichert? -->
   <dragbox>
-    <text>Eingangsport</text>
-    <group>2</group>
+    <text>alle Ports (außer dem Eingangsport)</text>
+    <group>4</group>
+  </dragbox>
+  <dragbox>
+    <text>gezielt nur an den gelernten Port</text>
+    <group>5</group>
+  </dragbox>
+  <dragbox>
+    <text>Ziel</text>
+    <group>1</group>
+  </dragbox>
+  
+  <!-- Gruppe 3: Wo wird gespeichert? -->
+  <dragbox>
+    <text>IP</text>
+    <group>1</group>
   </dragbox>
   <dragbox>
     <text>der IP-Adresse</text>
@@ -177,11 +191,7 @@ Erstellt: Februar 2026
     <group>2</group>
   </dragbox>
   
-  <!-- Gruppe 3: Wo wird gespeichert? -->
-  <dragbox>
-    <text>MAC-Address-Table</text>
-    <group>3</group>
-  </dragbox>
+  <!-- Gruppe 4: Was passiert bei unbekannter Ziel-MAC? -->
   <dragbox>
     <text>Routing-Tabelle</text>
     <group>3</group>
@@ -190,25 +200,15 @@ Erstellt: Februar 2026
     <text>ARP-Cache</text>
     <group>3</group>
   </dragbox>
-  
-  <!-- Gruppe 4: Was passiert bei unbekannter Ziel-MAC? -->
-  <dragbox>
-    <text>alle Ports (außer dem Eingangsport)</text>
-    <group>4</group>
-  </dragbox>
   <dragbox>
     <text>nur den Router</text>
-    <group>4</group>
-  </dragbox>
-  <dragbox>
-    <text>keinen Port und verwirft ihn</text>
     <group>4</group>
   </dragbox>
   
   <!-- Gruppe 5: Was passiert bei bekannter Ziel-MAC? -->
   <dragbox>
-    <text>gezielt nur an den gelernten Port</text>
-    <group>5</group>
+    <text>keinen Port und verwirft ihn</text>
+    <group>4</group>
   </dragbox>
   <dragbox>
     <text>an alle Ports außer dem Eingangsport</text>
@@ -898,6 +898,16 @@ Erstellt: Februar 2026
     <group>1</group>
   </dragbox>
   <dragbox>
+    <text>802.1Q</text>
+    <group>2</group>
+  </dragbox>
+  <dragbox>
+    <text>Trunk</text>
+    <group>3</group>
+  </dragbox>
+  
+  <!-- Gruppe 2: Tag-Typ -->
+  <dragbox>
     <text>VLAN</text>
     <group>1</group>
   </dragbox>
@@ -905,25 +915,15 @@ Erstellt: Februar 2026
     <text>Management</text>
     <group>1</group>
   </dragbox>
-  
-  <!-- Gruppe 2: Tag-Typ -->
-  <dragbox>
-    <text>802.1Q</text>
-    <group>2</group>
-  </dragbox>
   <dragbox>
     <text>802.3</text>
-    <group>2</group>
-  </dragbox>
-  <dragbox>
-    <text>QoS</text>
     <group>2</group>
   </dragbox>
   
   <!-- Gruppe 3: Verbindungstyp zwischen Switches -->
   <dragbox>
-    <text>Trunk</text>
-    <group>3</group>
+    <text>QoS</text>
+    <group>2</group>
   </dragbox>
   <dragbox>
     <text>Mirror</text>
