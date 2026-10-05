@@ -1,0 +1,320 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<question type="ddmatch">
+  <name><text>Redundanz-Arten</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie die Redundanz-Arten den passenden Beschreibungen zu.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle vier Redundanz-Arten korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig. Überprüfe die verbleibenden Zuordnungen.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Noch nicht richtig. Achte auf den Unterschied zwischen Geräte-, Pfad-, Link- und Protokoll-Redundanz.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Geräte-Redundanz = zweites Gerät als Hot-Standby; Pfad-Redundanz = physisch getrennte Kabelwege; Link-Redundanz = LACP-Bündelung mehrerer Ports; Protokoll-Redundanz = automatisches Umschalten per STP/RSTP.</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Geräte-Redundanz]]></text><answer><text>Zweiter Switch steht als Hot-Standby bereit und übernimmt bei Ausfall sofort</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Pfad-Redundanz]]></text><answer><text>Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Link-Redundanz]]></text><answer><text>Mehrere Ports werden per LACP zu einem logischen Kanal gebündelt</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Protokoll-Redundanz]]></text><answer><text>STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um</text></answer></subquestion>
+</question><question type="multichoice">
+  <name><text>Warum Redundanz VT</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Warum ist Redundanz in der Veranstaltungstechnik besonders kritisch?</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Denke daran, was ein Netzwerkausfall während eines Live-Events bedeutet.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Live-Events sind nicht wiederholbar. Ein Ausfall bedeutet unwiederbringliche Produktionsschäden, Vertragsstrafen bis zu 100.000 Euro und Reputationsverlust.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[Live-Events sind nicht wiederholbar – ein Ausfall verursacht unwiederbringliche Produktionsschäden und Vertragsstrafen]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Redundante Systeme reduzieren den Stromverbrauch durch intelligente Lastverteilung erheblich]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Redundanz erhöht den Energiebedarf, da mehr Hardware betrieben wird.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Netzwerk-Redundanz ist kosteneffizient und wird hauptsächlich bei kleinen Veranstaltungen mit wenig Budget eingesetzt]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Redundanz verursacht höhere Kosten und ist besonders bei großen, kritischen Events unverzichtbar.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Netzwerk-Redundanz ist gesetzlich vorgeschrieben und muss bei jeder öffentlichen Veranstaltung schriftlich nachgewiesen werden]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Es gibt keine gesetzliche Pflicht zur Netzwerk-Redundanz bei öffentlichen Veranstaltungen.</p>]]></text></feedback></answer>
+</question><question type="gapselect">
+  <name><text>STP Grundlagen Lueckentext</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Das Spanning Tree Protocol (STP) wurde als IEEE [[1]] standardisiert. Es verhindert Netzwerk-[[2]], indem redundante Pfade logisch [[3]] werden.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Alle drei Lücken korrekt ausgefüllt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Noch nicht richtig. STP = IEEE 802.1D, verhindert Schleifen durch Blockieren.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> IEEE 802.1D – Schleifen – blockiert.</p>]]></text></generalfeedback>
+  <selectoption><text>802.1D</text><group>1</group></selectoption>
+  <selectoption><text>802.1Q</text><group>1</group></selectoption>
+  <selectoption><text>802.1w</text><group>1</group></selectoption>
+  <selectoption><text>802.3ad</text><group>1</group></selectoption>
+  <selectoption><text>Schleifen</text><group>2</group></selectoption>
+  <selectoption><text>Ausfälle</text><group>2</group></selectoption>
+  <selectoption><text>Kollisionen</text><group>2</group></selectoption>
+  <selectoption><text>Stürme</text><group>2</group></selectoption>
+  <selectoption><text>blockiert</text><group>3</group></selectoption>
+  <selectoption><text>aktiviert</text><group>3</group></selectoption>
+  <selectoption><text>dupliziert</text><group>3</group></selectoption>
+  <selectoption><text>getrennt</text><group>3</group></selectoption>
+</question><question type="ddwtos">
+  <name><text>STP Port-Rollen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ergänze die Begriffe: Der <strong>[[1]]</strong> ist der Switch mit der niedrigsten Bridge-ID im Netzwerk. Ports auf dem günstigsten Pfad dorthin erhalten die Rolle <strong>[[2]]</strong>. In jedem Netzsegment leitet genau ein <strong>[[3]]</strong> den Datenverkehr weiter. Alle übrigen redundanten Ports werden als <strong>[[4]]</strong> deaktiviert, um Schleifen zu vermeiden.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Sehr gut! Alle STP-Rollen korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig. Überprüfe die Definitionen der STP-Port-Rollen.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. Root Bridge – Root Port – Designated Port – Blocked Port.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Root Bridge | Root Port | Designated Port | Blocked Port.</p>]]></text></generalfeedback>
+  <dragbox><text>Root Bridge</text><group>1</group></dragbox>
+  <dragbox><text>Root Port</text><group>2</group></dragbox>
+  <dragbox><text>Designated Port</text><group>3</group></dragbox>
+  <dragbox><text>Blocked Port</text><group>4</group></dragbox>
+  <dragbox><text>Spanning Bridge</text><group>1</group></dragbox>
+  <dragbox><text>Backup Port</text><group>2</group></dragbox>
+  <dragbox><text>Access Port</text><group>3</group></dragbox>
+  <dragbox><text>Passive Port</text><group>4</group></dragbox>
+</question><question type="ddmatch">
+  <name><text>STP-Varianten</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie die STP-Varianten den richtigen Beschreibungen zu.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Alle STP-Varianten korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Noch nicht richtig. Beachte Standardnummern und Konvergenzzeiten.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>STP 802.1D = Original, bis 50 s. RSTP 802.1w = Rapid, unter 1 s. MSTP 802.1s = Multiple Trees. PVST+ = Cisco, ein Prozess pro VLAN.</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[STP (IEEE 802.1D)]]></text><answer><text>Originalstandard, Konvergenz bis zu 50 Sekunden</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[RSTP (IEEE 802.1w)]]></text><answer><text>Rapid STP, Konvergenz typischerweise unter 1 Sekunde</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[MSTP (IEEE 802.1s)]]></text><answer><text>Multiple Spanning Trees für verschiedene VLAN-Gruppen</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[PVST+]]></text><answer><text>Cisco-proprietär, ein STP-Prozess pro VLAN</text></answer></subquestion>
+</question><question type="multichoice">
+  <name><text>Root Bridge Festival-Topologie</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Die abgebildete Festival-Topologie zeigt fünf Switches. Welcher Switch sollte als Root Bridge konfiguriert werden und warum?</p><svg xmlns="http://www.w3.org/2000/svg" width="660" height="375" viewBox="0 0 660 375" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;background:#f8f9fa;border-radius:8px;">
+  <line x1="200" y1="67" x2="430" y2="67" stroke="#495057" stroke-width="2"/>
+  <line x1="200" y1="67" x2="80" y2="217" stroke="#495057" stroke-width="2"/>
+  <line x1="200" y1="67" x2="315" y2="297" stroke="#495057" stroke-width="2"/>
+  <line x1="430" y1="67" x2="580" y2="217" stroke="#495057" stroke-width="2"/>
+  <line x1="430" y1="67" x2="315" y2="297" stroke="#495057" stroke-width="2"/>
+  <line x1="80" y1="217" x2="315" y2="297" stroke="#868e96" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="167" y="50" width="66" height="34"/>
+  <text x="200" y="99" text-anchor="middle" font-size="12" font-weight="bold">CORE-SW-01</text>
+  <text x="200" y="112" text-anchor="middle" font-size="10" fill="#495057">Core</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="397" y="50" width="66" height="34"/>
+  <text x="430" y="99" text-anchor="middle" font-size="12" font-weight="bold">CORE-SW-02</text>
+  <text x="430" y="112" text-anchor="middle" font-size="10" fill="#495057">Core</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="47" y="200" width="66" height="34"/>
+  <text x="80" y="249" text-anchor="middle" font-size="12" font-weight="bold">MAIN-SW</text>
+  <text x="80" y="262" text-anchor="middle" font-size="10" fill="#495057">Main Stage</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="547" y="200" width="66" height="34"/>
+  <text x="580" y="249" text-anchor="middle" font-size="12" font-weight="bold">FOH-SW</text>
+  <text x="580" y="262" text-anchor="middle" font-size="10" fill="#495057">Front of House</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="282" y="280" width="66" height="34"/>
+  <text x="315" y="329" text-anchor="middle" font-size="12" font-weight="bold">BACK-SW</text>
+  <text x="315" y="342" text-anchor="middle" font-size="10" fill="#495057">Backstage</text>
+  <line x1="20" y1="362" x2="50" y2="362" stroke="#868e96" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="56" y="366" font-size="10" fill="#495057">Redundante Verbindung</text>
+  <line x1="210" y1="362" x2="240" y2="362" stroke="#495057" stroke-width="2"/>
+  <text x="246" y="366" font-size="10" fill="#495057">Primaere Verbindung</text>
+</svg>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Core-Switches sind zentral platziert und verbinden alle anderen Switches optimal.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Die Root Bridge sollte den zentralen, stabilsten Switch darstellen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Core-Switches (CORE-SW-01 oder CORE-SW-02) sind die beste Wahl: Sie liegen zentral, verbinden alle anderen Switches und haben typischerweise die stabilste Stromversorgung und redundante Uplinks.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[Ein Core-Switch (CORE-SW-01 oder CORE-SW-02), weil er zentral liegt und alle anderen Switches mit optimalen Pfaden verbindet]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Der FOH-SW (Front of House), weil er an der wichtigsten Arbeitsposition für den Tontechniker sitzt]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Die Position des Bedieners ist kein Kriterium für die Root Bridge Wahl.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Der MAIN-SW (Hauptbühne), weil dort die meisten DMX-Geräte und ArtNet-Nodes angeschlossen sind]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Die Anzahl der angeschlossenen Geräte ist kein Kriterium für die Root Bridge Wahl.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Der Switch mit der höchsten MAC-Adresse, da Moodle dies automatisch als Root Bridge bevorzugt]]></text><feedback format="html"><text><![CDATA[<p>Falsch. STP wählt automatisch den Switch mit der NIEDRIGSTEN Bridge-ID – deswegen muss die Priority manuell gesetzt werden.</p>]]></text></feedback></answer>
+</question><question type="ddwtos">
+  <name><text>RSTP Details</text></name>
+  <questiontext format="html"><text><![CDATA[<p>RSTP wurde als IEEE <strong>[[1]]</strong> standardisiert. Typischerweise konvergiert RSTP innerhalb von <strong>[[2]]</strong> Sekunde(n), während STP bis zu 50 Sekunden benötigt. Bei einem Link-Ausfall sendet der betroffene Switch eine <strong>[[3]]</strong>-Meldung an seine Nachbarn. An Access-Ports zu Endgeräten aktiviert man <strong>[[4]]</strong>, um die STP-Lernphasen zu überspringen. Der <strong>[[5]]</strong> schützt Access-Ports vor unerwarteten BPDU-Paketen von fremden Geräten.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Hervorragend! Alle fünf RSTP-Details korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. 802.1w – 1 – Topology-Change – PortFast – BPDU-Guard.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 802.1w | 1 | Topology-Change | PortFast | BPDU-Guard</p>]]></text></generalfeedback>
+  <dragbox><text>802.1w</text><group>1</group></dragbox>
+  <dragbox><text>1</text><group>2</group></dragbox>
+  <dragbox><text>Topology-Change</text><group>3</group></dragbox>
+  <dragbox><text>PortFast</text><group>4</group></dragbox>
+  <dragbox><text>BPDU-Guard</text><group>5</group></dragbox>
+  <dragbox><text>802.1Q</text><group>1</group></dragbox>
+  <dragbox><text>30</text><group>2</group></dragbox>
+  <dragbox><text>Topology-Update</text><group>3</group></dragbox>
+  <dragbox><text>STP-Bypass</text><group>4</group></dragbox>
+  <dragbox><text>BPDU-Filter</text><group>5</group></dragbox>
+</question><question type="numerical">
+  <name><text>Redundante Links Ring</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ein Festival-Netzwerk besteht aus <strong>4 Switches</strong>, die in einem vollständigen Ring verbunden sind (jeder Switch mit jedem Nachbarn, Ring-Topologie mit 4 Links).</p><p>Wie viele Links blockiert STP, damit keine Schleife entsteht? (Nur Zahl eingeben)</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p>Ein Ring aus 4 Switches hat 4 Links. Ein Spanning Tree benötigt 4-1 = 3 Links. Also blockiert STP <strong>1 Link</strong>.</p>]]></text></generalfeedback>
+  <answer fraction="100"><text>1</text><tolerance>0</tolerance><tolerancetype>1</tolerancetype><correctanswerformat>1</correctanswerformat><correctanswerlength>1</correctanswerlength><feedback format="html"><text><![CDATA[<p>Richtig! 4 Links im Ring, 3 benötigt für den Spanning Tree, 1 wird blockiert.</p>]]></text></feedback></answer>
+  <answer fraction="0"><text>*</text><tolerance>*</tolerance><tolerancetype>1</tolerancetype><correctanswerformat>1</correctanswerformat><correctanswerlength>1</correctanswerlength><feedback format="html"><text><![CDATA[<p>Falsch. Berechne: Anzahl Links minus (Anzahl Switches minus 1).</p>]]></text></feedback></answer>
+</question><question type="ddmatch">
+  <name><text>Fehlerbilder Redundanz</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie die Fehlerbilder dem korrekten Verhalten des redundanten Netzes zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle Fehlerbilder korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Noch nicht richtig. Achte darauf, welches Symptom welchen Fehlertyp anzeigt.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>LACP-Mitglied down: Port-Channel bleibt aktiv. RSTP-Failover: blockierter Port forwarded. Switch-Ausfall: mehrere Nachbarn verschwinden. Pfadverlust: Pakete kommen nicht an. Broadcast-Sturm: CPU-Last steigt auf 100%.</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[LACP-Mitglied fällt aus]]></text><answer><text>Port-Channel bleibt aktiv, kein Produktionsstopp</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[RSTP-Failover]]></text><answer><text>Blockierter Port wechselt in den Forwarding-Zustand</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Kompletter Switch-Ausfall]]></text><answer><text>Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Vollständiger Pfadverlust]]></text><answer><text>Pakete erreichen das Ziel nicht mehr, Dienst vollständig unterbrochen</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Broadcast-Sturm (ohne STP)]]></text><answer><text>CPU-Last aller Switches steigt schlagartig auf 100 Prozent</text></answer></subquestion>
+</question><question type="ordering">
+  <name><text>STP Port-Zustaende Reihenfolge</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bringen Sie die STP-Port-Zustände in die richtige zeitliche Reihenfolge (beginnend mit dem passiven Zustand nach Initialisierung).</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Reihenfolge:</strong> Blocking → Listening → Learning → Forwarding. Der Port durchläuft diese Phasen, bevor er Daten weiterleitet (STP, 802.1D). Bei RSTP entfallen Listening und Learning weitgehend.</p>]]></text></generalfeedback>
+  <selecttype>all</selecttype><selectcount>0</selectcount>
+  <gradingtype>all_or_nothing</gradingtype><showgrading>1</showgrading>
+  <numberingstyle>1</numberingstyle><layouttype>1</layouttype><shuffleanswers>1</shuffleanswers>
+  <answer fraction="0" format="html"><text><![CDATA[Blocking]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Listening]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Learning]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Forwarding]]></text></answer>
+</question><question type="gapselect">
+  <name><text>LACP vs Geraete-Redundanz</text></name>
+  <questiontext format="html"><text><![CDATA[<p>LACP erhöht primär die [[1]] zwischen zwei Switches. Fällt jedoch der gesamte Switch aus, helfen LACP-Bündel auf demselben Gerät [[2]]. Für echte Geräte-Redundanz benötigt man mindestens [[3]] physisch getrennte Switches.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! LACP und Geräte-Redundanz erfüllen verschiedene Aufgaben.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Bandbreite – nicht – zwei.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Bandbreite | nicht | zwei. LACP schützt gegen Kabelausfall, nicht gegen Geräteausfall.</p>]]></text></generalfeedback>
+  <selectoption><text>Bandbreite</text><group>1</group></selectoption>
+  <selectoption><text>Latenz</text><group>1</group></selectoption>
+  <selectoption><text>Sicherheit</text><group>1</group></selectoption>
+  <selectoption><text>Verfügbarkeit</text><group>1</group></selectoption>
+  <selectoption><text>nicht</text><group>2</group></selectoption>
+  <selectoption><text>vollständig</text><group>2</group></selectoption>
+  <selectoption><text>immer</text><group>2</group></selectoption>
+  <selectoption><text>teilweise</text><group>2</group></selectoption>
+  <selectoption><text>zwei</text><group>3</group></selectoption>
+  <selectoption><text>drei</text><group>3</group></selectoption>
+  <selectoption><text>vier</text><group>3</group></selectoption>
+  <selectoption><text>fünf</text><group>3</group></selectoption>
+</question><question type="numerical">
+  <name><text>Zeitersparnis RSTP</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bei einem Failover-Ereignis benötigt das alte STP (IEEE 802.1D) im Worst-Case <strong>50 Sekunden</strong> zur Konvergenz. RSTP (IEEE 802.1w) schafft dasselbe in typischerweise <strong>1 Sekunde</strong>.</p><p>Wie viele Sekunden Produktionsunterbrechung spart RSTP gegenüber STP bei einem einzigen Failover? (Nur Zahl eingeben)</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p>50 s (STP) minus 1 s (RSTP) = <strong>49 Sekunden</strong> Ersparnis. Bei einem Live-Konzert entspricht das fast einer kompletten Song-Länge ohne Audio/Video.</p>]]></text></generalfeedback>
+  <answer fraction="100"><text>49</text><tolerance>0</tolerance><tolerancetype>1</tolerancetype><correctanswerformat>1</correctanswerformat><correctanswerlength>2</correctanswerlength><feedback format="html"><text><![CDATA[<p>Richtig! 50 - 1 = 49 Sekunden.</p>]]></text></feedback></answer>
+  <answer fraction="0"><text>*</text><tolerance>*</tolerance><tolerancetype>1</tolerancetype><correctanswerformat>1</correctanswerformat><correctanswerlength>2</correctanswerlength><feedback format="html"><text><![CDATA[<p>Falsch. Berechne: STP-Zeit minus RSTP-Zeit.</p>]]></text></feedback></answer>
+</question><question type="ddwtos">
+  <name><text>LACP Lueckentext</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Link Aggregation Control Protocol (<strong>[[1]]</strong>) bündelt mehrere physische <strong>[[2]]</strong> zu einem logischen Kanal. Die gebündelte Verbindung erhöht primär die verfügbare <strong>[[3]]</strong> und schützt gegen den Ausfall eines einzelnen <strong>[[4]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Sehr gut! LACP korrekt beschrieben.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. LACP – Ports – Bandbreite – Kabels.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> LACP | Ports | Bandbreite | Kabels</p>]]></text></generalfeedback>
+  <dragbox><text>LACP</text><group>1</group></dragbox>
+  <dragbox><text>Ports</text><group>2</group></dragbox>
+  <dragbox><text>Bandbreite</text><group>3</group></dragbox>
+  <dragbox><text>Kabels</text><group>4</group></dragbox>
+  <dragbox><text>LLDP</text><group>1</group></dragbox>
+  <dragbox><text>VLANs</text><group>2</group></dragbox>
+  <dragbox><text>Latenz</text><group>3</group></dragbox>
+  <dragbox><text>Switches</text><group>4</group></dragbox>
+</question><question type="ddmatch">
+  <name><text>Cisco STP Konfigurationsbefehle</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie die Cisco-IOS-Befehle der korrekten Funktion zu.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Alle Befehle korrekt zugeordnet!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Noch nicht richtig. Überprüfe die Cisco-IOS-Dokumentation zu STP-Befehlen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>spanning-tree mode rapid-pvst = RSTP aktivieren; priority 0 = Root Bridge; portfast = Access-Port; show spanning-tree = Status anzeigen.</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[<code>spanning-tree mode rapid-pvst</code>]]></text><answer><text>RSTP auf dem Switch aktivieren</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>spanning-tree vlan 10 priority 0</code>]]></text><answer><text>Root Bridge für VLAN 10 festlegen (niedrigste Priority)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>spanning-tree portfast</code>]]></text><answer><text>PortFast für Access-Port konfigurieren</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>show spanning-tree</code>]]></text><answer><text>Aktuellen STP-Status und Port-Rollen anzeigen</text></answer></subquestion>
+</question><question type="multichoice">
+  <name><text>RSTP Aussagen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Welche der folgenden Aussagen zu RSTP (IEEE 802.1w) sind <strong>korrekt</strong>? (Mehrere Antworten möglich)</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>false</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. Überprüfe die Eigenschaften von RSTP.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>RSTP: konvergiert unter 1 Sekunde, abwärtskompatibel zu STP, neue Port-Rollen Alternate und Backup.</p>]]></text></generalfeedback>
+  <answer fraction="33.33333" format="html"><text><![CDATA[RSTP konvergiert typischerweise in weniger als einer Sekunde]]></text><feedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></feedback></answer>
+  <answer fraction="33.33333" format="html"><text><![CDATA[RSTP ist abwärtskompatibel zum ursprünglichen STP (IEEE 802.1D)]]></text><feedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></feedback></answer>
+  <answer fraction="33.33333" format="html"><text><![CDATA[RSTP führt zwei neue Port-Rollen ein: Alternate Port und Backup Port]]></text><feedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[RSTP deaktiviert alle redundanten Links im Netzwerk dauerhaft und unwiderruflich]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Redundante Links werden logisch blockiert, können aber bei Ausfall aktiviert werden.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[RSTP erfordert zwingend eine VLAN-Konfiguration auf allen beteiligten Switches]]></text><feedback format="html"><text><![CDATA[<p>Falsch. RSTP funktioniert auch ohne VLANs.</p>]]></text></feedback></answer>
+</question><question type="gapselect">
+  <name><text>Go No-Go Abnahme</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Beim Abnahmetest des Festival-Netzes werden folgende Ergebnisse protokolliert: Ein Failover im Distribution-Bereich verursacht [[1]] Sekunden Videounterbrechung. Beim Ausfall eines Access-Switches fehlt Stage-Rack [[2]] Sekunden der alternative Pfad. Da keine automatische Alarmweiterleitung konfiguriert ist, lautet das Abnahme-Urteil: <strong>[[3]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. 2,1 – 18 – No-Go.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Die fehlende Alarmweiterleitung macht das Netz nicht produktionsreif: No-Go. Werte: 2,1 s Videounterbrechung, 18 s ohne alternativen Pfad.</p>]]></text></generalfeedback>
+  <selectoption><text>2,1</text><group>1</group></selectoption>
+  <selectoption><text>0</text><group>1</group></selectoption>
+  <selectoption><text>18</text><group>1</group></selectoption>
+  <selectoption><text>50</text><group>1</group></selectoption>
+  <selectoption><text>18</text><group>2</group></selectoption>
+  <selectoption><text>2,1</text><group>2</group></selectoption>
+  <selectoption><text>0</text><group>2</group></selectoption>
+  <selectoption><text>50</text><group>2</group></selectoption>
+  <selectoption><text>No-Go</text><group>3</group></selectoption>
+  <selectoption><text>Go</text><group>3</group></selectoption>
+  <selectoption><text>Ausstehend</text><group>3</group></selectoption>
+  <selectoption><text>Genehmigt</text><group>3</group></selectoption>
+</question><question type="ordering">
+  <name><text>6-Schritte-Methode Redundanz</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bringen Sie die Phasen der 6-Schritte-Methode für die Redundanz-Planung in die richtige Reihenfolge.</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Reihenfolge:</strong> Informieren – Planen – Entscheiden – Ausführen – Kontrollieren – Bewerten.</p>]]></text></generalfeedback>
+  <selecttype>all</selecttype><selectcount>0</selectcount>
+  <gradingtype>all_or_nothing</gradingtype><showgrading>1</showgrading>
+  <numberingstyle>1</numberingstyle><layouttype>1</layouttype><shuffleanswers>1</shuffleanswers>
+  <answer fraction="0" format="html"><text><![CDATA[Informieren]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Planen]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Entscheiden]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Ausführen]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Kontrollieren]]></text></answer>
+  <answer fraction="0" format="html"><text><![CDATA[Bewerten]]></text></answer>
+</question><question type="multichoice">
+  <name><text>Ring-Topologie STP Verhalten</text></name>
+  <questiontext format="html"><text><![CDATA[<p>In der abgebildeten Drei-Switch-Ring-Topologie ist SW-A die Root Bridge. Welche Aussage beschreibt das korrekte STP-Verhalten?</p><svg xmlns="http://www.w3.org/2000/svg" width="520" height="305" viewBox="0 0 520 305" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;background:#f8f9fa;border-radius:8px;">
+  <line x1="260" y1="47" x2="110" y2="207" stroke="#495057" stroke-width="2"/>
+  <line x1="260" y1="47" x2="410" y2="207" stroke="#495057" stroke-width="2"/>
+  <line x1="110" y1="207" x2="410" y2="207" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="30" width="66" height="34"/>
+  <text x="260" y="80" text-anchor="middle" font-size="12" font-weight="bold">SW-A</text>
+  <rect x="205" y="87" width="110" height="18" rx="4" fill="#fff3cd" stroke="#f0ad4e" stroke-width="1"/>
+  <text x="260" y="100" text-anchor="middle" font-size="10" fill="#856404">Root Bridge</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="77" y="190" width="66" height="34"/>
+  <text x="110" y="241" text-anchor="middle" font-size="12" font-weight="bold">SW-B</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="377" y="190" width="66" height="34"/>
+  <text x="410" y="241" text-anchor="middle" font-size="12" font-weight="bold">SW-C</text>
+</svg>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! STP blockiert genau einen Port, um die Schleife aufzutrennen.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Überlege, welcher Switch keinen Root Port auf dem kürzesten Pfad hat.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>SW-A ist Root Bridge. SW-B und SW-C haben je einen Root Port (kürzester Pfad zu SW-A). Die direkte Verbindung SW-B – SW-C ist redundant: STP blockiert einen Port auf SW-C (oder SW-B), um die Schleife aufzutrennen.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[SW-C blockiert einen seiner Ports, damit im Netzwerk keine Schleife (Loop) entsteht]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[SW-A blockiert den Port zu SW-C, weil SW-C die schwächste Verbindung hat]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Die Root Bridge blockiert niemals eigene Ports; alle Ports der Root Bridge sind Designated Ports.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Alle Ports aller drei Switches leiten gleichzeitig weiter, da STP alle verfügbaren Pfade nutzt]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Würden alle Ports forwarden, entstände eine Schleife, die das Netz lahmlegt.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[SW-B blockiert beide seiner Ports, da er nicht die Root Bridge ist]]></text><feedback format="html"><text><![CDATA[<p>Falsch. SW-B ist kein Root Bridge, hat aber Root Port und Designated Port – mindestens ein Port muss forwarden.</p>]]></text></feedback></answer>
+</question><question type="multichoice">
+  <name><text>Best Practices Redundanz</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Welche der folgenden Maßnahmen sind <strong>Best Practices</strong> bei der Konfiguration von Redundanz in VT-Netzwerken? (Mehrere Antworten möglich)</p>]]></text></questiontext>
+  <defaultgrade>2</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>false</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. Beachte, wo PortFast und wo BPDU-Guard eingesetzt werden.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>PortFast nur an Access-Ports (Endgeräte), nicht an Switch-Uplinks. Core-Switch als Root Bridge mit niedriger Priority konfigurieren.</p>]]></text></generalfeedback>
+  <answer fraction="50" format="html"><text><![CDATA[PortFast nur an Access-Ports zu Endgeräten aktivieren, niemals an Uplink-Ports zwischen Switches]]></text><feedback format="html"><text><![CDATA[<p>Richtig! PortFast an Uplinks würde bei BPDU-Empfang zu unerwartetem Verhalten führen.</p>]]></text></feedback></answer>
+  <answer fraction="50" format="html"><text><![CDATA[Core-Switch mit einer niedrigen Bridge-Priority (z. B. 4096) als Root Bridge manuell konfigurieren]]></text><feedback format="html"><text><![CDATA[<p>Richtig! Nur so ist sichergestellt, dass der gewünschte Switch Root Bridge wird.</p>]]></text></feedback></answer>
+  <answer fraction="-50" format="html"><text><![CDATA[STP auf allen Switches deaktivieren, sobald LACP konfiguriert ist]]></text><feedback format="html"><text><![CDATA[<p>Falsch! LACP ersetzt kein STP – ohne STP entstehen bei redundanten Pfaden Schleifen.</p>]]></text></feedback></answer>
+  <answer fraction="-50" format="html"><text><![CDATA[BPDU-Guard grundsätzlich an allen Uplink-Ports zwischen Switches aktivieren]]></text><feedback format="html"><text><![CDATA[<p>Falsch. BPDU-Guard gehört an Access-Ports, nicht an Switch-Uplinks.</p>]]></text></feedback></answer>
+</question><question type="ddmatch">
+  <name><text>Festival-VLAN QoS-Prioritaeten</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie den Festival-VLANs die richtige QoS-Priorität zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Alle VLAN-Prioritäten korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Noch nicht richtig. Real-Time-Dienste (Audio, DMX) haben immer höchste Priorität.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>VLAN 10 Audio/DMX = höchste Priorität (Real-Time). VLAN 20 Video/ArtNet = hohe Priorität. VLAN 30 Streaming = mittlere Priorität. VLAN 40 Management = niedrig. VLAN 99 Gäste-WLAN = niedrigste (Best Effort).</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[VLAN 10 – Audio und DMX]]></text><answer><text>Höchste Priorität (Real-Time-kritisch, keine Unterbrechung tolerierbar)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[VLAN 20 – Video und ArtNet]]></text><answer><text>Hohe Priorität (zeitkritisch, kurze Unterbrechungen sichtbar)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[VLAN 30 – Streaming und Recording]]></text><answer><text>Mittlere Priorität (gepuffert, kurze Verzögerungen tolerierbar)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[VLAN 40 – Management]]></text><answer><text>Niedrige Priorität (Hintergrundverkehr, nicht zeitkritisch)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[VLAN 99 – Gäste-WLAN]]></text><answer><text>Niedrigste Priorität (Best Effort, Bandbreitenbegrenzung empfohlen)</text></answer></subquestion>
+</question>
+</quiz>

@@ -1,0 +1,352 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<question type="ddwtos">
+  <name><text>Zahlensysteme - MAC-Adresse hex zu binaer und dezimal</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Beim Einrichten eines Dante-Audionetzwerks pr&#252;fen Sie die MAC-Adresse eines Mischpults: <strong>DE:AD:BE:EF:00:01</strong>.</p>
+<p>Rechnen Sie die ersten beiden Bytes um:</p>
+<p><strong>DE</strong> (hex) = [[1]] (bin&#228;r) = [[2]] (dezimal)</p>
+<p><strong>AD</strong> (hex) = [[3]] (bin&#228;r) = [[4]] (dezimal)</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>DE hex: D=1101, E=1110 → <strong>11011110</strong> = 13×16+14 = <strong>222</strong>. AD hex: A=1010, D=1101 → <strong>10101101</strong> = 10×16+13 = <strong>173</strong>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>11011110</text><group>1</group></dragbox>
+  <dragbox><text>222</text><group>2</group></dragbox>
+  <dragbox><text>10101101</text><group>1</group></dragbox>
+  <dragbox><text>173</text><group>2</group></dragbox>
+  <dragbox><text>11101101</text><group>1</group></dragbox>
+  <dragbox><text>198</text><group>2</group></dragbox>
+  <dragbox><text>10110101</text><group>1</group></dragbox>
+  <dragbox><text>182</text><group>2</group></dragbox>
+</question>
+<question type="numerical">
+  <name><text>IPv4 - Nutzbare Hosts im Subnetz 25</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein Dante-Netzwerk nutzt das Subnetz <code>10.0.1.0/25</code>. Wie viele IP-Adressen k&#246;nnen als <strong>nutzbare Hostadressen</strong> vergeben werden? (Netzwerk- und Broadcastadresse z&#228;hlen nicht.)</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/25 bedeutet 7 Hostbits: 2<sup>7</sup> − 2 = 128 − 2 = <strong>126</strong> nutzbare Hostadressen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>126</text><tolerance>0</tolerance></answer>
+</question>
+<question type="gapselect">
+  <name><text>Zahlensysteme - Grundbegriffe der Netzwerktechnik</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In der Netzwerktechnik werden verschiedene Zahlensysteme genutzt. MAC-Adressen werden [[1]] dargestellt, w&#228;hrend IPv4-Adressen in [[2]] Punktnotation angegeben werden. Das Bin&#228;rsystem arbeitet mit der Basis [[3]]. Eine IPv4-Adresse besteht aus [[4]] Bit.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>MAC-Adressen: <strong>hexadezimal</strong> (z.B. DE:AD:BE:EF:00:01). IPv4: <strong>dezimaler</strong> Punktnotation (z.B. 192.168.1.1). Bin&#228;rsystem: Basis <strong>2</strong>. IPv4-L&#228;nge: <strong>32</strong> Bit.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <selectoption><text>hexadezimal</text><group>1</group></selectoption>
+  <selectoption><text>dezimal</text><group>1</group></selectoption>
+  <selectoption><text>binaer</text><group>1</group></selectoption>
+  <selectoption><text>oktal</text><group>1</group></selectoption>
+  <selectoption><text>dezimaler</text><group>2</group></selectoption>
+  <selectoption><text>hexadezimaler</text><group>2</group></selectoption>
+  <selectoption><text>binaerer</text><group>2</group></selectoption>
+  <selectoption><text>oktaler</text><group>2</group></selectoption>
+  <selectoption><text>2</text><group>3</group></selectoption>
+  <selectoption><text>8</text><group>3</group></selectoption>
+  <selectoption><text>10</text><group>3</group></selectoption>
+  <selectoption><text>16</text><group>3</group></selectoption>
+  <selectoption><text>32</text><group>4</group></selectoption>
+  <selectoption><text>16</text><group>4</group></selectoption>
+  <selectoption><text>64</text><group>4</group></selectoption>
+  <selectoption><text>128</text><group>4</group></selectoption>
+</question>
+<question type="ddmatch">
+  <name><text>IPv4 - CIDR-Praefix und Subnetzmaske zuordnen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie jedem CIDR-Pr&#228;fix die richtige Subnetzmaske zu. Diese Pr&#228;fixe sind in der Veranstaltungstechnik besonders relevant (Dante /26, NDI /27, Art-Net /28).</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/16: 255.255.0.0 | /24: 255.255.255.0 | /26: 255.255.255.192 (64 Adressen) | /27: 255.255.255.224 (32) | /28: 255.255.255.240 (16)</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text>/16</text><answer><text>255.255.0.0</text></answer></subquestion>
+  <subquestion format="html"><text>/24</text><answer><text>255.255.255.0</text></answer></subquestion>
+  <subquestion format="html"><text>/26</text><answer><text>255.255.255.192</text></answer></subquestion>
+  <subquestion format="html"><text>/27</text><answer><text>255.255.255.224</text></answer></subquestion>
+  <subquestion format="html"><text>/28</text><answer><text>255.255.255.240</text></answer></subquestion>
+  <subquestion format="html"><text></text><answer><text>255.255.128.0</text></answer></subquestion>
+</question>
+<question type="numerical">
+  <name><text>IPv4 - Nutzbare Hosts im Subnetz 26</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Das Dante-Subnetz <code>192.168.20.0/26</code> ist f&#252;r Audio-Ger&#228;te reserviert (Stageboxen, Mischpulte, Endstufen). Wie viele nutzbare Host-Adressen stehen zur Verf&#252;gung?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/26 = 6 Hostbits: 2<sup>6</sup> − 2 = 64 − 2 = <strong>62</strong> nutzbare Hostadressen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>62</text><tolerance>0</tolerance></answer>
+</question>
+<question type="ddwtos">
+  <name><text>IPv4 - Netzwerkadresse per AND-Verkn&#252;pfung bestimmen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Gegeben: IP <code>192.168.10.77</code>, Pr&#228;fix <code>/26</code> (= 255.255.255.192). Die Grafik zeigt die Bin&#228;rdarstellung:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="125" viewBox="0 0 600 125" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;"><rect width="600" height="125" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/><text x="12" y="20" font-size="13" font-weight="bold" fill="#343a40">Bitweise AND-Verkn&#252;pfung: 192.168.10.77 / 26</text><text x="12" y="46" font-family="monospace" font-size="12" fill="#212529">IP:    11000000.10101000.00001010.01001101  (192.168.10.77)</text><text x="12" y="66" font-family="monospace" font-size="12" fill="#212529">Maske: 11111111.11111111.11111111.11000000  (255.255.255.192)</text><line x1="12" y1="76" x2="588" y2="76" stroke="#6c757d" stroke-width="1.5" stroke-dasharray="4,2"/><text x="12" y="94" font-family="monospace" font-size="12" fill="#155724">AND:   11000000.10101000.00001010.01000000  = ?</text><text x="12" y="115" font-size="11" fill="#6c757d">Hostbits = 0: Netzwerkadresse | Hostbits = 1: Broadcastadresse</text></svg>
+<p>Die Netzwerkadresse lautet [[1]]. Die erste g&#252;ltige Host-Adresse ist [[2]]. Die Broadcastadresse (alle Hostbits = 1) lautet [[3]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>AND-Ergebnis letztes Oktett: 01000000 = 64 → Netzwerkadresse: <strong>192.168.10.64</strong>. Erste Host-Adresse: <strong>192.168.10.65</strong>. Alle 6 Hostbits auf 1: 01111111 = 127 → Broadcast: <strong>192.168.10.127</strong>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>192.168.10.64</text><group>1</group></dragbox>
+  <dragbox><text>192.168.10.65</text><group>1</group></dragbox>
+  <dragbox><text>192.168.10.127</text><group>1</group></dragbox>
+  <dragbox><text>192.168.10.0</text><group>1</group></dragbox>
+  <dragbox><text>192.168.10.63</text><group>1</group></dragbox>
+  <dragbox><text>192.168.10.128</text><group>1</group></dragbox>
+</question>
+<question type="ddmatch">
+  <name><text>IP-Paket - IPv4 Header-Felder Bedeutung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Im Veranstaltungskontext analysieren Sie mit Wireshark IP-Pakete eines Dante-Systems. Ordnen Sie jedem IPv4-Header-Feld seine Bedeutung zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>TTL: verhindert Routing-Loops. Protocol: unterscheidet TCP (6) und UDP (17). Total Length: Gesamtgr&#246;&#223;e. Source/Destination: Absender- und Ziel-IP.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text>TTL (Time to Live)</text><answer><text>Begrenzt die max. Anzahl von Router-Weiterleitungen (verhindert Routing-Loops)</text></answer></subquestion>
+  <subquestion format="html"><text>Protocol</text><answer><text>Gibt an, ob TCP oder UDP im Datenteil steckt (Wert 6 = TCP, 17 = UDP)</text></answer></subquestion>
+  <subquestion format="html"><text>Total Length</text><answer><text>Gesamtgr&#246;&#223;e des IP-Pakets in Byte (Header + Nutzdaten)</text></answer></subquestion>
+  <subquestion format="html"><text>Source Address</text><answer><text>IP-Adresse des Absenders (z.B. Stagebox-IP)</text></answer></subquestion>
+  <subquestion format="html"><text>Destination Address</text><answer><text>IP-Adresse des Empf&#228;ngers (z.B. Mischpult-IP)</text></answer></subquestion>
+  <subquestion format="html"><text></text><answer><text>Erkennt Bit-Fehler im Header mittels Pr&#252;fsumme (Checksum)</text></answer></subquestion>
+</question>
+<question type="gapselect">
+  <name><text>IP-Paket - MTU Werte in der Netzwerktechnik</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Die MTU (Maximum Transmission Unit) definiert die maximale Paketgr&#246;&#223;e ohne Fragmentierung. In Standard-Ethernet-Netzwerken betr&#228;gt die MTU [[1]] Byte. Bei PPPoE (DSL-Anbindung) reduziert sich die nutzbare MTU auf [[2]] Byte. F&#252;r HD-Videostreams k&#246;nnen Jumbo Frames mit bis zu [[3]] Byte konfiguriert werden (sofern alle Ger&#228;te unterst&#252;tzen).</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Standard-Ethernet-MTU: <strong>1500 Byte</strong>. PPPoE: <strong>1492 Byte</strong> (8 Byte PPPoE-Header). Jumbo Frames: bis zu <strong>9000 Byte</strong> f&#252;r 4K-Videostreaming.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <selectoption><text>1500</text><group>1</group></selectoption>
+  <selectoption><text>576</text><group>1</group></selectoption>
+  <selectoption><text>9000</text><group>1</group></selectoption>
+  <selectoption><text>1492</text><group>1</group></selectoption>
+  <selectoption><text>1492</text><group>2</group></selectoption>
+  <selectoption><text>1500</text><group>2</group></selectoption>
+  <selectoption><text>9000</text><group>2</group></selectoption>
+  <selectoption><text>576</text><group>2</group></selectoption>
+  <selectoption><text>9000</text><group>3</group></selectoption>
+  <selectoption><text>1500</text><group>3</group></selectoption>
+  <selectoption><text>4096</text><group>3</group></selectoption>
+  <selectoption><text>65535</text><group>3</group></selectoption>
+</question>
+<question type="ordering">
+  <name><text>IPv4 - Schritte zur Netzwerkadresse aus CIDR berechnen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bringen Sie die folgenden Schritte zur Berechnung der Netzwerkadresse aus einer CIDR-Angabe in die richtige Reihenfolge:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Reihenfolge: (1) CIDR → Subnetzmaske, (2) IP in Bin&#228;r, (3) AND-Verkn&#252;pfung, (4) Bin&#228;r → Dezimal = Netzwerkadresse, (5) Broadcast: alle Hostbits auf 1.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="1" format="html"><text>CIDR-Pr&#228;fix in dezimale Subnetzmaske umrechnen (z.B. /26 → 255.255.255.192)</text><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text>IP-Adresse bitweise ins Bin&#228;rsystem konvertieren</text><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text>Bitweises AND zwischen IP-Adresse und Subnetzmaske durchf&#252;hren</text><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text>Bin&#228;res Ergebnis in Dezimalnotation zur&#252;ckkonvertieren (= Netzwerkadresse)</text><md5key></md5key></answer>
+  <answer fraction="5" format="html"><text>Broadcastadresse bestimmen: alle Hostbits auf 1 setzen</text><md5key></md5key></answer>
+</question>
+<question type="ddwtos">
+  <name><text>IP-Paket - TCP vs UDP Eigenschaften</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In der Veranstaltungstechnik ist die Wahl des Transportprotokolls entscheidend:</p>
+<p>TCP arbeitet <strong>[[1]]</strong> und sichert korrekte &#220;bertragung durch <strong>[[2]]</strong> f&#252;r jedes Paket. UDP ist <strong>[[3]]</strong> und wird bevorzugt bei latenz-kritischen Anwendungen wie <strong>[[4]]</strong>.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>TCP = verbindungsorientiert, nutzt ACKs. UDP = verbindungslos, kein Verbindungsaufbau. Dante (Audio over IP) nutzt UDP wegen geringer Latenz.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>verbindungsorientiert</text><group>1</group></dragbox>
+  <dragbox><text>Empfangsbest&#228;tigungen (ACKs)</text><group>2</group></dragbox>
+  <dragbox><text>verbindungslos</text><group>1</group></dragbox>
+  <dragbox><text>Dante (Audio over IP)</text><group>3</group></dragbox>
+  <dragbox><text>paketbasiert</text><group>1</group></dragbox>
+  <dragbox><text>Pr&#252;fsummen</text><group>2</group></dragbox>
+  <dragbox><text>HTTP-Webinterfaces</text><group>3</group></dragbox>
+</question>
+<question type="multichoice">
+  <name><text>Switch Router - OSI-Schicht eines Layer-2-Switch</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein Techniker konfiguriert einen managed Switch f&#252;r ein Dante-Audionetzwerk. Auf welcher OSI-Schicht arbeitet ein herk&#246;mmlicher <strong>Layer-2-Switch</strong> prim&#228;r?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Ein Layer-2-Switch arbeitet auf <strong>Schicht 2 (Sicherungsschicht)</strong> und leitet Datenpakete anhand von MAC-Adressen weiter. Router arbeiten auf Schicht 3 (IP-Adressen).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answer fraction="100" format="html"><text>Schicht 2 (Sicherungsschicht) – arbeitet mit MAC-Adressen</text><feedback format="html"><text>Richtig! Switches lernen MAC-Adressen und leiten gezielt weiter.</text></feedback></answer>
+  <answer fraction="0" format="html"><text>Schicht 1 (Bit&#252;bertragungsschicht) – wie ein Hub, leitet alle Bits weiter</text><feedback format="html"><text>Das beschreibt einen Hub, nicht einen Switch.</text></feedback></answer>
+  <answer fraction="0" format="html"><text>Schicht 3 (Netzwerkschicht) – wertet IP-Adressen aus wie ein Router</text><feedback format="html"><text>Das gilt f&#252;r Router oder Layer-3-Switches, nicht f&#252;r Layer-2-Switches.</text></feedback></answer>
+  <answer fraction="0" format="html"><text>Schicht 4 (Transportschicht) – verwaltet TCP/UDP-Verbindungen</text><feedback format="html"><text>Schicht 4 ist die Transportschicht; Switches arbeiten eine Ebene darunter.</text></feedback></answer>
+</question>
+<question type="ddmatch">
+  <name><text>Switch Router - Netzwerkgeraete und OSI-Schichten zuordnen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Die folgende Topologie zeigt eine typische Veranstaltungsnetzwerk-Infrastruktur. Ordnen Sie jedem Ger&#228;t die richtige OSI-Schicht und Funktion zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="190" viewBox="0 0 640 190" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;"><rect width="640" height="190" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/><text x="320" y="17" text-anchor="middle" font-size="13" font-weight="bold" fill="#343a40">Netzwerktopologie &#8211; OSI-Schichten</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="5" y="48" width="78" height="70"/><text x="44" y="130" text-anchor="middle" font-size="11" font-weight="bold">PC-A</text><text x="44" y="143" text-anchor="middle" font-size="10" fill="#6c757d">192.168.1.10</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="130" y="66" width="66" height="34"/><text x="163" y="113" text-anchor="middle" font-size="11" font-weight="bold">SW-1</text><text x="163" y="126" text-anchor="middle" font-size="10" fill="#6c757d">Layer 2</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="252" y="55" width="84" height="57"/><text x="294" y="124" text-anchor="middle" font-size="11" font-weight="bold">Router R1</text><text x="294" y="137" text-anchor="middle" font-size="10" fill="#6c757d">Layer 3</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="375" y="66" width="66" height="34"/><text x="408" y="113" text-anchor="middle" font-size="11" font-weight="bold">SW-2</text><text x="408" y="126" text-anchor="middle" font-size="10" fill="#6c757d">Layer 2</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="495" y="48" width="78" height="70"/><text x="534" y="130" text-anchor="middle" font-size="11" font-weight="bold">PC-B</text><text x="534" y="143" text-anchor="middle" font-size="10" fill="#6c757d">192.168.2.20</text><line x1="83" y1="83" x2="130" y2="83" stroke="#495057" stroke-width="2"/><line x1="196" y1="83" x2="252" y2="83" stroke="#495057" stroke-width="2"/><line x1="336" y1="83" x2="375" y2="83" stroke="#495057" stroke-width="2"/><line x1="441" y1="83" x2="495" y2="83" stroke="#495057" stroke-width="2"/><text x="320" y="175" text-anchor="middle" font-size="11" fill="#6c757d">Ordnen Sie jedem Ger&#228;t die richtige OSI-Schicht und Funktion zu!</text></svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Hub (Schicht 1): Broadcast an alle Ports. Switch L2 (Schicht 2): MAC-Tabelle, gezieltes Forwarding. Router (Schicht 3): IP-Routing zwischen Netzwerken. Layer-3-Switch: kombiniert L2+L3.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text>Hub</text><answer><text>Schicht 1 – sendet alle Pakete an jeden angeschlossenen Port (Broadcast)</text></answer></subquestion>
+  <subquestion format="html"><text>Switch (Layer 2)</text><answer><text>Schicht 2 – leitet Pakete anhand der MAC-Adresse gezielt weiter</text></answer></subquestion>
+  <subquestion format="html"><text>Router</text><answer><text>Schicht 3 – verbindet IP-Netzwerke, routet anhand von IP-Adressen</text></answer></subquestion>
+  <subquestion format="html"><text>Layer-3-Switch</text><answer><text>Schicht 2+3 – kombiniert MAC-Switching mit IP-Routing</text></answer></subquestion>
+  <subquestion format="html"><text></text><answer><text>Schicht 7 – verwaltet DNS-Namensaufl&#246;sung zu IP-Adressen</text></answer></subquestion>
+</question>
+<question type="gapselect">
+  <name><text>Switch Router - MAC-Address-Table Lernprozess</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein Switch baut seine MAC-Address-Table dynamisch auf. Wenn ein Paket an Port 3 ankommt, liest der Switch die [[1]]-Adresse des Absenders und speichert sie mit der Portnummer. Ist die Zieladresse unbekannt, [[2]] der Switch das Paket an alle Ports au&#223;er dem Eingangsport. Dieses Verfahren hei&#223;t [[3]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Der Switch liest die <strong>MAC</strong>-Adresse (Layer 2). Bei unbekanntem Ziel wird das Paket <strong>geflutet</strong> (Flooding). Dieser Lernprozess hei&#223;t <strong>MAC-Learning</strong>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <selectoption><text>MAC</text><group>1</group></selectoption>
+  <selectoption><text>IP</text><group>1</group></selectoption>
+  <selectoption><text>DNS</text><group>1</group></selectoption>
+  <selectoption><text>ARP</text><group>1</group></selectoption>
+  <selectoption><text>flutet</text><group>2</group></selectoption>
+  <selectoption><text>verwirft</text><group>2</group></selectoption>
+  <selectoption><text>blockiert</text><group>2</group></selectoption>
+  <selectoption><text>routet</text><group>2</group></selectoption>
+  <selectoption><text>MAC-Learning</text><group>3</group></selectoption>
+  <selectoption><text>ARP-Caching</text><group>3</group></selectoption>
+  <selectoption><text>IP-Routing</text><group>3</group></selectoption>
+  <selectoption><text>DNS-Resolution</text><group>3</group></selectoption>
+</question>
+<question type="ddwtos">
+  <name><text>VLAN - Port-Typen Access und Trunk konfigurieren</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Die folgende Abbildung zeigt eine VLAN-Konfiguration (Lichtpult = VLAN 10, Dante-Pult = VLAN 20):</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="520" height="220" viewBox="0 0 520 220" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;"><rect width="520" height="220" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/><text x="10" y="17" font-size="13" font-weight="bold" fill="#343a40">VLAN-Konfiguration am Switch</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="5" y="25" width="78" height="70"/><text x="44" y="107" text-anchor="middle" font-size="11" font-weight="bold">Lichtpult</text><text x="44" y="120" text-anchor="middle" font-size="10" fill="#1a6fc4">VLAN 10</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="5" y="135" width="78" height="70"/><text x="44" y="214" text-anchor="middle" font-size="11" font-weight="bold">Dante-Pult</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="195" y="85" width="66" height="34"/><text x="228" y="132" text-anchor="middle" font-size="11" font-weight="bold">SW-1</text><line x1="83" y1="60" x2="195" y2="96" stroke="#495057" stroke-width="2"/><text x="136" y="65" font-size="10" fill="#1a6fc4" font-weight="bold">Access-Port</text><line x1="83" y1="170" x2="195" y2="109" stroke="#495057" stroke-width="2"/><text x="115" y="152" font-size="10" fill="#2a9d8f" font-weight="bold">Access-Port</text><line x1="261" y1="102" x2="400" y2="102" stroke="#e63946" stroke-width="3"/><text x="330" y="93" text-anchor="middle" font-size="11" fill="#e63946" font-weight="bold">Trunk-Port</text><rect x="400" y="82" width="110" height="40" rx="5" fill="#dee2e6" stroke="#adb5bd" stroke-width="1.5"/><text x="455" y="105" text-anchor="middle" font-size="11" fill="#495057">Router / SW-2</text></svg>
+<p>Ein Endger&#228;t wird an einem <strong>[[1]]</strong>-Port angeschlossen. Verbindungen zwischen zwei Switches nutzen <strong>[[2]]</strong>-Ports. Der IEEE-Standard <strong>[[3]]</strong> definiert das VLAN-Tagging. Pakete ohne VLAN-Tag geh&#246;ren zum <strong>[[4]]</strong> VLAN.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Access-Port: f&#252;r Endger&#228;te, genau ein VLAN, untagged Traffic. Trunk-Port: verbindet Switches, mehrere VLANs mit IEEE 802.1Q-Tags. Native VLAN: untagged Traffic auf Trunk-Ports (Standard: VLAN 1).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>Access</text><group>1</group></dragbox>
+  <dragbox><text>Trunk</text><group>1</group></dragbox>
+  <dragbox><text>802.1Q</text><group>2</group></dragbox>
+  <dragbox><text>Native</text><group>3</group></dragbox>
+  <dragbox><text>Uplink</text><group>1</group></dragbox>
+  <dragbox><text>802.3ad</text><group>2</group></dragbox>
+  <dragbox><text>Standard</text><group>3</group></dragbox>
+</question>
+<question type="ddmatch">
+  <name><text>VLAN - VLAN-IDs und Gewerke im Festivalnetzwerk</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bei einem dreit&#228;gigen Musikfestival mit drei B&#252;hnen planen Sie das VLAN-Konzept. Ordnen Sie jeder VLAN-ID das richtige Gewerk zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>VLAN 10: Licht (Art-Net Broadcast-intensiv, eigenes Segment). VLAN 20: Audio (Dante, latenz-kritisch). VLAN 30: Video (NDI, hohe Bandbreite). VLAN 40: Management. VLAN 50: G&#228;ste-WLAN.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text>VLAN 10</text><answer><text>Lichttechnik (Art-Net Nodes, DMX-Controller, Moving Heads)</text></answer></subquestion>
+  <subquestion format="html"><text>VLAN 20</text><answer><text>Audiotechnik (Dante-Netzwerk, latenz-kritisch)</text></answer></subquestion>
+  <subquestion format="html"><text>VLAN 30</text><answer><text>Videotechnik (NDI-Kameras, Videomischer, LED-W&#228;nde)</text></answer></subquestion>
+  <subquestion format="html"><text>VLAN 40</text><answer><text>Management (Monitoring, Fernwartung, Konfiguration)</text></answer></subquestion>
+  <subquestion format="html"><text>VLAN 50</text><answer><text>G&#228;ste-WLAN (Internetzugang f&#252;r Publikum, isoliert)</text></answer></subquestion>
+  <subquestion format="html"><text></text><answer><text>Sicherheitstechnik (&#220;berwachungskameras, Zutrittskontrolle)</text></answer></subquestion>
+</question>
+<question type="numerical">
+  <name><text>VLAN - Maximale VLAN-ID nach IEEE 802.1Q</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>IEEE 802.1Q definiert einen <strong>12-Bit-VLAN-Identifier</strong>. Welche maximale VLAN-ID ist technisch m&#246;glich (VLAN-ID 0 und 4095 sind reserviert)?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>12 Bit = 2<sup>12</sup> = 4096 Werte (0–4095). Abz&#252;glich der reservierten IDs 0 und 4095: nutzbare IDs 1–4094, also <strong>4094</strong> verschiedene VLANs.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>4094</text><tolerance>0</tolerance></answer>
+</question>
+<question type="ddmatch">
+  <name><text>Protokolle VT - Transportprotokoll und Port-Zuordnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie jedem VT-Netzwerkprotokoll das richtige Transportprotokoll und den zugeh&#246;rigen Port zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Art-Net: UDP Port 6454. sACN: UDP Multicast 239.255.x.x. OSC: UDP, frei konfigurierbarer Port. RTP-MIDI: RTP/UDP Port 5004/5005. Dante: UDP (Unicast+Multicast, propriet&#228;re Ports).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text>Art-Net 4</text><answer><text>UDP, Port 6454 (Broadcast oder Unicast)</text></answer></subquestion>
+  <subquestion format="html"><text>sACN (E1.31)</text><answer><text>UDP, Multicast-Adressen 239.255.x.x (IGMP-Snooping erforderlich)</text></answer></subquestion>
+  <subquestion format="html"><text>OSC</text><answer><text>UDP (typisch), Port frei konfigurierbar (z.B. 8000, 9000)</text></answer></subquestion>
+  <subquestion format="html"><text>RTP-MIDI</text><answer><text>RTP &#252;ber UDP, Port 5004/5005 (Apple Session Protocol)</text></answer></subquestion>
+  <subquestion format="html"><text>Dante</text><answer><text>UDP (Unicast und Multicast), propriet&#228;re Ports von Audinate</text></answer></subquestion>
+  <subquestion format="html"><text></text><answer><text>TCP, Port 80 – Webinterface-Steuerung von Netzwerkger&#228;ten</text></answer></subquestion>
+</question>
+<question type="multichoice">
+  <name><text>Protokolle VT - sACN E1.31 Eigenschaften</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Welche der folgenden Aussagen &#252;ber <strong>sACN (Streaming ACN, E1.31)</strong> sind korrekt? <em>(Mehrere Antworten m&#246;glich)</em></p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>sACN basiert auf ACN und nutzt IP-Multicast. IGMP-Snooping ist n&#246;tig. Art-Net (nicht sACN) wurde von Artistic Licence entwickelt. sACN nutzt UDP. VLANs werden zus&#228;tzlich empfohlen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <single>false</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answer fraction="33.33333" format="html"><text>Nutzt IP-Multicast statt Broadcast f&#252;r effizientere Verteilung</text><feedback format="html"><text>Richtig – wesentlicher Vorteil gegen&#252;ber Art-Net.</text></feedback></answer>
+  <answer fraction="33.33333" format="html"><text>Basiert auf dem ACN-Standard (Architecture for Control Networks)</text><feedback format="html"><text>Richtig – sACN steht f&#252;r Streaming ACN.</text></feedback></answer>
+  <answer fraction="33.33333" format="html"><text>Erfordert IGMP-Snooping f&#252;r effizienten Multicast-Betrieb am Switch</text><feedback format="html"><text>Richtig – ohne IGMP-Snooping wird Multicast wie Broadcast behandelt.</text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text>Nutzt ausschlie&#223;lich TCP als Transportprotokoll f&#252;r zuverl&#228;ssige &#220;bertragung</text><feedback format="html"><text>Falsch – sACN nutzt UDP (latenz-optimiert).</text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text>Wurde von Artistic Licence als Weiterentwicklung von DMX512 entwickelt</text><feedback format="html"><text>Falsch – das beschreibt Art-Net, nicht sACN.</text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text>Ben&#246;tigt keine VLAN-Segmentierung, da Multicast-Gruppen ausreichen</text><feedback format="html"><text>Falsch – VLANs werden zus&#228;tzlich empfohlen.</text></feedback></answer>
+</question>
+<question type="ordering">
+  <name><text>Netzwerkplanung - Dante-Netzwerk systematisch planen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Sie planen ein Dante-Audionetzwerk f&#252;r eine Hybridkonferenz. Bringen Sie die Planungsschritte in die richtige Reihenfolge:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>(1) Anforderungen, (2) Subnetz w&#228;hlen, (3) Netz-/Broadcastadresse berechnen, (4) Statische IP-Adressen vergeben, (5) VLAN + QoS konfigurieren.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="1" format="html"><text>Anforderungen ermitteln: Ger&#228;teanzahl, Latenz, Redundanz</text><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text>Geeignetes Subnetz w&#228;hlen (CIDR) mit ausreichend Hostadressen und Reserve</text><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text>Netzwerkadresse und Broadcastadresse berechnen (bitweises AND)</text><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text>Statische IP-Adressen f&#252;r alle Dante-Ger&#228;te vergeben und dokumentieren</text><md5key></md5key></answer>
+  <answer fraction="5" format="html"><text>Separates VLAN konfigurieren und QoS (DSCP) am Switch aktivieren</text><md5key></md5key></answer>
+</question>
+<question type="numerical">
+  <name><text>Netzwerkplanung - Broadcastadresse im 27er-Subnetz</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein NDI-Videosubnetz hat die Adresse <code>192.168.20.0/27</code>.</p>
+<p>Welches ist das <strong>letzte Oktett der Broadcastadresse</strong>?</p>
+<p><em>Tipp: /27 = Blockgr&#246;&#223;e 32. Netzwerkadresse: 192.168.20.0, Broadcast = Netz + 31.</em></p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/27: Blockgr&#246;&#223;e = 2<sup>5</sup> = 32. Netzwerkadresse: 192.168.20.0. Broadcastadresse: 192.168.20.<strong>31</strong>. Nutzbare Hosts: .1 bis .30 (30 Hostadressen).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>31</text><tolerance>0</tolerance></answer>
+</question>
+</quiz>

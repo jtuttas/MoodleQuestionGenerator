@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Quiz LF10 Kap. 2.1-2.4 Vertiefung</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<style>
+:root {
+  --moodle-orange: #f98012;
+  --moodle-orange-dark: #d4600a;
+  --moodle-blue: #0f6cbf;
+  --moodle-blue-light: #e8f4fd;
+  --moodle-green: #1d7a1d;
+  --moodle-green-light: #d4edda;
+  --moodle-red: #ca3120;
+  --moodle-red-light: #fde8e6;
+  --moodle-gray: #6a737b;
+  --moodle-gray-light: #f3f3f3;
+  --moodle-border: #dee2e6;
+  --moodle-text: #1d2125;
+  --moodle-white: #ffffff;
+  --radius: 4px;
+  --shadow: 0 1px 3px rgba(0,0,0,.12), 0 1px 2px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:#e9eaec;font-family:'Source Sans 3',sans-serif;font-size:15px;color:var(--moodle-text);}
+svg{max-width:100%;height:auto;}
+
+/* Site header */
+.site-header{background:var(--moodle-orange);height:52px;display:flex;align-items:center;padding:0 24px;justify-content:space-between;}
+.site-header .logo{color:#fff;font-weight:700;font-size:18px;letter-spacing:.5px;}
+.site-header .breadcrumb{color:rgba(255,255,255,.8);font-size:13px;}
+
+/* Quiz header */
+.quiz-header{background:#fff;border-bottom:1px solid var(--moodle-border);padding:20px 24px;display:flex;align-items:center;gap:18px;flex-wrap:wrap;}
+.quiz-icon{width:48px;height:48px;background:var(--moodle-orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:26px;flex-shrink:0;}
+.quiz-meta h1{font-size:20px;font-weight:700;margin-bottom:4px;}
+.quiz-meta p{font-size:13px;color:var(--moodle-gray);}
+.quiz-badges{margin-left:auto;display:flex;gap:10px;flex-wrap:wrap;}
+.badge{background:var(--moodle-gray-light);border:1px solid var(--moodle-border);border-radius:4px;padding:6px 14px;font-size:13px;font-weight:600;}
+.badge span{color:var(--moodle-orange);}
+
+/* Layout */
+.main-wrap{max-width:900px;margin:24px auto;padding:0 16px;display:grid;grid-template-columns:1fr 220px;gap:20px;}
+@media(max-width:700px){.main-wrap{grid-template-columns:1fr;}.sidebar{position:static!important;}.quiz-badges{display:none;}}
+
+/* Sidebar */
+.sidebar{position:sticky;top:20px;align-self:start;}
+.sidebar-card{background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:14px;}
+.sidebar-title{font-size:11px;font-weight:700;text-transform:uppercase;color:var(--moodle-gray);letter-spacing:.8px;margin-bottom:10px;}
+.q-nav{display:grid;grid-template-columns:repeat(5,34px);gap:5px;}
+.q-nav button{width:34px;height:34px;border:1px solid var(--moodle-border);background:var(--moodle-gray-light);border-radius:var(--radius);cursor:pointer;font-size:12px;font-weight:600;transition:all .15s;}
+.q-nav button:hover{background:var(--moodle-blue-light);border-color:var(--moodle-blue);color:var(--moodle-blue);}
+.q-nav button.answered{background:var(--moodle-orange);border-color:var(--moodle-orange);color:#fff;}
+.course-info{font-size:12px;color:var(--moodle-gray);line-height:1.7;}
+.progress-bar{height:6px;background:var(--moodle-border);border-radius:3px;margin-top:8px;}
+.progress-fill{height:100%;background:var(--moodle-orange);border-radius:3px;width:0%;transition:width .3s;}
+.progress-label{font-size:11px;color:var(--moodle-gray);margin-top:4px;}
+
+/* Teacher tools */
+.tool-btn{display:block;width:100%;padding:8px 10px;margin-bottom:6px;border:1px solid var(--moodle-border);border-radius:var(--radius);background:#fff;cursor:pointer;font-size:13px;font-weight:600;text-align:left;transition:background .15s;}
+.tool-btn:hover{background:var(--moodle-gray-light);}
+.tool-btn.active{background:var(--moodle-orange);color:#fff;border-color:var(--moodle-orange);}
+
+/* Question cards */
+.question-card{background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);box-shadow:var(--shadow);margin-bottom:18px;overflow:hidden;}
+.question-header{background:var(--moodle-gray-light);border-bottom:1px solid var(--moodle-border);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.q-num{font-size:14px;font-weight:700;color:var(--moodle-orange);}
+.q-title{flex:1;font-size:13px;font-weight:600;}
+.q-points{font-size:13px;color:var(--moodle-gray);margin-left:auto;}
+.question-body{padding:18px 20px;}
+.question-footer{background:var(--moodle-gray-light);border-top:1px solid var(--moodle-border);padding:7px 16px;display:flex;justify-content:space-between;font-size:12px;color:var(--moodle-gray);}
+.q-status{color:var(--moodle-gray);}
+.q-status.answered{color:var(--moodle-green);font-weight:600;}
+
+/* Type badges */
+.type-badge{font-size:11px;font-weight:600;padding:2px 8px;border-radius:3px;border:1px solid;}
+.type-dnd{background:#f0fdf4;color:#166534;border-color:#166534;}
+.type-match{background:#fefce8;color:#854d0e;border-color:#ca8a04;}
+.type-gap{background:#fdf4ff;color:#6b21a8;border-color:#9333ea;}
+.type-ord{background:#eff6ff;color:#1e40af;border-color:#3b82f6;}
+.type-num{background:#fff7ed;color:#9a3412;border-color:#f97316;}
+
+/* Question text */
+.qtext{margin-bottom:14px;line-height:1.6;}
+.qtext p{margin-bottom:8px;}
+.qtext code{background:#f3f4f6;border:1px solid #e5e7eb;border-radius:3px;padding:1px 5px;font-family:'Source Code Pro',monospace;font-size:13px;}
+.qtext ul,.qtext ol{margin-left:20px;margin-bottom:8px;}
+
+/* Feedback box */
+.feedback-box{display:none;padding:10px 14px;border-radius:var(--radius);margin-top:10px;font-size:13px;animation:fadeIn .2s ease;}
+.feedback-box.show{display:block;}
+.feedback-box.correct{background:var(--moodle-green-light);border-left:4px solid var(--moodle-green);}
+.feedback-box.incorrect{background:var(--moodle-red-light);border-left:4px solid var(--moodle-red);}
+.feedback-box.info{background:var(--moodle-blue-light);border-left:4px solid var(--moodle-blue);}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
+/* DnD (ddwtos) */
+.dnd-pool{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;padding:10px;background:var(--moodle-gray-light);border-radius:var(--radius);}
+.drag-chip{padding:5px 12px;border:2px solid var(--moodle-border);border-radius:20px;cursor:pointer;font-size:13px;background:#fff;transition:all .15s;user-select:none;}
+.drag-chip:hover:not(.used){border-color:var(--moodle-blue);color:var(--moodle-blue);}
+.drag-chip.selected{border-color:var(--moodle-blue);background:var(--moodle-blue-light);color:var(--moodle-blue);}
+.drag-chip.used{opacity:.4;cursor:not-allowed;}
+.drop-slot{display:inline-block;min-width:100px;padding:3px 10px;border:2px dashed var(--moodle-border);border-radius:4px;background:#fafafa;cursor:pointer;font-size:13px;text-align:center;vertical-align:middle;transition:all .15s;}
+.drop-slot:hover{border-color:var(--moodle-orange);}
+.drop-slot.filled{border-style:solid;border-color:var(--moodle-gray);background:#fff;}
+.drop-slot.correct-slot{border-color:var(--moodle-green)!important;background:var(--moodle-green-light)!important;color:var(--moodle-green)!important;}
+.drop-slot.wrong-slot{border-color:var(--moodle-red)!important;background:var(--moodle-red-light)!important;color:var(--moodle-red)!important;}
+.check-btn{margin-top:10px;padding:7px 18px;background:var(--moodle-blue);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-size:13px;font-weight:600;}
+.check-btn:hover{background:#0a5a9e;}
+
+/* ddmatch */
+.match-table{width:100%;border-collapse:collapse;font-size:13px;}
+.match-table th{background:var(--moodle-gray-light);padding:7px 10px;text-align:left;font-weight:600;border:1px solid var(--moodle-border);}
+.match-table td{padding:7px 10px;border:1px solid var(--moodle-border);}
+.match-table select{width:100%;padding:4px 6px;border:1px solid var(--moodle-border);border-radius:3px;font-size:13px;}
+.match-table select.correct-select{border-color:var(--moodle-green);background:var(--moodle-green-light);}
+.match-table select.wrong-select{border-color:var(--moodle-red);background:var(--moodle-red-light);}
+
+/* gapselect */
+.cloze-select{padding:3px 6px;border:1px solid var(--moodle-border);border-radius:3px;font-size:13px;display:inline-block;min-width:120px;}
+.cloze-select.correct-cloze{border-color:var(--moodle-green);background:var(--moodle-green-light);}
+.cloze-select.wrong-cloze{border-color:var(--moodle-red);background:var(--moodle-red-light);}
+
+/* ordering */
+.ord-list{list-style:none;padding:0;}
+.ord-item{padding:8px 12px;border:1px solid var(--moodle-border);border-radius:var(--radius);margin-bottom:5px;background:#fff;display:flex;align-items:center;gap:8px;cursor:pointer;font-size:13px;transition:background .15s;}
+.ord-item:hover{background:var(--moodle-blue-light);}
+.ord-item.selected{background:var(--moodle-orange);color:#fff;border-color:var(--moodle-orange);}
+.ord-item.correct-ord{background:var(--moodle-green-light)!important;border-color:var(--moodle-green)!important;color:var(--moodle-green)!important;}
+.ord-item.wrong-ord{background:var(--moodle-red-light)!important;border-color:var(--moodle-red)!important;color:var(--moodle-red)!important;}
+.ord-num{width:22px;height:22px;border-radius:50%;background:var(--moodle-orange);color:#fff;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0;}
+.ord-item.selected .ord-num{background:rgba(255,255,255,.3);}
+
+/* numerical */
+.num-input{padding:7px 10px;border:2px solid var(--moodle-border);border-radius:var(--radius);font-size:14px;width:140px;}
+.num-input.correct-num{border-color:var(--moodle-green);background:var(--moodle-green-light);}
+.num-input.wrong-num{border-color:var(--moodle-red);background:var(--moodle-red-light);}
+
+/* Solution mode */
+.solution-highlight .drop-slot{border-color:var(--moodle-green)!important;background:var(--moodle-green-light)!important;}
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <span class="logo">moodle Vorschau</span>
+  <span class="breadcrumb">LF10 &rsaquo; Netzwerktechnik &rsaquo; Kapitel 2.1&ndash;2.4 Vertiefung</span>
+</header>
+
+<div class="quiz-header">
+  <div class="quiz-icon">&#128187;</div>
+  <div class="quiz-meta">
+    <h1>LF10 Kap. 2.1&ndash;2.4 Vertiefung: Netzwerktechnik Grundlagen</h1>
+    <p>Klasse VT3 &middot; Schwierigkeit: leicht/mittel/schwer &middot; 30 Fragen</p>
+  </div>
+  <div class="quiz-badges">
+    <div class="badge">&#128336; <span>60 Min.</span></div>
+    <div class="badge">&#11088; <span>66 Punkte</span></div>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="questions">
+    <div class="question-card" id="q1">
+  <div class="question-header">
+    <span class="q-num">Frage 1</span>
+    <span class="q-title">L1-K21 Binaer Stellenwerte 50</span>
+    <span class="type-badge type-dnd">DnD Text</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-1"><div id="pool-1" class="dnd-pool"><span class="drag-chip" id="chip-1-0" data-answer="1" onclick="selectChip(this,1)">1</span><span class="drag-chip" id="chip-1-1" data-answer="1" onclick="selectChip(this,1)">1</span><span class="drag-chip" id="chip-1-2" data-answer="1" onclick="selectChip(this,1)">1</span><span class="drag-chip" id="chip-1-3" data-answer="0" onclick="selectChip(this,1)">0</span><span class="drag-chip" id="chip-1-4" data-answer="0" onclick="selectChip(this,1)">0</span><span class="drag-chip" id="chip-1-5" data-answer="0" onclick="selectChip(this,1)">0</span></div>
+<div class="qtext"><p>Beim Open-Air-Festival konfigurieren Sie eine Netzwerk-Audio-Stagebox. Das letzte Oktett der IP-Adresse lautet dezimal 50. Ordnen Sie die gesetzten Bits zu.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="560" height="160" viewBox="0 0 560 160">
+  <rect x="0" y="0" width="560" height="160" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">Stellenwerttabelle eines Bytes (2^7 .. 2^0)</text>
+  <rect x="14" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="46" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">128</text> <text x="46" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^7</text>
+  <rect x="79" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="111" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">64</text> <text x="111" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^6</text>
+  <rect x="144" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="176" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">32</text> <text x="176" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^5</text>
+  <rect x="209" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="241" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">16</text> <text x="241" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^4</text>
+  <rect x="274" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="306" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">8</text> <text x="306" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^3</text>
+  <rect x="339" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="371" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">4</text> <text x="371" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^2</text>
+  <rect x="404" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="436" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">2</text> <text x="436" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^1</text>
+  <rect x="469" y="28" width="65" height="32" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/> <text x="501" y="47" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">1</text> <text x="501" y="58" text-anchor="middle" font-size="10" font-weight="normal" fill="#6c757d">2^0</text>
+  <text x="14" y="95" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">Dezimal 50 = 32 + 16 + 2. Bits mit 1 sind gesucht:</text>
+  <text x="14" y="115" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">128:0 | 64:0 | 32:? | 16:? | 8:0 | 4:0 | 2:? | 1:0</text>
+  <text x="14" y="140" text-anchor="start" font-size="11" font-weight="normal" fill="#6c757d">Die drei ? muessen mit 1 beantwortet werden.</text>
+</svg>
+<p>Dezimal 50: Bit mit Wert 32 = <span class="drop-slot" id="slot-1-1" data-correct="1" onclick="fillSlot(this,1)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>, Bit mit Wert 16 = <span class="drop-slot" id="slot-1-2" data-correct="1" onclick="fillSlot(this,1)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>, Bit mit Wert 2 = <span class="drop-slot" id="slot-1-3" data-correct="1" onclick="fillSlot(this,1)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p></div>
+<button class="check-btn" onclick="checkDnd(1,['1','1','1'])">Antwort pruefen</button>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>50 = 32 + 16 + 2. Binaer: <strong>00110010</strong>. Gesetzte Bits: Stellenwert 32 (Bit 5), 16 (Bit 4), 2 (Bit 1). Alle anderen Bits sind 0.</p></div>
+<div class="feedback-box" id="fb-1"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-1">Nicht beantwortet</span>
+    <span>ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q2">
+  <div class="question-header">
+    <span class="q-num">Frage 2</span>
+    <span class="q-title">L2-K21 Binaer 00101010 nach Dezimal</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-2"><div class="qtext"><p>Der Lichtpult-Rechner einer Buehne hat das letzte IP-Oktett in Binaerdarstellung: <strong>00101010</strong>.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="100" viewBox="0 0 540 100" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="540" height="100" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="22" font-weight="bold" font-size="13" fill="#212529">Binaer 00101010 - Stellenwerte ablesen</text>
+  <rect x="14" y="30" width="60" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/><text x="44" y="48" text-anchor="middle" font-size="11" fill="#6c757d">128</text><text x="44" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#212529">0</text>
+  <rect x="74" y="30" width="60" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/><text x="104" y="48" text-anchor="middle" font-size="11" fill="#6c757d">64</text><text x="104" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#212529">0</text>
+  <rect x="134" y="30" width="60" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/><text x="164" y="48" text-anchor="middle" font-size="11" fill="#155724">32</text><text x="164" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#155724">1</text>
+  <rect x="194" y="30" width="60" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/><text x="224" y="48" text-anchor="middle" font-size="11" fill="#6c757d">16</text><text x="224" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#212529">0</text>
+  <rect x="254" y="30" width="60" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/><text x="284" y="48" text-anchor="middle" font-size="11" fill="#155724">8</text><text x="284" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#155724">1</text>
+  <rect x="314" y="30" width="60" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/><text x="344" y="48" text-anchor="middle" font-size="11" fill="#6c757d">4</text><text x="344" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#212529">0</text>
+  <rect x="374" y="30" width="60" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/><text x="404" y="48" text-anchor="middle" font-size="11" fill="#155724">2</text><text x="404" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#155724">1</text>
+  <rect x="434" y="30" width="60" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/><text x="464" y="48" text-anchor="middle" font-size="11" fill="#6c757d">1</text><text x="464" y="62" text-anchor="middle" font-size="13" font-weight="bold" fill="#212529">0</text>
+  <text x="14" y="90" font-size="11" fill="#495057">Gruene Felder: Bit=1 (Stellenwert zaehlt). Addiere alle gruenen Stellenwerte.</text>
+</svg>
+<p>Berechnen Sie den Dezimalwert durch Addition der gruenen Stellenwerte (2^5 + 2^3 + 2^1 = ?).</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-2" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(2,42.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>00101010: Bit 5 (32) + Bit 3 (8) + Bit 1 (2) = 32 + 8 + 2 = <strong>42</strong>. Pruefen: 42 dezimal = 00101010 binaer. Korrekt!</p></div>
+<div class="feedback-box" id="fb-2"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-2">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q3">
+  <div class="question-header">
+    <span class="q-num">Frage 3</span>
+    <span class="q-title">L3-K21 Byte Anzahl Werte</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-3"><div class="qtext"><p>Ein Techniker prueft, wie viele verschiedene Werte ein einzelnes Byte (8 Bit) darstellen kann. Die Formel lautet 2^Anzahl_der_Bits.</p>
+<p>Wie viele verschiedene Werte kann ein Byte darstellen?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-3" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(3,256.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>8 Bit: 2<sup>8</sup> = <strong>256</strong> verschiedene Werte (von 0 bis 255). Dies ist die Basis der IPv4-Oktettnummerierung: Jedes Oktett hat Werte von 0 bis 255.</p></div>
+<div class="feedback-box" id="fb-3"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-3">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q4">
+  <div class="question-header">
+    <span class="q-num">Frage 4</span>
+    <span class="q-title">L1-K21 Zahlensystem Eigenschaft Zuordnung</span>
+    <span class="type-badge type-match">Zuordnung</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-4"><div class="qtext"><p>In der Netzwerktechnik der Veranstaltungstechnik werden drei Zahlensysteme eingesetzt. Ordnen Sie jedes System seiner wichtigsten Eigenschaft oder typischen Anwendung zu.</p></div>
+<table class="match-table"><thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead><tbody><tr>
+  <td>Dezimalsystem (Basis 10)</td>
+  <td><select onchange="checkMatch(4,["Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)","Subnetzmasken und AND-Verfahren in Hardware","MAC-Adressen und Farbcodes in Medienservern"],3)"><option value="">-- waehlen --</option><option value="Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)">Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)</option><option value="Subnetzmasken und AND-Verfahren in Hardware">Subnetzmasken und AND-Verfahren in Hardware</option><option value="MAC-Adressen und Farbcodes in Medienservern">MAC-Adressen und Farbcodes in Medienservern</option><option value="Baudratenwerte in der seriellen DMX-Kommunikation">Baudratenwerte in der seriellen DMX-Kommunikation</option></select></td>
+</tr><tr>
+  <td>Binaersystem (Basis 2)</td>
+  <td><select onchange="checkMatch(4,["Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)","Subnetzmasken und AND-Verfahren in Hardware","MAC-Adressen und Farbcodes in Medienservern"],3)"><option value="">-- waehlen --</option><option value="Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)">Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)</option><option value="Subnetzmasken und AND-Verfahren in Hardware">Subnetzmasken und AND-Verfahren in Hardware</option><option value="MAC-Adressen und Farbcodes in Medienservern">MAC-Adressen und Farbcodes in Medienservern</option><option value="Baudratenwerte in der seriellen DMX-Kommunikation">Baudratenwerte in der seriellen DMX-Kommunikation</option></select></td>
+</tr><tr>
+  <td>Hexadezimalsystem (Basis 16)</td>
+  <td><select onchange="checkMatch(4,["Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)","Subnetzmasken und AND-Verfahren in Hardware","MAC-Adressen und Farbcodes in Medienservern"],3)"><option value="">-- waehlen --</option><option value="Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)">Punktschreibweise von IP-Adressen (z.B. 192.168.1.1)</option><option value="Subnetzmasken und AND-Verfahren in Hardware">Subnetzmasken und AND-Verfahren in Hardware</option><option value="MAC-Adressen und Farbcodes in Medienservern">MAC-Adressen und Farbcodes in Medienservern</option><option value="Baudratenwerte in der seriellen DMX-Kommunikation">Baudratenwerte in der seriellen DMX-Kommunikation</option></select></td>
+</tr></tbody></table>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Dezimal (Basis 10): lesbare IP-Adress-Schreibweise fuer Menschen. Binaer (Basis 2): Subnetzberechnung, AND-Verfahren, interne Hardwaredarstellung. Hexadezimal (Basis 16): MAC-Adressen (6 Byte = 12 Hex-Zeichen), Farbcodes in Medienservern.</p></div>
+<div class="feedback-box" id="fb-4"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-4">Nicht beantwortet</span>
+    <span>ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q5">
+  <div class="question-header">
+    <span class="q-num">Frage 5</span>
+    <span class="q-title">L2-K21 Nibble Hex Zuordnung</span>
+    <span class="type-badge type-match">Zuordnung</span>
+    <span class="q-points">4 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-5"><div class="qtext"><p>MAC-Adressen in Netzwerkgeraeten verwenden Hexadezimaldarstellung. Ordnen Sie jeden 4-Bit-Nibble der richtigen Hexadezimalziffer zu.</p></div>
+<table class="match-table"><thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead><tbody><tr>
+  <td>0000</td>
+  <td><select onchange="checkMatch(5,['0','A','F','C'],4)"><option value="">-- waehlen --</option><option value="0">0</option><option value="A">A</option><option value="F">F</option><option value="C">C</option><option value="E">E</option></select></td>
+</tr><tr>
+  <td>1010</td>
+  <td><select onchange="checkMatch(5,['0','A','F','C'],4)"><option value="">-- waehlen --</option><option value="0">0</option><option value="A">A</option><option value="F">F</option><option value="C">C</option><option value="E">E</option></select></td>
+</tr><tr>
+  <td>1111</td>
+  <td><select onchange="checkMatch(5,['0','A','F','C'],4)"><option value="">-- waehlen --</option><option value="0">0</option><option value="A">A</option><option value="F">F</option><option value="C">C</option><option value="E">E</option></select></td>
+</tr><tr>
+  <td>1100</td>
+  <td><select onchange="checkMatch(5,['0','A','F','C'],4)"><option value="">-- waehlen --</option><option value="0">0</option><option value="A">A</option><option value="F">F</option><option value="C">C</option><option value="E">E</option></select></td>
+</tr></tbody></table>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>0000 binaer = 0 hex. 1010 binaer = A hex (10 dezimal). 1111 binaer = F hex (15 dezimal). 1100 binaer = C hex (12 dezimal). Merkhilfe: jede Hex-Ziffer entspricht genau einem 4-Bit-Nibble.</p></div>
+<div class="feedback-box" id="fb-5"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-5">Nicht beantwortet</span>
+    <span>ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q6">
+  <div class="question-header">
+    <span class="q-num">Frage 6</span>
+    <span class="q-title">L3-K21 Nibble Methode 11010110 zu Hex</span>
+    <span class="type-badge type-dnd">DnD Text</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-6"><div id="pool-6" class="dnd-pool"><span class="drag-chip" id="chip-6-0" data-answer="D" onclick="selectChip(this,6)">D</span><span class="drag-chip" id="chip-6-1" data-answer="6" onclick="selectChip(this,6)">6</span><span class="drag-chip" id="chip-6-2" data-answer="D6" onclick="selectChip(this,6)">D6</span><span class="drag-chip" id="chip-6-3" data-answer="E" onclick="selectChip(this,6)">E</span><span class="drag-chip" id="chip-6-4" data-answer="9" onclick="selectChip(this,6)">9</span><span class="drag-chip" id="chip-6-5" data-answer="D9" onclick="selectChip(this,6)">D9</span></div>
+<div class="qtext"><p>Ein Streaming-Encoder hat ein Byte seiner MAC-Adresse in Binaerform: <strong>11010110</strong>. Wenden Sie die Nibble-Methode an.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="500" height="135" viewBox="0 0 500 135">
+  <rect x="0" y="0" width="500" height="135" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">Nibble-Methode: 11010110 in Hex umwandeln</text>
+  <rect x="30" y="30" width="180" height="35" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5" rx="4"/> <text x="120" y="51" text-anchor="middle" font-size="12" font-weight="bold" fill="#664d03">1101</text> <text x="120" y="61" text-anchor="middle" font-size="10" font-weight="normal" fill="#664d03">linkes Nibble (Bits 7-4)</text>
+  <rect x="240" y="30" width="180" height="35" fill="#cce5ff" stroke="#4dabf7" stroke-width="1.5" rx="4"/> <text x="330" y="51" text-anchor="middle" font-size="12" font-weight="bold" fill="#1c7ed6">0110</text> <text x="330" y="61" text-anchor="middle" font-size="10" font-weight="normal" fill="#1c7ed6">rechtes Nibble (Bits 3-0)</text>
+  <text x="14" y="93" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">1101 = 8+4+1 = 13 dez = ? hex | 0110 = 4+2 = 6 dez = ? hex</text>
+  <text x="14" y="113" text-anchor="start" font-size="11" font-weight="normal" fill="#6c757d">Ergebnis: beide Nibbles zusammen = das Byte als 2-stellige Hex-Zahl</text>
+</svg>
+<p>Linkes Nibble 1101 = <span class="drop-slot" id="slot-6-1" data-correct="D" onclick="fillSlot(this,6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (hex). Rechtes Nibble 0110 = <span class="drop-slot" id="slot-6-2" data-correct="6" onclick="fillSlot(this,6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (hex). Das gesamte Byte 11010110 = <span class="drop-slot" id="slot-6-3" data-correct="D6" onclick="fillSlot(this,6)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (hex).</p></div>
+<button class="check-btn" onclick="checkDnd(6,['D','6','D6'])">Antwort pruefen</button>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>1101 = 8+4+1 = 13 dez = <strong>D</strong> hex. 0110 = 4+2 = 6 dez = <strong>6</strong> hex. Zusammen: <strong>D6</strong>. Kontrolle: D6 hex = 13x16 + 6 = 208 + 6 = 214 dez.</p></div>
+<div class="feedback-box" id="fb-6"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-6">Nicht beantwortet</span>
+    <span>ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q7">
+  <div class="question-header">
+    <span class="q-num">Frage 7</span>
+    <span class="q-title">M1-K21 Subtraktionsverfahren 172 Schritte</span>
+    <span class="type-badge type-ord">Reihenfolge</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-7"><div class="qtext"><p>Um das erste Oktett (172) der IP-Adresse 172.16.0.1 in Binaer umzurechnen, wird das Subtraktionsverfahren angewandt. Bringen Sie die Schritte in die richtige Reihenfolge.</p></div>
+<p style="font-size:12px;color:var(--moodle-gray);margin-bottom:8px;">Klicken Sie die Elemente in der richtigen Reihenfolge an.</p>
+<ul class="ord-list"><li class="ord-item" id="ord-7-2" data-order="2" onclick="ordClick(7,this)"><span class="ord-num"></span>64 passt nicht: Bit=0, Rest=44</li><li class="ord-item" id="ord-7-5" data-order="5" onclick="ordClick(7,this)"><span class="ord-num"></span>8 passt: Bit=1, Rest=4</li><li class="ord-item" id="ord-7-3" data-order="3" onclick="ordClick(7,this)"><span class="ord-num"></span>32 passt: Bit=1, Rest=12</li><li class="ord-item" id="ord-7-1" data-order="1" onclick="ordClick(7,this)"><span class="ord-num"></span>128 passt: Bit=1, Rest=44</li><li class="ord-item" id="ord-7-8" data-order="8" onclick="ordClick(7,this)"><span class="ord-num"></span>1 passt nicht: Bit=0 - Ergebnis: 10101100</li><li class="ord-item" id="ord-7-7" data-order="7" onclick="ordClick(7,this)"><span class="ord-num"></span>2 passt nicht: Bit=0</li><li class="ord-item" id="ord-7-6" data-order="6" onclick="ordClick(7,this)"><span class="ord-num"></span>4 passt: Bit=1, Rest=0</li><li class="ord-item" id="ord-7-4" data-order="4" onclick="ordClick(7,this)"><span class="ord-num"></span>16 passt nicht: Bit=0, Rest=12</li></ul>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>172: 128 passt (Rest 44), 64 passt nicht, 32 passt (Rest 12), 16 passt nicht, 8 passt (Rest 4), 4 passt (Rest 0), 2 passt nicht, 1 passt nicht. Ergebnis: <strong>10101100</strong>. Kontrolle: 128+32+8+4=172. Korrekt!</p></div>
+<div class="feedback-box" id="fb-7"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-7">Nicht beantwortet</span>
+    <span>ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q8">
+  <div class="question-header">
+    <span class="q-num">Frage 8</span>
+    <span class="q-title">M2-K21 Binaer 11001100 nach Dezimal</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-8"><div class="qtext"><p>Ein Netzwerk-Video-Encoder sendet von einer Adresse, deren letztes Oktett binaer <strong>11001100</strong> lautet.</p>
+<p>Berechnen Sie den Dezimalwert: 128 + 64 + 8 + 4 = ?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-8" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(8,204.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>11001100: Bit 7 (128) + Bit 6 (64) + Bit 3 (8) + Bit 2 (4) = 128 + 64 + 8 + 4 = <strong>204</strong>.</p></div>
+<div class="feedback-box" id="fb-8"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-8">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q9">
+  <div class="question-header">
+    <span class="q-num">Frage 9</span>
+    <span class="q-title">L1-K22 Netzadresse Broadcast 192.168.10.0/24</span>
+    <span class="type-badge type-gap">Lueckentext</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-9"><div class="qtext"><p>Beim Theaternetzwerk wird das Subnetz <code>192.168.10.0/24</code> verwendet. Ergaenzen Sie die fehlenden Adressen.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="520" height="145" viewBox="0 0 520 145">
+  <rect x="0" y="0" width="520" height="145" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">Subnetz 192.168.10.0/24 - Adressbereiche</text>
+  <rect x="14" y="30" width="492" height="26" fill="#e9ecef" stroke="#adb5bd" stroke-width="1" rx="4"/>
+  <text x="20" y="47" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">/24 Maske: 255.255.255.0 | 8 Hostbits | 2^8=256 Adressen</text>
+  <rect x="14" y="64" width="130" height="30" fill="#d4edda" stroke="#28a745" stroke-width="1.5" rx="4"/> <text x="79" y="83" text-anchor="middle" font-size="11" font-weight="normal" fill="#155724">Netzadresse</text>
+  <rect x="160" y="64" width="170" height="30" fill="#d1ecf1" stroke="#17a2b8" stroke-width="1.5" rx="4"/> <text x="245" y="83" text-anchor="middle" font-size="11" font-weight="normal" fill="#0c5460">Hostbereich .1 bis .254</text>
+  <rect x="346" y="64" width="160" height="30" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5" rx="4"/> <text x="426" y="83" text-anchor="middle" font-size="11" font-weight="normal" fill="#721c24">Broadcast</text>
+  <text x="14" y="115" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Netzadresse = alle Hostbits=0 | Broadcast = alle Hostbits=1</text>
+  <text x="14" y="132" text-anchor="start" font-size="11" font-weight="normal" fill="#6c757d">Nutzbare Hosts: 254 (erste bis letzte Hostadresse)</text>
+</svg>
+<p>Die Netzadresse von 192.168.10.0/24 ist <select class="cloze-select" id="gap-q9-1" onchange="checkGap(9,['192.168.10.0'])"><option value="">-- waehlen --</option><option value="192.168.10.0">192.168.10.0</option><option value="192.168.10.1">192.168.10.1</option><option value="192.168.10.255">192.168.10.255</option></select>. Die Broadcastadresse lautet <select class="cloze-select" id="gap-q9-2" onchange="checkGap(9,['192.168.10.0','192.168.10.255'])"><option value="">-- waehlen --</option><option value="192.168.10.255">192.168.10.255</option><option value="192.168.10.254">192.168.10.254</option><option value="192.168.10.128">192.168.10.128</option></select>. Die erste nutzbare Hostadresse ist <select class="cloze-select" id="gap-q9-3" onchange="checkGap(9,['192.168.10.0','192.168.10.255','192.168.10.1'])"><option value="">-- waehlen --</option><option value="192.168.10.1">192.168.10.1</option><option value="192.168.10.0">192.168.10.0</option><option value="192.168.10.128">192.168.10.128</option></select>.</p></div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Netzadresse: alle Hostbits=0 &rarr; 192.168.10.<strong>0</strong>. Broadcast: alle Hostbits=1 &rarr; 192.168.10.<strong>255</strong>. Erste Hostadresse: 192.168.10.<strong>1</strong>. Nutzbare Hosts: 254.</p></div>
+<div class="feedback-box" id="fb-9"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-9">Nicht beantwortet</span>
+    <span>gapselect</span>
+  </div>
+</div>
+<div class="question-card" id="q10">
+  <div class="question-header">
+    <span class="q-num">Frage 10</span>
+    <span class="q-title">L2-K22 Nutzbare Hosts 27er Subnetz</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-10"><div class="qtext"><p>Fuer die Buehnenverkabelung einer Produktionsmesse planen Sie ein /27-Subnetz.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="105" viewBox="0 0 500 105" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="500" height="105" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Subnetzgroesse /27 berechnen</text>
+  <rect x="14" y="28" width="310" height="22" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1"/><text x="169" y="43" text-anchor="middle" font-size="11" fill="#0a58ca">27 Netz-Bits (durch Praefixlaenge /27 fixiert)</text>
+  <rect x="324" y="28" width="162" height="22" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5"/><text x="405" y="43" text-anchor="middle" font-size="11" fill="#856404">5 Host-Bits (32-27=5)</text>
+  <text x="14" y="64" font-size="11" fill="#495057">Gesamte Adressen: 2^5 = 32</text>
+  <text x="14" y="80" font-size="11" fill="#495057">Reserviert: Netzadresse (alle Hostbits=0) + Broadcast (alle Hostbits=1) = 2</text>
+  <text x="14" y="97" font-size="11" fill="#495057">Nutzbare Hosts: 32 - 2 = ?</text>
+</svg>
+<p>Rechenweg: /27 hat 5 Hostbits, 2^5=32 Adressen, minus 2 reservierte. Wie viele <strong>nutzbare</strong> Hostadressen hat ein /27-Subnetz?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-10" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(10,30.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>/27: 5 Hostbits. 2<sup>5</sup> = 32 Adressen. 32 - 2 = <strong>30</strong> nutzbare Hosts. Abgezogen werden Netzadresse (alle Hostbits=0) und Broadcast (alle Hostbits=1).</p></div>
+<div class="feedback-box" id="fb-10"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-10">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q11">
+  <div class="question-header">
+    <span class="q-num">Frage 11</span>
+    <span class="q-title">L3-K22 Hostbereich 10.10.0.0 Slash 26</span>
+    <span class="type-badge type-dnd">DnD Text</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-11"><div id="pool-11" class="dnd-pool"><span class="drag-chip" id="chip-11-0" data-answer="62" onclick="selectChip(this,11)">62</span><span class="drag-chip" id="chip-11-1" data-answer="0" onclick="selectChip(this,11)">0</span><span class="drag-chip" id="chip-11-2" data-answer="63" onclick="selectChip(this,11)">63</span><span class="drag-chip" id="chip-11-3" data-answer="64" onclick="selectChip(this,11)">64</span><span class="drag-chip" id="chip-11-4" data-answer="1" onclick="selectChip(this,11)">1</span><span class="drag-chip" id="chip-11-5" data-answer="255" onclick="selectChip(this,11)">255</span></div>
+<div class="qtext"><p>Das Videostream-Netz einer Messe nutzt <code>10.10.0.0/26</code>. Vervollstaendigen Sie die Subnetzbeschreibung.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="520" height="135" viewBox="0 0 520 135">
+  <rect x="0" y="0" width="520" height="135" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">Subnetz 10.10.0.0/26 - Adressbereiche</text>
+  <rect x="14" y="28" width="68" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1.5" rx="4"/> <text x="48" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#155724">10.10.0.0</text>
+  <rect x="90" y="28" width="250" height="28" fill="#d1ecf1" stroke="#17a2b8" stroke-width="1.5" rx="4"/> <text x="215" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#0c5460">10.10.0.1 bis 10.10.0.62</text>
+  <rect x="352" y="28" width="154" height="28" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5" rx="4"/> <text x="429" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#721c24">10.10.0.63</text>
+  <text x="14" y="76" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">/26: 6 Hostbits, 2^6=64 Adressen, Maske 255.255.255.192</text>
+  <text x="14" y="94" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Netzadresse: alle Hostbits 0 | Broadcast: alle Hostbits 1</text>
+  <text x="14" y="115" text-anchor="start" font-size="11" font-weight="normal" fill="#6c757d">Hostbereich: Netzadresse+1 bis Broadcast-1</text>
+</svg>
+<p>Das Subnetz 10.10.0.0/26 hat <span class="drop-slot" id="slot-11-1" data-correct="62" onclick="fillSlot(this,11)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> nutzbare Hosts. Die Netzadresse ist 10.10.0.<span class="drop-slot" id="slot-11-2" data-correct="0" onclick="fillSlot(this,11)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> und die Broadcastadresse 10.10.0.<span class="drop-slot" id="slot-11-3" data-correct="63" onclick="fillSlot(this,11)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p></div>
+<button class="check-btn" onclick="checkDnd(11,['62','0','63'])">Antwort pruefen</button>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>/26: 6 Hostbits. 2<sup>6</sup> = 64 Adressen - 2 = <strong>62</strong> nutzbare Hosts. Netzadresse: 10.10.0.<strong>0</strong>. Broadcast: 10.10.0.<strong>63</strong> (alle 6 Hostbits=1: 00<em>111111</em> = 63).</p></div>
+<div class="feedback-box" id="fb-11"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-11">Nicht beantwortet</span>
+    <span>ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q12">
+  <div class="question-header">
+    <span class="q-num">Frage 12</span>
+    <span class="q-title">M1-K22 AND-Verfahren 10.20.0.65 Slash 27</span>
+    <span class="type-badge type-dnd">DnD Text</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-12"><div id="pool-12" class="dnd-pool"><span class="drag-chip" id="chip-12-0" data-answer="01000000" onclick="selectChip(this,12)">01000000</span><span class="drag-chip" id="chip-12-1" data-answer="64" onclick="selectChip(this,12)">64</span><span class="drag-chip" id="chip-12-2" data-answer="10.20.0.64" onclick="selectChip(this,12)">10.20.0.64</span><span class="drag-chip" id="chip-12-3" data-answer="01100001" onclick="selectChip(this,12)">01100001</span><span class="drag-chip" id="chip-12-4" data-answer="96" onclick="selectChip(this,12)">96</span><span class="drag-chip" id="chip-12-5" data-answer="10.20.0.96" onclick="selectChip(this,12)">10.20.0.96</span></div>
+<div class="qtext"><p>Der Medienserver hat IP <code>10.20.0.65</code> mit Maske <code>255.255.255.224</code> (/27). Fuehren Sie das AND-Verfahren fuer das letzte Oktett durch.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="540" height="175" viewBox="0 0 540 175">
+  <rect x="0" y="0" width="540" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">AND-Verfahren: letztes Oktett 65 AND 224</text>
+  <text x="14" y="42" text-anchor="start" font-size="12" font-weight="normal" fill="#212529">65 dezimal =</text> <text x="130" y="42" text-anchor="start" font-size="12" font-weight="bold" fill="#0a58ca">01000001</text> <text x="240" y="42" text-anchor="start" font-size="12" font-weight="normal" fill="#6c757d">(64+1)</text>
+  <text x="14" y="62" text-anchor="start" font-size="12" font-weight="normal" fill="#212529">224 dezimal =</text> <text x="130" y="62" text-anchor="start" font-size="12" font-weight="bold" fill="#0a58ca">11100000</text> <text x="240" y="62" text-anchor="start" font-size="12" font-weight="normal" fill="#6c757d">(128+64+32)</text>
+  <line x1="14" y1="72" x2="320" y2="72" stroke="#0288d1" stroke-width="1.5"/>
+  <text x="14" y="88" text-anchor="start" font-size="12" font-weight="normal" fill="#212529">AND-Ergebnis =</text> <text x="130" y="88" text-anchor="start" font-size="12" font-weight="bold" fill="#dc3545">01000000</text> <text x="240" y="88" text-anchor="start" font-size="12" font-weight="normal" fill="#6c757d">= ? dezimal</text>
+  <text x="14" y="112" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Regel: 1 AND 1 = 1, alle anderen Kombinationen = 0</text>
+  <text x="14" y="130" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Nur Bits wo BEIDE Operanden 1 sind ergeben 1</text>
+  <text x="14" y="150" text-anchor="start" font-size="11" font-weight="normal" fill="#6c757d">Netzadresse = erste 3 Oktette unveraendert + AND-Ergebnis als 4. Oktett</text>
+  <text x="14" y="168" text-anchor="start" font-size="11" font-weight="normal" fill="#6c757d">Hostbereich dieses /27-Blocks: Netzadresse+1 bis Broadcast-1</text>
+</svg>
+<p>65 AND 224 = <span class="drop-slot" id="slot-12-1" data-correct="01000000" onclick="fillSlot(this,12)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> binaer = <span class="drop-slot" id="slot-12-2" data-correct="64" onclick="fillSlot(this,12)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> dezimal. Die vollstaendige Netzadresse lautet <span class="drop-slot" id="slot-12-3" data-correct="10.20.0.64" onclick="fillSlot(this,12)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p></div>
+<button class="check-btn" onclick="checkDnd(12,['01000000','64','10.20.0.64'])">Antwort pruefen</button>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>65 = 01000001 | 224 = 11100000. AND: nur Bit 6 ist in beiden 1. Ergebnis: 01000000 = <strong>64</strong> dez. Netzadresse: <strong>10.20.0.64</strong>. Broadcast: 10.20.0.95. Hosts: .65 bis .94.</p></div>
+<div class="feedback-box" id="fb-12"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-12">Nicht beantwortet</span>
+    <span>ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q13">
+  <div class="question-header">
+    <span class="q-num">Frage 13</span>
+    <span class="q-title">M2-K22 CIDR Praefix zu Subnetzmaske</span>
+    <span class="type-badge type-gap">Lueckentext</span>
+    <span class="q-points">4 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-13"><div class="qtext"><p>Beim Einrichten eines Buehnen-Netzwerks arbeiten Sie mit verschiedenen CIDR-Praefixen. Welche Dezimal-Subnetzmaske gehoert zu welchem CIDR-Praefix?</p>
+<p>Subnetzmaske /24 = <select class="cloze-select" id="gap-q13-1" onchange="checkGap(13,['255.255.255.0'])"><option value="">-- waehlen --</option><option value="255.255.255.0">255.255.255.0</option><option value="255.255.255.128">255.255.255.128</option><option value="255.255.255.192">255.255.255.192</option></select>. Subnetzmaske /25 = <select class="cloze-select" id="gap-q13-2" onchange="checkGap(13,['255.255.255.0','255.255.255.128'])"><option value="">-- waehlen --</option><option value="255.255.255.128">255.255.255.128</option><option value="255.255.255.0">255.255.255.0</option><option value="255.255.255.64">255.255.255.64</option></select>. Subnetzmaske /26 = <select class="cloze-select" id="gap-q13-3" onchange="checkGap(13,['255.255.255.0','255.255.255.128','255.255.255.192'])"><option value="">-- waehlen --</option><option value="255.255.255.192">255.255.255.192</option><option value="255.255.255.224">255.255.255.224</option><option value="255.255.255.128">255.255.255.128</option></select>. Subnetzmaske /27 = <select class="cloze-select" id="gap-q13-4" onchange="checkGap(13,['255.255.255.0','255.255.255.128','255.255.255.192','255.255.255.224'])"><option value="">-- waehlen --</option><option value="255.255.255.224">255.255.255.224</option><option value="255.255.255.192">255.255.255.192</option><option value="255.255.255.240">255.255.255.240</option></select>.</p></div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>/24: 255.255.255.0 (8 Nullbits). /25: 255.255.255.128 (7 Nullbits, 2^7=128). /26: 255.255.255.192 (6 Nullbits, 2^6=64, 192=256-64). /27: 255.255.255.224 (5 Nullbits, 2^5=32, 224=256-32).</p></div>
+<div class="feedback-box" id="fb-13"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-13">Nicht beantwortet</span>
+    <span>gapselect</span>
+  </div>
+</div>
+<div class="question-card" id="q14">
+  <div class="question-header">
+    <span class="q-num">Frage 14</span>
+    <span class="q-title">M3-K22 Erste Hostadresse 10.10.0.64 Slash 27</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-14"><div class="qtext"><p>Das Audio-Subnetz der Messehalle ist <code>10.10.0.64/27</code>. Welches ist der Dezimalwert des letzten Oktetts der <strong>ersten</strong> nutzbaren Hostadresse?</p>
+<p>Hinweis: Netzadresse = .64. Erste Hostadresse = Netzadresse + 1.</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-14" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(14,65.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Subnetz 10.10.0.64/27: Netzadresse = .64 (letzte 5 Bits=00000). Erste Hostadresse = 10.10.0.<strong>65</strong>. Broadcast = 10.10.0.95. Hostbereich: .65 bis .94 (30 Hosts).</p></div>
+<div class="feedback-box" id="fb-14"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-14">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q15">
+  <div class="question-header">
+    <span class="q-num">Frage 15</span>
+    <span class="q-title">S1-K22 VLSM Festival Subnetz A Broadcast letztes Oktett</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-15"><div class="qtext"><p>Bei einem Open-Air-Festival wird das Netz <code>10.10.0.0/24</code> per VLSM aufgeteilt:</p>
+<ul>
+  <li>Subnetz A: Buehne, 60 Hosts benoetigt &rarr; /26 (62 nutzbare Hosts). Beginnt bei 10.10.0.0.</li>
+  <li>Subnetz B: Video, 30 Hosts &rarr; /27. Beginnt nach Subnetz A.</li>
+  <li>Subnetz C: Licht, 14 Hosts &rarr; /28. Beginnt nach Subnetz B.</li>
+</ul>
+<p>Berechnung Subnetz A: /26 = 6 Hostbits, 2^6=64 Adressen. Netzadresse 10.10.0.0, Broadcast = 10.10.0.(0+64-1)=10.10.0.?</p>
+<p>Welches ist das letzte Oktett der <strong>Broadcastadresse</strong> von Subnetz A?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-15" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(15,63.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Subnetz A: 10.10.0.0/26. 2<sup>6</sup>=64 Adressen. Broadcast: 10.10.0.0 + 64 - 1 = 10.10.0.<strong>63</strong>. Hostbereich: .1 bis .62 (62 nutzbare Hosts).</p></div>
+<div class="feedback-box" id="fb-15"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-15">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q16">
+  <div class="question-header">
+    <span class="q-num">Frage 16</span>
+    <span class="q-title">S2-K22 VLSM Festival Subnetz B Netzadresse letztes Oktett</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-16"><div class="qtext"><p>Fortsetzung VLSM-Planung (Festival, 10.10.0.0/24):</p>
+<ul>
+  <li>Subnetz A: 10.10.0.0/26, Broadcast .63</li>
+  <li>Subnetz B: Video, 30 Hosts, /27. Beginnt direkt nach Subnetz A.</li>
+</ul>
+<p>Welches ist das letzte Oktett der <strong>Netzadresse</strong> von Subnetz B?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-16" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(16,64.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Subnetz A endet bei .63. Subnetz B beginnt bei .64. Netzadresse Subnetz B: 10.10.0.<strong>64</strong>. Broadcast: .64+32-1=.95. Hostbereich: .65 bis .94 (30 Hosts).</p></div>
+<div class="feedback-box" id="fb-16"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-16">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q17">
+  <div class="question-header">
+    <span class="q-num">Frage 17</span>
+    <span class="q-title">S3-K22 VLSM Festival Subnetz C Broadcast letztes Oktett</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-17"><div class="qtext"><p>Fortsetzung VLSM-Planung (Festival, 10.10.0.0/24):</p>
+<ul>
+  <li>Subnetz A: .0/26, Broadcast .63</li>
+  <li>Subnetz B: .64/27, Broadcast .95</li>
+  <li>Subnetz C: Licht, 14 Hosts, /28. Beginnt bei 10.10.0.96.</li>
+</ul>
+<p>/28: 4 Hostbits, 2^4=16 Adressen. Broadcast = .96 + 16 - 1 = .?</p>
+<p>Welches ist das letzte Oktett der <strong>Broadcastadresse</strong> von Subnetz C?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-17" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(17,111.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Subnetz C: 10.10.0.96/28. 2<sup>4</sup>=16 Adressen. Broadcast: 10.10.0.96 + 16 - 1 = 10.10.0.<strong>111</strong>. Hostbereich: .97 bis .110 (14 nutzbare Hosts).</p></div>
+<div class="feedback-box" id="fb-17"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-17">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q18">
+  <div class="question-header">
+    <span class="q-num">Frage 18</span>
+    <span class="q-title">L1-K23 IP-Header Felder Bedeutung</span>
+    <span class="type-badge type-match">Zuordnung</span>
+    <span class="q-points">4 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-18"><div class="qtext"><p>Ein IP-Paket hat einen Header mit mehreren Feldern. Ordnen Sie jedes Headerfeld seiner Funktion zu.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="540" height="170" viewBox="0 0 540 170">
+  <rect x="0" y="0" width="540" height="170" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">IPv4-Header (20 Byte Minimum) - wichtige Felder</text>
+  <rect x="14" y="28" width="70" height="28" fill="#cce5ff" stroke="#004085" stroke-width="1" rx="4"/> <text x="49" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#004085">Version/IHL</text>
+  <rect x="84" y="28" width="70" height="28" fill="#e2d9f3" stroke="#6f42c1" stroke-width="1" rx="4"/> <text x="119" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#6f42c1">TOS/DSCP</text>
+  <rect x="154" y="28" width="100" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1" rx="4"/> <text x="204" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#155724">Total Length</text>
+  <rect x="254" y="28" width="100" height="28" fill="#fff3cd" stroke="#856404" stroke-width="1" rx="4"/> <text x="304" y="46" text-anchor="middle" font-size="10" font-weight="normal" fill="#856404">Identification</text>
+  <rect x="14" y="56" width="70" height="28" fill="#f8d7da" stroke="#721c24" stroke-width="1" rx="4"/> <text x="49" y="74" text-anchor="middle" font-size="10" font-weight="normal" fill="#721c24">Flags/Offset</text>
+  <rect x="84" y="56" width="70" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1" rx="4"/> <text x="119" y="74" text-anchor="middle" font-size="10" font-weight="normal" fill="#155724">TTL</text>
+  <rect x="154" y="56" width="70" height="28" fill="#cce5ff" stroke="#004085" stroke-width="1" rx="4"/> <text x="189" y="74" text-anchor="middle" font-size="10" font-weight="normal" fill="#004085">Protocol</text>
+  <rect x="224" y="56" width="130" height="28" fill="#e2d9f3" stroke="#6f42c1" stroke-width="1" rx="4"/> <text x="289" y="74" text-anchor="middle" font-size="10" font-weight="normal" fill="#6f42c1">Header Checksum</text>
+  <rect x="14" y="84" width="250" height="28" fill="#fff3cd" stroke="#856404" stroke-width="1" rx="4"/> <text x="139" y="102" text-anchor="middle" font-size="10" font-weight="normal" fill="#856404">Source IP Address (32 Bit)</text>
+  <rect x="14" y="112" width="250" height="28" fill="#f8d7da" stroke="#721c24" stroke-width="1" rx="4"/> <text x="139" y="130" text-anchor="middle" font-size="10" font-weight="normal" fill="#721c24">Destination IP Address (32 Bit)</text>
+  <text x="14" y="155" text-anchor="start" font-size="10" font-weight="normal" fill="#6c757d">Minimale Headergroesse: 20 Byte | Kann durch Options auf bis zu 60 Byte erweitert werden</text>
+</svg></div>
+<table class="match-table"><thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead><tbody><tr>
+  <td>TTL (Time to Live)</td>
+  <td><select onchange="checkMatch(18,["Maximale Router-Hops; verhindert endlose Weiterleitung","Gibt an, ob TCP (6) oder UDP (17) folgt","Gesamtgroesse des IP-Pakets inklusive Header in Byte","Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)"],4)"><option value="">-- waehlen --</option><option value="Maximale Router-Hops; verhindert endlose Weiterleitung">Maximale Router-Hops; verhindert endlose Weiterleitung</option><option value="Gibt an, ob TCP (6) oder UDP (17) folgt">Gibt an, ob TCP (6) oder UDP (17) folgt</option><option value="Gesamtgroesse des IP-Pakets inklusive Header in Byte">Gesamtgroesse des IP-Pakets inklusive Header in Byte</option><option value="Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)">Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)</option><option value="Identifiziert den Hersteller der Netzwerkkarte">Identifiziert den Hersteller der Netzwerkkarte</option></select></td>
+</tr><tr>
+  <td>Protocol-Feld</td>
+  <td><select onchange="checkMatch(18,["Maximale Router-Hops; verhindert endlose Weiterleitung","Gibt an, ob TCP (6) oder UDP (17) folgt","Gesamtgroesse des IP-Pakets inklusive Header in Byte","Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)"],4)"><option value="">-- waehlen --</option><option value="Maximale Router-Hops; verhindert endlose Weiterleitung">Maximale Router-Hops; verhindert endlose Weiterleitung</option><option value="Gibt an, ob TCP (6) oder UDP (17) folgt">Gibt an, ob TCP (6) oder UDP (17) folgt</option><option value="Gesamtgroesse des IP-Pakets inklusive Header in Byte">Gesamtgroesse des IP-Pakets inklusive Header in Byte</option><option value="Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)">Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)</option><option value="Identifiziert den Hersteller der Netzwerkkarte">Identifiziert den Hersteller der Netzwerkkarte</option></select></td>
+</tr><tr>
+  <td>Total Length</td>
+  <td><select onchange="checkMatch(18,["Maximale Router-Hops; verhindert endlose Weiterleitung","Gibt an, ob TCP (6) oder UDP (17) folgt","Gesamtgroesse des IP-Pakets inklusive Header in Byte","Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)"],4)"><option value="">-- waehlen --</option><option value="Maximale Router-Hops; verhindert endlose Weiterleitung">Maximale Router-Hops; verhindert endlose Weiterleitung</option><option value="Gibt an, ob TCP (6) oder UDP (17) folgt">Gibt an, ob TCP (6) oder UDP (17) folgt</option><option value="Gesamtgroesse des IP-Pakets inklusive Header in Byte">Gesamtgroesse des IP-Pakets inklusive Header in Byte</option><option value="Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)">Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)</option><option value="Identifiziert den Hersteller der Netzwerkkarte">Identifiziert den Hersteller der Netzwerkkarte</option></select></td>
+</tr><tr>
+  <td>Flags / Fragment Offset</td>
+  <td><select onchange="checkMatch(18,["Maximale Router-Hops; verhindert endlose Weiterleitung","Gibt an, ob TCP (6) oder UDP (17) folgt","Gesamtgroesse des IP-Pakets inklusive Header in Byte","Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)"],4)"><option value="">-- waehlen --</option><option value="Maximale Router-Hops; verhindert endlose Weiterleitung">Maximale Router-Hops; verhindert endlose Weiterleitung</option><option value="Gibt an, ob TCP (6) oder UDP (17) folgt">Gibt an, ob TCP (6) oder UDP (17) folgt</option><option value="Gesamtgroesse des IP-Pakets inklusive Header in Byte">Gesamtgroesse des IP-Pakets inklusive Header in Byte</option><option value="Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)">Steuert Fragmentierung (DF-Bit, MF-Bit, Offset)</option><option value="Identifiziert den Hersteller der Netzwerkkarte">Identifiziert den Hersteller der Netzwerkkarte</option></select></td>
+</tr></tbody></table>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>TTL: begrenzt Hop-Anzahl, verhindert Routing-Loops. Protocol: 6=TCP, 17=UDP. Total Length: Gesamtgroesse des IP-Pakets. Flags/Fragment Offset: steuert Fragmentierung (DF-Bit verhindert Zerlegung).</p></div>
+<div class="feedback-box" id="fb-18"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-18">Nicht beantwortet</span>
+    <span>ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q19">
+  <div class="question-header">
+    <span class="q-num">Frage 19</span>
+    <span class="q-title">L2-K23 IP-Paketgroesse 64 Byte Payload</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-19"><div class="qtext"><p>Ein Netzwerk-Audio-System sendet Pakete mit <strong>64 Byte Nutzdaten</strong> (Payload).</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="115" viewBox="0 0 500 115" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="500" height="115" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">IP-Paketaufbau: Netzwerk-Audio</text>
+  <rect x="14" y="28" width="80" height="30" fill="#cce5ff" stroke="#004085" stroke-width="1.5"/><text x="54" y="47" text-anchor="middle" font-size="11" fill="#004085">IP-Header</text><text x="54" y="58" text-anchor="middle" font-size="10" fill="#004085">20 Byte</text>
+  <rect x="94" y="28" width="55" height="30" fill="#e2d9f3" stroke="#6f42c1" stroke-width="1.5"/><text x="121" y="47" text-anchor="middle" font-size="11" fill="#6f42c1">UDP-Hdr</text><text x="121" y="58" text-anchor="middle" font-size="10" fill="#6f42c1">8 Byte</text>
+  <rect x="149" y="28" width="220" height="30" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/><text x="259" y="47" text-anchor="middle" font-size="11" fill="#155724">Nutzdaten (Payload)</text><text x="259" y="58" text-anchor="middle" font-size="10" fill="#155724">64 Byte</text>
+  <text x="14" y="78" font-size="11" fill="#495057">IP-Paket gesamt = IP-Header + UDP-Header + Nutzdaten</text>
+  <text x="14" y="95" font-size="11" fill="#495057">= 20 + 8 + 64 = ?</text>
+  <text x="14" y="110" font-size="11" fill="#6c757d">Standard-MTU Ethernet: 1500 Byte. IP-Paket kleiner als MTU? Kein Fragmentierung noetig.</text>
+</svg>
+<p>Berechnung: 64 + 8 + 20 = ? Byte IP-Paketgroesse gesamt.</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-19" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(19,92.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>64 (Payload) + 8 (UDP-Header) + 20 (IP-Header) = <strong>92</strong> Byte. 92 &lt; 1500 (Standard-MTU Ethernet) &rarr; keine Fragmentierung noetig.</p></div>
+<div class="feedback-box" id="fb-19"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-19">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q20">
+  <div class="question-header">
+    <span class="q-num">Frage 20</span>
+    <span class="q-title">M1-K23 Fragmentierung 3200 Byte bei MTU 1500</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-20"><div class="qtext"><p>Ein Netzwerk-Video-Frame hat 3200 Byte Payload. MTU im Netz: 1500 Byte. IP-Header: 20 Byte.</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="540" height="120" viewBox="0 0 540 120" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="540" height="120" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Fragmentierung: 3200 Byte Payload, MTU 1500 Byte</text>
+  <rect x="14" y="28" width="500" height="20" fill="#fff3cd" stroke="#ffc107" stroke-width="1"/><text x="264" y="42" text-anchor="middle" font-size="11" fill="#856404">Originales IP-Paket: 20 Byte Header + 3200 Byte Payload = 3220 Byte (groesser als MTU 1500)</text>
+  <rect x="14" y="56" width="146" height="20" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/><text x="87" y="70" text-anchor="middle" font-size="11" fill="#155724">Frag 1: 20+1480=1500 B</text>
+  <rect x="166" y="56" width="146" height="20" fill="#d4edda" stroke="#28a745" stroke-width="1.5"/><text x="239" y="70" text-anchor="middle" font-size="11" fill="#155724">Frag 2: 20+1480=1500 B</text>
+  <rect x="318" y="56" width="100" height="20" fill="#cce5ff" stroke="#004085" stroke-width="1.5"/><text x="368" y="70" text-anchor="middle" font-size="11" fill="#004085">Frag 3: 20+240=260 B</text>
+  <text x="14" y="95" font-size="11" fill="#495057">Pro Fragment: MTU - IP-Header = 1500 - 20 = 1480 Byte Payload</text>
+  <text x="14" y="110" font-size="11" fill="#495057">Anzahl Fragmente: ceil(3200 / 1480) = ?</text>
+</svg>
+<p>Nutzbare Payload pro Fragment = 1480 Byte. Fragmente = ceil(3200 / 1480) = ?</p>
+<p>Wie viele IP-Fragmente entstehen?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-20" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(20,3.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Fragment 1: Byte 0-1479 (1480 B). Fragment 2: Byte 1480-2959 (1480 B). Fragment 3: Byte 2960-3199 (240 B). Gesamt: <strong>3</strong> Fragmente. ceil(3200/1480) = ceil(2,162) = 3.</p></div>
+<div class="feedback-box" id="fb-20"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-20">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q21">
+  <div class="question-header">
+    <span class="q-num">Frage 21</span>
+    <span class="q-title">M2-K23 TCP UDP Anwendungszuordnung</span>
+    <span class="type-badge type-match">Zuordnung</span>
+    <span class="q-points">5 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-21"><div class="qtext"><p>Beim Aufbau des Konzertnetzwerks waehlen Sie fuer jede Anwendung das richtige Transportprotokoll. Ordnen Sie zu.</p></div>
+<table class="match-table"><thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead><tbody><tr>
+  <td>Netzwerk-Audio-Uebertragung (Echtzeit, 48 kHz)</td>
+  <td><select onchange="checkMatch(21,['UDP','TCP','UDP','TCP','UDP'],5)"><option value="">-- waehlen --</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="ICMP">ICMP</option></select></td>
+</tr><tr>
+  <td>Konfigurationsdaten auf Switch hochladen</td>
+  <td><select onchange="checkMatch(21,['UDP','TCP','UDP','TCP','UDP'],5)"><option value="">-- waehlen --</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="ICMP">ICMP</option></select></td>
+</tr><tr>
+  <td>Netzwerk-Video-Stream (Live-Kamera)</td>
+  <td><select onchange="checkMatch(21,['UDP','TCP','UDP','TCP','UDP'],5)"><option value="">-- waehlen --</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="ICMP">ICMP</option></select></td>
+</tr><tr>
+  <td>Webinterface eines Medienservers aufrufen</td>
+  <td><select onchange="checkMatch(21,['UDP','TCP','UDP','TCP','UDP'],5)"><option value="">-- waehlen --</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="ICMP">ICMP</option></select></td>
+</tr><tr>
+  <td>Lichtsteuerung ueber IP (Live-Buehne)</td>
+  <td><select onchange="checkMatch(21,['UDP','TCP','UDP','TCP','UDP'],5)"><option value="">-- waehlen --</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="TCP">TCP</option><option value="UDP">UDP</option><option value="ICMP">ICMP</option></select></td>
+</tr></tbody></table>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>UDP: Netzwerk-Audio, Netzwerk-Video, Lichtsteuerung ueber IP - alle zeitkritisch, Latenz wichtiger als Vollstaendigkeit. TCP: Konfigurationsdaten, Datei-Upload, Webinterface - Datenvollstaendigkeit entscheidend, keine Latenz-Prioritaet.</p></div>
+<div class="feedback-box" id="fb-21"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-21">Nicht beantwortet</span>
+    <span>ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q22">
+  <div class="question-header">
+    <span class="q-num">Frage 22</span>
+    <span class="q-title">M3-K23 TCP Three-Way-Handshake Reihenfolge</span>
+    <span class="type-badge type-ord">Reihenfolge</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-22"><div class="qtext"><p>Die Konfiguration eines IP-Lichtpults wird per TCP uebertragen. Bringen Sie die Schritte des TCP-Verbindungsaufbaus (Three-Way-Handshake) in die richtige Reihenfolge.</p></div>
+<p style="font-size:12px;color:var(--moodle-gray);margin-bottom:8px;">Klicken Sie die Elemente in der richtigen Reihenfolge an.</p>
+<ul class="ord-list"><li class="ord-item" id="ord-22-1" data-order="1" onclick="ordClick(22,this)"><span class="ord-num"></span>Client sendet SYN (Verbindungsanfrage)</li><li class="ord-item" id="ord-22-4" data-order="4" onclick="ordClick(22,this)"><span class="ord-num"></span>Datenuebertragung (bidirektional)</li><li class="ord-item" id="ord-22-5" data-order="5" onclick="ordClick(22,this)"><span class="ord-num"></span>Verbindungsabbau per FIN/ACK-Austausch</li><li class="ord-item" id="ord-22-2" data-order="2" onclick="ordClick(22,this)"><span class="ord-num"></span>Server antwortet mit SYN-ACK</li><li class="ord-item" id="ord-22-3" data-order="3" onclick="ordClick(22,this)"><span class="ord-num"></span>Client sendet ACK (Bestaetigung)</li></ul>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Three-Way-Handshake: 1. Client &rarr; SYN. 2. Server &rarr; SYN-ACK. 3. Client &rarr; ACK. 4. Datenuebertragung. 5. Verbindungsabbau per FIN/ACK. UDP hat keinen Handshake - daher schneller, aber ohne Garantie.</p></div>
+<div class="feedback-box" id="fb-22"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-22">Nicht beantwortet</span>
+    <span>ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q23">
+  <div class="question-header">
+    <span class="q-num">Frage 23</span>
+    <span class="q-title">S1-K23 Fragment Offset letztes Fragment</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-23"><div class="qtext"><p>Ein 4000-Byte-IP-Paket (nur Payload, ohne Header) wird bei MTU 1500 Byte fragmentiert (IP-Header: 20 Byte, nutzbare Payload pro Fragment: 1480 Byte).</p>
+<p>Fragment 1: Byte 0-1479. Fragment Offset = 0/8 = 0.<br>
+Fragment 2: Byte 1480-2959. Fragment Offset = 1480/8 = 185.<br>
+Fragment 3: Byte 2960-3999. Fragment Offset = 2960/8 = ?</p>
+<p>Welchen Wert hat der <strong>Fragment Offset</strong> des dritten (letzten) Fragments?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-23" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(23,370.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Letztes Fragment beginnt bei Byte 2960 der Payload. Offset-Einheit: 8 Byte. Fragment Offset = 2960 / 8 = <strong>370</strong>. Fragment 3 traegt Byte 2960-3999 (1040 Byte Payload).</p></div>
+<div class="feedback-box" id="fb-23"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-23">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q24">
+  <div class="question-header">
+    <span class="q-num">Frage 24</span>
+    <span class="q-title">S2-K23 IP-Header Protocol TTL Felder</span>
+    <span class="type-badge type-dnd">DnD Text</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-24"><div id="pool-24" class="dnd-pool"><span class="drag-chip" id="chip-24-0" data-answer="UDP" onclick="selectChip(this,24)">UDP</span><span class="drag-chip" id="chip-24-1" data-answer="TCP" onclick="selectChip(this,24)">TCP</span><span class="drag-chip" id="chip-24-2" data-answer="verworfen" onclick="selectChip(this,24)">verworfen</span><span class="drag-chip" id="chip-24-3" data-answer="TCP" onclick="selectChip(this,24)">TCP</span><span class="drag-chip" id="chip-24-4" data-answer="UDP" onclick="selectChip(this,24)">UDP</span><span class="drag-chip" id="chip-24-5" data-answer="dupliziert" onclick="selectChip(this,24)">dupliziert</span></div>
+<div class="qtext"><p>Ein Netzwerk-Analyse-Tool zeigt einen IP-Header-Ausschnitt. Ordnen Sie die Feldwerte ihrer Bedeutung zu.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="540" height="185" viewBox="0 0 540 185">
+  <rect x="0" y="0" width="540" height="185" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">IP-Header-Analyse: Netzwerk-Audio-Paket</text>
+  <rect x="14" y="28" width="512" height="24" fill="#e9ecef" stroke="#adb5bd" stroke-width="1" rx="4"/>
+  <text x="20" y="44" text-anchor="start" font-size="11" font-weight="bold" fill="#212529">Feld</text> <text x="180" y="44" text-anchor="start" font-size="11" font-weight="bold" fill="#212529">Wert</text> <text x="260" y="44" text-anchor="start" font-size="11" font-weight="bold" fill="#212529">Bedeutung</text>
+  <rect x="14" y="52" width="512" height="22" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="67" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">TTL</text> <text x="180" y="67" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">64</text> <text x="260" y="67" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Paket darf max. 64 Router passieren</text>
+  <rect x="14" y="74" width="512" height="22" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="89" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Protocol</text> <text x="180" y="89" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">17</text> <text x="260" y="89" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Transportprotokoll: ?</text>
+  <rect x="14" y="96" width="512" height="22" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="111" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Total Length</text> <text x="180" y="111" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">92</text> <text x="260" y="111" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">IP-Paket = 20B Header + 72B Payload</text>
+  <rect x="14" y="118" width="512" height="22" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="133" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Flags (DF-Bit)</text> <text x="180" y="133" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">1</text> <text x="260" y="133" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Don't Fragment gesetzt</text>
+  <text x="14" y="162" text-anchor="start" font-size="10" font-weight="normal" fill="#6c757d">Protocol 6=TCP | Protocol 17=UDP | TTL Standard: 64 oder 128</text>
+  <text x="14" y="178" text-anchor="start" font-size="10" font-weight="normal" fill="#6c757d">DF-Bit=1: Paket wird verworfen statt fragmentiert wenn groesser als MTU</text>
+</svg>
+<p>Protocol-Wert 17 steht fuer <span class="drop-slot" id="slot-24-1" data-correct="UDP" onclick="fillSlot(this,24)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Protocol-Wert 6 steht fuer <span class="drop-slot" id="slot-24-2" data-correct="TCP" onclick="fillSlot(this,24)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Ein TTL-Wert von 0 bedeutet, das Paket wird <span class="drop-slot" id="slot-24-3" data-correct="verworfen" onclick="fillSlot(this,24)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p></div>
+<button class="check-btn" onclick="checkDnd(24,['UDP','TCP','verworfen'])">Antwort pruefen</button>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Protocol 17 = UDP (verbindungslos, fuer Netzwerk-Audio/Video). Protocol 6 = TCP (verbindungsorientiert, zuverlaessig). TTL 0: Router verwirft Paket und sendet ICMP Time Exceeded zurueck. Verhindert Routing-Loops.</p></div>
+<div class="feedback-box" id="fb-24"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-24">Nicht beantwortet</span>
+    <span>ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q25">
+  <div class="question-header">
+    <span class="q-num">Frage 25</span>
+    <span class="q-title">L1-K24 Geraet OSI-Schicht Zuordnung</span>
+    <span class="type-badge type-match">Zuordnung</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-25"><div class="qtext"><p>In der Produktionsmesse werden verschiedene Netzwerkgeraete eingesetzt. Ordnen Sie jedes Geraet der richtigen OSI-Schicht zu.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="540" height="150" viewBox="0 0 540 150">
+  <rect x="0" y="0" width="540" height="150" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">OSI-Schichtenmodell (Netzwerkgeraete)</text>
+  <rect x="14" y="28" width="512" height="28" fill="#f8d7da" stroke="#dc3545" stroke-width="1.5" rx="4"/> <text x="270" y="46" text-anchor="middle" font-size="12" font-weight="normal" fill="#721c24">Layer 3: Netzwerkschicht (IP-Adressen, Routing)</text>
+  <rect x="14" y="56" width="512" height="28" fill="#fff3cd" stroke="#856404" stroke-width="1.5" rx="4"/> <text x="270" y="74" text-anchor="middle" font-size="12" font-weight="normal" fill="#856404">Layer 2: Sicherungsschicht (MAC-Adressen)</text>
+  <rect x="14" y="84" width="512" height="28" fill="#d4edda" stroke="#28a745" stroke-width="1.5" rx="4"/> <text x="270" y="102" text-anchor="middle" font-size="12" font-weight="normal" fill="#155724">Layer 1: Bituebertragunsschicht (elektrisch/optisch)</text>
+  <text x="14" y="132" text-anchor="start" font-size="10" font-weight="normal" fill="#495057">Switch: MAC (Layer 2) | Router: IP (Layer 3) | Hub: nur Signalverstaerkung (Layer 1)</text>
+</svg></div>
+<table class="match-table"><thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead><tbody><tr>
+  <td>Ethernet-Switch (managed)</td>
+  <td><select onchange="checkMatch(25,["Layer 2 (Data Link)","Layer 3 (Network)","Layer 1 (Physical)"],3)"><option value="">-- waehlen --</option><option value="Layer 2 (Data Link)">Layer 2 (Data Link)</option><option value="Layer 3 (Network)">Layer 3 (Network)</option><option value="Layer 1 (Physical)">Layer 1 (Physical)</option><option value="Layer 4 (Transport)">Layer 4 (Transport)</option></select></td>
+</tr><tr>
+  <td>Router</td>
+  <td><select onchange="checkMatch(25,["Layer 2 (Data Link)","Layer 3 (Network)","Layer 1 (Physical)"],3)"><option value="">-- waehlen --</option><option value="Layer 2 (Data Link)">Layer 2 (Data Link)</option><option value="Layer 3 (Network)">Layer 3 (Network)</option><option value="Layer 1 (Physical)">Layer 1 (Physical)</option><option value="Layer 4 (Transport)">Layer 4 (Transport)</option></select></td>
+</tr><tr>
+  <td>Hub / Repeater</td>
+  <td><select onchange="checkMatch(25,["Layer 2 (Data Link)","Layer 3 (Network)","Layer 1 (Physical)"],3)"><option value="">-- waehlen --</option><option value="Layer 2 (Data Link)">Layer 2 (Data Link)</option><option value="Layer 3 (Network)">Layer 3 (Network)</option><option value="Layer 1 (Physical)">Layer 1 (Physical)</option><option value="Layer 4 (Transport)">Layer 4 (Transport)</option></select></td>
+</tr></tbody></table>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Ethernet-Switch: Layer 2 (Data Link, MAC-Adressen, Forwarding). Router: Layer 3 (Network, IP-Adressen, Routing). Hub/Repeater: Layer 1 (Physical, reine Signalverstaerkung, kein Adressbewusstsein).</p></div>
+<div class="feedback-box" id="fb-25"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-25">Nicht beantwortet</span>
+    <span>ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q26">
+  <div class="question-header">
+    <span class="q-num">Frage 26</span>
+    <span class="q-title">L2-K24 Managed Switch Funktionen</span>
+    <span class="type-badge type-match">Zuordnung</span>
+    <span class="q-points">4 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-26"><div class="qtext"><p>Fuer das Netzwerk-Audio-System der Buehne A wird ein Managed Switch eingesetzt. Ordnen Sie jede Switch-Funktion ihrer Aufgabe zu.</p></div>
+<table class="match-table"><thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead><tbody><tr>
+  <td>VLAN (Virtual LAN)</td>
+  <td><select onchange="checkMatch(26,["Logische Netzwerktrennung (z.B. Audio von Video)","Priorisierung zeitkritischer Datenpakete","Steuert Multicast-Traffic gezielt (Audio-over-IP)","Verhindert Netzwerkschleifen bei redundanten Links"],4)"><option value="">-- waehlen --</option><option value="Logische Netzwerktrennung (z.B. Audio von Video)">Logische Netzwerktrennung (z.B. Audio von Video)</option><option value="Priorisierung zeitkritischer Datenpakete">Priorisierung zeitkritischer Datenpakete</option><option value="Steuert Multicast-Traffic gezielt (Audio-over-IP)">Steuert Multicast-Traffic gezielt (Audio-over-IP)</option><option value="Verhindert Netzwerkschleifen bei redundanten Links">Verhindert Netzwerkschleifen bei redundanten Links</option><option value="Automatische IP-Vergabe per DHCP">Automatische IP-Vergabe per DHCP</option></select></td>
+</tr><tr>
+  <td>QoS (Quality of Service)</td>
+  <td><select onchange="checkMatch(26,["Logische Netzwerktrennung (z.B. Audio von Video)","Priorisierung zeitkritischer Datenpakete","Steuert Multicast-Traffic gezielt (Audio-over-IP)","Verhindert Netzwerkschleifen bei redundanten Links"],4)"><option value="">-- waehlen --</option><option value="Logische Netzwerktrennung (z.B. Audio von Video)">Logische Netzwerktrennung (z.B. Audio von Video)</option><option value="Priorisierung zeitkritischer Datenpakete">Priorisierung zeitkritischer Datenpakete</option><option value="Steuert Multicast-Traffic gezielt (Audio-over-IP)">Steuert Multicast-Traffic gezielt (Audio-over-IP)</option><option value="Verhindert Netzwerkschleifen bei redundanten Links">Verhindert Netzwerkschleifen bei redundanten Links</option><option value="Automatische IP-Vergabe per DHCP">Automatische IP-Vergabe per DHCP</option></select></td>
+</tr><tr>
+  <td>IGMP Snooping</td>
+  <td><select onchange="checkMatch(26,["Logische Netzwerktrennung (z.B. Audio von Video)","Priorisierung zeitkritischer Datenpakete","Steuert Multicast-Traffic gezielt (Audio-over-IP)","Verhindert Netzwerkschleifen bei redundanten Links"],4)"><option value="">-- waehlen --</option><option value="Logische Netzwerktrennung (z.B. Audio von Video)">Logische Netzwerktrennung (z.B. Audio von Video)</option><option value="Priorisierung zeitkritischer Datenpakete">Priorisierung zeitkritischer Datenpakete</option><option value="Steuert Multicast-Traffic gezielt (Audio-over-IP)">Steuert Multicast-Traffic gezielt (Audio-over-IP)</option><option value="Verhindert Netzwerkschleifen bei redundanten Links">Verhindert Netzwerkschleifen bei redundanten Links</option><option value="Automatische IP-Vergabe per DHCP">Automatische IP-Vergabe per DHCP</option></select></td>
+</tr><tr>
+  <td>STP (Spanning Tree Protocol)</td>
+  <td><select onchange="checkMatch(26,["Logische Netzwerktrennung (z.B. Audio von Video)","Priorisierung zeitkritischer Datenpakete","Steuert Multicast-Traffic gezielt (Audio-over-IP)","Verhindert Netzwerkschleifen bei redundanten Links"],4)"><option value="">-- waehlen --</option><option value="Logische Netzwerktrennung (z.B. Audio von Video)">Logische Netzwerktrennung (z.B. Audio von Video)</option><option value="Priorisierung zeitkritischer Datenpakete">Priorisierung zeitkritischer Datenpakete</option><option value="Steuert Multicast-Traffic gezielt (Audio-over-IP)">Steuert Multicast-Traffic gezielt (Audio-over-IP)</option><option value="Verhindert Netzwerkschleifen bei redundanten Links">Verhindert Netzwerkschleifen bei redundanten Links</option><option value="Automatische IP-Vergabe per DHCP">Automatische IP-Vergabe per DHCP</option></select></td>
+</tr></tbody></table>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>VLAN: logische Trennung (Audio von Video trennen). QoS: zeitkritischen Traffic priorisieren. IGMP Snooping: verhindert Multicast-Flood an alle Ports. STP: verhindert Loops bei redundanten Verbindungen.</p></div>
+<div class="feedback-box" id="fb-26"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-26">Nicht beantwortet</span>
+    <span>ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q27">
+  <div class="question-header">
+    <span class="q-num">Frage 27</span>
+    <span class="q-title">M1-K24 Switch MAC-Tabelle Flooding Unicast</span>
+    <span class="type-badge type-gap">Lueckentext</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-27"><div class="qtext"><p>In Halle A verbindet ein Switch drei Audio-Geraete. Beschreiben Sie das Weiterleitungsverhalten des Switches.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="560" height="170" viewBox="0 0 560 170">
+  <rect x="0" y="0" width="560" height="170" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">MAC-Adressen-Tabelle Switch SW-A</text>
+  <rect x="14" y="28" width="532" height="24" fill="#e9ecef" stroke="#adb5bd" stroke-width="1" rx="4"/>
+  <text x="20" y="44" text-anchor="start" font-size="11" font-weight="bold" fill="#212529">MAC-Adresse</text> <text x="230" y="44" text-anchor="start" font-size="11" font-weight="bold" fill="#212529">Port</text> <text x="310" y="44" text-anchor="start" font-size="11" font-weight="bold" fill="#212529">Geraet</text>
+  <rect x="14" y="52" width="532" height="22" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="67" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">00:1A:2B:11:22:33</text> <text x="230" y="67" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">Port 1</text> <text x="310" y="67" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">FOH-Pult</text>
+  <rect x="14" y="74" width="532" height="22" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="89" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">00:1A:2B:44:55:66</text> <text x="230" y="89" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">Port 2</text> <text x="310" y="89" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Stagebox-1</text>
+  <rect x="14" y="96" width="532" height="22" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="20" y="111" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">00:1A:2B:77:88:99</text> <text x="230" y="111" text-anchor="start" font-size="11" font-weight="normal" fill="#212529">Port 3</text> <text x="310" y="111" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Stagebox-2</text>
+  <text x="14" y="135" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Flooding: unbekannte Ziel-MAC -> Paket an ALLE Ports (ausser Eingang)</text>
+  <text x="14" y="152" text-anchor="start" font-size="11" font-weight="normal" fill="#495057">Unicast: bekannte Ziel-MAC -> gezielt nur an gelernten Port</text>
+</svg>
+<p>Sendet Stagebox-1 an eine unbekannte Ziel-MAC, macht der Switch <select class="cloze-select" id="gap-q27-1" onchange="checkGap(27,['Flooding (an alle Ports)'])"><option value="">-- waehlen --</option><option value="Flooding (an alle Ports)">Flooding (an alle Ports)</option><option value="Unicast-Forwarding (gezielt)">Unicast-Forwarding (gezielt)</option><option value="das Paket verwerfen">das Paket verwerfen</option></select>. Ist die Ziel-MAC gelernt, macht er <select class="cloze-select" id="gap-q27-2" onchange="checkGap(27,['Flooding (an alle Ports)','Unicast-Forwarding (nur Zielport)'])"><option value="">-- waehlen --</option><option value="Unicast-Forwarding (nur Zielport)">Unicast-Forwarding (nur Zielport)</option><option value="Flooding (alle Ports)">Flooding (alle Ports)</option><option value="das Paket verwerfen">das Paket verwerfen</option></select>. Die MAC-Tabelle wird <select class="cloze-select" id="gap-q27-3" onchange="checkGap(27,['Flooding (an alle Ports)','Unicast-Forwarding (nur Zielport)','automatisch (selbstlernend)'])"><option value="">-- waehlen --</option><option value="automatisch (selbstlernend)">automatisch (selbstlernend)</option><option value="manuell vom Administrator">manuell vom Administrator</option><option value="per DHCP">per DHCP</option></select> aufgebaut.</p></div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Flooding: unbekannte MAC &rarr; Paket an alle Ports ausser Eingangsport. Unicast-Forwarding: bekannte MAC &rarr; gezielt an gelernten Port. MAC-Tabelle: automatisch (selbstlernend), kein Admin-Eingriff noetig. Aging-Timer: ~300 s.</p></div>
+<div class="feedback-box" id="fb-27"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-27">Nicht beantwortet</span>
+    <span>gapselect</span>
+  </div>
+</div>
+<div class="question-card" id="q28">
+  <div class="question-header">
+    <span class="q-num">Frage 28</span>
+    <span class="q-title">M2-K24 PoE-Budget Berechnung</span>
+    <span class="type-badge type-num">Berechnung</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-28"><div class="qtext"><p>In Halle B sollen folgende PoE-Geraete an einem Switch betrieben werden:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="130" viewBox="0 0 500 130" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="500" height="130" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">PoE-Budget Berechnung Halle B</text>
+  <rect x="14" y="28" width="472" height="24" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+  <text x="20" y="44" font-size="11" font-weight="bold" fill="#212529">Geraet</text><text x="200" y="44" font-size="11" font-weight="bold" fill="#212529">Anzahl</text><text x="280" y="44" font-size="11" font-weight="bold" fill="#212529">Leistung je</text><text x="390" y="44" font-size="11" font-weight="bold" fill="#212529">Summe</text>
+  <rect x="14" y="52" width="472" height="22" fill="#fff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="20" y="67" font-size="11" fill="#212529">IP-Kamera (802.3af)</text><text x="200" y="67" font-size="11">6</text><text x="280" y="67" font-size="11">12,5 W</text><text x="390" y="67" font-size="11" fill="#155724">6 x 12,5 = ?</text>
+  <rect x="14" y="74" width="472" height="22" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1"/>
+  <text x="20" y="89" font-size="11" fill="#212529">WLAN-AP (802.3at)</text><text x="200" y="89" font-size="11">3</text><text x="280" y="89" font-size="11">22 W</text><text x="390" y="89" font-size="11" fill="#155724">3 x 22 = ?</text>
+  <rect x="14" y="96" width="472" height="22" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5"/>
+  <text x="20" y="111" font-size="11" font-weight="bold" fill="#0a58ca">Gesamt PoE-Bedarf</text><text x="390" y="111" font-size="11" font-weight="bold" fill="#0a58ca">? W</text>
+  <text x="14" y="124" font-size="10" fill="#6c757d">Switch muss dieses minimale PoE-Budget bereitstellen.</text>
+</svg>
+<p>Berechnung: 6 x 12,5 + 3 x 22 = ?</p>
+<p>Welches <strong>minimale PoE-Budget</strong> (in Watt) muss der Switch haben?</p></div>
+<div style="display:flex;align-items:center;gap:10px;margin-top:10px;">
+  <input type="number" class="num-input" id="num-28" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNum(28,141.0,0.0)">Pruefen</button>
+</div>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Kameras: 6 x 12,5 W = 75 W. APs: 3 x 22 W = 66 W. Gesamt: 75 + 66 = <strong>141 W</strong>. Empfehlung: 20% Puffer = mindestens 170 W Switch waehlen.</p></div>
+<div class="feedback-box" id="fb-28"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-28">Nicht beantwortet</span>
+    <span>numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q29">
+  <div class="question-header">
+    <span class="q-num">Frage 29</span>
+    <span class="q-title">S1-K24 Router Entscheidung Schritte</span>
+    <span class="type-badge type-ord">Reihenfolge</span>
+    <span class="q-points">1 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-29"><div class="qtext"><p>Der Router trennt Produktionsnetz (192.168.10.0/24) vom Streaming-Netz (10.0.0.0/8). Bringen Sie die Schritte der Router-Entscheidung beim Paketempfang in die richtige Reihenfolge.</p></div>
+<p style="font-size:12px;color:var(--moodle-gray);margin-bottom:8px;">Klicken Sie die Elemente in der richtigen Reihenfolge an.</p>
+<ul class="ord-list"><li class="ord-item" id="ord-29-1" data-order="1" onclick="ordClick(29,this)"><span class="ord-num"></span>IP-Header lesen: Ziel-IP-Adresse auslesen</li><li class="ord-item" id="ord-29-3" data-order="3" onclick="ordClick(29,this)"><span class="ord-num"></span>Routing-Tabelle: laengsten Praefix-Match suchen</li><li class="ord-item" id="ord-29-2" data-order="2" onclick="ordClick(29,this)"><span class="ord-num"></span>TTL pruefen und um 1 dekrementieren</li><li class="ord-item" id="ord-29-4" data-order="4" onclick="ordClick(29,this)"><span class="ord-num"></span>Ausgangsinterface und Next-Hop-Adresse bestimmen</li><li class="ord-item" id="ord-29-5" data-order="5" onclick="ordClick(29,this)"><span class="ord-num"></span>Paket an naechsten Hop (Router oder Ziel) weiterleiten</li></ul>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>Router-Ablauf: 1. IP-Header lesen (Ziel-IP). 2. TTL pruefen + dekrementieren (TTL=0 &rarr; ICMP Time Exceeded senden, Paket verwerfen). 3. Routing-Tabelle: laengsten Praefix-Match. 4. Next-Hop-Interface bestimmen. 5. Paket weiterleiten.</p></div>
+<div class="feedback-box" id="fb-29"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-29">Nicht beantwortet</span>
+    <span>ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q30">
+  <div class="question-header">
+    <span class="q-num">Frage 30</span>
+    <span class="q-title">S2-K24 Cisco Topologie Broadcast-Domain Analyse</span>
+    <span class="type-badge type-dnd">DnD Text</span>
+    <span class="q-points">3 Pt.</span>
+  </div>
+  <div class="question-body" id="qbody-30"><div id="pool-30" class="dnd-pool"><span class="drag-chip" id="chip-30-0" data-answer="Broadcast" onclick="selectChip(this,30)">Broadcast</span><span class="drag-chip" id="chip-30-1" data-answer="direkt (ueber SW-A)" onclick="selectChip(this,30)">direkt (ueber SW-A)</span><span class="drag-chip" id="chip-30-2" data-answer="blockiert" onclick="selectChip(this,30)">blockiert</span><span class="drag-chip" id="chip-30-3" data-answer="Unicast" onclick="selectChip(this,30)">Unicast</span><span class="drag-chip" id="chip-30-4" data-answer="nur ueber Router" onclick="selectChip(this,30)">nur ueber Router</span><span class="drag-chip" id="chip-30-5" data-answer="verstaerkt" onclick="selectChip(this,30)">verstaerkt</span></div>
+<div class="qtext"><p>Die Cisco-Topologie zeigt das Produktionsnetz der Messe. Analysieren Sie die Broadcast-Domain-Struktur.</p>
+<svg xmlns="http://www.w3.org/2000/svg" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;" width="560" height="240" viewBox="0 0 560 240">
+  <rect x="0" y="0" width="560" height="240" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="4"/>
+  <text x="14" y="20" text-anchor="start" font-size="13" font-weight="bold" fill="#212529">Messetopologie: 2 Subnetze, Switch + Router</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="10" y="42" width="78" height="70"/>
+  <text x="49" y="124" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-A</text>
+  <text x="49" y="137" text-anchor="middle" font-size="10" font-weight="normal" fill="#495057">192.168.10.10</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="10" y="148" width="78" height="70"/>
+  <text x="49" y="230" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-B</text>
+  <text x="49" y="243" text-anchor="middle" font-size="10" font-weight="normal" fill="#495057">192.168.10.20</text>
+  <line x1="88" y1="77" x2="196" y2="95" stroke="#495057" stroke-width="2"/>
+  <line x1="88" y1="183" x2="196" y2="110" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="196" y="83" width="66" height="34"/>
+  <text x="229" y="130" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-A</text>
+  <text x="229" y="143" text-anchor="middle" font-size="10" font-weight="normal" fill="#495057">192.168.10.0/24</text>
+  <line x1="262" y1="100" x2="356" y2="100" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="356" y="72" width="84" height="57"/>
+  <text x="398" y="142" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">R1 (Gateway)</text>
+  <text x="398" y="155" text-anchor="middle" font-size="10" font-weight="normal" fill="#495057">.10.1 | 10.0.0.1</text>
+  <line x1="440" y1="100" x2="474" y2="100" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="474" y="83" width="66" height="34"/>
+  <text x="507" y="130" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-B</text>
+  <text x="507" y="143" text-anchor="middle" font-size="10" font-weight="normal" fill="#495057">10.0.0.0/24</text>
+  <text x="10" y="215" text-anchor="start" font-size="10" font-weight="normal" fill="#495057">PC-A und PC-B: Subnetz 192.168.10.0/24 | Router trennt Broadcast-Domains</text>
+</svg>
+<p>PC-A, PC-B und SW-A bilden eine gemeinsame <span class="drop-slot" id="slot-30-1" data-correct="Broadcast" onclick="fillSlot(this,30)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-Domain. Ein Broadcast von PC-A wird <span class="drop-slot" id="slot-30-2" data-correct="direkt (ueber SW-A)" onclick="fillSlot(this,30)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> an PC-B weitergeleitet. Der Router R1 <span class="drop-slot" id="slot-30-3" data-correct="blockiert" onclick="fillSlot(this,30)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Broadcasts zwischen SW-A und SW-B.</p></div>
+<button class="check-btn" onclick="checkDnd(30,['Broadcast','direkt (ueber SW-A)','blockiert'])">Antwort pruefen</button>
+<div class="generalfeedback feedback-box info" style="display:none"><strong>Loesung:</strong> <p>PC-A, PC-B, SW-A bilden eine gemeinsame Broadcast-Domain (Subnetz 192.168.10.0/24). Broadcasts innerhalb des Subnetzes werden direkt ueber SW-A weitergeleitet (kein Router noetig). Router R1 blockiert Broadcasts - jedes Subnetz hat eine eigene Broadcast-Domain.</p></div>
+<div class="feedback-box" id="fb-30"></div></div>
+  <div class="question-footer">
+    <span class="q-status" id="status-30">Nicht beantwortet</span>
+    <span>ddwtos</span>
+  </div>
+</div>
+
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Fragennavigation</div>
+      <div class="q-nav"><button id="nav-1" onclick="scrollTo(1)">1</button><button id="nav-2" onclick="scrollTo(2)">2</button><button id="nav-3" onclick="scrollTo(3)">3</button><button id="nav-4" onclick="scrollTo(4)">4</button><button id="nav-5" onclick="scrollTo(5)">5</button><button id="nav-6" onclick="scrollTo(6)">6</button><button id="nav-7" onclick="scrollTo(7)">7</button><button id="nav-8" onclick="scrollTo(8)">8</button><button id="nav-9" onclick="scrollTo(9)">9</button><button id="nav-10" onclick="scrollTo(10)">10</button><button id="nav-11" onclick="scrollTo(11)">11</button><button id="nav-12" onclick="scrollTo(12)">12</button><button id="nav-13" onclick="scrollTo(13)">13</button><button id="nav-14" onclick="scrollTo(14)">14</button><button id="nav-15" onclick="scrollTo(15)">15</button><button id="nav-16" onclick="scrollTo(16)">16</button><button id="nav-17" onclick="scrollTo(17)">17</button><button id="nav-18" onclick="scrollTo(18)">18</button><button id="nav-19" onclick="scrollTo(19)">19</button><button id="nav-20" onclick="scrollTo(20)">20</button><button id="nav-21" onclick="scrollTo(21)">21</button><button id="nav-22" onclick="scrollTo(22)">22</button><button id="nav-23" onclick="scrollTo(23)">23</button><button id="nav-24" onclick="scrollTo(24)">24</button><button id="nav-25" onclick="scrollTo(25)">25</button><button id="nav-26" onclick="scrollTo(26)">26</button><button id="nav-27" onclick="scrollTo(27)">27</button><button id="nav-28" onclick="scrollTo(28)">28</button><button id="nav-29" onclick="scrollTo(29)">29</button><button id="nav-30" onclick="scrollTo(30)">30</button></div>
+      <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+      <div class="progress-label" id="prog-label">Fortschritt: 0/30</div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Kursinfos</div>
+      <div class="course-info">
+        Kurs: LF10 Netzwerktechnik<br>
+        Klasse: Veranstaltungstechnik Jg. 3<br>
+        Fragen: 30<br>
+        Punkte: 66<br>
+        Zeit: 60 Min.
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Lehrkraft-Werkzeuge</div>
+      <button class="tool-btn" id="btn-solution" onclick="toggleSolution()">Loesung anzeigen</button>
+      <button class="tool-btn" onclick="resetQuiz()">Neu beginnen</button>
+    </div>
+  </aside>
+</div>
+
+<script>
+var totalQ = 30, answered = 0, solutionMode = false;
+
+function markAnswered(n) {
+  var btn = document.getElementById('nav-' + n);
+  if (btn && !btn.classList.contains('answered')) {
+    btn.classList.add('answered');
+    answered++;
+    document.getElementById('prog-fill').style.width = (answered/totalQ*100) + '%';
+    document.getElementById('prog-label').textContent = 'Fortschritt: ' + answered + '/' + totalQ;
+  }
+  var s = document.getElementById('status-' + n);
+  if (s) { s.textContent = 'Beantwortet'; s.className = 'q-status answered'; }
+}
+
+// ── DnD (ddwtos) ──────────────────────────────────────────────────────
+var selectedChip = null;
+
+function selectChip(el, qid) {
+  if (el.classList.contains('used')) return;
+  var prev = document.querySelector('#pool-' + qid + ' .selected');
+  if (prev) prev.classList.remove('selected');
+  if (selectedChip === el) { selectedChip = null; return; }
+  el.classList.add('selected');
+  selectedChip = el;
+}
+
+function fillSlot(slotEl, qid) {
+  if (!selectedChip) return;
+  var old = slotEl.dataset.chipId;
+  if (old) {
+    var oldChip = document.getElementById(old);
+    if (oldChip) { oldChip.classList.remove('used'); }
+  }
+  slotEl.textContent = selectedChip.textContent;
+  slotEl.dataset.chipId = selectedChip.id;
+  slotEl.classList.add('filled');
+  slotEl.classList.remove('correct-slot','wrong-slot');
+  selectedChip.classList.add('used');
+  selectedChip.classList.remove('selected');
+  selectedChip = null;
+  markAnswered(qid);
+}
+
+function checkDnd(qid, answers) {
+  var slots = document.querySelectorAll('#q' + qid + ' .drop-slot');
+  var ok = true;
+  slots.forEach(function(sl, i) {
+    sl.classList.remove('correct-slot','wrong-slot');
+    var chipId = sl.dataset.chipId;
+    var chip = chipId ? document.getElementById(chipId) : null;
+    var val = chip ? chip.dataset.answer : '';
+    if (val === answers[i]) sl.classList.add('correct-slot');
+    else { sl.classList.add('wrong-slot'); ok = false; }
+  });
+  var fb = document.getElementById('fb-' + qid);
+  if (fb) {
+    fb.className = 'feedback-box show ' + (ok ? 'correct' : 'incorrect');
+    fb.innerHTML = ok ? '<strong>Korrekt!</strong> Alle Luecken richtig ausgefuellt.' : '<strong>Nicht ganz.</strong> Rote Luecken enthalten falsche Antworten.';
+  }
+}
+
+// ── ddmatch ──────────────────────────────────────────────────────────
+function checkMatch(qid, answers, total) {
+  var selects = document.querySelectorAll('#q' + qid + ' select');
+  var allFilled = true, allCorrect = true;
+  selects.forEach(function(sel, i) {
+    sel.classList.remove('correct-select','wrong-select');
+    if (!sel.value) { allFilled = false; return; }
+    if (sel.value === answers[i]) sel.classList.add('correct-select');
+    else { sel.classList.add('wrong-select'); allCorrect = false; }
+  });
+  if (allFilled) {
+    markAnswered(qid);
+    var fb = document.getElementById('fb-' + qid);
+    if (fb) {
+      fb.className = 'feedback-box show ' + (allCorrect ? 'correct' : 'incorrect');
+      fb.innerHTML = allCorrect ? '<strong>Korrekt!</strong> Alle Zuordnungen stimmen.' : '<strong>Nicht ganz.</strong> Rote Felder enthalten falsche Zuordnungen.';
+    }
+  }
+}
+
+// ── gapselect ──────────────────────────────────────────────────────
+function checkGap(qid, answers) {
+  var selects = document.querySelectorAll('#q' + qid + ' .cloze-select');
+  var allFilled = true, allCorrect = true;
+  selects.forEach(function(sel, i) {
+    sel.classList.remove('correct-cloze','wrong-cloze');
+    if (!sel.value) { allFilled = false; return; }
+    if (sel.value === answers[i]) sel.classList.add('correct-cloze');
+    else { sel.classList.add('wrong-cloze'); allCorrect = false; }
+  });
+  if (allFilled) {
+    markAnswered(qid);
+    var fb = document.getElementById('fb-' + qid);
+    if (fb) {
+      fb.className = 'feedback-box show ' + (allCorrect ? 'correct' : 'incorrect');
+      fb.innerHTML = allCorrect ? '<strong>Korrekt!</strong>' : '<strong>Nicht ganz.</strong> Rote Felder pruefen.';
+    }
+  }
+}
+
+// ── ordering ──────────────────────────────────────────────────────────
+var ordState = {};
+function ordClick(qid, itemEl) {
+  if (!ordState[qid]) ordState[qid] = [];
+  var id = itemEl.id;
+  var idx = ordState[qid].indexOf(id);
+  if (idx >= 0) {
+    ordState[qid].splice(idx,1);
+    itemEl.classList.remove('selected');
+    itemEl.querySelector('.ord-num').textContent = '';
+  } else {
+    ordState[qid].push(id);
+    itemEl.classList.add('selected');
+    itemEl.querySelector('.ord-num').textContent = ordState[qid].length;
+    markAnswered(qid);
+  }
+  if (ordState[qid].length === document.querySelectorAll('#q'+qid+' .ord-item').length)
+    checkOrdering(qid);
+}
+
+function checkOrdering(qid) {
+  var items = document.querySelectorAll('#q' + qid + ' .ord-item');
+  var state = ordState[qid] || [];
+  var allCorrect = true;
+  state.forEach(function(id, pos) {
+    var el = document.getElementById(id);
+    if (!el) return;
+    el.classList.remove('correct-ord','wrong-ord');
+    var correct = parseInt(el.dataset.order);
+    if (pos + 1 === correct) el.classList.add('correct-ord');
+    else { el.classList.add('wrong-ord'); allCorrect = false; }
+  });
+  var fb = document.getElementById('fb-' + qid);
+  if (fb) {
+    fb.className = 'feedback-box show ' + (allCorrect ? 'correct' : 'incorrect');
+    fb.innerHTML = allCorrect ? '<strong>Korrekt!</strong> Reihenfolge stimmt.' : '<strong>Nicht ganz.</strong> Rote Elemente sind falsch positioniert.';
+  }
+}
+
+// ── numerical ────────────────────────────────────────────────────────
+function checkNum(qid, correct, tol) {
+  var inp = document.getElementById('num-' + qid);
+  inp.classList.remove('correct-num','wrong-num');
+  var val = parseFloat(inp.value.replace(',','.'));
+  var fb = document.getElementById('fb-' + qid);
+  if (isNaN(val)) { if(fb){fb.className='feedback-box show info';fb.innerHTML='Bitte eine Zahl eingeben.';} return; }
+  var ok = Math.abs(val - correct) <= tol;
+  inp.classList.add(ok ? 'correct-num' : 'wrong-num');
+  if (fb) {
+    fb.className = 'feedback-box show ' + (ok ? 'correct' : 'incorrect');
+    fb.innerHTML = ok ? '<strong>Korrekt!</strong> Richtige Antwort: ' + correct : '<strong>Nicht ganz.</strong> Richtige Antwort: <strong>' + correct + '</strong>';
+  }
+  if (ok) markAnswered(qid);
+}
+
+// ── Teacher tools ────────────────────────────────────────────────────
+function toggleSolution() {
+  solutionMode = !solutionMode;
+  var btn = document.getElementById('btn-solution');
+  btn.classList.toggle('active', solutionMode);
+  btn.textContent = solutionMode ? 'Loesung verbergen' : 'Loesung anzeigen';
+  document.querySelectorAll('.generalfeedback').forEach(function(el) {
+    el.style.display = solutionMode ? 'block' : 'none';
+  });
+}
+
+function resetQuiz() {
+  if (!confirm('Quiz zuruecksetzen? Alle Eingaben gehen verloren.')) return;
+  location.reload();
+}
+
+function scrollTo(qid) {
+  var el = document.getElementById('q' + qid);
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+</script>
+</body>
+</html>

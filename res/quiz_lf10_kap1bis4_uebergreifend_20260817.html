@@ -1,0 +1,1422 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>LF10 Kap.1-4 Übergreifendes Quiz - Moodle Vorschau</title>
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --moodle-orange: #f98012;
+  --moodle-orange-dark: #d4600a;
+  --moodle-blue: #0f6cbf;
+  --moodle-blue-light: #e8f4fd;
+  --moodle-green: #1d7a1d;
+  --moodle-green-light: #d4edda;
+  --moodle-red: #ca3120;
+  --moodle-red-light: #fde8e6;
+  --moodle-gray: #6a737b;
+  --moodle-gray-light: #f3f3f3;
+  --moodle-border: #dee2e6;
+  --moodle-text: #1d2125;
+  --moodle-white: #ffffff;
+  --radius: 4px;
+  --shadow: 0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.08);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;font-size:14px;color:var(--moodle-text);background:#e9eaec;}
+svg{max-width:100%;height:auto;}
+/* Header */
+.site-header{background:var(--moodle-orange);height:52px;display:flex;align-items:center;justify-content:space-between;padding:0 20px;position:sticky;top:0;z-index:100;}
+.site-header .logo{color:#fff;font-weight:700;font-size:17px;letter-spacing:.5px;}
+.site-header .breadcrumb{color:rgba(255,255,255,.8);font-size:12px;}
+/* Quiz header */
+.quiz-header{background:#fff;border-bottom:1px solid var(--moodle-border);padding:18px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap;}
+.quiz-icon{width:48px;height:48px;background:var(--moodle-orange);border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:24px;color:#fff;flex-shrink:0;}
+.quiz-meta h1{font-size:20px;font-weight:700;margin-bottom:3px;}
+.quiz-meta .sub{font-size:13px;color:var(--moodle-gray);}
+.quiz-badges{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap;}
+.badge{padding:5px 12px;border-radius:20px;font-size:12px;font-weight:600;border:1px solid;}
+.badge-time{background:#fff3cd;color:#664d03;border-color:#ffc107;}
+.badge-pts{background:var(--moodle-blue-light);color:var(--moodle-blue);border-color:var(--moodle-blue);}
+/* Layout */
+.main-wrap{max-width:960px;margin:20px auto;padding:0 12px;display:grid;grid-template-columns:1fr 230px;gap:16px;align-items:start;}
+/* Sidebar */
+.sidebar{position:sticky;top:72px;}
+.sidebar-card{background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px;margin-bottom:12px;}
+.sidebar-title{font-size:11px;text-transform:uppercase;color:var(--moodle-gray);font-weight:700;letter-spacing:.5px;margin-bottom:10px;}
+.q-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;}
+.q-nav-item{width:34px;height:34px;border:1px solid var(--moodle-border);border-radius:var(--radius);background:var(--moodle-gray-light);display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;cursor:pointer;transition:.15s;}
+.q-nav-item:hover{background:var(--moodle-blue-light);color:var(--moodle-blue);}
+.q-nav-item.answered{background:var(--moodle-orange);color:#fff;border-color:var(--moodle-orange);}
+.progress-bar-wrap{margin-top:10px;}
+.progress-label{font-size:11px;color:var(--moodle-gray);margin-bottom:4px;}
+.progress-bar{height:7px;background:#e9ecef;border-radius:4px;overflow:hidden;}
+.progress-fill{height:100%;background:var(--moodle-orange);border-radius:4px;width:0;transition:.3s;}
+.info-row{display:flex;justify-content:space-between;font-size:11px;color:var(--moodle-gray);margin-top:4px;}
+/* Teacher buttons */
+.teacher-btn{display:block;width:100%;padding:7px 10px;margin-bottom:6px;border:1px solid var(--moodle-border);border-radius:var(--radius);background:#fff;cursor:pointer;font-size:12px;font-weight:600;text-align:center;transition:.15s;}
+.teacher-btn:hover{background:var(--moodle-gray-light);}
+.teacher-btn.active{background:var(--moodle-green-light);color:var(--moodle-green);border-color:var(--moodle-green);}
+/* Question cards */
+.questions{display:flex;flex-direction:column;gap:14px;}
+.question-card{background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;}
+.question-header{background:var(--moodle-gray-light);padding:10px 16px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--moodle-border);flex-wrap:wrap;}
+.q-num{background:var(--moodle-orange);color:#fff;font-weight:700;font-size:13px;width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.q-title{font-weight:600;font-size:13px;flex:1;}
+.q-badge{font-size:11px;padding:2px 8px;border-radius:12px;border:1px solid;font-weight:600;}
+.type-dnd{background:#f0fdf4;color:#166534;border-color:#166534;}
+.type-match{background:#fefce8;color:#854d0e;border-color:#ca8a04;}
+.type-gap{background:#fdf4ff;color:#6b21a8;border-color:#9333ea;}
+.type-ord{background:#eff6ff;color:#1e40af;border-color:#3b82f6;}
+.type-num{background:#fff7ed;color:#c2410c;border-color:#ea580c;}
+.q-pts{margin-left:auto;font-size:12px;color:var(--moodle-gray);font-weight:600;white-space:nowrap;}
+.question-body{padding:16px 18px;}
+.question-footer{background:var(--moodle-gray-light);padding:6px 16px;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--moodle-border);font-size:11px;}
+.q-status{font-weight:600;color:var(--moodle-gray);}
+.q-status.answered{color:var(--moodle-green);}
+/* Chips (ddwtos) */
+.chip-pool{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;padding:10px;background:var(--moodle-gray-light);border-radius:var(--radius);border:1px solid var(--moodle-border);}
+.drag-chip{padding:4px 10px;background:#fff;border:1px solid var(--moodle-border);border-radius:3px;cursor:pointer;font-size:13px;transition:.15s;user-select:none;}
+.drag-chip:hover{border-color:var(--moodle-blue);color:var(--moodle-blue);}
+.drag-chip.selected{border:2px solid var(--moodle-blue);background:var(--moodle-blue-light);color:var(--moodle-blue);}
+.drag-chip.used{opacity:.4;cursor:not-allowed;background:#e9ecef;}
+.question-gap-text{font-size:13px;line-height:2.2;}
+.drop-slot{display:inline-block;min-width:80px;padding:2px 8px;background:var(--moodle-blue-light);border:2px dashed var(--moodle-blue);border-radius:3px;cursor:pointer;font-size:13px;vertical-align:middle;margin:0 3px;}
+.drop-slot.filled{background:#fff;border-style:solid;border-color:var(--moodle-border);}
+.drop-slot.correct-slot{background:var(--moodle-green-light);border-color:var(--moodle-green);}
+.drop-slot.wrong-slot{background:var(--moodle-red-light);border-color:var(--moodle-red);}
+/* Match table */
+.match-table{width:100%;border-collapse:collapse;font-size:13px;}
+.match-table th{background:var(--moodle-gray-light);padding:7px 10px;text-align:left;font-weight:600;border:1px solid var(--moodle-border);}
+.match-table td{padding:7px 10px;border:1px solid var(--moodle-border);vertical-align:middle;}
+.match-left{font-weight:600;background:#fafafa;}
+.match-sel{width:100%;padding:5px;border:1px solid var(--moodle-border);border-radius:var(--radius);font-size:13px;font-family:inherit;}
+.match-sel.correct-select{border-color:var(--moodle-green);background:var(--moodle-green-light);}
+.match-sel.wrong-select{border-color:var(--moodle-red);background:var(--moodle-red-light);}
+/* Gap select */
+.gap-text{font-size:13px;line-height:2.4;}
+.gap-sel{padding:3px 6px;border:1px solid var(--moodle-blue);border-radius:3px;font-size:13px;font-family:inherit;background:var(--moodle-blue-light);cursor:pointer;}
+.gap-sel.correct-cloze{border-color:var(--moodle-green);background:var(--moodle-green-light);}
+.gap-sel.wrong-cloze{border-color:var(--moodle-red);background:var(--moodle-red-light);}
+/* Ordering */
+.ord-list{list-style:none;padding:0;display:flex;flex-direction:column;gap:5px;}
+.ord-item{padding:8px 14px;background:var(--moodle-gray-light);border:1px solid var(--moodle-border);border-radius:var(--radius);cursor:pointer;font-size:13px;transition:.15s;}
+.ord-item:hover{background:var(--moodle-blue-light);border-color:var(--moodle-blue);}
+.ord-item.selected-ord{background:var(--moodle-orange);color:#fff;border-color:var(--moodle-orange-dark);}
+.ord-item.placed{opacity:.5;cursor:not-allowed;background:#e9ecef;}
+.ord-item.correct-ord{background:var(--moodle-green-light);border-color:var(--moodle-green);}
+.ord-item.wrong-ord{background:var(--moodle-red-light);border-color:var(--moodle-red);}
+/* Numerical */
+.num-input{padding:6px 10px;border:1px solid var(--moodle-border);border-radius:var(--radius);font-size:13px;width:120px;font-family:inherit;}
+/* Buttons */
+.check-btn{padding:7px 14px;background:var(--moodle-blue);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-size:13px;font-weight:600;margin-right:6px;transition:.15s;}
+.check-btn:hover{background:var(--moodle-orange);}
+.reset-btn{padding:7px 12px;background:#fff;color:var(--moodle-gray);border:1px solid var(--moodle-border);border-radius:var(--radius);cursor:pointer;font-size:12px;transition:.15s;}
+.reset-btn:hover{background:var(--moodle-gray-light);}
+/* Feedback */
+.feedback-box{display:none;margin-top:10px;padding:10px 14px;border-radius:var(--radius);font-size:13px;animation:fadeIn .2s ease;border-left:4px solid;}
+.feedback-box.show{display:block;}
+.feedback-box.correct{background:var(--moodle-green-light);border-color:var(--moodle-green);color:var(--moodle-green);}
+.feedback-box.incorrect{background:var(--moodle-red-light);border-color:var(--moodle-red);color:var(--moodle-red);}
+.feedback-box.info{background:var(--moodle-blue-light);border-color:var(--moodle-blue);color:var(--moodle-blue);}
+.solution-hint{display:none;margin-top:8px;padding:8px 12px;background:#fffbeb;border:1px solid #fbbf24;border-radius:var(--radius);font-size:12px;color:#92400e;}
+.general-fb{margin-top:12px;padding:8px 12px;background:var(--moodle-blue-light);border-left:3px solid var(--moodle-blue);font-size:12px;color:#1e3a5f;border-radius:0 var(--radius) var(--radius) 0;}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+/* Responsive */
+@media(max-width:700px){
+  .main-wrap{grid-template-columns:1fr;}
+  .sidebar{position:static;}
+  .quiz-badges{display:none;}
+}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">📚 moodle Vorschau</div>
+  <div class="breadcrumb">Veranstaltungstechnik LF10 &rsaquo; Kapitel 1-4 &rsaquo; Übergreifendes Quiz</div>
+</header>
+
+<div class="quiz-header">
+  <div class="quiz-icon">💡</div>
+  <div class="quiz-meta">
+    <h1>LF10 Kapitel 1–4: Übergreifendes Quiz</h1>
+    <div class="sub">Veranstaltungstechnik · Kap. 1-4 · 30 Fragen · Gemischt (leicht/mittel/schwer)</div>
+  </div>
+  <div class="quiz-badges">
+    <div class="badge badge-time">⏱ 60 Min.</div>
+    <div class="badge badge-pts">🏆 77 Punkte</div>
+  </div>
+</div>
+
+<div class="main-wrap">
+  <div class="questions">
+    
+<div class="question-card" id="q01">
+  <div class="question-header">
+    <span class="q-num">1</span>
+    <span class="q-title">L1-K1 Steckertypen Zuordnung</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<table class="match-table">
+  <thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead>
+  <tbody><tr>
+  <td class="match-left">XLR (3-pol)</td>
+  <td><select class="match-sel" id="q01-sel-0" data-correct="Symmetrisches Audiosignal" onchange="checkMatchSel(this,'q01',4)">
+    <option value="">-- bitte wählen --</option><option value="Optisches Signal (Glasfaser)">Optisches Signal (Glasfaser)</option><option value="Ethernet-Datennetzwerk">Ethernet-Datennetzwerk</option><option value="Videosignal (SDI/HF)">Videosignal (SDI/HF)</option><option value="Unsymmetrisches Audiosignal (Klinke)">Unsymmetrisches Audiosignal (Klinke)</option><option value="Symmetrisches Audiosignal">Symmetrisches Audiosignal</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">RJ-45</td>
+  <td><select class="match-sel" id="q01-sel-1" data-correct="Ethernet-Datennetzwerk" onchange="checkMatchSel(this,'q01',4)">
+    <option value="">-- bitte wählen --</option><option value="Optisches Signal (Glasfaser)">Optisches Signal (Glasfaser)</option><option value="Ethernet-Datennetzwerk">Ethernet-Datennetzwerk</option><option value="Videosignal (SDI/HF)">Videosignal (SDI/HF)</option><option value="Unsymmetrisches Audiosignal (Klinke)">Unsymmetrisches Audiosignal (Klinke)</option><option value="Symmetrisches Audiosignal">Symmetrisches Audiosignal</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">BNC (Koaxial)</td>
+  <td><select class="match-sel" id="q01-sel-2" data-correct="Videosignal (SDI/HF)" onchange="checkMatchSel(this,'q01',4)">
+    <option value="">-- bitte wählen --</option><option value="Optisches Signal (Glasfaser)">Optisches Signal (Glasfaser)</option><option value="Ethernet-Datennetzwerk">Ethernet-Datennetzwerk</option><option value="Videosignal (SDI/HF)">Videosignal (SDI/HF)</option><option value="Unsymmetrisches Audiosignal (Klinke)">Unsymmetrisches Audiosignal (Klinke)</option><option value="Symmetrisches Audiosignal">Symmetrisches Audiosignal</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">SC / LC (LWL)</td>
+  <td><select class="match-sel" id="q01-sel-3" data-correct="Optisches Signal (Glasfaser)" onchange="checkMatchSel(this,'q01',4)">
+    <option value="">-- bitte wählen --</option><option value="Optisches Signal (Glasfaser)">Optisches Signal (Glasfaser)</option><option value="Ethernet-Datennetzwerk">Ethernet-Datennetzwerk</option><option value="Videosignal (SDI/HF)">Videosignal (SDI/HF)</option><option value="Unsymmetrisches Audiosignal (Klinke)">Unsymmetrisches Audiosignal (Klinke)</option><option value="Symmetrisches Audiosignal">Symmetrisches Audiosignal</option>
+  </select></td>
+</tr></tbody>
+</table>
+<div class="feedback-box" id="q01-fb"></div>
+<div class="solution-hint" id="q01-sol" style="display:none">
+  <strong>Lösung:</strong> XLR (3-pol) → Symmetrisches Audiosignal | RJ-45 → Ethernet-Datennetzwerk | BNC (Koaxial) → Videosignal (SDI/HF) | SC / LC (LWL) → Optisches Signal (Glasfaser)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>XLR (3-pol): symmetrisches Audiosignal (Mikrofon, Line). RJ-45: Ethernet-Datennetzwerk. BNC/Koax: Videosignal (SDI, HF). SC/LC: optisches Signal (Glasfaser/LWL). DMX-Stecker ist XLR-5-pol.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q01-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q02">
+  <div class="question-header">
+    <span class="q-num">2</span>
+    <span class="q-title">L2-K1 XLR Pinbelegung Lueckentext</span>
+    <span class="q-badge type-gap">Dropdown</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="gap-text"><p>Beim Aufbau der Ton-Stagebox pruefen Sie die XLR-Verkabelung. Ergaenzen Sie die Pinbelegung.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="170" viewBox="0 0 560 170" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="170" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-size="14" font-weight="bold" fill="#212529">XLR-3-pol Stecker (Frontansicht)</text>
+  <circle cx="100" cy="90" r="55" fill="#e9ecef" stroke="#adb5bd" stroke-width="2"/>
+  <circle cx="100" cy="65" r="10" fill="#fff" stroke="#343a40" stroke-width="2"/>
+  <text x="100" y="70" text-anchor="middle" font-size="11" fill="#212529">1</text>
+  <circle cx="77" cy="107" r="10" fill="#fff" stroke="#343a40" stroke-width="2"/>
+  <text x="77" y="112" text-anchor="middle" font-size="11" fill="#212529">2</text>
+  <circle cx="123" cy="107" r="10" fill="#fff" stroke="#343a40" stroke-width="2"/>
+  <text x="123" y="112" text-anchor="middle" font-size="11" fill="#212529">3</text>
+  <rect x="175" y="35" width="370" height="120" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="185" y="58" font-size="12" font-weight="bold" fill="#212529">Pin 1:</text>
+  <text x="240" y="58" font-size="12" fill="#495057">Schirm / Masse</text>
+  <text x="185" y="80" font-size="12" font-weight="bold" fill="#212529">Pin 2:</text>
+  <text x="240" y="80" font-size="12" fill="#495057">Signal+ (Hot / positiv)</text>
+  <text x="185" y="102" font-size="12" font-weight="bold" fill="#212529">Pin 3:</text>
+  <text x="240" y="102" font-size="12" fill="#495057">Signal- (Cold / negativ)</text>
+  <text x="185" y="128" font-size="11" fill="#6c757d">Symmetrische Uebertragung: Stoerungen werden eliminiert</text>
+  <text x="185" y="145" font-size="11" fill="#6c757d">Einsatz: Mikrofon, Stagebox, Mischpult, DI-Box</text>
+</svg><p>XLR Pin 1 fuehrt <select class="gap-sel" id="q02-gap-1" data-correct="Schirm (Masse)" onchange="checkGapSel(this,'q02',4)"><option value="">--</option><option value="Schirm (Masse)">Schirm (Masse)</option><option value="Signal plus">Signal plus</option><option value="Speisespannung">Speisespannung</option></select>, Pin 2 fuehrt das Signal <select class="gap-sel" id="q02-gap-2" data-correct="plus (Hot)" onchange="checkGapSel(this,'q02',4)"><option value="">--</option><option value="plus (Hot)">plus (Hot)</option><option value="minus (Cold)">minus (Cold)</option><option value="Schirm">Schirm</option></select> und Pin 3 fuehrt das Signal <select class="gap-sel" id="q02-gap-3" data-correct="minus (Cold)" onchange="checkGapSel(this,'q02',4)"><option value="">--</option><option value="minus (Cold)">minus (Cold)</option><option value="plus (Hot)">plus (Hot)</option><option value="Phantomspeisung">Phantomspeisung</option></select>. Das Uebertragungsprinzip, das Stoerungen durch Gegenphasigkeit eliminiert, heisst <select class="gap-sel" id="q02-gap-4" data-correct="symmetrische Uebertragung" onchange="checkGapSel(this,'q02',4)"><option value="">--</option><option value="symmetrische Uebertragung">symmetrische Uebertragung</option><option value="asymmetrische Uebertragung">asymmetrische Uebertragung</option><option value="Modulationsverfahren">Modulationsverfahren</option></select>.</p></div>
+<div class="feedback-box" id="q02-fb"></div>
+<div class="solution-hint" id="q02-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = Schirm (Masse) | [[2]] = plus (Hot) | [[3]] = minus (Cold) | [[4]] = symmetrische Uebertragung
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Pin 1 = Schirm/Masse. Pin 2 = Signal+ (Hot). Pin 3 = Signal- (Cold). Prinzip: symmetrische Uebertragung. Stoersignale werden als Gleichtaktsignal erkannt und durch den Differenzverstaerker eliminiert.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q02-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">gapselect</span>
+  </div>
+</div>
+<div class="question-card" id="q03">
+  <div class="question-header">
+    <span class="q-num">3</span>
+    <span class="q-title">L3-K1 DMX512 max Kanaele</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q03-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q03', 512, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q03-fb"></div>
+<div class="solution-hint" id="q03-sol" style="display:none">
+  <strong>Lösung:</strong> 512 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>DMX<strong>512</strong>: der Name sagt es - 512 Kanaele pro Universum. Jeder Kanal traegt einen Wert von 0-255 (8 Bit). Mit 250 kBaud werden alle 512 Kanaele etwa 44-mal pro Sekunde uebertragen.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q03-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q04">
+  <div class="question-header">
+    <span class="q-num">4</span>
+    <span class="q-title">M1-K1 Glasfaser Kabeltypen Lueckentext</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q04-pool"><span class="drag-chip" id="q04-chip-1" onclick="selectChip(this,'q04')" data-val="50">50</span> <span class="drag-chip" id="q04-chip-2" onclick="selectChip(this,'q04')" data-val="9">9</span> <span class="drag-chip" id="q04-chip-3" onclick="selectChip(this,'q04')" data-val="Multimode (OM3)">Multimode (OM3)</span> <span class="drag-chip" id="q04-chip-4" onclick="selectChip(this,'q04')" data-val="LC">LC</span> <span class="drag-chip" id="q04-chip-5" onclick="selectChip(this,'q04')" data-val="62,5">62,5</span> <span class="drag-chip" id="q04-chip-6" onclick="selectChip(this,'q04')" data-val="25">25</span> <span class="drag-chip" id="q04-chip-7" onclick="selectChip(this,'q04')" data-val="Singlemode (OS2)">Singlemode (OS2)</span> <span class="drag-chip" id="q04-chip-8" onclick="selectChip(this,'q04')" data-val="SC">SC</span> </div>
+<div class="question-gap-text"><p>Fuer die Verbindung zwischen FOH und Stage (Abstand 280 m) wird Glasfaser geplant.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="155" viewBox="0 0 560 155" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="155" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-size="14" font-weight="bold" fill="#212529">Glasfaser-Kabeltypen im Vergleich</text>
+  <rect x="14" y="30" width="240" height="55" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5" rx="4"/>
+  <text x="134" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#664d03">Multimode (OM3/OM4)</text>
+  <text x="134" y="67" text-anchor="middle" font-size="11" fill="#664d03">Kern: 50 oder 62,5 &#956;m</text>
+  <text x="134" y="80" text-anchor="middle" font-size="11" fill="#664d03">Reichweite: bis ca. 300 m</text>
+  <rect x="268" y="30" width="278" height="55" fill="#cce5ff" stroke="#4dabf7" stroke-width="1.5" rx="4"/>
+  <text x="407" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#1c7ed6">Singlemode (OS2)</text>
+  <text x="407" y="67" text-anchor="middle" font-size="11" fill="#1c7ed6">Kern: 9 &#956;m</text>
+  <text x="407" y="80" text-anchor="middle" font-size="11" fill="#1c7ed6">Reichweite: mehrere km</text>
+  <text x="14" y="106" font-size="11" fill="#495057">Stecker: SC (Push-Pull), LC (Kleinformat, bevorzugt), ST (Bajonett)</text>
+  <text x="14" y="122" font-size="11" fill="#495057">Einsatz VT: Stagebox zu FOH, stoerungsimmun, galvanische Trennung</text>
+  <text x="14" y="138" font-size="11" fill="#495057">Wellenlaenge Multimode: 850/1300 nm (LED) | Singlemode: 1310/1550 nm (Laser)</text>
+</svg><p>Multimode-Fasern haben einen Kerndurchmesser von <span class="drop-slot" id="q04-slot-1" onclick="fillSlot(this,'q04')" data-correct="50">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Mikrometern, Singlemode von <span class="drop-slot" id="q04-slot-2" onclick="fillSlot(this,'q04')" data-correct="9">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Mikrometern. Fuer 280 m und 10 GbE wird <span class="drop-slot" id="q04-slot-3" onclick="fillSlot(this,'q04')" data-correct="Multimode (OM3)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> empfohlen. Der bevorzugte Stecker in Patchpanels ist <span class="drop-slot" id="q04-slot-4" onclick="fillSlot(this,'q04')" data-correct="LC">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q04', 4)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q04', 8)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q04-fb"></div>
+<div class="solution-hint" id="q04-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = 50 | [[2]] = 9 | [[3]] = Multimode (OM3) | [[4]] = LC
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Multimode OM3/OM4: 50 µm. Singlemode OS2: 9 µm. Fuer 280 m und 10 GbE reicht OM3 (bis ca. 300 m). LC-Stecker ist kompakter als SC und in modernen Patchpanels bevorzugt.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q04-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q05">
+  <div class="question-header">
+    <span class="q-num">5</span>
+    <span class="q-title">L4-K1 DMX Signalkette Reihenfolge</span>
+    <span class="q-badge type-ord">Reihenfolge</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<p style="color:var(--moodle-gray);font-size:12px">Klicken Sie die Elemente in der richtigen Reihenfolge an:</p>
+<ul class="ord-list" id="q05-list"><li class="ord-item" id="q05-item-0" onclick="selectOrdItem(this,'q05')" data-text="Lichtpult (DMX-Controller)">Lichtpult (DMX-Controller)</li><li class="ord-item" id="q05-item-1" onclick="selectOrdItem(this,'q05')" data-text="DMX-Splitter / Verstaerker (optional)">DMX-Splitter / Verstaerker (optional)</li><li class="ord-item" id="q05-item-2" onclick="selectOrdItem(this,'q05')" data-text="Weiteres DMX-Geraet (Daisy-Chain)">Weiteres DMX-Geraet (Daisy-Chain)</li><li class="ord-item" id="q05-item-3" onclick="selectOrdItem(this,'q05')" data-text="Erstes DMX-Geraet (z.B. Dimmer)">Erstes DMX-Geraet (z.B. Dimmer)</li><li class="ord-item" id="q05-item-4" onclick="selectOrdItem(this,'q05')" data-text="Abschlusswiderstand 120 Ohm">Abschlusswiderstand 120 Ohm</li></ul>
+<div class="ord-result" id="q05-result" style="margin-top:8px;font-size:13px;color:var(--moodle-gray)">Gewählte Reihenfolge: <em>noch keine Auswahl</em></div>
+<div style="margin-top:8px">
+  <button class="check-btn" onclick="checkOrdering('q05', ["Lichtpult (DMX-Controller)", "DMX-Splitter / Verstaerker (optional)", "Erstes DMX-Geraet (z.B. Dimmer)", "Weiteres DMX-Geraet (Daisy-Chain)", "Abschlusswiderstand 120 Ohm"])">Reihenfolge prüfen</button>
+  <button class="reset-btn" onclick="resetOrdering('q05')">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q05-fb"></div>
+<div class="solution-hint" id="q05-sol" style="display:none">
+  <strong>Lösung:</strong> Lichtpult (DMX-Controller) → DMX-Splitter / Verstaerker (optional) → Erstes DMX-Geraet (z.B. Dimmer) → Weiteres DMX-Geraet (Daisy-Chain) → Abschlusswiderstand 120 Ohm
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Korrekte Reihenfolge: 1. Lichtpult (Controller) &rarr; 2. DMX-Splitter (optional) &rarr; 3. Erstes DMX-Geraet &rarr; 4. Weiteres Geraet (Daisy-Chain) &rarr; 5. Abschlusswiderstand 120 Ohm. Ohne Abschluss: Reflexionen koennen Stoerungen verursachen.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q05-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q06">
+  <div class="question-header">
+    <span class="q-num">6</span>
+    <span class="q-title">S1-K1 Koaxkabel Wellenwiderstand SDI</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q06-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q06', 75, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q06-fb"></div>
+<div class="solution-hint" id="q06-sol" style="display:none">
+  <strong>Lösung:</strong> 75 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p><strong>75 Ohm</strong>: Standard fuer SDI-Video (BNC) und Antennentechnik. Hinweis: Ethernet (10BASE2) nutzt 50 Ohm. Der Wellenwiderstand muss durchgehend stimmen, sonst entstehen Reflexionen (Geisterbild, Signalverlust).</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q06-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q07">
+  <div class="question-header">
+    <span class="q-num">7</span>
+    <span class="q-title">L1-K2 Binaer zu Dezimal Umrechnung</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">3 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q07-pool"><span class="drag-chip" id="q07-chip-1" onclick="selectChip(this,'q07')" data-val="180">180</span> <span class="drag-chip" id="q07-chip-2" onclick="selectChip(this,'q07')" data-val="202">202</span> <span class="drag-chip" id="q07-chip-3" onclick="selectChip(this,'q07')" data-val="127">127</span> <span class="drag-chip" id="q07-chip-4" onclick="selectChip(this,'q07')" data-val="164">164</span> <span class="drag-chip" id="q07-chip-5" onclick="selectChip(this,'q07')" data-val="192">192</span> <span class="drag-chip" id="q07-chip-6" onclick="selectChip(this,'q07')" data-val="255">255</span> </div>
+<div class="question-gap-text"><p>Bei der Konfiguration eines Netzwerkgeraets muessen Sie Binaer- und Dezimalwerte umrechnen.</p><p><strong>10110100</strong> (binaer) = <span class="drop-slot" id="q07-slot-1" onclick="fillSlot(this,'q07')" data-correct="180">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (dezimal)</p><p><strong>11001010</strong> (binaer) = <span class="drop-slot" id="q07-slot-2" onclick="fillSlot(this,'q07')" data-correct="202">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (dezimal)</p><p><strong>01111111</strong> (binaer) = <span class="drop-slot" id="q07-slot-3" onclick="fillSlot(this,'q07')" data-correct="127">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (dezimal)</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q07', 3)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q07', 6)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q07-fb"></div>
+<div class="solution-hint" id="q07-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = 180 | [[2]] = 202 | [[3]] = 127
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>10110100: 128+32+16+4 = <strong>180</strong>. 11001010: 128+64+8+2 = <strong>202</strong>. 01111111: 64+32+16+8+4+2+1 = <strong>127</strong> (hoechste Hostadresse /25).</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q07-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q08">
+  <div class="question-header">
+    <span class="q-num">8</span>
+    <span class="q-title">L2-K2 OSI-Schichten Zuordnung</span>
+    <span class="q-badge type-gap">Dropdown</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="gap-text"><p>Bei der Planung eines Netzwerks werden Geraete nach OSI-Schichten eingeordnet.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Netzwerktopologie: PC - Switch - Router</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="18" y="45" width="78" height="70"/>
+  <text x="57" y="127" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-A</text>
+  <text x="57" y="141" text-anchor="middle" font-size="10" fill="#495057">192.168.1.10</text>
+  <line x1="96" y1="80" x2="196" y2="80" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="196" y="63" width="66" height="34"/>
+  <text x="229" y="109" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-1</text>
+  <line x1="262" y1="80" x2="356" y2="80" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="356" y="52" width="84" height="57"/>
+  <text x="398" y="121" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">R1 (Gateway)</text>
+  <text x="398" y="135" text-anchor="middle" font-size="10" fill="#495057">192.168.1.1</text>
+  <text x="14" y="165" font-size="11" fill="#495057">Switch: Layer 2 (MAC), Router: Layer 3 (IP)</text>
+  <text x="14" y="180" font-size="11" fill="#495057">Stern-Topologie: alle Geraete ueber zentralen Switch verbunden</text>
+</svg><p>Ein Ethernet-Switch arbeitet auf OSI-Schicht <select class="gap-sel" id="q08-gap-1" data-correct="2 (Data Link)" onchange="checkGapSel(this,'q08',4)"><option value="">--</option><option value="2 (Data Link)">2 (Data Link)</option><option value="1 (Physical)">1 (Physical)</option><option value="3 (Network)">3 (Network)</option></select>. Ein Router auf Schicht <select class="gap-sel" id="q08-gap-2" data-correct="3 (Network)" onchange="checkGapSel(this,'q08',4)"><option value="">--</option><option value="3 (Network)">3 (Network)</option><option value="2 (Data Link)">2 (Data Link)</option><option value="4 (Transport)">4 (Transport)</option></select>. MAC-Adressen gehoeren zu Schicht <select class="gap-sel" id="q08-gap-3" data-correct="2 (Data Link)" onchange="checkGapSel(this,'q08',4)"><option value="">--</option><option value="2 (Data Link)">2 (Data Link)</option><option value="3 (Network)">3 (Network)</option><option value="1 (Physical)">1 (Physical)</option></select>. IP-Adressen zu Schicht <select class="gap-sel" id="q08-gap-4" data-correct="3 (Network)" onchange="checkGapSel(this,'q08',4)"><option value="">--</option><option value="3 (Network)">3 (Network)</option><option value="2 (Data Link)">2 (Data Link)</option><option value="4 (Transport)">4 (Transport)</option></select>.</p></div>
+<div class="feedback-box" id="q08-fb"></div>
+<div class="solution-hint" id="q08-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = 2 (Data Link) | [[2]] = 3 (Network) | [[3]] = 2 (Data Link) | [[4]] = 3 (Network)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Switch = Layer 2 (Data Link, MAC). Router = Layer 3 (Network, IP). MAC: Layer 2. IP: Layer 3.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q08-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">gapselect</span>
+  </div>
+</div>
+<div class="question-card" id="q09">
+  <div class="question-header">
+    <span class="q-num">9</span>
+    <span class="q-title">L3-K2 Subnetz Hosts berechnen 24</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q09-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q09', 254, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q09-fb"></div>
+<div class="solution-hint" id="q09-sol" style="display:none">
+  <strong>Lösung:</strong> 254 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>/24 = 8 Hostbits: 2<sup>8</sup> - 2 = 256 - 2 = <strong>254</strong> nutzbare Hostadressen.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q09-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q10">
+  <div class="question-header">
+    <span class="q-num">10</span>
+    <span class="q-title">M1-K2 Netzwerkadresse AND berechnen</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">3 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q10-pool"><span class="drag-chip" id="q10-chip-1" onclick="selectChip(this,'q10')" data-val="192.168.20.128">192.168.20.128</span> <span class="drag-chip" id="q10-chip-2" onclick="selectChip(this,'q10')" data-val="192.168.20.191">192.168.20.191</span> <span class="drag-chip" id="q10-chip-3" onclick="selectChip(this,'q10')" data-val="11000000">11000000</span> <span class="drag-chip" id="q10-chip-4" onclick="selectChip(this,'q10')" data-val="192.168.20.192">192.168.20.192</span> <span class="drag-chip" id="q10-chip-5" onclick="selectChip(this,'q10')" data-val="192.168.20.255">192.168.20.255</span> <span class="drag-chip" id="q10-chip-6" onclick="selectChip(this,'q10')" data-val="11111100">11111100</span> </div>
+<div class="question-gap-text"><p>Gegeben: IP <code>192.168.20.150</code>, Praefix <code>/26</code> (Maske: 255.255.255.192).</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">IPv4-Header (vereinfacht, 20 Byte Minimum)</text>
+  <rect x="14" y="32" width="60" height="32" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <text x="44" y="52" text-anchor="middle" font-size="10" fill="#2f9e44">Ver/IHL</text>
+  <rect x="74" y="32" width="60" height="32" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="104" y="52" text-anchor="middle" font-size="10" fill="#1864ab">DSCP</text>
+  <rect x="134" y="32" width="100" height="32" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="184" y="52" text-anchor="middle" font-size="10" fill="#664d03">Total Length</text>
+  <rect x="234" y="32" width="120" height="32" fill="#ffe8cc" stroke="#fd7e14" stroke-width="1.5"/>
+  <text x="294" y="52" text-anchor="middle" font-size="10" fill="#7d3a00">ID / Flags / Offset</text>
+  <rect x="354" y="32" width="60" height="32" fill="#f3d9fa" stroke="#cc5de8" stroke-width="1.5"/>
+  <text x="384" y="52" text-anchor="middle" font-size="10" fill="#6741d9">TTL</text>
+  <rect x="414" y="32" width="60" height="32" fill="#ffd6cc" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="444" y="52" text-anchor="middle" font-size="10" fill="#c92a2a">Protocol</text>
+  <rect x="474" y="32" width="72" height="32" fill="#d0ebff" stroke="#4dabf7" stroke-width="1.5"/>
+  <text x="510" y="52" text-anchor="middle" font-size="10" fill="#1c7ed6">Checksum</text>
+  <rect x="14" y="64" width="268" height="30" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="148" y="84" text-anchor="middle" font-size="11" fill="#1864ab">Source IP Address (32 Bit)</text>
+  <rect x="282" y="64" width="264" height="30" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="414" y="84" text-anchor="middle" font-size="11" fill="#664d03">Destination IP Address (32 Bit)</text>
+  <rect x="14" y="94" width="532" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+  <text x="280" y="113" text-anchor="middle" font-size="11" fill="#495057">Options (variabel) + Padding</text>
+  <rect x="14" y="122" width="532" height="28" fill="#fff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="280" y="141" text-anchor="middle" font-size="11" fill="#212529">Nutzdaten (UDP/TCP - z.B. ArtNet-Daten)</text>
+  <text x="14" y="165" font-size="11" fill="#6c757d">Protocol-Feld: 6=TCP, 17=UDP | TTL: max. Hops</text>
+</svg><p>Die Netzwerkadresse lautet <span class="drop-slot" id="q10-slot-1" onclick="fillSlot(this,'q10')" data-correct="192.168.20.128">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Der Broadcast lautet <span class="drop-slot" id="q10-slot-2" onclick="fillSlot(this,'q10')" data-correct="192.168.20.191">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Die /26-Maske im letzten Oktet binaer ist <span class="drop-slot" id="q10-slot-3" onclick="fillSlot(this,'q10')" data-correct="11000000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q10', 3)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q10', 6)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q10-fb"></div>
+<div class="solution-hint" id="q10-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = 192.168.20.128 | [[2]] = 192.168.20.191 | [[3]] = 11000000
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>/26: Letztes Oktet 150=10010110, Maske=11000000. AND: 10000000=128. Netzadresse: 192.168.20.128. Broadcast: alle Hostbits=1: 10111111=191 &rarr; 192.168.20.191. /26 Maske letztes Oktet: 11000000.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q10-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q11">
+  <div class="question-header">
+    <span class="q-num">11</span>
+    <span class="q-title">M2-K2 IP-Header Felder Bedeutung</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">5 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<table class="match-table">
+  <thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead>
+  <tbody><tr>
+  <td class="match-left">TTL (Time to Live)</td>
+  <td><select class="match-sel" id="q11-sel-0" data-correct="Maximale Anzahl Weiterleitungen (Hops)" onchange="checkMatchSel(this,'q11',5)">
+    <option value="">-- bitte wählen --</option><option value="Informationen zur Paketfragmentierung">Informationen zur Paketfragmentierung</option><option value="Protokoll-Nummer (17=UDP, 6=TCP)">Protokoll-Nummer (17=UDP, 6=TCP)</option><option value="Gesamtgroesse des Pakets in Byte">Gesamtgroesse des Pakets in Byte</option><option value="IP-Adresse des Absenders">IP-Adresse des Absenders</option><option value="Maximale Anzahl Weiterleitungen (Hops)">Maximale Anzahl Weiterleitungen (Hops)</option><option value="Laenge des IP-Headers in 32-Bit-Worten">Laenge des IP-Headers in 32-Bit-Worten</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Protocol</td>
+  <td><select class="match-sel" id="q11-sel-1" data-correct="Protokoll-Nummer (17=UDP, 6=TCP)" onchange="checkMatchSel(this,'q11',5)">
+    <option value="">-- bitte wählen --</option><option value="Informationen zur Paketfragmentierung">Informationen zur Paketfragmentierung</option><option value="Protokoll-Nummer (17=UDP, 6=TCP)">Protokoll-Nummer (17=UDP, 6=TCP)</option><option value="Gesamtgroesse des Pakets in Byte">Gesamtgroesse des Pakets in Byte</option><option value="IP-Adresse des Absenders">IP-Adresse des Absenders</option><option value="Maximale Anzahl Weiterleitungen (Hops)">Maximale Anzahl Weiterleitungen (Hops)</option><option value="Laenge des IP-Headers in 32-Bit-Worten">Laenge des IP-Headers in 32-Bit-Worten</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Total Length</td>
+  <td><select class="match-sel" id="q11-sel-2" data-correct="Gesamtgroesse des Pakets in Byte" onchange="checkMatchSel(this,'q11',5)">
+    <option value="">-- bitte wählen --</option><option value="Informationen zur Paketfragmentierung">Informationen zur Paketfragmentierung</option><option value="Protokoll-Nummer (17=UDP, 6=TCP)">Protokoll-Nummer (17=UDP, 6=TCP)</option><option value="Gesamtgroesse des Pakets in Byte">Gesamtgroesse des Pakets in Byte</option><option value="IP-Adresse des Absenders">IP-Adresse des Absenders</option><option value="Maximale Anzahl Weiterleitungen (Hops)">Maximale Anzahl Weiterleitungen (Hops)</option><option value="Laenge des IP-Headers in 32-Bit-Worten">Laenge des IP-Headers in 32-Bit-Worten</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Flags / Fragment Offset</td>
+  <td><select class="match-sel" id="q11-sel-3" data-correct="Informationen zur Paketfragmentierung" onchange="checkMatchSel(this,'q11',5)">
+    <option value="">-- bitte wählen --</option><option value="Informationen zur Paketfragmentierung">Informationen zur Paketfragmentierung</option><option value="Protokoll-Nummer (17=UDP, 6=TCP)">Protokoll-Nummer (17=UDP, 6=TCP)</option><option value="Gesamtgroesse des Pakets in Byte">Gesamtgroesse des Pakets in Byte</option><option value="IP-Adresse des Absenders">IP-Adresse des Absenders</option><option value="Maximale Anzahl Weiterleitungen (Hops)">Maximale Anzahl Weiterleitungen (Hops)</option><option value="Laenge des IP-Headers in 32-Bit-Worten">Laenge des IP-Headers in 32-Bit-Worten</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Source IP Address</td>
+  <td><select class="match-sel" id="q11-sel-4" data-correct="IP-Adresse des Absenders" onchange="checkMatchSel(this,'q11',5)">
+    <option value="">-- bitte wählen --</option><option value="Informationen zur Paketfragmentierung">Informationen zur Paketfragmentierung</option><option value="Protokoll-Nummer (17=UDP, 6=TCP)">Protokoll-Nummer (17=UDP, 6=TCP)</option><option value="Gesamtgroesse des Pakets in Byte">Gesamtgroesse des Pakets in Byte</option><option value="IP-Adresse des Absenders">IP-Adresse des Absenders</option><option value="Maximale Anzahl Weiterleitungen (Hops)">Maximale Anzahl Weiterleitungen (Hops)</option><option value="Laenge des IP-Headers in 32-Bit-Worten">Laenge des IP-Headers in 32-Bit-Worten</option>
+  </select></td>
+</tr></tbody>
+</table>
+<div class="feedback-box" id="q11-fb"></div>
+<div class="solution-hint" id="q11-sol" style="display:none">
+  <strong>Lösung:</strong> TTL (Time to Live) → Maximale Anzahl Weiterleitungen (Hops) | Protocol → Protokoll-Nummer (17=UDP, 6=TCP) | Total Length → Gesamtgroesse des Pakets in Byte | Flags / Fragment Offset → Informationen zur Paketfragmentierung | Source IP Address → IP-Adresse des Absenders
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>TTL: begrenzt Lebensdauer. Protocol: 17=UDP, 6=TCP. Total Length: Gesamtgroesse. Flags/Offset: Fragmentierung. Source IP: Absender.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q11-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q12">
+  <div class="question-header">
+    <span class="q-num">12</span>
+    <span class="q-title">M3-K2 Subnetz berechnen 27</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q12-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q12', 30, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q12-fb"></div>
+<div class="solution-hint" id="q12-sol" style="display:none">
+  <strong>Lösung:</strong> 30 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>/27 = 5 Hostbits: 2<sup>5</sup> - 2 = 32 - 2 = <strong>30</strong> Hosts. Netzadresse: 172.16.5.0, Broadcast: 172.16.5.31.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q12-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q13">
+  <div class="question-header">
+    <span class="q-num">13</span>
+    <span class="q-title">M4-K2 TCP 3-Wege-Handshake Reihenfolge</span>
+    <span class="q-badge type-ord">Reihenfolge</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<p style="color:var(--moodle-gray);font-size:12px">Klicken Sie die Elemente in der richtigen Reihenfolge an:</p>
+<ul class="ord-list" id="q13-list"><li class="ord-item" id="q13-item-0" onclick="selectOrdItem(this,'q13')" data-text="TCP-Verbindung ist hergestellt">TCP-Verbindung ist hergestellt</li><li class="ord-item" id="q13-item-1" onclick="selectOrdItem(this,'q13')" data-text="Client sendet SYN an Server">Client sendet SYN an Server</li><li class="ord-item" id="q13-item-2" onclick="selectOrdItem(this,'q13')" data-text="Server antwortet mit SYN-ACK">Server antwortet mit SYN-ACK</li><li class="ord-item" id="q13-item-3" onclick="selectOrdItem(this,'q13')" data-text="Client sendet ACK-Bestaetigung">Client sendet ACK-Bestaetigung</li></ul>
+<div class="ord-result" id="q13-result" style="margin-top:8px;font-size:13px;color:var(--moodle-gray)">Gewählte Reihenfolge: <em>noch keine Auswahl</em></div>
+<div style="margin-top:8px">
+  <button class="check-btn" onclick="checkOrdering('q13', ['Client sendet SYN an Server', 'Server antwortet mit SYN-ACK', 'Client sendet ACK-Bestaetigung', 'TCP-Verbindung ist hergestellt'])">Reihenfolge prüfen</button>
+  <button class="reset-btn" onclick="resetOrdering('q13')">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q13-fb"></div>
+<div class="solution-hint" id="q13-sol" style="display:none">
+  <strong>Lösung:</strong> Client sendet SYN an Server → Server antwortet mit SYN-ACK → Client sendet ACK-Bestaetigung → TCP-Verbindung ist hergestellt
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>TCP-Handshake: SYN &rarr; SYN-ACK &rarr; ACK. Danach: Verbindung hergestellt, Datentransfer beginnt. Hinweis: ArtNet nutzt UDP (verbindungslos), kein Handshake noetig.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q13-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q14">
+  <div class="question-header">
+    <span class="q-num">14</span>
+    <span class="q-title">M5-K2 Subnetzmaske CIDR Lueckentext</span>
+    <span class="q-badge type-gap">Dropdown</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="gap-text"><p>Bei der Adressplanung eines Buehnen-Netzwerks werden CIDR-Praefix und Subnetzmaske benoetigt.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Netzwerk: zwei Subnetze ueber Router</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="14" y="40" width="78" height="70"/>
+  <text x="53" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-A</text>
+  <text x="53" y="136" text-anchor="middle" font-size="10" fill="#495057">192.168.1.10</text>
+  <line x1="92" y1="75" x2="152" y2="90" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="152" y="73" width="66" height="34"/>
+  <text x="185" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-1</text>
+  <line x1="218" y1="90" x2="278" y2="85" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="278" y="57" width="84" height="57"/>
+  <text x="320" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">R1</text>
+  <line x1="362" y1="85" x2="412" y2="90" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="412" y="73" width="66" height="34"/>
+  <text x="445" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-2</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="462" y="40" width="78" height="70"/>
+  <text x="501" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-C</text>
+  <text x="501" y="136" text-anchor="middle" font-size="10" fill="#495057">10.0.0.5</text>
+  <line x1="478" y1="90" x2="478" y2="110" stroke="#495057" stroke-width="2"/>
+  <text x="14" y="162" font-size="11" fill="#495057">Router verbindet zwei Subnetze: 192.168.1.0/24 und 10.0.0.0/24</text>
+  <text x="14" y="178" font-size="11" fill="#495057">Default Gateway: PC-A = 192.168.1.1 (R1-Interface links)</text>
+</svg><p>Die Subnetzmaske 255.255.255.0 entspricht <select class="gap-sel" id="q14-gap-1" data-correct="/24" onchange="checkGapSel(this,'q14',4)"><option value="">--</option><option value="/24">/24</option><option value="/25">/25</option><option value="/26">/26</option></select>. Die Maske 255.255.255.128 entspricht <select class="gap-sel" id="q14-gap-2" data-correct="/25" onchange="checkGapSel(this,'q14',4)"><option value="">--</option><option value="/25">/25</option><option value="/24">/24</option><option value="/26">/26</option></select>. Ein /28 erlaubt max. <select class="gap-sel" id="q14-gap-3" data-correct="14" onchange="checkGapSel(this,'q14',4)"><option value="">--</option><option value="14">14</option><option value="16">16</option><option value="30">30</option></select> nutzbare Hostadressen. Das private Klasse-C-Netz beginnt mit <select class="gap-sel" id="q14-gap-4" data-correct="192.168" onchange="checkGapSel(this,'q14',4)"><option value="">--</option><option value="192.168">192.168</option><option value="172.16">172.16</option><option value="10.0">10.0</option></select>.</p></div>
+<div class="feedback-box" id="q14-fb"></div>
+<div class="solution-hint" id="q14-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = /24 | [[2]] = /25 | [[3]] = 14 | [[4]] = 192.168
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>255.255.255.0=/24. 255.255.255.128=/25. /28: 2^4-2=14. Klasse-C-privat: 192.168.x.x</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q14-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">gapselect</span>
+  </div>
+</div>
+<div class="question-card" id="q15">
+  <div class="question-header">
+    <span class="q-num">15</span>
+    <span class="q-title">M6-K2 Switch vs Router Funktionen</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">5 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<table class="match-table">
+  <thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead>
+  <tbody><tr>
+  <td class="match-left">MAC-Adressen lernen und weiterleiten</td>
+  <td><select class="match-sel" id="q15-sel-0" data-correct="Switch (Layer 2)" onchange="checkMatchSel(this,'q15',5)">
+    <option value="">-- bitte wählen --</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Verschiedene Subnetze verbinden</td>
+  <td><select class="match-sel" id="q15-sel-1" data-correct="Router (Layer 3)" onchange="checkMatchSel(this,'q15',5)">
+    <option value="">-- bitte wählen --</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">VLAN-Segmentierung ermoeglichen</td>
+  <td><select class="match-sel" id="q15-sel-2" data-correct="Switch (Layer 2)" onchange="checkMatchSel(this,'q15',5)">
+    <option value="">-- bitte wählen --</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Default Gateway fuer Endgeraete</td>
+  <td><select class="match-sel" id="q15-sel-3" data-correct="Router (Layer 3)" onchange="checkMatchSel(this,'q15',5)">
+    <option value="">-- bitte wählen --</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Kollisionsdomaenen trennen</td>
+  <td><select class="match-sel" id="q15-sel-4" data-correct="Switch (Layer 2)" onchange="checkMatchSel(this,'q15',5)">
+    <option value="">-- bitte wählen --</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Router (Layer 3)">Router (Layer 3)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option><option value="Switch (Layer 2)">Switch (Layer 2)</option>
+  </select></td>
+</tr></tbody>
+</table>
+<div class="feedback-box" id="q15-fb"></div>
+<div class="solution-hint" id="q15-sol" style="display:none">
+  <strong>Lösung:</strong> MAC-Adressen lernen und weiterleiten → Switch (Layer 2) | Verschiedene Subnetze verbinden → Router (Layer 3) | VLAN-Segmentierung ermoeglichen → Switch (Layer 2) | Default Gateway fuer Endgeraete → Router (Layer 3) | Kollisionsdomaenen trennen → Switch (Layer 2)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Switch (L2): MAC-Adressen lernen, VLANs, Kollisionsdomaenen trennen. Router (L3): Subnetze verbinden, IP-Routing, Default Gateway.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q15-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q16">
+  <div class="question-header">
+    <span class="q-num">16</span>
+    <span class="q-title">S1-K2 VLSM Subnetz fuer 60 Hosts</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q16-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q16', 26, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q16-fb"></div>
+<div class="solution-hint" id="q16-sol" style="display:none">
+  <strong>Lösung:</strong> 26 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>/26: 2^6-2=62 &ge;60 ✓. /27: 2^5-2=30 &lt;60 ✗. Antwort: <strong>26</strong>. Subnetz: 192.168.10.0/26, Broadcast: .63.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q16-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q17">
+  <div class="question-header">
+    <span class="q-num">17</span>
+    <span class="q-title">S2-K2 IP Fragmentierung Berechnung</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">3 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q17-pool"><span class="drag-chip" id="q17-chip-1" onclick="selectChip(this,'q17')" data-val="1480">1480</span> <span class="drag-chip" id="q17-chip-2" onclick="selectChip(this,'q17')" data-val="3">3</span> <span class="drag-chip" id="q17-chip-3" onclick="selectChip(this,'q17')" data-val="60">60</span> <span class="drag-chip" id="q17-chip-4" onclick="selectChip(this,'q17')" data-val="1460">1460</span> <span class="drag-chip" id="q17-chip-5" onclick="selectChip(this,'q17')" data-val="2">2</span> <span class="drag-chip" id="q17-chip-6" onclick="selectChip(this,'q17')" data-val="80">80</span> </div>
+<div class="question-gap-text"><p>Ein UDP-Paket mit 3020 Byte Nutzdaten soll durch ein Netz mit MTU 1500 Byte. IP-Header: 20 Byte.</p><p>Max. Nutzdaten/Fragment: <span class="drop-slot" id="q17-slot-1" onclick="fillSlot(this,'q17')" data-correct="1480">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Byte. Anzahl Fragmente: <span class="drop-slot" id="q17-slot-2" onclick="fillSlot(this,'q17')" data-correct="3">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Letztes Fragment traegt <span class="drop-slot" id="q17-slot-3" onclick="fillSlot(this,'q17')" data-correct="60">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Byte Nutzdaten.</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q17', 3)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q17', 6)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q17-fb"></div>
+<div class="solution-hint" id="q17-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = 1480 | [[2]] = 3 | [[3]] = 60
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>1500-20=1480 Byte/Fragment. 3020/1480=2,04 &rarr; 3 Fragmente. Fragment 3: 3020-2&times;1480=60 Byte. Fragment Offset: durch 8 teilbar (1480=185&times;8 ✓).</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q17-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q18">
+  <div class="question-header">
+    <span class="q-num">18</span>
+    <span class="q-title">L1-K3 STP Begriffe Zuordnung</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">5 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<table class="match-table">
+  <thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead>
+  <tbody><tr>
+  <td class="match-left">Root Bridge</td>
+  <td><select class="match-sel" id="q18-sel-0" data-correct="Switch mit der niedrigsten Bridge-ID" onchange="checkMatchSel(this,'q18',5)">
+    <option value="">-- bitte wählen --</option><option value="Deaktivierter Port zur Schleifenverhinderung">Deaktivierter Port zur Schleifenverhinderung</option><option value="Port mit bestem Pfad zur Root Bridge">Port mit bestem Pfad zur Root Bridge</option><option value="Weiterleitender Port je Netzwerksegment">Weiterleitender Port je Netzwerksegment</option><option value="STP-Steuerframe fuer Informationsaustausch">STP-Steuerframe fuer Informationsaustausch</option><option value="Switch mit der niedrigsten Bridge-ID">Switch mit der niedrigsten Bridge-ID</option><option value="Protokoll fuer WLAN-Zugangsverwaltung">Protokoll fuer WLAN-Zugangsverwaltung</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Root Port</td>
+  <td><select class="match-sel" id="q18-sel-1" data-correct="Port mit bestem Pfad zur Root Bridge" onchange="checkMatchSel(this,'q18',5)">
+    <option value="">-- bitte wählen --</option><option value="Deaktivierter Port zur Schleifenverhinderung">Deaktivierter Port zur Schleifenverhinderung</option><option value="Port mit bestem Pfad zur Root Bridge">Port mit bestem Pfad zur Root Bridge</option><option value="Weiterleitender Port je Netzwerksegment">Weiterleitender Port je Netzwerksegment</option><option value="STP-Steuerframe fuer Informationsaustausch">STP-Steuerframe fuer Informationsaustausch</option><option value="Switch mit der niedrigsten Bridge-ID">Switch mit der niedrigsten Bridge-ID</option><option value="Protokoll fuer WLAN-Zugangsverwaltung">Protokoll fuer WLAN-Zugangsverwaltung</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Designated Port</td>
+  <td><select class="match-sel" id="q18-sel-2" data-correct="Weiterleitender Port je Netzwerksegment" onchange="checkMatchSel(this,'q18',5)">
+    <option value="">-- bitte wählen --</option><option value="Deaktivierter Port zur Schleifenverhinderung">Deaktivierter Port zur Schleifenverhinderung</option><option value="Port mit bestem Pfad zur Root Bridge">Port mit bestem Pfad zur Root Bridge</option><option value="Weiterleitender Port je Netzwerksegment">Weiterleitender Port je Netzwerksegment</option><option value="STP-Steuerframe fuer Informationsaustausch">STP-Steuerframe fuer Informationsaustausch</option><option value="Switch mit der niedrigsten Bridge-ID">Switch mit der niedrigsten Bridge-ID</option><option value="Protokoll fuer WLAN-Zugangsverwaltung">Protokoll fuer WLAN-Zugangsverwaltung</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Blocked Port</td>
+  <td><select class="match-sel" id="q18-sel-3" data-correct="Deaktivierter Port zur Schleifenverhinderung" onchange="checkMatchSel(this,'q18',5)">
+    <option value="">-- bitte wählen --</option><option value="Deaktivierter Port zur Schleifenverhinderung">Deaktivierter Port zur Schleifenverhinderung</option><option value="Port mit bestem Pfad zur Root Bridge">Port mit bestem Pfad zur Root Bridge</option><option value="Weiterleitender Port je Netzwerksegment">Weiterleitender Port je Netzwerksegment</option><option value="STP-Steuerframe fuer Informationsaustausch">STP-Steuerframe fuer Informationsaustausch</option><option value="Switch mit der niedrigsten Bridge-ID">Switch mit der niedrigsten Bridge-ID</option><option value="Protokoll fuer WLAN-Zugangsverwaltung">Protokoll fuer WLAN-Zugangsverwaltung</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">BPDU</td>
+  <td><select class="match-sel" id="q18-sel-4" data-correct="STP-Steuerframe fuer Informationsaustausch" onchange="checkMatchSel(this,'q18',5)">
+    <option value="">-- bitte wählen --</option><option value="Deaktivierter Port zur Schleifenverhinderung">Deaktivierter Port zur Schleifenverhinderung</option><option value="Port mit bestem Pfad zur Root Bridge">Port mit bestem Pfad zur Root Bridge</option><option value="Weiterleitender Port je Netzwerksegment">Weiterleitender Port je Netzwerksegment</option><option value="STP-Steuerframe fuer Informationsaustausch">STP-Steuerframe fuer Informationsaustausch</option><option value="Switch mit der niedrigsten Bridge-ID">Switch mit der niedrigsten Bridge-ID</option><option value="Protokoll fuer WLAN-Zugangsverwaltung">Protokoll fuer WLAN-Zugangsverwaltung</option>
+  </select></td>
+</tr></tbody>
+</table>
+<div class="feedback-box" id="q18-fb"></div>
+<div class="solution-hint" id="q18-sol" style="display:none">
+  <strong>Lösung:</strong> Root Bridge → Switch mit der niedrigsten Bridge-ID | Root Port → Port mit bestem Pfad zur Root Bridge | Designated Port → Weiterleitender Port je Netzwerksegment | Blocked Port → Deaktivierter Port zur Schleifenverhinderung | BPDU → STP-Steuerframe fuer Informationsaustausch
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Root Bridge: kleinste Bridge-ID. Root Port: bester Pfad zur Root. Designated Port: weiterleitend je Segment. Blocked Port: deaktiviert zur Schleifenverhinderung. BPDU: STP-Steuerframe.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q18-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q19">
+  <div class="question-header">
+    <span class="q-num">19</span>
+    <span class="q-title">L2-K3 STP Initialisierungsschritte</span>
+    <span class="q-badge type-ord">Reihenfolge</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<p style="color:var(--moodle-gray);font-size:12px">Klicken Sie die Elemente in der richtigen Reihenfolge an:</p>
+<ul class="ord-list" id="q19-list"><li class="ord-item" id="q19-item-0" onclick="selectOrdItem(this,'q19')" data-text="Root Bridge gewaehlt: kleinste Bridge-ID gewinnt">Root Bridge gewaehlt: kleinste Bridge-ID gewinnt</li><li class="ord-item" id="q19-item-1" onclick="selectOrdItem(this,'q19')" data-text="Designated Ports pro Netzwerksegment festlegen">Designated Ports pro Netzwerksegment festlegen</li><li class="ord-item" id="q19-item-2" onclick="selectOrdItem(this,'q19')" data-text="Root Ports je Switch bestimmen (guenstigster Pfad)">Root Ports je Switch bestimmen (guenstigster Pfad)</li><li class="ord-item" id="q19-item-3" onclick="selectOrdItem(this,'q19')" data-text="Verbleibende Ports blockieren (Schleifen verhindern)">Verbleibende Ports blockieren (Schleifen verhindern)</li><li class="ord-item" id="q19-item-4" onclick="selectOrdItem(this,'q19')" data-text="Alle Switches senden BPDUs mit eigener Bridge-ID">Alle Switches senden BPDUs mit eigener Bridge-ID</li></ul>
+<div class="ord-result" id="q19-result" style="margin-top:8px;font-size:13px;color:var(--moodle-gray)">Gewählte Reihenfolge: <em>noch keine Auswahl</em></div>
+<div style="margin-top:8px">
+  <button class="check-btn" onclick="checkOrdering('q19', ["Alle Switches senden BPDUs mit eigener Bridge-ID", "Root Bridge gewaehlt: kleinste Bridge-ID gewinnt", "Root Ports je Switch bestimmen (guenstigster Pfad)", "Designated Ports pro Netzwerksegment festlegen", "Verbleibende Ports blockieren (Schleifen verhindern)"])">Reihenfolge prüfen</button>
+  <button class="reset-btn" onclick="resetOrdering('q19')">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q19-fb"></div>
+<div class="solution-hint" id="q19-sol" style="display:none">
+  <strong>Lösung:</strong> Alle Switches senden BPDUs mit eigener Bridge-ID → Root Bridge gewaehlt: kleinste Bridge-ID gewinnt → Root Ports je Switch bestimmen (guenstigster Pfad) → Designated Ports pro Netzwerksegment festlegen → Verbleibende Ports blockieren (Schleifen verhindern)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>STP-Ablauf: 1. BPDUs senden 2. Root Bridge waehlen 3. Root Ports bestimmen 4. Designated Ports festlegen 5. Verbleibende Ports blockieren. Konvergenz: 30-50 Sekunden.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q19-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q20">
+  <div class="question-header">
+    <span class="q-num">20</span>
+    <span class="q-title">M1-K3 RSTP Portzustaende Lueckentext</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q20-pool"><span class="drag-chip" id="q20-chip-1" onclick="selectChip(this,'q20')" data-val="Discarding">Discarding</span> <span class="drag-chip" id="q20-chip-2" onclick="selectChip(this,'q20')" data-val="Learning">Learning</span> <span class="drag-chip" id="q20-chip-3" onclick="selectChip(this,'q20')" data-val="Forwarding">Forwarding</span> <span class="drag-chip" id="q20-chip-4" onclick="selectChip(this,'q20')" data-val="1">1</span> <span class="drag-chip" id="q20-chip-5" onclick="selectChip(this,'q20')" data-val="Blocking">Blocking</span> <span class="drag-chip" id="q20-chip-6" onclick="selectChip(this,'q20')" data-val="Listening">Listening</span> <span class="drag-chip" id="q20-chip-7" onclick="selectChip(this,'q20')" data-val="Passing">Passing</span> <span class="drag-chip" id="q20-chip-8" onclick="selectChip(this,'q20')" data-val="30">30</span> </div>
+<div class="question-gap-text"><p>Fuer ein redundantes Theater-Netzwerk wird RSTP (IEEE 802.1w) eingesetzt.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arrr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#343a40"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-size="14" font-weight="bold" fill="#212529">RSTP - Port-Zustaende (IEEE 802.1w)</text>
+  <rect x="14" y="35" width="130" height="38" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="79" y="59" text-anchor="middle" font-weight="bold" fill="#2f9e44">Discarding</text>
+  <rect x="180" y="35" width="130" height="38" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5" rx="4"/>
+  <text x="245" y="59" text-anchor="middle" font-weight="bold" fill="#664d03">Learning</text>
+  <rect x="346" y="35" width="130" height="38" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5" rx="4"/>
+  <text x="411" y="59" text-anchor="middle" font-weight="bold" fill="#1864ab">Forwarding</text>
+  <line x1="144" y1="54" x2="180" y2="54" stroke="#343a40" stroke-width="1.5" marker-end="url(#arrr)"/>
+  <line x1="310" y1="54" x2="346" y2="54" stroke="#343a40" stroke-width="1.5" marker-end="url(#arrr)"/>
+  <text x="14" y="96" font-size="11" fill="#495057">Discarding: kein Weiterleiten, kein Lernen (ersetzt Blocking+Listening aus STP)</text>
+  <text x="14" y="112" font-size="11" fill="#495057">Learning: lernt MAC-Adressen, leitet keinen Daten-Traffic weiter</text>
+  <text x="14" y="128" font-size="11" fill="#495057">Forwarding: normaler Betrieb, Traffic wird weitergeleitet</text>
+  <text x="14" y="146" font-size="11" fill="#495057">RSTP-Konvergenz: unter 1 Sekunde (vs. STP 30-50 Sekunden)</text>
+  <text x="14" y="162" font-size="11" fill="#495057">Port-Rollen: Root Port, Designated Port, Alternate Port, Backup Port</text>
+</svg><p>RSTP kennt die Port-Zustaende <span class="drop-slot" id="q20-slot-1" onclick="fillSlot(this,'q20')" data-correct="Discarding">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (kein Forwarding, kein Lernen), <span class="drop-slot" id="q20-slot-2" onclick="fillSlot(this,'q20')" data-correct="Learning">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (Lernen, kein Forwarding) und <span class="drop-slot" id="q20-slot-3" onclick="fillSlot(this,'q20')" data-correct="Forwarding">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (normaler Betrieb). Die RSTP-Konvergenzzeit ist unter <span class="drop-slot" id="q20-slot-4" onclick="fillSlot(this,'q20')" data-correct="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Sekunde.</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q20', 4)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q20', 8)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q20-fb"></div>
+<div class="solution-hint" id="q20-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = Discarding | [[2]] = Learning | [[3]] = Forwarding | [[4]] = 1
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>RSTP-Zustaende: Discarding (ersetzt Blocking+Listening), Learning, Forwarding. Konvergenz unter 1 Sekunde. RSTP ist rueckwaertskompatibel zu STP.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q20-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q21">
+  <div class="question-header">
+    <span class="q-num">21</span>
+    <span class="q-title">M2-K3 Redundanzverfahren Zuordnung</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<table class="match-table">
+  <thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead>
+  <tbody><tr>
+  <td class="match-left">LACP (IEEE 802.3ad)</td>
+  <td><select class="match-sel" id="q21-sel-0" data-correct="Mehrere physische Links zu einem logischen Kanal buendeln" onchange="checkMatchSel(this,'q21',4)">
+    <option value="">-- bitte wählen --</option><option value="Reservegeraet uebernimmt automatisch bei Ausfall">Reservegeraet uebernimmt automatisch bei Ausfall</option><option value="Broadcast-Schleifen durch Port-Blockierung verhindern">Broadcast-Schleifen durch Port-Blockierung verhindern</option><option value="Physisch geschlossen, logisch offen (ein Port blockiert)">Physisch geschlossen, logisch offen (ein Port blockiert)</option><option value="Automatische IP-Adress-Vergabe im Netz">Automatische IP-Adress-Vergabe im Netz</option><option value="Mehrere physische Links zu einem logischen Kanal buendeln">Mehrere physische Links zu einem logischen Kanal buendeln</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">STP / RSTP</td>
+  <td><select class="match-sel" id="q21-sel-1" data-correct="Broadcast-Schleifen durch Port-Blockierung verhindern" onchange="checkMatchSel(this,'q21',4)">
+    <option value="">-- bitte wählen --</option><option value="Reservegeraet uebernimmt automatisch bei Ausfall">Reservegeraet uebernimmt automatisch bei Ausfall</option><option value="Broadcast-Schleifen durch Port-Blockierung verhindern">Broadcast-Schleifen durch Port-Blockierung verhindern</option><option value="Physisch geschlossen, logisch offen (ein Port blockiert)">Physisch geschlossen, logisch offen (ein Port blockiert)</option><option value="Automatische IP-Adress-Vergabe im Netz">Automatische IP-Adress-Vergabe im Netz</option><option value="Mehrere physische Links zu einem logischen Kanal buendeln">Mehrere physische Links zu einem logischen Kanal buendeln</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Ring-Topologie</td>
+  <td><select class="match-sel" id="q21-sel-2" data-correct="Physisch geschlossen, logisch offen (ein Port blockiert)" onchange="checkMatchSel(this,'q21',4)">
+    <option value="">-- bitte wählen --</option><option value="Reservegeraet uebernimmt automatisch bei Ausfall">Reservegeraet uebernimmt automatisch bei Ausfall</option><option value="Broadcast-Schleifen durch Port-Blockierung verhindern">Broadcast-Schleifen durch Port-Blockierung verhindern</option><option value="Physisch geschlossen, logisch offen (ein Port blockiert)">Physisch geschlossen, logisch offen (ein Port blockiert)</option><option value="Automatische IP-Adress-Vergabe im Netz">Automatische IP-Adress-Vergabe im Netz</option><option value="Mehrere physische Links zu einem logischen Kanal buendeln">Mehrere physische Links zu einem logischen Kanal buendeln</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Hot-Standby / Failover</td>
+  <td><select class="match-sel" id="q21-sel-3" data-correct="Reservegeraet uebernimmt automatisch bei Ausfall" onchange="checkMatchSel(this,'q21',4)">
+    <option value="">-- bitte wählen --</option><option value="Reservegeraet uebernimmt automatisch bei Ausfall">Reservegeraet uebernimmt automatisch bei Ausfall</option><option value="Broadcast-Schleifen durch Port-Blockierung verhindern">Broadcast-Schleifen durch Port-Blockierung verhindern</option><option value="Physisch geschlossen, logisch offen (ein Port blockiert)">Physisch geschlossen, logisch offen (ein Port blockiert)</option><option value="Automatische IP-Adress-Vergabe im Netz">Automatische IP-Adress-Vergabe im Netz</option><option value="Mehrere physische Links zu einem logischen Kanal buendeln">Mehrere physische Links zu einem logischen Kanal buendeln</option>
+  </select></td>
+</tr></tbody>
+</table>
+<div class="feedback-box" id="q21-fb"></div>
+<div class="solution-hint" id="q21-sol" style="display:none">
+  <strong>Lösung:</strong> LACP (IEEE 802.3ad) → Mehrere physische Links zu einem logischen Kanal buendeln | STP / RSTP → Broadcast-Schleifen durch Port-Blockierung verhindern | Ring-Topologie → Physisch geschlossen, logisch offen (ein Port blockiert) | Hot-Standby / Failover → Reservegeraet uebernimmt automatisch bei Ausfall
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>LACP: physische Links buendeln. STP/RSTP: Schleifen verhindern. Ring-Topologie: physisch Ring, logisch Baum (STP blockiert). Hot-Standby: Reserve bei Ausfall.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q21-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q22">
+  <div class="question-header">
+    <span class="q-num">22</span>
+    <span class="q-title">M3-K3 LACP Konfigurationsschritte</span>
+    <span class="q-badge type-ord">Reihenfolge</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<p style="color:var(--moodle-gray);font-size:12px">Klicken Sie die Elemente in der richtigen Reihenfolge an:</p>
+<ul class="ord-list" id="q22-list"><li class="ord-item" id="q22-item-0" onclick="selectOrdItem(this,'q22')" data-text="LACP-Modus 'active' auf mind. einer Seite setzen">LACP-Modus "active" auf mind. einer Seite setzen</li><li class="ord-item" id="q22-item-1" onclick="selectOrdItem(this,'q22')" data-text="Status pruefen (show etherchannel summary)">Status pruefen (show etherchannel summary)</li><li class="ord-item" id="q22-item-2" onclick="selectOrdItem(this,'q22')" data-text="Port-Channel Interface anlegen (interface port-channel 1)">Port-Channel Interface anlegen (interface port-channel 1)</li><li class="ord-item" id="q22-item-3" onclick="selectOrdItem(this,'q22')" data-text="Trunk/Access-Modus fuer Port-Channel konfigurieren">Trunk/Access-Modus fuer Port-Channel konfigurieren</li><li class="ord-item" id="q22-item-4" onclick="selectOrdItem(this,'q22')" data-text="Physische Ports dem Port-Channel zuweisen">Physische Ports dem Port-Channel zuweisen</li></ul>
+<div class="ord-result" id="q22-result" style="margin-top:8px;font-size:13px;color:var(--moodle-gray)">Gewählte Reihenfolge: <em>noch keine Auswahl</em></div>
+<div style="margin-top:8px">
+  <button class="check-btn" onclick="checkOrdering('q22', ["Port-Channel Interface anlegen (interface port-channel 1)", "Physische Ports dem Port-Channel zuweisen", "LACP-Modus \"active\" auf mind. einer Seite setzen", "Status pruefen (show etherchannel summary)", "Trunk/Access-Modus fuer Port-Channel konfigurieren"])">Reihenfolge prüfen</button>
+  <button class="reset-btn" onclick="resetOrdering('q22')">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q22-fb"></div>
+<div class="solution-hint" id="q22-sol" style="display:none">
+  <strong>Lösung:</strong> Port-Channel Interface anlegen (interface port-channel 1) → Physische Ports dem Port-Channel zuweisen → LACP-Modus "active" auf mind. einer Seite setzen → Status pruefen (show etherchannel summary) → Trunk/Access-Modus fuer Port-Channel konfigurieren
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>1. Port-Channel anlegen. 2. Ports zuweisen (channel-group mode active). 3. LACP-Modus setzen (min. eine Seite "active"). 4. Status pruefen (show etherchannel summary). 5. Trunk/Access konfigurieren. Hinweis: "passive/passive" funktioniert nicht!</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q22-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ordering</span>
+  </div>
+</div>
+<div class="question-card" id="q23">
+  <div class="question-header">
+    <span class="q-num">23</span>
+    <span class="q-title">S1-K3 STP Pfadkosten Berechnung</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q23-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q23', 38, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q23-fb"></div>
+<div class="solution-hint" id="q23-sol" style="display:none">
+  <strong>Lösung:</strong> 38 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Alternativpfad: 19 + 19 = <strong>38</strong>. Da 38 &gt; 19 (Direktpfad), wird der Direktpfad bevorzugt. Der Link SW-B &rarr; SW-C wird als Alternate Port blockiert.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q23-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q24">
+  <div class="question-header">
+    <span class="q-num">24</span>
+    <span class="q-title">S2-K3 STP Blocked Port Analyse</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">3 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q24-pool"><span class="drag-chip" id="q24-chip-1" onclick="selectChip(this,'q24')" data-val="SW-A">SW-A</span> <span class="drag-chip" id="q24-chip-2" onclick="selectChip(this,'q24')" data-val="groessere">groessere</span> <span class="drag-chip" id="q24-chip-3" onclick="selectChip(this,'q24')" data-val="1">1</span> <span class="drag-chip" id="q24-chip-4" onclick="selectChip(this,'q24')" data-val="SW-B">SW-B</span> <span class="drag-chip" id="q24-chip-5" onclick="selectChip(this,'q24')" data-val="kleinere">kleinere</span> <span class="drag-chip" id="q24-chip-6" onclick="selectChip(this,'q24')" data-val="30">30</span> </div>
+<div class="question-gap-text"><p>In einem STP-Netz (Ring, 3 Switches): SW-A Priority 4096, SW-B Priority 8192, SW-C Priority 8192. MACs: SW-A=AA:AA, SW-B=BB:BB, SW-C=CC:CC.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="235" viewBox="0 0 560 235" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="235" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">STP-Topologie (4 Switches, Ring)</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="30" width="66" height="34"/>
+  <text x="260" y="76" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-A</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="60" y="120" width="66" height="34"/>
+  <text x="93" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-B</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="390" y="120" width="66" height="34"/>
+  <text x="423" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-C</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="175" width="66" height="34"/>
+  <text x="260" y="221" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-D</text>
+  <line x1="260" y1="64" x2="93" y2="120" stroke="#343a40" stroke-width="2"/>
+  <line x1="260" y1="64" x2="423" y2="120" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="154" x2="260" y2="175" stroke="#343a40" stroke-width="2"/>
+  <line x1="423" y1="154" x2="260" y2="175" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="137" x2="423" y2="137" stroke="#e03131" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="258" y="133" text-anchor="middle" font-size="10" fill="#c92a2a">? (Zustand offen)</text>
+</svg><p>Die Root Bridge ist <span class="drop-slot" id="q24-slot-1" onclick="fillSlot(this,'q24')" data-correct="SW-A">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Der Port SW-C &rarr; SW-B wird blockiert, weil SW-C eine <span class="drop-slot" id="q24-slot-2" onclick="fillSlot(this,'q24')" data-correct="groessere">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> MAC-Adresse als SW-B hat. Bei RSTP konvergiert das Netz nach Ausfall in unter <span class="drop-slot" id="q24-slot-3" onclick="fillSlot(this,'q24')" data-correct="1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Sekunde(n).</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q24', 3)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q24', 6)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q24-fb"></div>
+<div class="solution-hint" id="q24-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = SW-A | [[2]] = groessere | [[3]] = 1
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Root Bridge = kleinste Bridge-ID: SW-A (Priority 4096 &lt; 8192). SW-B und SW-C: gleiche Priority 8192, dann MAC-Vergleich: BB:BB &lt; CC:CC &rarr; SW-B gewinnt &rarr; SW-C blockiert seinen Port Richtung SW-B. RSTP: &lt;1 Sekunde.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q24-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q25">
+  <div class="question-header">
+    <span class="q-num">25</span>
+    <span class="q-title">S3-K3 LACP Bandbreite Berechnung</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q25-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q25', 4000, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q25-fb"></div>
+<div class="solution-hint" id="q25-sol" style="display:none">
+  <strong>Lösung:</strong> 4000 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>4 &times; 1000 Mbit/s = <strong>4000 Mbit/s</strong> (= 4 Gbit/s). Hinweis: LACP verteilt die Last per Flow - ein einzelner Flow kann nicht alle 4 GbE nutzen.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q25-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q26">
+  <div class="question-header">
+    <span class="q-num">26</span>
+    <span class="q-title">L1-K4 ArtNet Grundbegriffe Zuordnung</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<table class="match-table">
+  <thead><tr><th>Begriff</th><th>Zuordnung</th></tr></thead>
+  <tbody><tr>
+  <td class="match-left">ArtDmx</td>
+  <td><select class="match-sel" id="q26-sel-0" data-correct="Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet" onchange="checkMatchSel(this,'q26',4)">
+    <option value="">-- bitte wählen --</option><option value="Geraet, das ArtNet-Pakete in DMX-Signal wandelt">Geraet, das ArtNet-Pakete in DMX-Signal wandelt</option><option value="Paket zur Suche von ArtNet-Knoten im Netzwerk">Paket zur Suche von ArtNet-Knoten im Netzwerk</option><option value="512 DMX-Kanaele als logische Einheit">512 DMX-Kanaele als logische Einheit</option><option value="Protokoll fuer Audionetzwerke">Protokoll fuer Audionetzwerke</option><option value="Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet">Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">ArtPoll</td>
+  <td><select class="match-sel" id="q26-sel-1" data-correct="Paket zur Suche von ArtNet-Knoten im Netzwerk" onchange="checkMatchSel(this,'q26',4)">
+    <option value="">-- bitte wählen --</option><option value="Geraet, das ArtNet-Pakete in DMX-Signal wandelt">Geraet, das ArtNet-Pakete in DMX-Signal wandelt</option><option value="Paket zur Suche von ArtNet-Knoten im Netzwerk">Paket zur Suche von ArtNet-Knoten im Netzwerk</option><option value="512 DMX-Kanaele als logische Einheit">512 DMX-Kanaele als logische Einheit</option><option value="Protokoll fuer Audionetzwerke">Protokoll fuer Audionetzwerke</option><option value="Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet">Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">Universe (Universum)</td>
+  <td><select class="match-sel" id="q26-sel-2" data-correct="512 DMX-Kanaele als logische Einheit" onchange="checkMatchSel(this,'q26',4)">
+    <option value="">-- bitte wählen --</option><option value="Geraet, das ArtNet-Pakete in DMX-Signal wandelt">Geraet, das ArtNet-Pakete in DMX-Signal wandelt</option><option value="Paket zur Suche von ArtNet-Knoten im Netzwerk">Paket zur Suche von ArtNet-Knoten im Netzwerk</option><option value="512 DMX-Kanaele als logische Einheit">512 DMX-Kanaele als logische Einheit</option><option value="Protokoll fuer Audionetzwerke">Protokoll fuer Audionetzwerke</option><option value="Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet">Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet</option>
+  </select></td>
+</tr><tr>
+  <td class="match-left">ArtNet-Node</td>
+  <td><select class="match-sel" id="q26-sel-3" data-correct="Geraet, das ArtNet-Pakete in DMX-Signal wandelt" onchange="checkMatchSel(this,'q26',4)">
+    <option value="">-- bitte wählen --</option><option value="Geraet, das ArtNet-Pakete in DMX-Signal wandelt">Geraet, das ArtNet-Pakete in DMX-Signal wandelt</option><option value="Paket zur Suche von ArtNet-Knoten im Netzwerk">Paket zur Suche von ArtNet-Knoten im Netzwerk</option><option value="512 DMX-Kanaele als logische Einheit">512 DMX-Kanaele als logische Einheit</option><option value="Protokoll fuer Audionetzwerke">Protokoll fuer Audionetzwerke</option><option value="Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet">Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet</option>
+  </select></td>
+</tr></tbody>
+</table>
+<div class="feedback-box" id="q26-fb"></div>
+<div class="solution-hint" id="q26-sol" style="display:none">
+  <strong>Lösung:</strong> ArtDmx → Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet | ArtPoll → Paket zur Suche von ArtNet-Knoten im Netzwerk | Universe (Universum) → 512 DMX-Kanaele als logische Einheit | ArtNet-Node → Geraet, das ArtNet-Pakete in DMX-Signal wandelt
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>ArtDmx: DMX-Lichtsteuerdaten. ArtPoll: Geraetesuche. Universe: 512 DMX-Kanaele. Node: wandelt ArtNet in DMX. Port 6454: UDP-Standardport.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q26-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddmatch</span>
+  </div>
+</div>
+<div class="question-card" id="q27">
+  <div class="question-header">
+    <span class="q-num">27</span>
+    <span class="q-title">L2-K4 ArtNet UDP Port</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q27-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q27', 6454, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q27-fb"></div>
+<div class="solution-hint" id="q27-sol" style="display:none">
+  <strong>Lösung:</strong> 6454 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>ArtNet nutzt UDP-Port <strong>6454</strong>. Der Port ist fest definiert und kann nicht geaendert werden. ArtNet-Pakete werden als UDP-Broadcast oder Unicast versendet.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q27-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q28">
+  <div class="question-header">
+    <span class="q-num">28</span>
+    <span class="q-title">M1-K4 ArtNet Paketfelder Lueckentext</span>
+    <span class="q-badge type-dnd">DnD-Text</span>
+    <span class="q-pts">4 Pkte</span>
+  </div>
+  <div class="question-body">
+    
+<div class="chip-pool" id="q28-pool"><span class="drag-chip" id="q28-chip-1" onclick="selectChip(this,'q28')" data-val="Art-Net">Art-Net</span> <span class="drag-chip" id="q28-chip-2" onclick="selectChip(this,'q28')" data-val="0x5000">0x5000</span> <span class="drag-chip" id="q28-chip-3" onclick="selectChip(this,'q28')" data-val="512">512</span> <span class="drag-chip" id="q28-chip-4" onclick="selectChip(this,'q28')" data-val="15">15</span> <span class="drag-chip" id="q28-chip-5" onclick="selectChip(this,'q28')" data-val="ArtNet-II">ArtNet-II</span> <span class="drag-chip" id="q28-chip-6" onclick="selectChip(this,'q28')" data-val="0x2000">0x2000</span> <span class="drag-chip" id="q28-chip-7" onclick="selectChip(this,'q28')" data-val="256">256</span> <span class="drag-chip" id="q28-chip-8" onclick="selectChip(this,'q28')" data-val="12">12</span> </div>
+<div class="question-gap-text"><p>Beim Analysieren eines ArtDmx-Pakets ergaenzen Sie die Beschreibung.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-size="14" font-weight="bold" fill="#212529">ArtDmx-Paket-Struktur</text>
+  <rect x="14" y="32" width="80" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <text x="54" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#2f9e44">ID</text>
+  <rect x="94" y="32" width="60" height="30" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="124" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#1864ab">OpCode</text>
+  <rect x="154" y="32" width="60" height="30" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="184" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#664d03">ProtVer</text>
+  <rect x="214" y="32" width="50" height="30" fill="#ffe8cc" stroke="#fd7e14" stroke-width="1.5"/>
+  <text x="239" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#7d3a00">Seq</text>
+  <rect x="264" y="32" width="50" height="30" fill="#f3d9fa" stroke="#cc5de8" stroke-width="1.5"/>
+  <text x="289" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#6741d9">Phys</text>
+  <rect x="314" y="32" width="70" height="30" fill="#ffd6cc" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="349" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#c92a2a">Universe</text>
+  <rect x="384" y="32" width="60" height="30" fill="#d0ebff" stroke="#4dabf7" stroke-width="1.5"/>
+  <text x="414" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#1c7ed6">Length</text>
+  <rect x="444" y="32" width="102" height="30" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5"/>
+  <text x="495" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#212529">DMX Data</text>
+  <text x="14" y="84" font-size="11" fill="#495057">ArtNet nutzt UDP Port 6454 | Broadcast oder Unicast</text>
+  <text x="14" y="100" font-size="11" fill="#495057">ID-Feld: "Art-Net" + Null-Terminator (8 Byte ASCII)</text>
+  <text x="14" y="116" font-size="11" fill="#495057">OpCode: 0x5000 = ArtDmx | 0x2000 = ArtPoll (Geraetesuche)</text>
+  <text x="14" y="132" font-size="11" fill="#495057">Universe: 15 Bit (Net 7 + SubNet 4 + Universe 4 Bit)</text>
+  <text x="14" y="148" font-size="11" fill="#495057">Length: 1 - 512 (Anzahl DMX-Kanaele in diesem Paket)</text>
+  <text x="14" y="164" font-size="11" fill="#495057">Sequence: verhindert Paketreihenfolgefehler (0 = deaktiviert)</text>
+</svg><p>Das ID-Feld enthaelt den String <span class="drop-slot" id="q28-slot-1" onclick="fillSlot(this,'q28')" data-correct="Art-Net">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Der OpCode fuer ArtDmx-Datenpakete ist <span class="drop-slot" id="q28-slot-2" onclick="fillSlot(this,'q28')" data-correct="0x5000">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Maximale Byte im Datenfeld: <span class="drop-slot" id="q28-slot-3" onclick="fillSlot(this,'q28')" data-correct="512">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. Die Universe-Adresse nutzt <span class="drop-slot" id="q28-slot-4" onclick="fillSlot(this,'q28')" data-correct="15">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Bit.</p></div>
+<div style="margin-top:10px">
+  <button class="check-btn" onclick="checkDdwtos('q28', 4)">Antwort prüfen</button>
+  <button class="reset-btn" onclick="resetDdwtos('q28', 8)">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q28-fb"></div>
+<div class="solution-hint" id="q28-sol" style="display:none">
+  <strong>Lösung:</strong> [[1]] = Art-Net | [[2]] = 0x5000 | [[3]] = 512 | [[4]] = 15
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>ID: "Art-Net" (8 Byte, Null-terminiert). OpCode: 0x5000 = ArtDmx. Max. Daten: 512 Byte. Universe: 15 Bit (Net 7 + SubNet 4 + Universe 4).</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q28-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ddwtos</span>
+  </div>
+</div>
+<div class="question-card" id="q29">
+  <div class="question-header">
+    <span class="q-num">29</span>
+    <span class="q-title">M2-K4 ArtNet max Universes berechnen</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<div style="margin: 10px 0">
+  <label style="font-size:13px">Ihre Antwort: </label>
+  <input type="number" id="q29-inp" class="num-input" placeholder="Zahl eingeben" step="any"/>
+  <button class="check-btn" onclick="checkNumerical('q29', 32768, 0)">Prüfen</button>
+</div>
+<div class="feedback-box" id="q29-fb"></div>
+<div class="solution-hint" id="q29-sol" style="display:none">
+  <strong>Lösung:</strong> 32768 (Toleranz: ±0)
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>7+4+4 = 15 Bit: 2<sup>15</sup> = <strong>32768</strong> Universen. Jedes mit 512 Kanaelen: 32768 &times; 512 = 16 777 216 DMX-Kanaele (theoretisch).</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q29-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">numerical</span>
+  </div>
+</div>
+<div class="question-card" id="q30">
+  <div class="question-header">
+    <span class="q-num">30</span>
+    <span class="q-title">S1-K4 ArtNet Signalweg Reihenfolge</span>
+    <span class="q-badge type-ord">Reihenfolge</span>
+    <span class="q-pts">1 Pkt</span>
+  </div>
+  <div class="question-body">
+    
+<p style="color:var(--moodle-gray);font-size:12px">Klicken Sie die Elemente in der richtigen Reihenfolge an:</p>
+<ul class="ord-list" id="q30-list"><li class="ord-item" id="q30-item-0" onclick="selectOrdItem(this,'q30')" data-text="Pult berechnet DMX-Kanalwert (0-255)">Pult berechnet DMX-Kanalwert (0-255)</li><li class="ord-item" id="q30-item-1" onclick="selectOrdItem(this,'q30')" data-text="Paket wird per Ethernet an ArtNet-Node gesendet">Paket wird per Ethernet an ArtNet-Node gesendet</li><li class="ord-item" id="q30-item-2" onclick="selectOrdItem(this,'q30')" data-text="DMX-Kanal steuert Dimmer / LED-Treiber">DMX-Kanal steuert Dimmer / LED-Treiber</li><li class="ord-item" id="q30-item-3" onclick="selectOrdItem(this,'q30')" data-text="Bediener bewegt Regler am Lichtpult">Bediener bewegt Regler am Lichtpult</li><li class="ord-item" id="q30-item-4" onclick="selectOrdItem(this,'q30')" data-text="Leuchte aendert Helligkeit">Leuchte aendert Helligkeit</li><li class="ord-item" id="q30-item-5" onclick="selectOrdItem(this,'q30')" data-text="Pult erstellt ArtDmx-UDP-Paket">Pult erstellt ArtDmx-UDP-Paket</li><li class="ord-item" id="q30-item-6" onclick="selectOrdItem(this,'q30')" data-text="Node wandelt ArtNet-Paket in DMX512-Signal">Node wandelt ArtNet-Paket in DMX512-Signal</li></ul>
+<div class="ord-result" id="q30-result" style="margin-top:8px;font-size:13px;color:var(--moodle-gray)">Gewählte Reihenfolge: <em>noch keine Auswahl</em></div>
+<div style="margin-top:8px">
+  <button class="check-btn" onclick="checkOrdering('q30', ["Bediener bewegt Regler am Lichtpult", "Pult berechnet DMX-Kanalwert (0-255)", "Pult erstellt ArtDmx-UDP-Paket", "Paket wird per Ethernet an ArtNet-Node gesendet", "Node wandelt ArtNet-Paket in DMX512-Signal", "DMX-Kanal steuert Dimmer / LED-Treiber", "Leuchte aendert Helligkeit"])">Reihenfolge prüfen</button>
+  <button class="reset-btn" onclick="resetOrdering('q30')">Zurücksetzen</button>
+</div>
+<div class="feedback-box" id="q30-fb"></div>
+<div class="solution-hint" id="q30-sol" style="display:none">
+  <strong>Lösung:</strong> Bediener bewegt Regler am Lichtpult → Pult berechnet DMX-Kanalwert (0-255) → Pult erstellt ArtDmx-UDP-Paket → Paket wird per Ethernet an ArtNet-Node gesendet → Node wandelt ArtNet-Paket in DMX512-Signal → DMX-Kanal steuert Dimmer / LED-Treiber → Leuchte aendert Helligkeit
+</div>
+    <div class="general-fb"><strong>Erläuterung:</strong> <p>Signalweg: Regler bewegen &rarr; DMX-Kanalwert berechnen &rarr; ArtDmx-Paket erstellen &rarr; UDP-Paket senden &rarr; Node empfaengt &rarr; Node wandelt in DMX &rarr; Dimmer steuert Leuchte.</p></div>
+  </div>
+  <div class="question-footer">
+    <span class="q-status" id="q30-status">Offen</span>
+    <span style="color:var(--moodle-gray);font-size:11px">ordering</span>
+  </div>
+</div>
+  </div>
+
+  <div class="sidebar">
+    <div class="sidebar-card">
+      <div class="sidebar-title">Fragennavigation</div>
+      <div class="q-nav" id="q-nav"><div class="q-nav-item" id="nav-q01" onclick="scrollToQ(1)">1</div><div class="q-nav-item" id="nav-q02" onclick="scrollToQ(2)">2</div><div class="q-nav-item" id="nav-q03" onclick="scrollToQ(3)">3</div><div class="q-nav-item" id="nav-q04" onclick="scrollToQ(4)">4</div><div class="q-nav-item" id="nav-q05" onclick="scrollToQ(5)">5</div><div class="q-nav-item" id="nav-q06" onclick="scrollToQ(6)">6</div><div class="q-nav-item" id="nav-q07" onclick="scrollToQ(7)">7</div><div class="q-nav-item" id="nav-q08" onclick="scrollToQ(8)">8</div><div class="q-nav-item" id="nav-q09" onclick="scrollToQ(9)">9</div><div class="q-nav-item" id="nav-q10" onclick="scrollToQ(10)">10</div><div class="q-nav-item" id="nav-q11" onclick="scrollToQ(11)">11</div><div class="q-nav-item" id="nav-q12" onclick="scrollToQ(12)">12</div><div class="q-nav-item" id="nav-q13" onclick="scrollToQ(13)">13</div><div class="q-nav-item" id="nav-q14" onclick="scrollToQ(14)">14</div><div class="q-nav-item" id="nav-q15" onclick="scrollToQ(15)">15</div><div class="q-nav-item" id="nav-q16" onclick="scrollToQ(16)">16</div><div class="q-nav-item" id="nav-q17" onclick="scrollToQ(17)">17</div><div class="q-nav-item" id="nav-q18" onclick="scrollToQ(18)">18</div><div class="q-nav-item" id="nav-q19" onclick="scrollToQ(19)">19</div><div class="q-nav-item" id="nav-q20" onclick="scrollToQ(20)">20</div><div class="q-nav-item" id="nav-q21" onclick="scrollToQ(21)">21</div><div class="q-nav-item" id="nav-q22" onclick="scrollToQ(22)">22</div><div class="q-nav-item" id="nav-q23" onclick="scrollToQ(23)">23</div><div class="q-nav-item" id="nav-q24" onclick="scrollToQ(24)">24</div><div class="q-nav-item" id="nav-q25" onclick="scrollToQ(25)">25</div><div class="q-nav-item" id="nav-q26" onclick="scrollToQ(26)">26</div><div class="q-nav-item" id="nav-q27" onclick="scrollToQ(27)">27</div><div class="q-nav-item" id="nav-q28" onclick="scrollToQ(28)">28</div><div class="q-nav-item" id="nav-q29" onclick="scrollToQ(29)">29</div><div class="q-nav-item" id="nav-q30" onclick="scrollToQ(30)">30</div></div>
+      <div class="progress-bar-wrap">
+        <div class="progress-label" id="prog-label">Fortschritt: 0/30</div>
+        <div class="progress-bar"><div class="progress-fill" id="prog-fill"></div></div>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Lehrkraft-Werkzeuge</div>
+      <button class="teacher-btn" id="sol-toggle" onclick="toggleSolutions()">🔍 Lösung anzeigen</button>
+      <button class="teacher-btn" onclick="resetAll()">🔄 Neu beginnen</button>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sidebar-title">Kursinfos</div>
+      <div class="info-row"><span>Kurs:</span><span>LF10 VT</span></div>
+      <div class="info-row"><span>Kapitel:</span><span>Kap. 1–4</span></div>
+      <div class="info-row"><span>Fragen:</span><span>30</span></div>
+      <div class="info-row"><span>Gesamtpunkte:</span><span>77</span></div>
+      <div class="info-row"><span>Bearbeitungszeit:</span><span>60 Min.</span></div>
+      <div class="info-row" style="margin-top:6px;font-size:11px;color:#888">ddwtos: 8 | ddmatch: 7 | gapselect: 3 | ordering: 6 | numerical: 6</div>
+    </div>
+  </div>
+</div>
+
+<script>
+// === State ===
+let answeredCount = 0;
+let selectedChip = null;
+let selectedChipId = null;
+const TOTAL = 30;
+const solutionVisible = {val: false};
+const ordSelections = {};
+
+function scrollToQ(n) {
+  const el = document.getElementById('q' + String(n).padStart(2,'0'));
+  if (el) el.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function markAnswered(qid) {
+  const navEl = document.getElementById('nav-' + qid);
+  if (navEl && !navEl.classList.contains('answered')) {
+    navEl.classList.add('answered');
+    answeredCount++;
+    document.getElementById('prog-label').textContent = 'Fortschritt: ' + answeredCount + '/' + TOTAL;
+    document.getElementById('prog-fill').style.width = (answeredCount / TOTAL * 100) + '%';
+  }
+  const statusEl = document.getElementById(qid + '-status');
+  if (statusEl) { statusEl.textContent = 'Beantwortet'; statusEl.classList.add('answered'); }
+}
+
+function showFb(qid, msg, cls) {
+  const fb = document.getElementById(qid + '-fb');
+  if (!fb) return;
+  fb.textContent = msg;
+  fb.className = 'feedback-box show ' + cls;
+}
+
+// === ddwtos ===
+function selectChip(el, qid) {
+  if (el.classList.contains('used')) return;
+  if (selectedChipId === el.id) { el.classList.remove('selected'); selectedChip = null; selectedChipId = null; return; }
+  if (selectedChip) selectedChip.classList.remove('selected');
+  selectedChip = el;
+  selectedChipId = el.id;
+  el.classList.add('selected');
+}
+function fillSlot(slot, qid) {
+  if (!selectedChip) return;
+  const prev = slot.dataset.chipId;
+  if (prev) {
+    const prevChip = document.getElementById(prev);
+    if (prevChip) { prevChip.classList.remove('used'); prevChip.style.opacity=''; }
+  }
+  slot.textContent = selectedChip.dataset.val;
+  slot.dataset.chipId = selectedChipId;
+  slot.classList.add('filled');
+  selectedChip.classList.add('used');
+  selectedChip.classList.remove('selected');
+  selectedChip = null; selectedChipId = null;
+}
+function checkDdwtos(qid, gapCount) {
+  let allOk = true;
+  for (let g = 1; g <= gapCount; g++) {
+    const slot = document.getElementById(qid + '-slot-' + g);
+    if (!slot) continue;
+    const correct = slot.dataset.correct;
+    const filled = slot.textContent.trim();
+    if (filled === correct) { slot.classList.add('correct-slot'); slot.classList.remove('wrong-slot'); }
+    else { slot.classList.add('wrong-slot'); slot.classList.remove('correct-slot'); allOk = false; }
+  }
+  showFb(qid, allOk ? '✓ Alle Lücken korrekt!' : '✗ Einige Lücken sind falsch. Prüfen Sie die roten Lücken.', allOk ? 'correct' : 'incorrect');
+  markAnswered(qid);
+}
+function resetDdwtos(qid, chipCount) {
+  for (let c = 1; c <= chipCount; c++) {
+    const ch = document.getElementById(qid + '-chip-' + c);
+    if (ch) { ch.classList.remove('used','selected'); ch.style.opacity=''; }
+  }
+  const slots = document.querySelectorAll('[id^="' + qid + '-slot-"]');
+  slots.forEach(s => { s.textContent = '       '; s.dataset.chipId=''; s.classList.remove('filled','correct-slot','wrong-slot'); });
+  const fb = document.getElementById(qid+'-fb'); if(fb) fb.className='feedback-box';
+  selectedChip=null; selectedChipId=null;
+}
+
+// === ddmatch ===
+function checkMatchSel(sel, qid, total) {
+  const correct = sel.dataset.correct;
+  if (sel.value === correct) { sel.classList.add('correct-select'); sel.classList.remove('wrong-select'); }
+  else { sel.classList.add('wrong-select'); sel.classList.remove('correct-select'); }
+  const sels = document.querySelectorAll('[id^="' + qid + '-sel-"]');
+  const allFilled = Array.from(sels).every(s => s.value !== '');
+  if (allFilled) {
+    const allOk = Array.from(sels).every(s => s.value === s.dataset.correct);
+    showFb(qid, allOk ? '✓ Alle Zuordnungen korrekt!' : '✗ Einige Zuordnungen sind falsch.', allOk ? 'correct' : 'incorrect');
+    markAnswered(qid);
+  }
+}
+
+// === gapselect ===
+function checkGapSel(sel, qid, total) {
+  const correct = sel.dataset.correct;
+  if (sel.value === correct) { sel.classList.add('correct-cloze'); sel.classList.remove('wrong-cloze'); }
+  else { sel.classList.add('wrong-cloze'); sel.classList.remove('correct-cloze'); }
+  const sels = document.querySelectorAll('[id^="' + qid + '-gap-"]');
+  const allFilled = Array.from(sels).every(s => s.value !== '');
+  if (allFilled) {
+    const allOk = Array.from(sels).every(s => s.value === s.dataset.correct);
+    showFb(qid, allOk ? '✓ Alle Lücken korrekt!' : '✗ Einige Lücken sind falsch.', allOk ? 'correct' : 'incorrect');
+    markAnswered(qid);
+  }
+}
+
+// === ordering ===
+function selectOrdItem(el, qid) {
+  if (el.classList.contains('placed')) return;
+  if (!ordSelections[qid]) ordSelections[qid] = [];
+  el.classList.add('placed');
+  ordSelections[qid].push(el.dataset.text);
+  const res = document.getElementById(qid + '-result');
+  if (res) res.innerHTML = 'Gewählte Reihenfolge: <strong>' + ordSelections[qid].join(' → ') + '</strong>';
+}
+function checkOrdering(qid, correct) {
+  const sel = ordSelections[qid] || [];
+  const ok = JSON.stringify(sel) === JSON.stringify(correct);
+  showFb(qid, ok ? '✓ Reihenfolge korrekt!' : '✗ Die Reihenfolge stimmt nicht. Tipp: Lösung anzeigen.', ok ? 'correct' : 'incorrect');
+  const items = document.querySelectorAll('[id^="' + qid + '-item-"]');
+  items.forEach((item, i) => {
+    const pos = sel.indexOf(item.dataset.text);
+    if (pos >= 0 && correct[pos] === item.dataset.text) item.classList.add('correct-ord');
+    else if (pos >= 0) item.classList.add('wrong-ord');
+  });
+  markAnswered(qid);
+}
+function resetOrdering(qid) {
+  ordSelections[qid] = [];
+  const items = document.querySelectorAll('[id^="' + qid + '-item-"]');
+  items.forEach(item => item.classList.remove('placed','correct-ord','wrong-ord'));
+  const res = document.getElementById(qid+'-result');
+  if(res) res.innerHTML = 'Gewählte Reihenfolge: <em>noch keine Auswahl</em>';
+  const fb = document.getElementById(qid+'-fb'); if(fb) fb.className='feedback-box';
+}
+
+// === numerical ===
+function checkNumerical(qid, correct, tolerance) {
+  const inp = document.getElementById(qid + '-inp');
+  const val = parseFloat(inp.value);
+  if (isNaN(val)) { showFb(qid, '⚠ Bitte eine Zahl eingeben.', 'info'); return; }
+  const ok = Math.abs(val - correct) <= tolerance;
+  showFb(qid, ok ? '✓ Korrekt! ' + val + ' ist richtig.' : '✗ Falsch. Ihre Antwort: ' + val + ' — Erwartet: ' + correct + ' (±' + tolerance + ')', ok ? 'correct' : 'incorrect');
+  markAnswered(qid);
+}
+
+// === Teacher tools ===
+function toggleSolutions() {
+  solutionVisible.val = !solutionVisible.val;
+  const btn = document.getElementById('sol-toggle');
+  const hints = document.querySelectorAll('.solution-hint');
+  if (solutionVisible.val) {
+    hints.forEach(h => h.style.display = 'block');
+    btn.textContent = '🙈 Lösung verbergen';
+    btn.classList.add('active');
+  } else {
+    hints.forEach(h => h.style.display = 'none');
+    btn.textContent = '🔍 Lösung anzeigen';
+    btn.classList.remove('active');
+  }
+}
+
+function resetAll() {
+  if (!confirm('Quiz zurücksetzen? Alle Antworten werden gelöscht.')) return;
+  // Reset selects
+  document.querySelectorAll('.match-sel,.gap-sel').forEach(s => {
+    s.value = '';
+    s.className = s.classList.contains('match-sel') ? 'match-sel' : 'gap-sel';
+  });
+  // Reset chips
+  document.querySelectorAll('.drag-chip').forEach(c => { c.classList.remove('used','selected'); c.style.opacity=''; });
+  // Reset slots
+  document.querySelectorAll('.drop-slot').forEach(s => { s.textContent = '       '; s.dataset.chipId=''; s.classList.remove('filled','correct-slot','wrong-slot'); });
+  // Reset ordering
+  document.querySelectorAll('.ord-item').forEach(i => i.classList.remove('placed','correct-ord','wrong-ord'));
+  Object.keys(ordSelections).forEach(k => ordSelections[k] = []);
+  document.querySelectorAll('[id$="-result"]').forEach(r => r.innerHTML = 'Gewählte Reihenfolge: <em>noch keine Auswahl</em>');
+  // Reset inputs
+  document.querySelectorAll('.num-input').forEach(i => i.value = '');
+  // Reset feedback
+  document.querySelectorAll('.feedback-box').forEach(f => f.className = 'feedback-box');
+  // Reset solutions
+  if (solutionVisible.val) toggleSolutions();
+  // Reset nav
+  document.querySelectorAll('.q-nav-item').forEach(n => n.classList.remove('answered'));
+  document.querySelectorAll('.q-status').forEach(s => { s.textContent = 'Offen'; s.classList.remove('answered'); });
+  answeredCount = 0;
+  document.getElementById('prog-label').textContent = 'Fortschritt: 0/' + TOTAL;
+  document.getElementById('prog-fill').style.width = '0';
+  selectedChip = null; selectedChipId = null;
+}
+</script>
+</body>
+</html>

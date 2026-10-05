@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- Q1: ddwtos (5P) – ArtNet Grundlagen Lückentext -->
+<question type="ddwtos">
+  <name><text>ArtNet Grundlagen Lueckentext</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ergänzen Sie die fehlenden Begriffe: ArtNet ist ein <strong>[[1]]</strong>-freies Protokoll zur Übertragung von DMX512-Daten über Standard-<strong>[[2]]</strong>-Netzwerke. Es wurde 1998 von <em>Artistic Licence</em> entwickelt und nutzt das Transportprotokoll <strong>[[3]]</strong> auf Port <strong>[[4]]</strong>. ArtNet 4 unterstützt bis zu <strong>[[5]]</strong> Universen.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle fünf ArtNet-Grundlagen korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig. Überprüfe Protokoll, Port und Universum-Anzahl.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. ArtNet = royaltyfrei, Ethernet, UDP, Port 6454, 32.768 Universen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> royalty | Ethernet | UDP | 6454 | 32.768</p>]]></text></generalfeedback>
+  <dragbox><text>royalty</text><group>1</group></dragbox>
+  <dragbox><text>Ethernet</text><group>2</group></dragbox>
+  <dragbox><text>UDP</text><group>3</group></dragbox>
+  <dragbox><text>6454</text><group>4</group></dragbox>
+  <dragbox><text>32.768</text><group>5</group></dragbox>
+  <dragbox><text>proprietaer</text><group>1</group></dragbox>
+  <dragbox><text>WLAN</text><group>2</group></dragbox>
+  <dragbox><text>TCP</text><group>3</group></dragbox>
+  <dragbox><text>5568</text><group>4</group></dragbox>
+  <dragbox><text>512</text><group>5</group></dragbox>
+</question>
+
+<!-- Q2: ddmatch (5P) – OpCodes zuordnen -->
+<question type="ddmatch">
+  <name><text>ArtNet OpCodes</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jeden ArtNet-OpCode seiner Funktion zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Alle fünf OpCodes korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. ArtDMX=0x5000, ArtPoll=0x2000, ArtPollReply=0x2100, ArtNzs=0x5800, ArtRdm=0x6700.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>0x5000 ArtDMX | 0x2000 ArtPoll | 0x2100 ArtPollReply | 0x5800 ArtNzs | 0x6700 ArtRdm</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[<code>0x5000</code>]]></text><answer><text>ArtDMX – DMX-Kanalwerte senden (häufigster Pakettyp)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>0x2000</code>]]></text><answer><text>ArtPoll – Netzwerk nach verfügbaren ArtNet-Nodes abfragen</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>0x2100</code>]]></text><answer><text>ArtPollReply – Antwort eines Nodes auf eine ArtPoll-Anfrage</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>0x5800</code>]]></text><answer><text>ArtNzs – Non-Zero Start Code DMX übertragen</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[<code>0x6700</code>]]></text><answer><text>ArtRdm – Remote Device Management über ArtNet</text></answer></subquestion>
+</question>
+
+<!-- Q3: numerical (1P) – Universe-Globaladresse Net=1, Sub-Net=2, Uni=5 -->
+<question type="numerical">
+  <name><text>ArtNet Universum-Globaladresse 1</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Berechnen Sie die globale Universe-Adresse in ArtNet 4:</p><p style="text-align:center;font-family:monospace;background:#f0f9ff;padding:0.5rem;border-radius:4px;">Adresse = Net × 256 + Sub-Net × 16 + Universe</p><p><strong>Net = 1 &nbsp;|&nbsp; Sub-Net = 2 &nbsp;|&nbsp; Universe = 5</strong></p><p>Ergebnis:</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 1 × 256 + 2 × 16 + 5 = 256 + 32 + 5 = <strong>293</strong></p>]]></text></generalfeedback>
+  <answer fraction="100"><text>293</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- Q4: gapselect (3P) – IP-Bereiche -->
+<question type="gapselect">
+  <name><text>ArtNet IP-Bereiche</text></name>
+  <questiontext format="html"><text><![CDATA[<p>ArtNet definiert offiziell zwei IP-Adressbereiche: Der <strong>Primärbereich</strong> für professionelle Live-Events ist <strong>[[1]]</strong>. Der <strong>Sekundärbereich</strong> für Festinstallationen ist <strong>[[2]]</strong>. Beide Bereiche verwenden die Subnetzmaske <strong>[[3]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Alle drei Angaben korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig. Primär: 2.0.0.0/8, Sekundär: 10.0.0.0/8, Maske: 255.0.0.0</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. ArtNet: 2.0.0.0/8 (primär), 10.0.0.0/8 (sekundär), Maske 255.0.0.0</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 2.0.0.0/8 | 10.0.0.0/8 | 255.0.0.0</p>]]></text></generalfeedback>
+  <selectoption><text>2.0.0.0/8</text><group>1</group></selectoption>
+  <selectoption><text>10.0.0.0/8</text><group>1</group></selectoption>
+  <selectoption><text>192.168.0.0/16</text><group>1</group></selectoption>
+  <selectoption><text>10.0.0.0/8</text><group>2</group></selectoption>
+  <selectoption><text>172.16.0.0/12</text><group>2</group></selectoption>
+  <selectoption><text>192.168.0.0/16</text><group>2</group></selectoption>
+  <selectoption><text>255.0.0.0</text><group>3</group></selectoption>
+  <selectoption><text>255.255.0.0</text><group>3</group></selectoption>
+  <selectoption><text>255.255.255.0</text><group>3</group></selectoption>
+</question>
+
+<!-- Q5: numerical (1P) – Mindest-Universen für 1200 Kanäle -->
+<question type="numerical">
+  <name><text>ArtNet Mindest-Universen Berechnung</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Eine Veranstaltung nutzt Fixtures mit insgesamt <strong>1.200 DMX-Kanälen</strong>. Jedes ArtNet-Universum enthält maximal 512 Kanäle.</p><p>Wie viele Universen werden <strong>mindestens</strong> benötigt?</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 1200 ÷ 512 = 2,34 → aufgerundet = <strong>3 Universen</strong></p>]]></text></generalfeedback>
+  <answer fraction="100"><text>3</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- Q6: multichoice single (1P) – Warum UDP? -->
+<question type="multichoice">
+  <name><text>ArtNet Warum UDP</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Warum verwendet ArtNet das Transportprotokoll <strong>UDP</strong> statt TCP?</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. UDP ermöglicht Broadcast und verbindungslose Echtzeit-Übertragung ohne Retransmission-Overhead.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>UDP erlaubt <strong>Broadcast</strong> (ein Paket → alle Nodes gleichzeitig) ohne Verbindungsaufbau. Einzelne verlorene Pakete werden beim nächsten regulären Frame automatisch überschrieben – bei Lichtsteuerung akzeptabel.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[UDP erlaubt Broadcast-Übertragung und Echtzeit ohne Verbindungsaufbau – verlorene Pakete werden beim nächsten Frame überschrieben]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[TCP ist in Ethernet-Netzwerken nicht verfügbar und kann daher nicht genutzt werden]]></text><feedback format="html"><text><![CDATA[<p>Falsch. TCP wird in Ethernet-Netzwerken sehr wohl unterstützt.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[ArtNet-Nodes haben keine TCP-Implementierung und verarbeiten ausschließlich UDP-Pakete]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Viele Nodes unterstützen TCP für Konfigurationszwecke.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[UDP-Header sind wesentlich kleiner als TCP-Header und sparen damit erheblich Bandbreite im Netzwerk]]></text><feedback format="html"><text><![CDATA[<p>Teilweise richtig, aber der Hauptgrund ist die Broadcast-Fähigkeit und der fehlende Verbindungs-Overhead.</p>]]></text></feedback></answer>
+</question>
+
+<!-- Q7: ddwtos (4P) – ArtNet vs sACN -->
+<question type="ddwtos">
+  <name><text>ArtNet vs sACN Vergleich</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Vergleichen Sie ArtNet und sACN (E1.31): ArtNet überträgt primär per <strong>[[1]]</strong>, während sACN auf effizienteres <strong>[[2]]</strong> setzt. Der UDP-Port von ArtNet ist <strong>[[3]]</strong>, sACN verwendet Port <strong>[[4]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Sehr gut! ArtNet/sACN-Unterschiede korrekt erkannt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. ArtNet: Broadcast, Port 6454 | sACN: Multicast, Port 5568.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Broadcast | Multicast | 6454 | 5568</p>]]></text></generalfeedback>
+  <dragbox><text>Broadcast</text><group>1</group></dragbox>
+  <dragbox><text>Multicast</text><group>2</group></dragbox>
+  <dragbox><text>6454</text><group>3</group></dragbox>
+  <dragbox><text>5568</text><group>4</group></dragbox>
+  <dragbox><text>Unicast</text><group>1</group></dragbox>
+  <dragbox><text>Anycast</text><group>2</group></dragbox>
+  <dragbox><text>8080</text><group>3</group></dragbox>
+  <dragbox><text>4440</text><group>4</group></dragbox>
+</question>
+
+<!-- Q8: ordering (1P) – ArtNet-Paketfelder -->
+<question type="ordering">
+  <name><text>ArtNet Paketfelder Reihenfolge</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bringen Sie die Felder des ArtNet-DMX-Pakets (OpDMX) in die korrekte Reihenfolge – von vorne (Header) nach hinten (Nutzdaten):</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Korrekte Reihenfolge:</strong> Art-Net ID → OpCode → ProtVer → Sequence → Universe → Length → DMX Data</p>]]></text></generalfeedback>
+  <answer fraction="0"><text>Art-Net ID ("Art-Net\0", 8 Byte)</text></answer>
+  <answer fraction="0"><text>OpCode (2 Byte, z. B. 0x5000)</text></answer>
+  <answer fraction="0"><text>ProtVer (2 Byte, = 14 bei ArtNet 4)</text></answer>
+  <answer fraction="0"><text>Sequence (1 Byte, 0–255)</text></answer>
+  <answer fraction="0"><text>Universe (2 Byte, 0–32767)</text></answer>
+  <answer fraction="0"><text>Length (2 Byte, Anzahl Kanalwerte)</text></answer>
+  <answer fraction="0"><text>DMX Data (max. 512 Byte)</text></answer>
+</question>
+
+<!-- Q9: ddmatch (5P) – Paketfelder → Größe -->
+<question type="ddmatch">
+  <name><text>ArtNet Paketfelder Groessen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jedem Feld des ArtNet-DMX-Pakets die richtige Größe zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle Paketfelder korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. ID=8B, OpCode=2B, Sequence=1B, Universe=2B, DMX Data=max.512B.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Art-Net ID: 8 Byte | OpCode: 2 Byte | Sequence: 1 Byte | Universe: 2 Byte | DMX Data: max. 512 Byte</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Art-Net ID]]></text><answer><text>8 Byte (ASCII-String "Art-Net\0")</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[OpCode]]></text><answer><text>2 Byte (z. B. 0x5000 für ArtDMX)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Sequence]]></text><answer><text>1 Byte (Werte 0–255, Rollover)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Universe]]></text><answer><text>2 Byte (Werte 0–32767)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[DMX Data]]></text><answer><text>max. 512 Byte (Kanalwerte 0–255)</text></answer></subquestion>
+</question>
+
+<!-- Q10: numerical (1P) – Net=0, Sub-Net=1, Uni=3 → 19 -->
+<question type="numerical">
+  <name><text>ArtNet Universum-Globaladresse 2</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Berechnen Sie die globale Universe-Adresse nach: <code>Net × 256 + Sub-Net × 16 + Universe</code></p><p><strong>Net = 0 &nbsp;|&nbsp; Sub-Net = 1 &nbsp;|&nbsp; Universe = 3</strong></p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 0 × 256 + 1 × 16 + 3 = 0 + 16 + 3 = <strong>19</strong></p>]]></text></generalfeedback>
+  <answer fraction="100"><text>19</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- Q11: gapselect (3P) – ArtNet-Node Funktion -->
+<question type="gapselect">
+  <name><text>ArtNet Node Funktion</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ein ArtNet-Node empfängt ArtNet-Pakete über <strong>[[1]]</strong> und wandelt sie in klassisches <strong>[[2]]</strong>-Signal um. Ein Node mit 4 DMX-Ausgängen kann gleichzeitig <strong>[[3]]</strong> DMX-Kanäle ausgeben.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! ArtNet-Node-Funktion korrekt beschrieben.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Node: Ethernet → DMX512; 4 Ausgänge = 4 × 512 = 2048 Kanäle.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Ethernet | DMX512 | 2048</p>]]></text></generalfeedback>
+  <selectoption><text>Ethernet</text><group>1</group></selectoption>
+  <selectoption><text>WLAN (Wi-Fi)</text><group>1</group></selectoption>
+  <selectoption><text>Glasfaser</text><group>1</group></selectoption>
+  <selectoption><text>DMX512</text><group>2</group></selectoption>
+  <selectoption><text>Analog-Signal</text><group>2</group></selectoption>
+  <selectoption><text>MIDI</text><group>2</group></selectoption>
+  <selectoption><text>2048</text><group>3</group></selectoption>
+  <selectoption><text>512</text><group>3</group></selectoption>
+  <selectoption><text>4096</text><group>3</group></selectoption>
+</question>
+
+<!-- Q12: multichoice (1P) – Sequence-Counter -->
+<question type="multichoice">
+  <name><text>ArtNet Sequence Counter Funktion</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Wofür wird der <strong>Sequence-Counter</strong> im ArtNet-DMX-Paket verwendet?</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Der Sequence-Counter nummeriert Pakete, damit Out-of-Order-Pakete erkannt und verworfen werden.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Der Sequence-Counter zählt von 1 bis 255 (dann Rollover). Empfänger erkennen damit veraltete oder außer-der-Reihe eingegangene Pakete und verwerfen sie.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[Er nummeriert aufeinanderfolgende Pakete (1–255), damit der Empfänger Out-of-Order-Pakete erkennen und verwerfen kann]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Er zählt die Gesamtanzahl der im Netzwerk aktiven Universen und aktualisiert diese bei jeder Sendung]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Der Sequence-Counter hat nichts mit der Universum-Anzahl zu tun.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Er misst die Netzwerkverzögerung und hilft bei der automatischen Latenz-Optimierung des Netzwerks]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Der Sequence-Counter ist kein Zeitstempel und misst keine Latenz.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Er gibt die Protokollversion des sendenden Geräts an und ermöglicht Abwärtskompatibilität]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Die Protokollversion steht im Feld ProtVer, nicht im Sequence-Feld.</p>]]></text></feedback></answer>
+</question>
+
+<!-- Q13: ddmatch (5P) – ArtNet-Konzepte -->
+<question type="ddmatch">
+  <name><text>ArtNet Konzepte Zuordnung</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jeden Begriff seiner korrekten Bedeutung in ArtNet zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle ArtNet-Konzepte korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Wiederholen Sie die ArtNet-Grundlagen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Universe = 512 DMX-Kanäle | Sub-Net = 16 Universen (4-Bit) | Net = oberste Ebene (7-Bit) | Node = Ethernet→DMX | ArtPoll = Gerätesuche</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Universe]]></text><answer><text>Logische Gruppe von 512 DMX-Kanälen (ein kompletter DMX-Rahmen)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Sub-Net]]></text><answer><text>Fasst 16 Universen zusammen, 4-Bit-Feld (Werte 0–15)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Net]]></text><answer><text>Oberste Adresshierarchieebene in ArtNet 4, 7-Bit (Werte 0–127)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[ArtNet-Node]]></text><answer><text>Wandelt eingehende Ethernet-Pakete in DMX512-Signale für die Lichttechnik um</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[ArtPoll]]></text><answer><text>Pakettyp (OpCode 0x2000), mit dem ein Controller alle Nodes im Netzwerk sucht</text></answer></subquestion>
+</question>
+
+<!-- Q14: ddwtos (4P) – Adressierungsformel -->
+<question type="ddwtos">
+  <name><text>ArtNet Adressierungsformel</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ergänzen Sie die ArtNet-4-Adressierungsformel:<br>Globale Universe-Adresse = Net × <strong>[[1]]</strong> + Sub-Net × <strong>[[2]]</strong> + Universe.<br>Das Net-Feld ist <strong>[[3]]</strong> Bit breit (Werte 0–127). Das Sub-Net-Feld ist <strong>[[4]]</strong> Bit breit (Werte 0–15).</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Formel und Bitbreiten korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Formel: Net × 256 + Sub-Net × 16 + Universe; Net=7 Bit, Sub-Net=4 Bit.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 256 | 16 | 7 | 4</p>]]></text></generalfeedback>
+  <dragbox><text>256</text><group>1</group></dragbox>
+  <dragbox><text>16</text><group>2</group></dragbox>
+  <dragbox><text>7</text><group>3</group></dragbox>
+  <dragbox><text>4</text><group>4</group></dragbox>
+  <dragbox><text>512</text><group>1</group></dragbox>
+  <dragbox><text>32</text><group>2</group></dragbox>
+  <dragbox><text>8</text><group>3</group></dragbox>
+  <dragbox><text>6</text><group>4</group></dragbox>
+</question>
+
+<!-- Q15: ordering (1P) – ArtNet-Einrichtungsschritte -->
+<question type="ordering">
+  <name><text>ArtNet Einrichtungsschritte Reihenfolge</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bringen Sie die Schritte zur Inbetriebnahme eines ArtNet-Netzwerks in die korrekte Reihenfolge:</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Korrekte Reihenfolge:</strong> 1. Statische IPs 2.x.x.x vergeben → 2. Pult und Nodes an Switch anschließen → 3. Universe-Zuweisungen einstellen → 4. ArtPoll auslösen → 5. DMX-Fixtures anschließen und Startadressen setzen</p>]]></text></generalfeedback>
+  <answer fraction="0"><text>Statische IP-Adressen im Bereich 2.x.x.x mit Subnetzmaske 255.0.0.0 vergeben</text></answer>
+  <answer fraction="0"><text>Lichtpult und ArtNet-Nodes mit dem Netzwerk-Switch verbinden</text></answer>
+  <answer fraction="0"><text>Universe-Zuweisungen (welche Universe → welcher DMX-Ausgang) an jedem Node einstellen</text></answer>
+  <answer fraction="0"><text>ArtPoll-Scan auslösen – Pult erkennt und listet alle verfügbaren Nodes auf</text></answer>
+  <answer fraction="0"><text>DMX-Fixtures anschließen und Startadressen korrekt setzen</text></answer>
+</question>
+
+<!-- Q16: gapselect (3P) – Broadcast-Domain -->
+<question type="gapselect">
+  <name><text>ArtNet Broadcast-Domain</text></name>
+  <questiontext format="html"><text><![CDATA[<p>ArtNet-Geräte im Netzwerk <code>2.0.0.0/8</code> senden Broadcasts an die Adresse <strong>[[1]]</strong>. Das /8-Subnetz stellt sicher, dass alle Geräte in derselben <strong>[[2]]</strong> liegen. Der erste Oktett des offiziellen ArtNet-Primärbereichs ist <strong>[[3]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Broadcast-Konzept in ArtNet korrekt verstanden.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Broadcast: 2.255.255.255 | Broadcast-Domain | 2.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 2.255.255.255 | Broadcast-Domain | 2</p>]]></text></generalfeedback>
+  <selectoption><text>2.255.255.255</text><group>1</group></selectoption>
+  <selectoption><text>2.0.0.255</text><group>1</group></selectoption>
+  <selectoption><text>255.255.255.255</text><group>1</group></selectoption>
+  <selectoption><text>Broadcast-Domain</text><group>2</group></selectoption>
+  <selectoption><text>Routing-Zone</text><group>2</group></selectoption>
+  <selectoption><text>Collision-Domain</text><group>2</group></selectoption>
+  <selectoption><text>2</text><group>3</group></selectoption>
+  <selectoption><text>10</text><group>3</group></selectoption>
+  <selectoption><text>192</text><group>3</group></selectoption>
+</question>
+
+<!-- Q17: ddmatch (4P) – ArtNet vs sACN Eigenschaften -->
+<question type="ddmatch">
+  <name><text>ArtNet sACN Eigenschaftszuordnung</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jede Eigenschaft dem korrekten Protokoll zu: <strong>ArtNet</strong> oder <strong>sACN (E1.31)</strong>.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! ArtNet/sACN-Unterschiede korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. ArtNet: Artistic Licence, Broadcast, max. 32.768 Universen | sACN: ANSI E1.31, Multicast, max. 63.999.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>ArtNet: Hersteller-Standard von Artistic Licence, primär Broadcast, max. 32.768 Universen, sehr hohe Verbreitung bei Live-Events | sACN: ANSI/ESTA E1.31, Multicast, max. 63.999 Universen, bevorzugt bei Architektur/Studios</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Hersteller-Standard von Artistic Licence (kein ANSI/ESTA-Standard)]]></text><answer><text>ArtNet</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[ANSI/ESTA E1.31 standardisiert]]></text><answer><text>sACN</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Unterstützt maximal 32.768 Universen]]></text><answer><text>ArtNet</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Nutzt Multicast für geringere Netzwerklast bei vielen Universen]]></text><answer><text>sACN</text></answer></subquestion>
+</question>
+
+<!-- Q18: numerical (1P) – Net=3, Sub-Net=0, Uni=15 → 783 -->
+<question type="numerical">
+  <name><text>ArtNet Universum-Globaladresse 3</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Berechnen Sie die globale Universe-Adresse nach: <code>Net × 256 + Sub-Net × 16 + Universe</code></p><p><strong>Net = 3 &nbsp;|&nbsp; Sub-Net = 0 &nbsp;|&nbsp; Universe = 15</strong></p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 3 × 256 + 0 × 16 + 15 = 768 + 0 + 15 = <strong>783</strong></p>]]></text></generalfeedback>
+  <answer fraction="100"><text>783</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- Q19: multichoice multiple (2P) – Korrekte Aussagen -->
+<question type="multichoice">
+  <name><text>ArtNet Korrekte Aussagen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Welche <strong>zwei</strong> Aussagen zu ArtNet sind korrekt?</p>]]></text></questiontext>
+  <defaultgrade>2</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>false</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Beide korrekten Aussagen gefunden.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. ArtNet: 1998 von Artistic Licence, UDP Port 6454, max. 32.768 Universen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>ArtNet wurde 1998 von Artistic Licence entwickelt und überträgt DMX512-Daten per UDP über Ethernet. ArtNet 4 unterstützt max. 32.768 Universen.</p>]]></text></generalfeedback>
+  <answer fraction="50" format="html"><text><![CDATA[ArtNet wurde 1998 von der Firma Artistic Licence entwickelt und überträgt DMX512-Daten über Standard-Ethernet-Netzwerke]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="50" format="html"><text><![CDATA[ArtNet 4 unterstützt bis zu 32.768 DMX-Universen über ein einziges Netzwerkkabel]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-50" format="html"><text><![CDATA[ArtNet verwendet TCP auf Port 6454, um eine zuverlässige, quittierte Übertragung aller DMX-Kanalwerte zu garantieren]]></text><feedback format="html"><text><![CDATA[<p>Falsch. ArtNet nutzt UDP, nicht TCP – eine Quittierung gibt es nicht.</p>]]></text></feedback></answer>
+  <answer fraction="-50" format="html"><text><![CDATA[Für ArtNet sind ausschließlich private Netzwerkadressen wie 192.168.x.x als offizielle IP-Bereiche vorgeschrieben]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Offiziell vorgesehen sind 2.x.x.x (primär) und 10.x.x.x (sekundär).</p>]]></text></feedback></answer>
+</question>
+
+<!-- Q20: ddwtos mit SVG-Paketdiagramm (4P) -->
+<question type="ddwtos">
+  <name><text>ArtNet Paketstruktur Analyse</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Analysieren Sie das ArtNet-DMX-Paketdiagramm und ergänzen Sie die Beschreibung:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="620" height="110" viewBox="0 0 620 110" style="font-family:Arial,sans-serif;font-size:11px;display:block;margin:10px auto;max-width:100%;height:auto;">
+  <rect x="5" y="15" width="88" height="55" fill="#1e40af" stroke="#1e3a8a" stroke-width="1.5" rx="3"/>
+  <text x="49" y="35" text-anchor="middle" fill="white" font-weight="bold" font-size="11">Art-Net ID</text>
+  <text x="49" y="49" text-anchor="middle" fill="#93c5fd" font-size="10">"Art-Net\0"</text>
+  <text x="49" y="62" text-anchor="middle" fill="#93c5fd" font-size="10">8 Byte</text>
+  <rect x="98" y="15" width="68" height="55" fill="#1d4ed8" stroke="#1e3a8a" stroke-width="1.5" rx="3"/>
+  <text x="132" y="35" text-anchor="middle" fill="white" font-weight="bold" font-size="11">OpCode</text>
+  <text x="132" y="49" text-anchor="middle" fill="#bfdbfe" font-size="10">0x5000</text>
+  <text x="132" y="62" text-anchor="middle" fill="#bfdbfe" font-size="10">2 Byte</text>
+  <rect x="171" y="15" width="62" height="55" fill="#2563eb" stroke="#1e3a8a" stroke-width="1.5" rx="3"/>
+  <text x="202" y="35" text-anchor="middle" fill="white" font-weight="bold" font-size="11">ProtVer</text>
+  <text x="202" y="49" text-anchor="middle" fill="#bfdbfe" font-size="10">= 14</text>
+  <text x="202" y="62" text-anchor="middle" fill="#bfdbfe" font-size="10">2 Byte</text>
+  <rect x="238" y="15" width="68" height="55" fill="#3b82f6" stroke="#2563eb" stroke-width="1.5" rx="3"/>
+  <text x="272" y="35" text-anchor="middle" fill="white" font-weight="bold" font-size="11">Sequence</text>
+  <text x="272" y="49" text-anchor="middle" fill="#dbeafe" font-size="10">0–255</text>
+  <text x="272" y="62" text-anchor="middle" fill="#dbeafe" font-size="10">1 Byte</text>
+  <rect x="311" y="15" width="68" height="55" fill="#60a5fa" stroke="#3b82f6" stroke-width="1.5" rx="3"/>
+  <text x="345" y="35" text-anchor="middle" fill="#1e3a8a" font-weight="bold" font-size="11">Universe</text>
+  <text x="345" y="49" text-anchor="middle" fill="#1e40af" font-size="10">0–32767</text>
+  <text x="345" y="62" text-anchor="middle" fill="#1e40af" font-size="10">2 Byte</text>
+  <rect x="384" y="15" width="58" height="55" fill="#93c5fd" stroke="#60a5fa" stroke-width="1.5" rx="3"/>
+  <text x="413" y="35" text-anchor="middle" fill="#1e3a8a" font-weight="bold" font-size="11">Length</text>
+  <text x="413" y="49" text-anchor="middle" fill="#1e40af" font-size="10">2–512</text>
+  <text x="413" y="62" text-anchor="middle" fill="#1e40af" font-size="10">2 Byte</text>
+  <rect x="447" y="15" width="165" height="55" fill="#16a34a" stroke="#15803d" stroke-width="1.5" rx="3"/>
+  <text x="529" y="35" text-anchor="middle" fill="white" font-weight="bold" font-size="11">DMX Data</text>
+  <text x="529" y="49" text-anchor="middle" fill="#bbf7d0" font-size="10">Kanalwerte 0–255</text>
+  <text x="529" y="62" text-anchor="middle" fill="#bbf7d0" font-size="10">max. 512 Byte</text>
+  <text x="310" y="98" text-anchor="middle" fill="#6b7280" font-size="10">→ ArtNet-DMX-Paket (OpDMX) als UDP-Datagramm auf Port 6454 →</text>
+</svg>
+<p>Das erste Feld enthält die Protokollkennung <strong>[[1]]</strong>. Der OpCode <strong>[[2]]</strong> zeigt an, dass DMX-Kanalwerte übertragen werden (ArtDMX). Das Feld <strong>[[3]]</strong> zählt Pakete 0–255 zur Erkennung von <strong>[[4]]</strong>-Fehlern beim Empfänger.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Paketstruktur korrekt analysiert.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Lösung: "Art-Net\0" | 0x5000 | Sequence | Out-of-Order.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> "Art-Net\0" | 0x5000 | Sequence | Out-of-Order</p>]]></text></generalfeedback>
+  <dragbox><text>"Art-Net\0"</text><group>1</group></dragbox>
+  <dragbox><text>0x5000</text><group>2</group></dragbox>
+  <dragbox><text>Sequence</text><group>3</group></dragbox>
+  <dragbox><text>Out-of-Order</text><group>4</group></dragbox>
+  <dragbox><text>"ArtDMX"</text><group>1</group></dragbox>
+  <dragbox><text>0x2000</text><group>2</group></dragbox>
+  <dragbox><text>Universe</text><group>3</group></dragbox>
+  <dragbox><text>Paketverlust</text><group>4</group></dragbox>
+</question>
+
+</quiz>

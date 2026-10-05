@@ -1,0 +1,641 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Moodle-Vorschau – LF10 Kap. 3 Redundanz</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro:wght@400;600&display=swap" rel="stylesheet">
+<style>
+:root{--moodle-orange:#f98012;--moodle-orange-dark:#d4600a;--moodle-blue:#0f6cbf;--moodle-blue-light:#e8f4fd;--moodle-green:#1d7a1d;--moodle-green-light:#d4edda;--moodle-red:#ca3120;--moodle-red-light:#fde8e6;--moodle-gray:#6a737b;--moodle-gray-light:#f3f3f3;--moodle-border:#dee2e6;--moodle-text:#1d2125;--moodle-white:#fff;--radius:4px;--shadow:0 1px 3px rgba(0,0,0,.12),0 1px 2px rgba(0,0,0,.08)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;font-size:15px;background:#e9eaec;color:var(--moodle-text)}
+a{color:var(--moodle-blue)}
+svg{max-width:100%;height:auto}
+.site-header{background:var(--moodle-orange);height:52px;display:flex;align-items:center;padding:0 24px;justify-content:space-between;position:sticky;top:0;z-index:100}
+.site-header .logo{color:#fff;font-weight:700;font-size:1.1rem;letter-spacing:.5px}
+.site-header .breadcrumb{color:rgba(255,255,255,.8);font-size:.82rem}
+.quiz-header{background:#fff;border-bottom:1px solid var(--moodle-border);padding:20px 24px}
+.quiz-header-inner{max-width:900px;margin:0 auto;display:flex;align-items:center;gap:16px}
+.quiz-icon{width:48px;height:48px;background:var(--moodle-orange);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:1.6rem;flex-shrink:0}
+.quiz-meta h1{font-size:1.3rem;font-weight:700;margin-bottom:4px}
+.quiz-meta p{color:var(--moodle-gray);font-size:.88rem}
+.quiz-badges{margin-left:auto;display:flex;gap:8px;flex-wrap:wrap}
+.quiz-badge{padding:4px 10px;border-radius:20px;font-size:.8rem;font-weight:600;border:1px solid var(--moodle-border);background:#fff;color:var(--moodle-gray)}
+.main-wrap{max-width:900px;margin:24px auto;display:grid;grid-template-columns:1fr 220px;gap:20px;padding:0 16px}
+.questions{display:flex;flex-direction:column;gap:16px}
+.question-card{background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden}
+.question-header{background:var(--moodle-gray-light);border-bottom:1px solid var(--moodle-border);padding:10px 16px;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.q-num{background:var(--moodle-orange);color:#fff;font-weight:700;font-size:.82rem;border-radius:50%;width:26px;height:26px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0}
+.q-title{font-weight:600;font-size:.95rem;flex:1}
+.q-badge{font-size:.72rem;font-weight:600;padding:2px 7px;border-radius:10px;border:1px solid}
+.type-mc{background:#e8f4fd;color:#0f6cbf;border-color:#0f6cbf}
+.type-dnd{background:#f0fdf4;color:#166534;border-color:#166534}
+.type-match{background:#fefce8;color:#854d0e;border-color:#ca8a04}
+.type-cloze{background:#fdf4ff;color:#6b21a8;border-color:#9333ea}
+.type-order{background:#fff7ed;color:#9a3412;border-color:#ea580c}
+.type-num{background:#eff6ff;color:#1e40af;border-color:#3b82f6}
+.q-pts{font-size:.8rem;color:var(--moodle-gray);white-space:nowrap;margin-left:auto}
+.question-body{padding:18px 20px}
+.question-footer{background:var(--moodle-gray-light);border-top:1px solid var(--moodle-border);padding:6px 16px;display:flex;justify-content:space-between;font-size:.78rem;color:var(--moodle-gray)}
+.q-status{font-weight:600}
+.q-status.answered{color:var(--moodle-green)}
+.answer-option{display:flex;align-items:flex-start;gap:10px;padding:8px 10px;border:1px solid var(--moodle-border);border-radius:var(--radius);margin:5px 0;cursor:pointer;transition:background .15s}
+.answer-option:hover{background:var(--moodle-blue-light)}
+.answer-option.correct{background:var(--moodle-green-light);border-color:var(--moodle-green)}
+.answer-option.incorrect{background:var(--moodle-red-light);border-color:var(--moodle-red)}
+.answer-indicator{width:18px;height:18px;border:2px solid var(--moodle-border);flex-shrink:0;margin-top:2px;display:flex;align-items:center;justify-content:center;font-size:.75rem;transition:all .15s}
+.answer-indicator.selected{background:var(--moodle-blue);border-color:var(--moodle-blue);color:#fff}
+.answer-indicator.correct-ind{background:var(--moodle-green);border-color:var(--moodle-green);color:#fff}
+.answer-indicator.wrong-ind{background:var(--moodle-red);border-color:var(--moodle-red);color:#fff}
+.feedback-box{margin-top:12px;padding:10px 14px;border-radius:var(--radius);border-left:4px solid;font-size:.9rem;animation:fadeIn .2s ease}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:translateY(0)}}
+.feedback-box.correct{background:var(--moodle-green-light);border-color:var(--moodle-green)}
+.feedback-box.incorrect{background:var(--moodle-red-light);border-color:var(--moodle-red)}
+.feedback-box.info{background:var(--moodle-blue-light);border-color:var(--moodle-blue)}
+.match-table{width:100%;border-collapse:collapse;margin-top:8px}
+.match-table th{background:var(--moodle-gray-light);padding:7px 10px;text-align:left;font-size:.85rem;border:1px solid var(--moodle-border)}
+.match-table td{padding:6px 8px;border:1px solid var(--moodle-border);vertical-align:middle}
+.match-sel{width:100%;padding:5px;border:1px solid var(--moodle-border);border-radius:var(--radius);font-family:inherit;font-size:.9rem}
+.match-sel.correct-select{border-color:var(--moodle-green);background:var(--moodle-green-light)}
+.match-sel.wrong-select{border-color:var(--moodle-red);background:var(--moodle-red-light)}
+.gap-text{line-height:2.2;font-size:.95rem}
+.gap-sel{padding:3px 6px;border:1px solid var(--moodle-blue);border-radius:var(--radius);font-family:inherit;font-size:.9rem;background:#fff;cursor:pointer}
+.gap-sel.correct-cloze{border-color:var(--moodle-green);background:var(--moodle-green-light)}
+.gap-sel.wrong-cloze{border-color:var(--moodle-red);background:var(--moodle-red-light)}
+.chip-pool{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0;padding:10px;background:#f8f9fa;border-radius:var(--radius);border:1px dashed var(--moodle-border)}
+.drag-chip{padding:4px 10px;background:#fff;border:1px solid var(--moodle-blue);border-radius:20px;cursor:pointer;font-size:.88rem;transition:all .15s;user-select:none}
+.drag-chip:hover{background:var(--moodle-blue-light)}
+.drag-chip.selected-chip{background:var(--moodle-blue);color:#fff}
+.drag-chip.used{opacity:.4;pointer-events:none;background:#eee;border-color:#ccc}
+.drop-slot{display:inline-block;min-width:80px;padding:2px 6px;border-bottom:2px solid var(--moodle-blue);cursor:pointer;color:var(--moodle-blue);font-style:italic;transition:all .15s;border-radius:2px}
+.drop-slot:hover{background:var(--moodle-blue-light)}
+.drop-slot.filled{color:var(--moodle-text);font-style:normal;border-bottom-color:var(--moodle-gray)}
+.drop-slot.correct-slot{border-bottom-color:var(--moodle-green);color:var(--moodle-green);font-weight:600}
+.drop-slot.wrong-slot{border-bottom-color:var(--moodle-red);color:var(--moodle-red)}
+.order-list{list-style:none;margin:10px 0;padding:0}
+.order-item{padding:8px 12px;margin:4px 0;background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);cursor:grab;user-select:none;display:flex;align-items:center;gap:8px;transition:background .15s}
+.order-item::before{content:'⠿';color:var(--moodle-gray);font-size:1.1rem}
+.order-item:hover{background:var(--moodle-blue-light)}
+.order-item.correct-order{background:var(--moodle-green-light);border-color:var(--moodle-green)}
+.order-item.wrong-order{background:var(--moodle-red-light);border-color:var(--moodle-red)}
+.num-wrap{display:flex;align-items:center;gap:8px;margin:10px 0}
+.num-input{width:100px;padding:7px 10px;border:1px solid var(--moodle-border);border-radius:var(--radius);font-family:inherit;font-size:.95rem}
+.num-unit{color:var(--moodle-gray);font-size:.88rem}
+.check-btn{margin-top:10px;padding:7px 16px;background:var(--moodle-blue);color:#fff;border:none;border-radius:var(--radius);cursor:pointer;font-family:inherit;font-size:.88rem;font-weight:600;transition:background .15s}
+.check-btn:hover{background:var(--moodle-orange-dark)}
+.sidebar{position:sticky;top:72px;align-self:start;display:flex;flex-direction:column;gap:12px}
+.sidebar-card{background:#fff;border:1px solid var(--moodle-border);border-radius:var(--radius);box-shadow:var(--shadow);padding:14px}
+.sidebar-card h3{font-size:.8rem;font-weight:700;text-transform:uppercase;color:var(--moodle-gray);letter-spacing:.5px;margin-bottom:10px}
+.q-nav{display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-bottom:10px}
+.q-nav-btn{background:var(--moodle-gray-light);border:1px solid var(--moodle-border);border-radius:var(--radius);height:34px;display:flex;align-items:center;justify-content:center;font-size:.78rem;cursor:pointer;transition:all .15s;font-weight:600}
+.q-nav-btn:hover{background:var(--moodle-blue-light);border-color:var(--moodle-blue);color:var(--moodle-blue)}
+.q-nav-btn.done{background:var(--moodle-orange);color:#fff;border-color:var(--moodle-orange)}
+.course-info{font-size:.8rem;color:var(--moodle-gray);margin-top:4px;line-height:1.8}
+.progress-label{font-size:.78rem;color:var(--moodle-gray);margin-bottom:4px}
+.progress-bar{height:8px;background:#e9ecef;border-radius:4px;overflow:hidden}
+.progress-fill{height:100%;background:var(--moodle-orange);border-radius:4px;width:0%;transition:width .3s}
+.tool-btn{width:100%;padding:7px 10px;margin-bottom:6px;border-radius:var(--radius);border:1px solid var(--moodle-border);background:#fff;cursor:pointer;font-family:inherit;font-size:.82rem;font-weight:600;text-align:left;transition:all .15s}
+.tool-btn:hover{background:var(--moodle-gray-light)}
+.tool-btn.active{background:var(--moodle-green-light);border-color:var(--moodle-green);color:var(--moodle-green)}
+@media(max-width:700px){.main-wrap{grid-template-columns:1fr}.sidebar{position:static}.quiz-badges{display:none}}
+</style>
+</head>
+<body>
+<header class="site-header">
+  <div class="logo">moodle Vorschau</div>
+  <div class="breadcrumb">LF10 Kap. 3 &rsaquo; Redundanz in der Veranstaltungstechnik</div>
+</header>
+<div class="quiz-header">
+  <div class="quiz-header-inner">
+    <div class="quiz-icon">🔄</div>
+    <div class="quiz-meta">
+      <h1>Redundanz in der Veranstaltungstechnik</h1>
+      <p>LF10 Kapitel 3 &middot; Klasse 11 VT &middot; 20 Fragen</p>
+    </div>
+    <div class="quiz-badges">
+      <span class="quiz-badge">⏱ 40 Min.</span>
+      <span class="quiz-badge">🎯 56 Punkte</span>
+    </div>
+  </div>
+</div>
+<div class="main-wrap">
+  <div class="questions">
+    <div class="question-card" id="qcard1">
+  <div class="question-header">
+    <span class="q-num">1</span>
+    <span class="q-title">Redundanz-Arten</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">4 Punkte</span>
+  </div>
+  <div class="question-body"><p>Ordnen Sie die Redundanz-Arten den passenden Beschreibungen zu.</p><div class="match-wrap"><table class="match-table"><thead><tr><th>Begriff</th><th>Beschreibung</th></tr></thead><tbody><tr><td>Pfad-Redundanz</td><td><select class="match-sel" data-correct="Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B" onchange="checkMatch(this,1)"><option value="">-- wählen --</option><option value="STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um">STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um</option><option value="Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort">Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort</option><option value="Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B">Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B</option><option value="Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt">Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt</option></select></td></tr><tr><td>Protokoll-Redundanz</td><td><select class="match-sel" data-correct="STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um" onchange="checkMatch(this,1)"><option value="">-- wählen --</option><option value="STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um">STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um</option><option value="Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort">Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort</option><option value="Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B">Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B</option><option value="Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt">Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt</option></select></td></tr><tr><td>Link-Redundanz</td><td><select class="match-sel" data-correct="Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt" onchange="checkMatch(this,1)"><option value="">-- wählen --</option><option value="STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um">STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um</option><option value="Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort">Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort</option><option value="Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B">Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B</option><option value="Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt">Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt</option></select></td></tr><tr><td>Ger&#228;te-Redundanz</td><td><select class="match-sel" data-correct="Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort" onchange="checkMatch(this,1)"><option value="">-- wählen --</option><option value="STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um">STP/RSTP schalten bei Ausfall automatisch auf den alternativen Pfad um</option><option value="Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort">Zweiter Switch steht als Hot-Standby bereit und &#252;bernimmt bei Ausfall sofort</option><option value="Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B">Zwei physisch getrennte Kabelrouten verbinden Punkt A mit Punkt B</option><option value="Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt">Mehrere Ports werden per LACP zu einem logischen Kanal geb&#252;ndelt</option></select></td></tr></tbody></table></div><div id="fb1" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status1" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddmatch</span>
+  </div>
+</div><div class="question-card" id="qcard2">
+  <div class="question-header">
+    <span class="q-num">2</span>
+    <span class="q-title">Warum Redundanz in VT?</span>
+    <span class="q-badge type-mc">Multiple Choice</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>Warum ist Redundanz in der Veranstaltungstechnik besonders kritisch?</p><div class="answer-option" onclick="checkMC(this,2,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Netzwerk-Redundanz ist kosteneffizient und wird haupts&#228;chlich bei kleinen Veranstaltungen eingesetzt</span></div><div class="answer-option" onclick="checkMC(this,2,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="true"></div><span>Live-Events sind nicht wiederholbar – ein Ausfall verursacht unwiederbringliche Produktionssch&#228;den und Vertragsstrafen</span></div><div class="answer-option" onclick="checkMC(this,2,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Redundante Systeme reduzieren den Stromverbrauch durch intelligente Lastverteilung erheblich</span></div><div class="answer-option" onclick="checkMC(this,2,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Netzwerk-Redundanz ist gesetzlich vorgeschrieben und muss bei jeder &#246;ffentlichen Veranstaltung nachgewiesen werden</span></div><div id="fb2" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status2" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">multichoice</span>
+  </div>
+</div><div class="question-card" id="qcard3">
+  <div class="question-header">
+    <span class="q-num">3</span>
+    <span class="q-title">STP Grundlagen</span>
+    <span class="q-badge type-cloze">Lückenauswahl</span>
+    <span class="q-pts">3 Punkte</span>
+  </div>
+  <div class="question-body"><p>Wähle die passenden Begriffe:</p><p class="gap-text">Das Spanning Tree Protocol (STP) wurde als IEEE <select class="gap-sel" data-correct="802.1D" onchange="checkGap(this,3)"><option value="">?</option><option value="Bandbreite">Bandbreite</option><option value="802.1w">802.1w</option><option value="802.3ad">802.3ad</option><option value="802.1Q">802.1Q</option><option value="2,1">2,1</option><option value="802.1D">802.1D</option></select> standardisiert. Es verhindert Netzwerk-<select class="gap-sel" data-correct="Schleifen" onchange="checkGap(this,3)"><option value="">?</option><option value="Ausf&#228;lle">Ausf&#228;lle</option><option value="18">18</option><option value="St&#252;rme">St&#252;rme</option><option value="Schleifen">Schleifen</option><option value="vollst&#228;ndig">vollst&#228;ndig</option><option value="Kollisionen">Kollisionen</option></select>, indem redundante Pfade logisch <select class="gap-sel" data-correct="blockiert" onchange="checkGap(this,3)"><option value="">?</option><option value="aktiviert">aktiviert</option><option value="No-Go">No-Go</option><option value="dupliziert">dupliziert</option><option value="immer">immer</option><option value="getrennt">getrennt</option><option value="Go">Go</option><option value="blockiert">blockiert</option></select> werden.</p><div id="fb3" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status3" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">gapselect</span>
+  </div>
+</div><div class="question-card" id="qcard4">
+  <div class="question-header">
+    <span class="q-num">4</span>
+    <span class="q-title">STP Port-Rollen</span>
+    <span class="q-badge type-dnd">Drag &amp; Drop</span>
+    <span class="q-pts">4 Punkte</span>
+  </div>
+  <div class="question-body"><p>Klicke einen Begriff an, dann klicke auf die passende Lücke:</p><div id="pool4" class="chip-pool"><span class="drag-chip" onclick="selectChip(this,4)">Passive Port</span><span class="drag-chip" onclick="selectChip(this,4)">Designated Port</span><span class="drag-chip" onclick="selectChip(this,4)">Backup Port</span><span class="drag-chip" onclick="selectChip(this,4)">Blocked Port</span><span class="drag-chip" onclick="selectChip(this,4)">Root Port</span><span class="drag-chip" onclick="selectChip(this,4)">Access Port</span><span class="drag-chip" onclick="selectChip(this,4)">Root Bridge</span><span class="drag-chip" onclick="selectChip(this,4)">Spanning Bridge</span></div><p class="gap-text">Der <span class="drop-slot" data-correct="Root Bridge" onclick="fillSlot(this,4)" data-qnr="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ist der Switch mit der niedrigsten Bridge-ID. Ports auf dem g&#252;nstigsten Pfad dorthin erhalten die Rolle <span class="drop-slot" data-correct="Root Port" onclick="fillSlot(this,4)" data-qnr="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>. In jedem Segment leitet genau ein <span class="drop-slot" data-correct="Designated Port" onclick="fillSlot(this,4)" data-qnr="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> weiter. Alle &#252;brigen Ports werden als <span class="drop-slot" data-correct="Blocked Port" onclick="fillSlot(this,4)" data-qnr="4">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> blockiert.</p><button class="check-btn" onclick="checkDnD(4)">Antwort prüfen</button><div id="fb4" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status4" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddwtos</span>
+  </div>
+</div><div class="question-card" id="qcard5">
+  <div class="question-header">
+    <span class="q-num">5</span>
+    <span class="q-title">STP-Varianten</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">4 Punkte</span>
+  </div>
+  <div class="question-body"><p>Ordnen Sie die STP-Varianten den richtigen Beschreibungen zu.</p><div class="match-wrap"><table class="match-table"><thead><tr><th>Begriff</th><th>Beschreibung</th></tr></thead><tbody><tr><td>PVST+</td><td><select class="match-sel" data-correct="Cisco-propriet&#228;r, ein STP-Prozess pro VLAN" onchange="checkMatch(this,5)"><option value="">-- wählen --</option><option value="Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen">Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen</option><option value="Originalstandard, Konvergenz bis zu 50 Sekunden">Originalstandard, Konvergenz bis zu 50 Sekunden</option><option value="Cisco-propriet&#228;r, ein STP-Prozess pro VLAN">Cisco-propriet&#228;r, ein STP-Prozess pro VLAN</option><option value="Rapid STP, Konvergenz typischerweise unter 1 Sekunde">Rapid STP, Konvergenz typischerweise unter 1 Sekunde</option></select></td></tr><tr><td>STP (IEEE 802.1D)</td><td><select class="match-sel" data-correct="Originalstandard, Konvergenz bis zu 50 Sekunden" onchange="checkMatch(this,5)"><option value="">-- wählen --</option><option value="Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen">Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen</option><option value="Originalstandard, Konvergenz bis zu 50 Sekunden">Originalstandard, Konvergenz bis zu 50 Sekunden</option><option value="Cisco-propriet&#228;r, ein STP-Prozess pro VLAN">Cisco-propriet&#228;r, ein STP-Prozess pro VLAN</option><option value="Rapid STP, Konvergenz typischerweise unter 1 Sekunde">Rapid STP, Konvergenz typischerweise unter 1 Sekunde</option></select></td></tr><tr><td>RSTP (IEEE 802.1w)</td><td><select class="match-sel" data-correct="Rapid STP, Konvergenz typischerweise unter 1 Sekunde" onchange="checkMatch(this,5)"><option value="">-- wählen --</option><option value="Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen">Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen</option><option value="Originalstandard, Konvergenz bis zu 50 Sekunden">Originalstandard, Konvergenz bis zu 50 Sekunden</option><option value="Cisco-propriet&#228;r, ein STP-Prozess pro VLAN">Cisco-propriet&#228;r, ein STP-Prozess pro VLAN</option><option value="Rapid STP, Konvergenz typischerweise unter 1 Sekunde">Rapid STP, Konvergenz typischerweise unter 1 Sekunde</option></select></td></tr><tr><td>MSTP (IEEE 802.1s)</td><td><select class="match-sel" data-correct="Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen" onchange="checkMatch(this,5)"><option value="">-- wählen --</option><option value="Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen">Multiple Spanning Trees f&#252;r verschiedene VLAN-Gruppen</option><option value="Originalstandard, Konvergenz bis zu 50 Sekunden">Originalstandard, Konvergenz bis zu 50 Sekunden</option><option value="Cisco-propriet&#228;r, ein STP-Prozess pro VLAN">Cisco-propriet&#228;r, ein STP-Prozess pro VLAN</option><option value="Rapid STP, Konvergenz typischerweise unter 1 Sekunde">Rapid STP, Konvergenz typischerweise unter 1 Sekunde</option></select></td></tr></tbody></table></div><div id="fb5" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status5" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddmatch</span>
+  </div>
+</div><div class="question-card" id="qcard6">
+  <div class="question-header">
+    <span class="q-num">6</span>
+    <span class="q-title">Root Bridge – Festival-Topologie</span>
+    <span class="q-badge type-mc">Multiple Choice</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>Die abgebildete Festival-Topologie zeigt f&#252;nf Switches. Welcher Switch sollte als Root Bridge konfiguriert werden?</p><svg xmlns="http://www.w3.org/2000/svg" width="660" height="375" viewBox="0 0 660 375" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;background:#f8f9fa;border-radius:8px;">
+  <line x1="200" y1="67" x2="430" y2="67" stroke="#495057" stroke-width="2"/>
+  <line x1="200" y1="67" x2="80" y2="217" stroke="#495057" stroke-width="2"/>
+  <line x1="200" y1="67" x2="315" y2="297" stroke="#495057" stroke-width="2"/>
+  <line x1="430" y1="67" x2="580" y2="217" stroke="#495057" stroke-width="2"/>
+  <line x1="430" y1="67" x2="315" y2="297" stroke="#495057" stroke-width="2"/>
+  <line x1="80" y1="217" x2="315" y2="297" stroke="#868e96" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="167" y="50" width="66" height="34"/>
+  <text x="200" y="99" text-anchor="middle" font-size="12" font-weight="bold">CORE-SW-01</text>
+  <text x="200" y="112" text-anchor="middle" font-size="10" fill="#495057">Core</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="397" y="50" width="66" height="34"/>
+  <text x="430" y="99" text-anchor="middle" font-size="12" font-weight="bold">CORE-SW-02</text>
+  <text x="430" y="112" text-anchor="middle" font-size="10" fill="#495057">Core</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="47" y="200" width="66" height="34"/>
+  <text x="80" y="249" text-anchor="middle" font-size="12" font-weight="bold">MAIN-SW</text>
+  <text x="80" y="262" text-anchor="middle" font-size="10" fill="#495057">Main Stage</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="547" y="200" width="66" height="34"/>
+  <text x="580" y="249" text-anchor="middle" font-size="12" font-weight="bold">FOH-SW</text>
+  <text x="580" y="262" text-anchor="middle" font-size="10" fill="#495057">Front of House</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="282" y="280" width="66" height="34"/>
+  <text x="315" y="329" text-anchor="middle" font-size="12" font-weight="bold">BACK-SW</text>
+  <text x="315" y="342" text-anchor="middle" font-size="10" fill="#495057">Backstage</text>
+  <line x1="20" y1="362" x2="50" y2="362" stroke="#868e96" stroke-width="1.5" stroke-dasharray="6,3"/>
+  <text x="56" y="366" font-size="10" fill="#495057">Redundante Verbindung</text>
+  <line x1="210" y1="362" x2="240" y2="362" stroke="#495057" stroke-width="2"/>
+  <text x="246" y="366" font-size="10" fill="#495057">Primaere Verbindung</text>
+</svg><div class="answer-option" onclick="checkMC(this,6,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Der MAIN-SW (Hauptb&#252;hne), weil dort die meisten DMX-Ger&#228;te angeschlossen sind</span></div><div class="answer-option" onclick="checkMC(this,6,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="true"></div><span>Ein Core-Switch (CORE-SW-01 oder CORE-SW-02), weil er zentral liegt und alle anderen Switches optimal verbindet</span></div><div class="answer-option" onclick="checkMC(this,6,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Der Switch mit der h&#246;chsten MAC-Adresse f&#252;r konsistente Priorisierung</span></div><div class="answer-option" onclick="checkMC(this,6,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Der FOH-SW (Front of House), weil er an der wichtigsten Arbeitsposition des Tontechnikers sitzt</span></div><div id="fb6" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status6" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">multichoice</span>
+  </div>
+</div><div class="question-card" id="qcard7">
+  <div class="question-header">
+    <span class="q-num">7</span>
+    <span class="q-title">RSTP Details</span>
+    <span class="q-badge type-dnd">Drag &amp; Drop</span>
+    <span class="q-pts">5 Punkte</span>
+  </div>
+  <div class="question-body"><p>Klicke einen Begriff an, dann klicke auf die passende Lücke:</p><div id="pool7" class="chip-pool"><span class="drag-chip" onclick="selectChip(this,7)">PortFast</span><span class="drag-chip" onclick="selectChip(this,7)">STP-Bypass</span><span class="drag-chip" onclick="selectChip(this,7)">802.1w</span><span class="drag-chip" onclick="selectChip(this,7)">Topology-Change</span><span class="drag-chip" onclick="selectChip(this,7)">BPDU-Filter</span><span class="drag-chip" onclick="selectChip(this,7)">802.1Q</span><span class="drag-chip" onclick="selectChip(this,7)">30</span><span class="drag-chip" onclick="selectChip(this,7)">BPDU-Guard</span><span class="drag-chip" onclick="selectChip(this,7)">Topology-Update</span><span class="drag-chip" onclick="selectChip(this,7)">1</span></div><p class="gap-text">RSTP wurde als IEEE <span class="drop-slot" data-correct="802.1w" onclick="fillSlot(this,7)" data-qnr="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> standardisiert. Typischerweise konvergiert RSTP innerhalb von <span class="drop-slot" data-correct="1" onclick="fillSlot(this,7)" data-qnr="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> Sekunde(n). Bei Link-Ausfall sendet der Switch eine <span class="drop-slot" data-correct="Topology-Change" onclick="fillSlot(this,7)" data-qnr="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-Meldung. An Access-Ports aktiviert man <span class="drop-slot" data-correct="PortFast" onclick="fillSlot(this,7)" data-qnr="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>, um Lernphasen zu &#252;berspringen. Der <span class="drop-slot" data-correct="BPDU-Guard" onclick="fillSlot(this,7)" data-qnr="7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> sch&#252;tzt vor unerwarteten BPDUs.</p><button class="check-btn" onclick="checkDnD(7)">Antwort prüfen</button><div id="fb7" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status7" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddwtos</span>
+  </div>
+</div><div class="question-card" id="qcard8">
+  <div class="question-header">
+    <span class="q-num">8</span>
+    <span class="q-title">Redundante Links im Ring</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>Ein Festival-Netzwerk besteht aus 4 Switches im Ring (4 Links). Wie viele Links blockiert STP, damit keine Schleife entsteht?</p><div class="num-wrap"><input type="number" class="num-input" id="num8" placeholder="Zahl eingeben" /><span class="num-unit">Links</span><button class="check-btn" onclick="checkNum(8,1)">Prüfen</button></div><div id="fb8" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status8" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">numerical</span>
+  </div>
+</div><div class="question-card" id="qcard9">
+  <div class="question-header">
+    <span class="q-num">9</span>
+    <span class="q-title">Fehlerbilder im Betrieb</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">5 Punkte</span>
+  </div>
+  <div class="question-body"><p>Ordnen Sie die Fehlerbilder dem korrekten Netzwerkverhalten zu.</p><div class="match-wrap"><table class="match-table"><thead><tr><th>Begriff</th><th>Beschreibung</th></tr></thead><tbody><tr><td>Broadcast-Sturm (ohne STP)</td><td><select class="match-sel" data-correct="CPU-Last aller Switches steigt schlagartig auf 100 Prozent" onchange="checkMatch(this,9)"><option value="">-- wählen --</option><option value="CPU-Last aller Switches steigt schlagartig auf 100 Prozent">CPU-Last aller Switches steigt schlagartig auf 100 Prozent</option><option value="Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen">Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen</option><option value="Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie">Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie</option><option value="Port-Channel bleibt aktiv, kein Produktionsstopp">Port-Channel bleibt aktiv, kein Produktionsstopp</option><option value="Blockierter Port wechselt in den Forwarding-Zustand">Blockierter Port wechselt in den Forwarding-Zustand</option></select></td></tr><tr><td>RSTP-Failover</td><td><select class="match-sel" data-correct="Blockierter Port wechselt in den Forwarding-Zustand" onchange="checkMatch(this,9)"><option value="">-- wählen --</option><option value="CPU-Last aller Switches steigt schlagartig auf 100 Prozent">CPU-Last aller Switches steigt schlagartig auf 100 Prozent</option><option value="Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen">Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen</option><option value="Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie">Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie</option><option value="Port-Channel bleibt aktiv, kein Produktionsstopp">Port-Channel bleibt aktiv, kein Produktionsstopp</option><option value="Blockierter Port wechselt in den Forwarding-Zustand">Blockierter Port wechselt in den Forwarding-Zustand</option></select></td></tr><tr><td>Kompletter Switch-Ausfall</td><td><select class="match-sel" data-correct="Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie" onchange="checkMatch(this,9)"><option value="">-- wählen --</option><option value="CPU-Last aller Switches steigt schlagartig auf 100 Prozent">CPU-Last aller Switches steigt schlagartig auf 100 Prozent</option><option value="Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen">Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen</option><option value="Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie">Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie</option><option value="Port-Channel bleibt aktiv, kein Produktionsstopp">Port-Channel bleibt aktiv, kein Produktionsstopp</option><option value="Blockierter Port wechselt in den Forwarding-Zustand">Blockierter Port wechselt in den Forwarding-Zustand</option></select></td></tr><tr><td>LACP-Mitglied f&#228;llt aus</td><td><select class="match-sel" data-correct="Port-Channel bleibt aktiv, kein Produktionsstopp" onchange="checkMatch(this,9)"><option value="">-- wählen --</option><option value="CPU-Last aller Switches steigt schlagartig auf 100 Prozent">CPU-Last aller Switches steigt schlagartig auf 100 Prozent</option><option value="Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen">Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen</option><option value="Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie">Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie</option><option value="Port-Channel bleibt aktiv, kein Produktionsstopp">Port-Channel bleibt aktiv, kein Produktionsstopp</option><option value="Blockierter Port wechselt in den Forwarding-Zustand">Blockierter Port wechselt in den Forwarding-Zustand</option></select></td></tr><tr><td>Vollst&#228;ndiger Pfadverlust</td><td><select class="match-sel" data-correct="Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen" onchange="checkMatch(this,9)"><option value="">-- wählen --</option><option value="CPU-Last aller Switches steigt schlagartig auf 100 Prozent">CPU-Last aller Switches steigt schlagartig auf 100 Prozent</option><option value="Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen">Pakete erreichen das Ziel nicht mehr, Dienst vollst&#228;ndig unterbrochen</option><option value="Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie">Mehrere Nachbar-Switches verschwinden gleichzeitig aus der Topologie</option><option value="Port-Channel bleibt aktiv, kein Produktionsstopp">Port-Channel bleibt aktiv, kein Produktionsstopp</option><option value="Blockierter Port wechselt in den Forwarding-Zustand">Blockierter Port wechselt in den Forwarding-Zustand</option></select></td></tr></tbody></table></div><div id="fb9" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status9" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddmatch</span>
+  </div>
+</div><div class="question-card" id="qcard10">
+  <div class="question-header">
+    <span class="q-num">10</span>
+    <span class="q-title">STP-Port-Zust&#228;nde</span>
+    <span class="q-badge type-order">Reihenfolge</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>Bringen Sie die STP-Port-Zust&#228;nde in die richtige zeitliche Reihenfolge.</p><ol id="ordlist10" class="order-list"><li class="order-item" draggable="true" data-value="Learning">Learning</li><li class="order-item" draggable="true" data-value="Listening">Listening</li><li class="order-item" draggable="true" data-value="Blocking">Blocking</li><li class="order-item" draggable="true" data-value="Forwarding">Forwarding</li></ol><button class="check-btn" onclick="checkOrder(10,["Blocking","Listening","Learning","Forwarding"])">Reihenfolge prüfen</button><div id="fb10" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status10" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ordering</span>
+  </div>
+</div><div class="question-card" id="qcard11">
+  <div class="question-header">
+    <span class="q-num">11</span>
+    <span class="q-title">LACP vs. Ger&#228;te-Redundanz</span>
+    <span class="q-badge type-cloze">Lückenauswahl</span>
+    <span class="q-pts">3 Punkte</span>
+  </div>
+  <div class="question-body"><p>Wähle die passenden Begriffe:</p><p class="gap-text">LACP erh&#246;ht prim&#228;r die <select class="gap-sel" data-correct="Bandbreite" onchange="checkGap(this,11)"><option value="">?</option><option value="802.3ad">802.3ad</option><option value="2,1">2,1</option><option value="Bandbreite">Bandbreite</option><option value="802.1w">802.1w</option><option value="802.1Q">802.1Q</option></select> zwischen zwei Switches. F&#228;llt der gesamte Switch aus, helfen LACP-B&#252;ndel <select class="gap-sel" data-correct="nicht" onchange="checkGap(this,11)"><option value="">?</option><option value="18">18</option><option value="vollst&#228;ndig">vollst&#228;ndig</option><option value="St&#252;rme">St&#252;rme</option><option value="Kollisionen">Kollisionen</option><option value="Ausf&#228;lle">Ausf&#228;lle</option><option value="nicht">nicht</option></select>. F&#252;r Ger&#228;te-Redundanz ben&#246;tigt man mindestens <select class="gap-sel" data-correct="zwei" onchange="checkGap(this,11)"><option value="">?</option><option value="getrennt">getrennt</option><option value="immer">immer</option><option value="Go">Go</option><option value="aktiviert">aktiviert</option><option value="zwei">zwei</option><option value="No-Go">No-Go</option><option value="dupliziert">dupliziert</option></select> physisch getrennte Switches.</p><div id="fb11" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status11" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">gapselect</span>
+  </div>
+</div><div class="question-card" id="qcard12">
+  <div class="question-header">
+    <span class="q-num">12</span>
+    <span class="q-title">Zeitersparnis RSTP</span>
+    <span class="q-badge type-num">Numerisch</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>STP ben&#246;tigt 50 Sekunden, RSTP 1 Sekunde zur Konvergenz. Wie viele Sekunden spart RSTP bei einem Failover?</p><div class="num-wrap"><input type="number" class="num-input" id="num12" placeholder="Zahl eingeben" /><span class="num-unit">Sekunden</span><button class="check-btn" onclick="checkNum(12,49)">Prüfen</button></div><div id="fb12" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status12" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">numerical</span>
+  </div>
+</div><div class="question-card" id="qcard13">
+  <div class="question-header">
+    <span class="q-num">13</span>
+    <span class="q-title">LACP L&#252;ckentext</span>
+    <span class="q-badge type-dnd">Drag &amp; Drop</span>
+    <span class="q-pts">4 Punkte</span>
+  </div>
+  <div class="question-body"><p>Klicke einen Begriff an, dann klicke auf die passende Lücke:</p><div id="pool13" class="chip-pool"><span class="drag-chip" onclick="selectChip(this,13)">Switches</span><span class="drag-chip" onclick="selectChip(this,13)">Kabels</span><span class="drag-chip" onclick="selectChip(this,13)">Latenz</span><span class="drag-chip" onclick="selectChip(this,13)">LACP</span><span class="drag-chip" onclick="selectChip(this,13)">Ports</span><span class="drag-chip" onclick="selectChip(this,13)">LLDP</span><span class="drag-chip" onclick="selectChip(this,13)">Bandbreite</span><span class="drag-chip" onclick="selectChip(this,13)">VLANs</span></div><p class="gap-text">Link Aggregation Control Protocol (<span class="drop-slot" data-correct="LACP" onclick="fillSlot(this,13)" data-qnr="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> ) b&#252;ndelt mehrere physische <span class="drop-slot" data-correct="Ports" onclick="fillSlot(this,13)" data-qnr="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> zu einem logischen Kanal. Die Verbindung erh&#246;ht prim&#228;r die <span class="drop-slot" data-correct="Bandbreite" onclick="fillSlot(this,13)" data-qnr="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> und sch&#252;tzt gegen Ausfall eines einzelnen <span class="drop-slot" data-correct="Kabels" onclick="fillSlot(this,13)" data-qnr="13">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.</p><button class="check-btn" onclick="checkDnD(13)">Antwort prüfen</button><div id="fb13" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status13" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddwtos</span>
+  </div>
+</div><div class="question-card" id="qcard14">
+  <div class="question-header">
+    <span class="q-num">14</span>
+    <span class="q-title">Cisco STP-Konfigurationsbefehle</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">4 Punkte</span>
+  </div>
+  <div class="question-body"><p>Ordnen Sie die Cisco-IOS-Befehle der korrekten Funktion zu.</p><div class="match-wrap"><table class="match-table"><thead><tr><th>Begriff</th><th>Beschreibung</th></tr></thead><tbody><tr><td>spanning-tree mode rapid-pvst</td><td><select class="match-sel" data-correct="RSTP auf dem Switch aktivieren" onchange="checkMatch(this,14)"><option value="">-- wählen --</option><option value="Aktuellen STP-Status anzeigen">Aktuellen STP-Status anzeigen</option><option value="PortFast f&#252;r Access-Port konfigurieren">PortFast f&#252;r Access-Port konfigurieren</option><option value="Root Bridge f&#252;r VLAN 10 festlegen">Root Bridge f&#252;r VLAN 10 festlegen</option><option value="RSTP auf dem Switch aktivieren">RSTP auf dem Switch aktivieren</option></select></td></tr><tr><td>spanning-tree portfast</td><td><select class="match-sel" data-correct="PortFast f&#252;r Access-Port konfigurieren" onchange="checkMatch(this,14)"><option value="">-- wählen --</option><option value="Aktuellen STP-Status anzeigen">Aktuellen STP-Status anzeigen</option><option value="PortFast f&#252;r Access-Port konfigurieren">PortFast f&#252;r Access-Port konfigurieren</option><option value="Root Bridge f&#252;r VLAN 10 festlegen">Root Bridge f&#252;r VLAN 10 festlegen</option><option value="RSTP auf dem Switch aktivieren">RSTP auf dem Switch aktivieren</option></select></td></tr><tr><td>spanning-tree vlan 10 priority 0</td><td><select class="match-sel" data-correct="Root Bridge f&#252;r VLAN 10 festlegen" onchange="checkMatch(this,14)"><option value="">-- wählen --</option><option value="Aktuellen STP-Status anzeigen">Aktuellen STP-Status anzeigen</option><option value="PortFast f&#252;r Access-Port konfigurieren">PortFast f&#252;r Access-Port konfigurieren</option><option value="Root Bridge f&#252;r VLAN 10 festlegen">Root Bridge f&#252;r VLAN 10 festlegen</option><option value="RSTP auf dem Switch aktivieren">RSTP auf dem Switch aktivieren</option></select></td></tr><tr><td>show spanning-tree</td><td><select class="match-sel" data-correct="Aktuellen STP-Status anzeigen" onchange="checkMatch(this,14)"><option value="">-- wählen --</option><option value="Aktuellen STP-Status anzeigen">Aktuellen STP-Status anzeigen</option><option value="PortFast f&#252;r Access-Port konfigurieren">PortFast f&#252;r Access-Port konfigurieren</option><option value="Root Bridge f&#252;r VLAN 10 festlegen">Root Bridge f&#252;r VLAN 10 festlegen</option><option value="RSTP auf dem Switch aktivieren">RSTP auf dem Switch aktivieren</option></select></td></tr></tbody></table></div><div id="fb14" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status14" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddmatch</span>
+  </div>
+</div><div class="question-card" id="qcard15">
+  <div class="question-header">
+    <span class="q-num">15</span>
+    <span class="q-title">RSTP – korrekte Aussagen</span>
+    <span class="q-badge type-mc">Multiple Choice</span>
+    <span class="q-pts">3 Punkte</span>
+  </div>
+  <div class="question-body"><p>Welche der folgenden Aussagen zu RSTP (IEEE 802.1w) sind korrekt? (Mehrere Antworten m&#246;glich)</p><div class="answer-option" onclick="toggleMC(this,15)"><div class="answer-indicator" style="border-radius:3px" data-correct="true"></div><span>RSTP f&#252;hrt zwei neue Port-Rollen ein: Alternate Port und Backup Port</span></div><div class="answer-option" onclick="toggleMC(this,15)"><div class="answer-indicator" style="border-radius:3px" data-correct="true"></div><span>RSTP ist abw&#228;rtskompatibel zum urspr&#252;nglichen STP (IEEE 802.1D)</span></div><div class="answer-option" onclick="toggleMC(this,15)"><div class="answer-indicator" style="border-radius:3px" data-correct="true"></div><span>RSTP konvergiert typischerweise in weniger als einer Sekunde</span></div><div class="answer-option" onclick="toggleMC(this,15)"><div class="answer-indicator" style="border-radius:3px" data-correct="false"></div><span>RSTP erfordert zwingend eine VLAN-Konfiguration auf allen beteiligten Switches</span></div><div class="answer-option" onclick="toggleMC(this,15)"><div class="answer-indicator" style="border-radius:3px" data-correct="false"></div><span>RSTP deaktiviert alle redundanten Links im Netzwerk dauerhaft und unwiderruflich</span></div><button class="check-btn" onclick="checkMultiMC(15)">Antwort prüfen</button><div id="fb15" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status15" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">multichoice</span>
+  </div>
+</div><div class="question-card" id="qcard16">
+  <div class="question-header">
+    <span class="q-num">16</span>
+    <span class="q-title">Go / No-Go Abnahme</span>
+    <span class="q-badge type-cloze">Lückenauswahl</span>
+    <span class="q-pts">3 Punkte</span>
+  </div>
+  <div class="question-body"><p>Wähle die passenden Begriffe:</p><p class="gap-text">Failover Distribution-Bereich: <select class="gap-sel" data-correct="2,1" onchange="checkGap(this,16)"><option value="">?</option><option value="2,1">2,1</option><option value="802.1w">802.1w</option><option value="Bandbreite">Bandbreite</option><option value="802.1Q">802.1Q</option><option value="802.3ad">802.3ad</option></select> Sekunden Videounterbrechung. Access-Switch-Ausfall: <select class="gap-sel" data-correct="18" onchange="checkGap(this,16)"><option value="">?</option><option value="St&#252;rme">St&#252;rme</option><option value="Kollisionen">Kollisionen</option><option value="Ausf&#228;lle">Ausf&#228;lle</option><option value="18">18</option><option value="vollst&#228;ndig">vollst&#228;ndig</option></select> Sekunden ohne alternativen Pfad. Fehlende Alarmweiterleitung → Abnahme-Urteil: <select class="gap-sel" data-correct="No-Go" onchange="checkGap(this,16)"><option value="">?</option><option value="No-Go">No-Go</option><option value="aktiviert">aktiviert</option><option value="Go">Go</option><option value="immer">immer</option><option value="dupliziert">dupliziert</option><option value="getrennt">getrennt</option></select>.</p><div id="fb16" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status16" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">gapselect</span>
+  </div>
+</div><div class="question-card" id="qcard17">
+  <div class="question-header">
+    <span class="q-num">17</span>
+    <span class="q-title">6-Schritte-Methode</span>
+    <span class="q-badge type-order">Reihenfolge</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>Bringen Sie die Phasen der 6-Schritte-Methode in die richtige Reihenfolge.</p><ol id="ordlist17" class="order-list"><li class="order-item" draggable="true" data-value="Planen">Planen</li><li class="order-item" draggable="true" data-value="Bewerten">Bewerten</li><li class="order-item" draggable="true" data-value="Informieren">Informieren</li><li class="order-item" draggable="true" data-value="Ausf&#252;hren">Ausf&#252;hren</li><li class="order-item" draggable="true" data-value="Kontrollieren">Kontrollieren</li><li class="order-item" draggable="true" data-value="Entscheiden">Entscheiden</li></ol><button class="check-btn" onclick="checkOrder(17,["Informieren","Planen","Entscheiden","Ausführen","Kontrollieren","Bewerten"])">Reihenfolge prüfen</button><div id="fb17" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status17" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ordering</span>
+  </div>
+</div><div class="question-card" id="qcard18">
+  <div class="question-header">
+    <span class="q-num">18</span>
+    <span class="q-title">Ring-Topologie – STP-Verhalten</span>
+    <span class="q-badge type-mc">Multiple Choice</span>
+    <span class="q-pts">1 Punkt</span>
+  </div>
+  <div class="question-body"><p>In der abgebildeten Drei-Switch-Ring-Topologie ist SW-A die Root Bridge. Welche Aussage beschreibt das korrekte STP-Verhalten?</p><svg xmlns="http://www.w3.org/2000/svg" width="520" height="305" viewBox="0 0 520 305" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;background:#f8f9fa;border-radius:8px;">
+  <line x1="260" y1="47" x2="110" y2="207" stroke="#495057" stroke-width="2"/>
+  <line x1="260" y1="47" x2="410" y2="207" stroke="#495057" stroke-width="2"/>
+  <line x1="110" y1="207" x2="410" y2="207" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="30" width="66" height="34"/>
+  <text x="260" y="80" text-anchor="middle" font-size="12" font-weight="bold">SW-A</text>
+  <rect x="205" y="87" width="110" height="18" rx="4" fill="#fff3cd" stroke="#f0ad4e" stroke-width="1"/>
+  <text x="260" y="100" text-anchor="middle" font-size="10" fill="#856404">Root Bridge</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="77" y="190" width="66" height="34"/>
+  <text x="110" y="241" text-anchor="middle" font-size="12" font-weight="bold">SW-B</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="377" y="190" width="66" height="34"/>
+  <text x="410" y="241" text-anchor="middle" font-size="12" font-weight="bold">SW-C</text>
+</svg><div class="answer-option" onclick="checkMC(this,18,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>SW-A blockiert den Port zu SW-C, weil SW-C die schw&#228;chste Verbindung hat</span></div><div class="answer-option" onclick="checkMC(this,18,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>SW-B blockiert beide seiner Ports, da er nicht die Root Bridge ist</span></div><div class="answer-option" onclick="checkMC(this,18,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="false"></div><span>Alle Ports aller drei Switches leiten gleichzeitig weiter, da STP alle Pfade nutzt</span></div><div class="answer-option" onclick="checkMC(this,18,True)"><div class="answer-indicator" style="border-radius:50%" data-correct="true"></div><span>SW-C blockiert einen seiner Ports, damit im Netzwerk keine Schleife entsteht</span></div><div id="fb18" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status18" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">multichoice</span>
+  </div>
+</div><div class="question-card" id="qcard19">
+  <div class="question-header">
+    <span class="q-num">19</span>
+    <span class="q-title">Best Practices Redundanz</span>
+    <span class="q-badge type-mc">Multiple Choice</span>
+    <span class="q-pts">2 Punkte</span>
+  </div>
+  <div class="question-body"><p>Welche der folgenden Ma&#223;nahmen sind Best Practices bei der Redundanz-Konfiguration? (Mehrere Antworten m&#246;glich)</p><div class="answer-option" onclick="toggleMC(this,19)"><div class="answer-indicator" style="border-radius:3px" data-correct="true"></div><span>PortFast nur an Access-Ports zu Endger&#228;ten aktivieren, niemals an Uplink-Ports zwischen Switches</span></div><div class="answer-option" onclick="toggleMC(this,19)"><div class="answer-indicator" style="border-radius:3px" data-correct="false"></div><span>BPDU-Guard grunds&#228;tzlich an allen Uplink-Ports zwischen Switches aktivieren</span></div><div class="answer-option" onclick="toggleMC(this,19)"><div class="answer-indicator" style="border-radius:3px" data-correct="true"></div><span>Core-Switch mit einer niedrigen Bridge-Priority (z. B. 4096) als Root Bridge manuell konfigurieren</span></div><div class="answer-option" onclick="toggleMC(this,19)"><div class="answer-indicator" style="border-radius:3px" data-correct="false"></div><span>STP auf allen Switches deaktivieren, sobald LACP konfiguriert ist</span></div><button class="check-btn" onclick="checkMultiMC(19)">Antwort prüfen</button><div id="fb19" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status19" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">multichoice</span>
+  </div>
+</div><div class="question-card" id="qcard20">
+  <div class="question-header">
+    <span class="q-num">20</span>
+    <span class="q-title">Festival-VLAN QoS-Priorit&#228;ten</span>
+    <span class="q-badge type-match">Zuordnung</span>
+    <span class="q-pts">5 Punkte</span>
+  </div>
+  <div class="question-body"><p>Ordnen Sie den Festival-VLANs die richtige QoS-Priorit&#228;t zu.</p><div class="match-wrap"><table class="match-table"><thead><tr><th>Begriff</th><th>Beschreibung</th></tr></thead><tbody><tr><td>VLAN 10 – Audio und DMX</td><td><select class="match-sel" data-correct="H&#246;chste Priorit&#228;t (Real-Time-kritisch)" onchange="checkMatch(this,20)"><option value="">-- wählen --</option><option value="Mittlere Priorit&#228;t (gepuffert)">Mittlere Priorit&#228;t (gepuffert)</option><option value="Hohe Priorit&#228;t (zeitkritisch)">Hohe Priorit&#228;t (zeitkritisch)</option><option value="Niedrigste Priorit&#228;t (Best Effort)">Niedrigste Priorit&#228;t (Best Effort)</option><option value="Niedrige Priorit&#228;t (Hintergrundverkehr)">Niedrige Priorit&#228;t (Hintergrundverkehr)</option><option value="H&#246;chste Priorit&#228;t (Real-Time-kritisch)">H&#246;chste Priorit&#228;t (Real-Time-kritisch)</option></select></td></tr><tr><td>VLAN 30 – Streaming und Recording</td><td><select class="match-sel" data-correct="Mittlere Priorit&#228;t (gepuffert)" onchange="checkMatch(this,20)"><option value="">-- wählen --</option><option value="Mittlere Priorit&#228;t (gepuffert)">Mittlere Priorit&#228;t (gepuffert)</option><option value="Hohe Priorit&#228;t (zeitkritisch)">Hohe Priorit&#228;t (zeitkritisch)</option><option value="Niedrigste Priorit&#228;t (Best Effort)">Niedrigste Priorit&#228;t (Best Effort)</option><option value="Niedrige Priorit&#228;t (Hintergrundverkehr)">Niedrige Priorit&#228;t (Hintergrundverkehr)</option><option value="H&#246;chste Priorit&#228;t (Real-Time-kritisch)">H&#246;chste Priorit&#228;t (Real-Time-kritisch)</option></select></td></tr><tr><td>VLAN 20 – Video und ArtNet</td><td><select class="match-sel" data-correct="Hohe Priorit&#228;t (zeitkritisch)" onchange="checkMatch(this,20)"><option value="">-- wählen --</option><option value="Mittlere Priorit&#228;t (gepuffert)">Mittlere Priorit&#228;t (gepuffert)</option><option value="Hohe Priorit&#228;t (zeitkritisch)">Hohe Priorit&#228;t (zeitkritisch)</option><option value="Niedrigste Priorit&#228;t (Best Effort)">Niedrigste Priorit&#228;t (Best Effort)</option><option value="Niedrige Priorit&#228;t (Hintergrundverkehr)">Niedrige Priorit&#228;t (Hintergrundverkehr)</option><option value="H&#246;chste Priorit&#228;t (Real-Time-kritisch)">H&#246;chste Priorit&#228;t (Real-Time-kritisch)</option></select></td></tr><tr><td>VLAN 99 – G&#228;ste-WLAN</td><td><select class="match-sel" data-correct="Niedrigste Priorit&#228;t (Best Effort)" onchange="checkMatch(this,20)"><option value="">-- wählen --</option><option value="Mittlere Priorit&#228;t (gepuffert)">Mittlere Priorit&#228;t (gepuffert)</option><option value="Hohe Priorit&#228;t (zeitkritisch)">Hohe Priorit&#228;t (zeitkritisch)</option><option value="Niedrigste Priorit&#228;t (Best Effort)">Niedrigste Priorit&#228;t (Best Effort)</option><option value="Niedrige Priorit&#228;t (Hintergrundverkehr)">Niedrige Priorit&#228;t (Hintergrundverkehr)</option><option value="H&#246;chste Priorit&#228;t (Real-Time-kritisch)">H&#246;chste Priorit&#228;t (Real-Time-kritisch)</option></select></td></tr><tr><td>VLAN 40 – Management</td><td><select class="match-sel" data-correct="Niedrige Priorit&#228;t (Hintergrundverkehr)" onchange="checkMatch(this,20)"><option value="">-- wählen --</option><option value="Mittlere Priorit&#228;t (gepuffert)">Mittlere Priorit&#228;t (gepuffert)</option><option value="Hohe Priorit&#228;t (zeitkritisch)">Hohe Priorit&#228;t (zeitkritisch)</option><option value="Niedrigste Priorit&#228;t (Best Effort)">Niedrigste Priorit&#228;t (Best Effort)</option><option value="Niedrige Priorit&#228;t (Hintergrundverkehr)">Niedrige Priorit&#228;t (Hintergrundverkehr)</option><option value="H&#246;chste Priorit&#228;t (Real-Time-kritisch)">H&#246;chste Priorit&#228;t (Real-Time-kritisch)</option></select></td></tr></tbody></table></div><div id="fb20" class="feedback-box" style="display:none"></div></div>
+  <div class="question-footer">
+    <span id="status20" class="q-status">Nicht beantwortet</span>
+    <span class="q-type-label">ddmatch</span>
+  </div>
+</div>
+  </div>
+  <aside class="sidebar">
+    <div class="sidebar-card">
+      <h3>Fragennavigation</h3>
+      <div class="q-nav"><div class="q-nav-btn" id="nav1" onclick="scrollToQ(1)">1</div><div class="q-nav-btn" id="nav2" onclick="scrollToQ(2)">2</div><div class="q-nav-btn" id="nav3" onclick="scrollToQ(3)">3</div><div class="q-nav-btn" id="nav4" onclick="scrollToQ(4)">4</div><div class="q-nav-btn" id="nav5" onclick="scrollToQ(5)">5</div><div class="q-nav-btn" id="nav6" onclick="scrollToQ(6)">6</div><div class="q-nav-btn" id="nav7" onclick="scrollToQ(7)">7</div><div class="q-nav-btn" id="nav8" onclick="scrollToQ(8)">8</div><div class="q-nav-btn" id="nav9" onclick="scrollToQ(9)">9</div><div class="q-nav-btn" id="nav10" onclick="scrollToQ(10)">10</div><div class="q-nav-btn" id="nav11" onclick="scrollToQ(11)">11</div><div class="q-nav-btn" id="nav12" onclick="scrollToQ(12)">12</div><div class="q-nav-btn" id="nav13" onclick="scrollToQ(13)">13</div><div class="q-nav-btn" id="nav14" onclick="scrollToQ(14)">14</div><div class="q-nav-btn" id="nav15" onclick="scrollToQ(15)">15</div><div class="q-nav-btn" id="nav16" onclick="scrollToQ(16)">16</div><div class="q-nav-btn" id="nav17" onclick="scrollToQ(17)">17</div><div class="q-nav-btn" id="nav18" onclick="scrollToQ(18)">18</div><div class="q-nav-btn" id="nav19" onclick="scrollToQ(19)">19</div><div class="q-nav-btn" id="nav20" onclick="scrollToQ(20)">20</div></div>
+      <div class="progress-label">Fortschritt: <span id="progress-count">0</span>/20</div>
+      <div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div>
+      <div class="course-info">
+        <div><strong>Kurs:</strong> LF10 Netzwerktechnik</div>
+        <div><strong>Klasse:</strong> 11. Klasse VT</div>
+        <div><strong>Fragen:</strong> 20</div>
+        <div><strong>Punkte:</strong> 56</div>
+      </div>
+    </div>
+    <div class="sidebar-card">
+      <h3>Lehrkraft-Werkzeuge</h3>
+      <button class="tool-btn" id="toggleSolBtn" onclick="toggleSolutions()">🔍 Lösung anzeigen</button>
+      <button class="tool-btn" onclick="resetAll()">🔄 Neu beginnen</button>
+    </div>
+  </aside>
+</div>
+<script>
+var answered = 0;
+var solutionsVisible = false;
+var selectedChip = null;
+var selectedChipQnr = null;
+
+function scrollToQ(n) { document.getElementById('qcard'+n).scrollIntoView({behavior:'smooth',block:'start'}); }
+
+function markAnswered(n) {
+  var s = document.getElementById('status'+n);
+  if (s && !s.classList.contains('answered')) {
+    s.classList.add('answered'); s.textContent='Beantwortet';
+    document.getElementById('nav'+n).classList.add('done');
+    answered++; updateProgress();
+  }
+}
+function updateProgress() {
+  document.getElementById('progress-count').textContent = answered;
+  document.getElementById('progress-fill').style.width = (answered/20*100)+'%';
+}
+
+function showFb(nr, ok, msg) {
+  var el=document.getElementById('fb'+nr);
+  el.style.display='block'; el.className='feedback-box '+(ok?'correct':'incorrect');
+  el.innerHTML=msg;
+}
+
+// Multiple Choice Single
+function checkMC(el, nr, isSingle) {
+  var card=document.getElementById('qcard'+nr);
+  var opts=card.querySelectorAll('.answer-option');
+  opts.forEach(function(o){o.style.pointerEvents='none'});
+  var ind=el.querySelector('.answer-indicator');
+  var isRight=(ind.dataset.correct==='true');
+  if(isRight){el.classList.add('correct');ind.classList.add('correct-ind');ind.textContent='✓';showFb(nr,true,'✓ Richtig!');}
+  else{el.classList.add('incorrect');ind.classList.add('wrong-ind');ind.textContent='✗';
+    opts.forEach(function(o){if(o.querySelector('.answer-indicator').dataset.correct==='true'){o.classList.add('correct');}});
+    showFb(nr,false,'✗ Falsch. Die richtige Antwort ist grün markiert.');}
+  markAnswered(nr);
+}
+
+// Multiple Choice Multi
+function toggleMC(el, nr) {
+  var ind=el.querySelector('.answer-indicator');
+  el.classList.toggle('selected-mc');
+  if(el.classList.contains('selected-mc')){ind.classList.add('selected');ind.textContent='✓';}
+  else{ind.classList.remove('selected');ind.textContent='';}
+}
+function checkMultiMC(nr) {
+  var card=document.getElementById('qcard'+nr);
+  var opts=card.querySelectorAll('.answer-option');
+  opts.forEach(function(o){
+    var ind=o.querySelector('.answer-indicator');
+    var isRight=(ind.dataset.correct==='true');
+    var isSel=o.classList.contains('selected-mc');
+    o.style.pointerEvents='none';
+    if(isSel&&isRight){o.classList.add('correct');ind.classList.add('correct-ind');}
+    else if(isSel&&!isRight){o.classList.add('incorrect');ind.classList.add('wrong-ind');}
+    else if(!isSel&&isRight){o.style.border='2px solid var(--moodle-green)';}
+  });
+  markAnswered(nr);
+  var allRight=true;
+  opts.forEach(function(o){var isRight=(o.querySelector('.answer-indicator').dataset.correct==='true');var isSel=o.classList.contains('selected-mc');if((isRight&&!isSel)||(!isRight&&isSel))allRight=false;});
+  showFb(nr,allRight,allRight?'✓ Alle Antworten korrekt!':'✗ Nicht alle Antworten stimmen. Richtige sind grün markiert.');
+}
+
+// Match
+function checkMatch(sel, nr) {
+  var isRight=(sel.value===sel.dataset.correct);
+  sel.className='match-sel '+(isRight?'correct-select':'wrong-select');
+  var card=document.getElementById('qcard'+nr);
+  var allDone=true;
+  card.querySelectorAll('.match-sel').forEach(function(s){if(!s.value)allDone=false;});
+  if(allDone){
+    var allRight=true;
+    card.querySelectorAll('.match-sel').forEach(function(s){if(s.value!==s.dataset.correct)allRight=false;});
+    showFb(nr,allRight,allRight?'✓ Alle Zuordnungen korrekt!':'✗ Nicht alle Zuordnungen stimmen.');
+    markAnswered(nr);
+  }
+}
+
+// Gap Select
+function checkGap(sel, nr) {
+  var isRight=(sel.value===sel.dataset.correct);
+  sel.className='gap-sel '+(isRight?'correct-cloze':'wrong-cloze');
+  var card=document.getElementById('qcard'+nr);
+  var allDone=true;
+  card.querySelectorAll('.gap-sel').forEach(function(s){if(!s.value||s.value==='?')allDone=false;});
+  if(allDone){
+    var allRight=true;
+    card.querySelectorAll('.gap-sel').forEach(function(s){if(s.value!==s.dataset.correct)allRight=false;});
+    showFb(nr,allRight,allRight?'✓ Alle Lücken korrekt!':'✗ Nicht alle Lücken stimmen.');
+    markAnswered(nr);
+  }
+}
+
+// Drag & Drop (Click-based)
+function selectChip(el, nr) {
+  if(el.classList.contains('used'))return;
+  document.querySelectorAll('.drag-chip').forEach(function(c){c.classList.remove('selected-chip');});
+  el.classList.add('selected-chip');
+  selectedChip=el; selectedChipQnr=nr;
+}
+function fillSlot(slot, nr) {
+  if(!selectedChip||selectedChipQnr!==nr)return;
+  if(slot.dataset.filled&&slot.dataset.filled!==''){
+    var oldVal=slot.dataset.filled;
+    var pool=document.getElementById('pool'+nr);
+    pool.querySelectorAll('.drag-chip').forEach(function(c){if(c.textContent===oldVal)c.classList.remove('used');});
+  }
+  slot.textContent=selectedChip.textContent; slot.classList.add('filled');
+  slot.dataset.filled=selectedChip.textContent;
+  slot.classList.remove('correct-slot','wrong-slot');
+  selectedChip.classList.add('used'); selectedChip.classList.remove('selected-chip');
+  selectedChip=null; selectedChipQnr=null;
+}
+function checkDnD(nr) {
+  var card=document.getElementById('qcard'+nr);
+  var slots=card.querySelectorAll('.drop-slot');
+  var allRight=true;
+  slots.forEach(function(s){
+    var isRight=(s.dataset.filled===s.dataset.correct);
+    s.classList.remove('correct-slot','wrong-slot');
+    s.classList.add(isRight?'correct-slot':'wrong-slot');
+    if(!isRight)allRight=false;
+  });
+  showFb(nr,allRight,allRight?'✓ Alle Lücken korrekt!':'✗ Nicht alle Lücken stimmen. Grün = korrekt, Rot = falsch.');
+  markAnswered(nr);
+}
+
+// Ordering (Drag)
+var dragSrc=null;
+document.addEventListener('dragstart',function(e){if(e.target.classList.contains('order-item')){dragSrc=e.target;e.dataTransfer.effectAllowed='move';}});
+document.addEventListener('dragover',function(e){if(e.target.classList.contains('order-item'))e.preventDefault();});
+document.addEventListener('drop',function(e){
+  if(e.target.classList.contains('order-item')&&dragSrc&&e.target!==dragSrc){
+    e.preventDefault();
+    var list=e.target.parentNode;
+    var items=[].slice.call(list.children);
+    var srcIdx=items.indexOf(dragSrc); var tgtIdx=items.indexOf(e.target);
+    if(srcIdx<tgtIdx)list.insertBefore(dragSrc,e.target.nextSibling); else list.insertBefore(dragSrc,e.target);
+    dragSrc=null;
+  }
+});
+function checkOrder(nr, correct) {
+  var list=document.getElementById('ordlist'+nr);
+  var items=[].slice.call(list.children);
+  var allRight=true;
+  items.forEach(function(item,i){
+    item.classList.remove('correct-order','wrong-order');
+    var isRight=(item.dataset.value===correct[i]);
+    item.classList.add(isRight?'correct-order':'wrong-order');
+    if(!isRight)allRight=false;
+  });
+  showFb(nr,allRight,allRight?'✓ Reihenfolge korrekt!':'✗ Reihenfolge nicht korrekt. Grün = richtige Position.');
+  markAnswered(nr);
+}
+
+// Numerical
+function checkNum(nr, correct) {
+  var val=parseFloat(document.getElementById('num'+nr).value);
+  var ok=(val===correct);
+  showFb(nr,ok,ok?'✓ Richtig! Ergebnis: '+correct:'✗ Falsch. Richtige Antwort: '+correct);
+  markAnswered(nr);
+}
+
+// Lehrkraft-Werkzeuge
+function toggleSolutions() {
+  solutionsVisible=!solutionsVisible;
+  var btn=document.getElementById('toggleSolBtn');
+  if(solutionsVisible){
+    btn.textContent='🙈 Lösung verbergen'; btn.classList.add('active');
+    document.querySelectorAll('.answer-option').forEach(function(o){
+      var isRight=o.querySelector('.answer-indicator').dataset.correct==='true';
+      if(isRight){o.style.outline='2px solid var(--moodle-green)';o.style.background='var(--moodle-green-light)';}
+    });
+    document.querySelectorAll('.match-sel').forEach(function(s){
+      s.value=s.dataset.correct; s.className='match-sel correct-select';
+    });
+    document.querySelectorAll('.gap-sel').forEach(function(s){
+      s.value=s.dataset.correct; s.className='gap-sel correct-cloze';
+    });
+    document.querySelectorAll('.drop-slot').forEach(function(s){
+      s.textContent=s.dataset.correct; s.classList.add('filled','correct-slot'); s.dataset.filled=s.dataset.correct;
+    });
+  } else {
+    btn.textContent='🔍 Lösung anzeigen'; btn.classList.remove('active');
+    document.querySelectorAll('.answer-option').forEach(function(o){
+      o.style.outline=''; o.style.background='';
+    });
+  }
+}
+function resetAll() {
+  if(!confirm('Quiz zurücksetzen?'))return;
+  document.querySelectorAll('.answer-option').forEach(function(o){
+    o.classList.remove('correct','incorrect','selected-mc');
+    o.style.outline=''; o.style.background=''; o.style.pointerEvents='';
+    var ind=o.querySelector('.answer-indicator');
+    ind.className='answer-indicator'; ind.textContent='';
+  });
+  document.querySelectorAll('.match-sel').forEach(function(s){s.value='';s.className='match-sel';});
+  document.querySelectorAll('.gap-sel').forEach(function(s){s.value='';s.className='gap-sel';});
+  document.querySelectorAll('.drop-slot').forEach(function(s){
+    s.textContent='      '; s.classList.remove('filled','correct-slot','wrong-slot'); s.dataset.filled='';
+  });
+  document.querySelectorAll('.drag-chip').forEach(function(c){c.classList.remove('used','selected-chip');});
+  document.querySelectorAll('.order-item').forEach(function(i){i.classList.remove('correct-order','wrong-order');});
+  document.querySelectorAll('.num-input').forEach(function(i){i.value='';});
+  document.querySelectorAll('.feedback-box').forEach(function(f){f.style.display='none';});
+  document.querySelectorAll('.q-status').forEach(function(s){s.className='q-status';s.textContent='Nicht beantwortet';});
+  document.querySelectorAll('.q-nav-btn').forEach(function(b){b.classList.remove('done');});
+  answered=0; updateProgress(); solutionsVisible=false;
+  document.getElementById('toggleSolBtn').textContent='🔍 Lösung anzeigen';
+  document.getElementById('toggleSolBtn').classList.remove('active');
+}
+</script>
+</body>
+</html>

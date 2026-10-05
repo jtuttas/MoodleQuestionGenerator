@@ -431,6 +431,24 @@ Nach der XML-Erzeugung und Validierung wird **immer** eine vollständige, intera
 ```
 Einblendung via `animation: fadeIn .2s ease` (translateY -4px → 0).
 
+#### onclick-Attribut-Quoting — KRITISCH
+
+HTML-Attribute werden durch doppelte Anführungszeichen begrenzt. Wenn ein `onclick`-Attribut selbst Array-Literale mit String-Elementen enthält, **müssen** diese einfache Anführungszeichen verwenden — sonst bricht der HTML-Parser das Attribut nach dem ersten `"` ab und der Button ist dauerhaft defekt.
+
+**Falsch (bricht interaktivität):**
+```html
+<button onclick="checkDnd(1,["A","B","C"])">Antwort prüfen</button>
+```
+
+**Richtig:**
+```html
+<button onclick="checkDnd(1,['A','B','C'])">Antwort prüfen</button>
+```
+
+Diese Regel gilt für alle `check*`-Funktionen (`checkDnd`, `checkMatch`, `checkGap`, `checkOrdering`, `checkNum`) und jeden anderen `onclick`-Aufruf, der String-Argumente enthält.
+
+**Achtung:** Auch Strings, die Leerzeichen oder Sonderzeichen wie `(`, `)` enthalten (z.B. `'direkt (ueber SW-A)'`), müssen in einfachen Anführungszeichen stehen.
+
 #### Fortschritt & Navigation
 - `markAnswered(n)`: setzt Nav-Quadrat auf orange, inkrementiert Zähler, aktualisiert Fortschrittsbalken
 - Submit-Button prüft ob alle Fragen beantwortet, sonst Alert mit Hinweis

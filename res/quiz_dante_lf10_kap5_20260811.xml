@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- Q1: ddwtos (5P) – Dante Grundlagen Lückentext -->
+<question type="ddwtos">
+  <name><text>Dante Grundlagen Lueckentext</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ergänzen Sie die fehlenden Begriffe: Dante steht für <strong>[[1]]</strong> Audio Network Through Ethernet. Das Protokoll wurde vom Unternehmen <strong>[[2]]</strong> entwickelt. Audiosignale werden über <strong>[[3]]</strong> übertragen; der Audiostrom nutzt UDP mit Zieladressen im <strong>[[4]]</strong>-Bereich. Für die sample-genaue Zeitsynchronisation aller Geräte verwendet Dante das Protokoll <strong>[[5]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle fünf Dante-Grundlagen korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig. Überprüfe Unternehmensname, Übertragungsweg und Synchronisationsprotokoll.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht richtig. Dante = Digital, Audinate, Ethernet, Multicast 239.255.x.x, IEEE 1588v2 PTP.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Digital | Audinate | Ethernet | Multicast 239.255.x.x | IEEE 1588v2 (PTP)</p>]]></text></generalfeedback>
+  <dragbox><text>Digital</text><group>1</group></dragbox>
+  <dragbox><text>Audinate</text><group>2</group></dragbox>
+  <dragbox><text>Ethernet</text><group>3</group></dragbox>
+  <dragbox><text>Multicast 239.255.x.x</text><group>4</group></dragbox>
+  <dragbox><text>IEEE 1588v2 (PTP)</text><group>5</group></dragbox>
+  <dragbox><text>Distributed</text><group>1</group></dragbox>
+  <dragbox><text>Yamaha</text><group>2</group></dragbox>
+  <dragbox><text>WLAN</text><group>3</group></dragbox>
+  <dragbox><text>Broadcast 255.255.255.255</text><group>4</group></dragbox>
+  <dragbox><text>NTP (Network Time Protocol)</text><group>5</group></dragbox>
+</question>
+
+<!-- Q2: ddmatch (5P) – PTP-Rollen -->
+<question type="ddmatch">
+  <name><text>Dante PTP-Rollen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jede PTP-Rolle (IEEE 1588v2) ihrer korrekten Funktion im Dante-Netzwerk zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Alle fünf PTP-Rollen korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Grandmaster = primäre Zeitquelle | Preferred Master = Backup | Boundary Clock = verbindet Domänen | Ordinary Clock = Follower.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Grandmaster: primäre Zeitquelle | Preferred Master: Fallback-GM | Boundary Clock: verbindet PTP-Domänen | Ordinary Clock: empfängt Zeit | BMCA: wählt automatisch neuen GM</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Grandmaster (GM)]]></text><answer><text>Primäre Zeitquelle für das gesamte Dante-Netzwerk; alle anderen Geräte synchronisieren sich auf ihn</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Preferred Master]]></text><answer><text>Festgelegter Reservekandidat für die Grandmaster-Rolle; übernimmt automatisch bei GM-Ausfall</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Boundary Clock]]></text><answer><text>Verbindet zwei separate PTP-Domänen und synchronisiert Geräte in unterschiedlichen Netzwerksegmenten</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Ordinary Clock (Follower)]]></text><answer><text>Empfängt PTP-Zeitinformation vom Grandmaster und synchronisiert die eigene interne Uhr</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[BMCA]]></text><answer><text>Best Master Clock Algorithm – wählt bei Ausfall des Grandmasters automatisch einen neuen GM</text></answer></subquestion>
+</question>
+
+<!-- Q3: numerical (1P) – Bandbreite 48 Kanäle @ 48 kHz / 24 bit -->
+<question type="numerical">
+  <name><text>Dante Bandbreite 48 Kanaele</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Berechnen Sie die benötigte Netzwerkbandbreite für <strong>48 Dante-Kanäle</strong> mit folgender Formel:</p><p style="text-align:center;font-family:monospace;background:#f0faf0;padding:0.5rem;border-radius:4px;">Bandbreite [Mbit/s] = Kanäle × Abtastrate [Hz] × Bittiefe [bit] × 1,05 ÷ 1.000.000</p><p><strong>Abtastrate: 48.000 Hz &nbsp;|&nbsp; Bittiefe: 24 bit</strong></p><p>Ergebnis in <strong>Mbit/s</strong> (gerundet):</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 48 × 48.000 × 24 × 1,05 ÷ 1.000.000 = 48 × 1,2096 = <strong>58 Mbit/s</strong></p>]]></text></generalfeedback>
+  <answer fraction="100"><text>58</text><tolerance>5</tolerance></answer>
+</question>
+
+<!-- Q4: gapselect (3P) – Dante-Parameter -->
+<question type="gapselect">
+  <name><text>Dante Wichtige Parameter</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Alle Dante-Geräte in einem Netzwerk müssen dieselbe <strong>[[1]]</strong> verwenden – unterschiedliche Einstellungen führen zu Audioaussetzern. Für professionelle Produktionen ist <strong>[[2]]</strong> als Netzwerkstandard empfohlen. Dante-Audioströme werden über <strong>[[3]]</strong> übertragen, was gleichzeitige Übertragung an mehrere Empfänger ermöglicht.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Alle drei Dante-Parameter korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Abtastrate, 1 GbE, UDP-Multicast.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Abtastrate (Sample Rate) | 1 GbE | UDP-Multicast</p>]]></text></generalfeedback>
+  <selectoption><text>Abtastrate (Sample Rate)</text><group>1</group></selectoption>
+  <selectoption><text>Latenzeinstellung</text><group>1</group></selectoption>
+  <selectoption><text>Bittiefe</text><group>1</group></selectoption>
+  <selectoption><text>1 GbE</text><group>2</group></selectoption>
+  <selectoption><text>100 MbE</text><group>2</group></selectoption>
+  <selectoption><text>10 GbE</text><group>2</group></selectoption>
+  <selectoption><text>UDP-Multicast</text><group>3</group></selectoption>
+  <selectoption><text>TCP-Unicast</text><group>3</group></selectoption>
+  <selectoption><text>UDP-Broadcast</text><group>3</group></selectoption>
+</question>
+
+<!-- Q5: numerical (1P) – Max Kanäle über 1 GbE @ 48 kHz / 24 bit -->
+<question type="numerical">
+  <name><text>Dante Max Kanaele 1GbE</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Wie viele Dante-Kanäle können <strong>maximal</strong> über eine 1-GbE-Verbindung (1.000 Mbit/s) übertragen werden?</p><p>Formel: <code>Max. Kanäle = 1.000.000.000 ÷ (Abtastrate × Bittiefe × 1,05)</code></p><p><strong>Abtastrate: 48.000 Hz &nbsp;|&nbsp; Bittiefe: 24 bit</strong></p><p>Ergebnis (ganze Zahl, abrunden):</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 1.000.000.000 ÷ (48.000 × 24 × 1,05) = 1.000.000.000 ÷ 1.209.600 ≈ <strong>827 Kanäle</strong></p>]]></text></generalfeedback>
+  <answer fraction="100"><text>827</text><tolerance>15</tolerance></answer>
+</question>
+
+<!-- Q6: multichoice single (1P) – Was ist Dante? -->
+<question type="multichoice">
+  <name><text>Dante Definition</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Was ist Dante und was leistet es in der professionellen Audiotechnik?</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Dante ist ein proprietäres Audio-over-IP-Protokoll von Audinate für hunderte Kanäle über Ethernet.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Dante (Digital Audio Network Through Ethernet) von Audinate ermöglicht die Übertragung von hunderten Audiokanälen über ein einziges Cat-6-Kabel. Verbindungen werden softwarebasiert im Dante Controller konfiguriert – ohne physisches Umstecken.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[Ein Audio-over-IP-Protokoll von Audinate, das hunderte Audiokanäle über ein Standard-Ethernet-Kabel überträgt und softwarebasiert im Dante Controller konfiguriert wird]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Ein von Yamaha entwickelter Audioverstärker-Standard, der digitale Signale zwischen Mischpult und Endstufen überträgt]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Dante wurde von Audinate entwickelt, nicht von Yamaha (obwohl Yamaha ein großer Lizenznehmer ist).</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Ein WLAN-Protokoll für drahtlose Bühnenmonitore, das Latenzen unter 5 ms bei 100 m Reichweite ermöglicht]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Dante nutzt verkabeltes Ethernet, nicht WLAN.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Ein analoger Mehrkanal-Übertragungsstandard, der digitale XLR-Signale in Cat-6-Kabel umwandelt]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Dante ist eine vollständig digitale, IP-basierte Lösung.</p>]]></text></feedback></answer>
+</question>
+
+<!-- Q7: ddwtos (4P) – Switch-Anforderungen für Dante -->
+<question type="ddwtos">
+  <name><text>Dante Switch-Anforderungen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Dante stellt spezifische Anforderungen an den Netzwerk-Switch: <strong>[[1]]</strong> (IEEE 802.3x) muss <em>deaktiviert</em> werden, da es zu Audioaussetzern führt. <strong>[[2]]</strong> (Quality of Service) muss aktiviert sein, damit Audiopakete priorisiert werden. <strong>[[3]]</strong> (Energy Efficient Ethernet) muss <em>deaktiviert</em> sein, da es Verzögerungen einführt. <strong>[[4]]</strong> Snooping muss aktiviert sein, um Multicast-Überflutung zu verhindern.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Sehr gut! Alle Switch-Anforderungen für Dante korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Flow Control deaktivieren | QoS/DSCP aktivieren | EEE deaktivieren | IGMP-Snooping aktivieren.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Flow Control | QoS/DSCP | EEE (Energy Efficient Ethernet) | IGMP</p>]]></text></generalfeedback>
+  <dragbox><text>Flow Control</text><group>1</group></dragbox>
+  <dragbox><text>QoS/DSCP</text><group>2</group></dragbox>
+  <dragbox><text>EEE</text><group>3</group></dragbox>
+  <dragbox><text>IGMP</text><group>4</group></dragbox>
+  <dragbox><text>Jumbo Frames</text><group>1</group></dragbox>
+  <dragbox><text>STP/RSTP</text><group>2</group></dragbox>
+  <dragbox><text>PoE</text><group>3</group></dragbox>
+  <dragbox><text>VLAN</text><group>4</group></dragbox>
+</question>
+
+<!-- Q8: ordering (1P) – PTP-Failover -->
+<question type="ordering">
+  <name><text>Dante PTP-Failover Ablauf</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bringen Sie den automatischen PTP-Failover-Prozess nach Ausfall des Grandmasters in die korrekte Reihenfolge:</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Korrekte Reihenfolge:</strong> 1. Grandmaster fällt aus → 2. Geräte bemerken ausbleibende PTP-Pakete → 3. BMCA-Algorithmus startet → 4. Preferred Master (oder bestes verfügbares Gerät) übernimmt GM-Rolle → 5. Alle Follower synchronisieren sich auf neuen GM</p>]]></text></generalfeedback>
+  <answer fraction="0"><text>Grandmaster-Gerät fällt aus oder verliert die Netzwerkverbindung</text></answer>
+  <answer fraction="0"><text>Alle Follower bemerken ausbleibende PTP-Announce-Pakete (Timeout)</text></answer>
+  <answer fraction="0"><text>BMCA-Algorithmus (Best Master Clock Algorithm) startet auf allen verbleibenden Geräten</text></answer>
+  <answer fraction="0"><text>Preferred Master (oder Gerät mit bester Clock-Qualität) übernimmt die GM-Rolle</text></answer>
+  <answer fraction="0"><text>Alle Follower synchronisieren sich auf den neuen Grandmaster</text></answer>
+</question>
+
+<!-- Q9: ddmatch (5P) – Dante-Ports und Protokolle -->
+<question type="ddmatch">
+  <name><text>Dante Ports und Protokolle</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jedem Dante-Dienst den korrekten Port bzw. das verwendete Protokoll zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle Dante-Ports korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Discovery: UDP 4440 | Audio: UDP Multicast | Konfig: TCP/UDP 8800-8809 | PTP: IEEE 1588v2 | Netzwerk: 1 GbE.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Discovery: UDP 4440 (DDPM) | Audiostrom: UDP Multicast 239.255.x.x | Konfiguration: TCP/UDP 8800–8809 | Zeitsynchronisation: IEEE 1588v2 PTP | Mindestnetzwerk: 1 GbE</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Automatische Geräteerkennung (Discovery)]]></text><answer><text>UDP Port 4440 (DDPM – Dante Device Protocol Manager)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Audiostream-Übertragung]]></text><answer><text>UDP Multicast an Adressen im Bereich 239.255.x.x</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Konfiguration via Dante Controller]]></text><answer><text>TCP/UDP Port-Bereich 8800–8809</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Sample-genaue Zeitsynchronisation]]></text><answer><text>IEEE 1588v2 – Precision Time Protocol (PTP)</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Empfohlener Mindestnetzwerkstandard]]></text><answer><text>1 GbE (1 Gigabit Ethernet)</text></answer></subquestion>
+</question>
+
+<!-- Q10: numerical (1P) – Bandbreiten-Faktor 96 kHz/32 bit vs 48 kHz/24 bit -->
+<question type="numerical">
+  <name><text>Dante Bandbreite Faktor 96kHz 32bit</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ein Techniker stellt das gesamte Dante-Netzwerk von <strong>48 kHz / 24 bit</strong> auf <strong>96 kHz / 32 bit</strong> um.</p><p>Berechnen Sie den <strong>Faktor</strong>, um den sich die Bandbreite erhöht:</p><p style="text-align:center;font-family:monospace;background:#f0faf0;padding:0.5rem;border-radius:4px;">Faktor = (neue Abtastrate × neue Bittiefe) ÷ (alte Abtastrate × alte Bittiefe)</p><p>Ergebnis (auf 2 Dezimalstellen gerundet):</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> (96.000 × 32) ÷ (48.000 × 24) = 3.072.000 ÷ 1.152.000 = <strong>2,67</strong></p><p>Die Bandbreite steigt auf das 2,67-fache – eine 1-GbE-Verbindung trägt bei 96 kHz/32 bit nur noch ~310 Kanäle statt 827.</p>]]></text></generalfeedback>
+  <answer fraction="100"><text>2.67</text><tolerance>0.05</tolerance></answer>
+</question>
+
+<!-- Q11: gapselect (3P) – PTP-Grandmaster -->
+<question type="gapselect">
+  <name><text>Dante PTP Grandmaster</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Im Dante-Netzwerk ist der <strong>Grandmaster</strong> die primäre <strong>[[1]]</strong> für alle Geräte. Fällt er aus, übernimmt der <strong>[[2]]</strong> automatisch seine Rolle. Um einen kontrollierten Failover zu gewährleisten, sollte immer ein <strong>[[3]]</strong> festgelegt werden.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! PTP-Konzept korrekt verstanden.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. GM = Zeitquelle | Preferred Master übernimmt | Preferred Master festlegen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> Zeitquelle (Time Source) | Preferred Master | Preferred Master</p>]]></text></generalfeedback>
+  <selectoption><text>Zeitquelle (Time Source)</text><group>1</group></selectoption>
+  <selectoption><text>Audio-Quelle</text><group>1</group></selectoption>
+  <selectoption><text>Netzwerk-Gateway</text><group>1</group></selectoption>
+  <selectoption><text>Preferred Master</text><group>2</group></selectoption>
+  <selectoption><text>Ordinary Clock</text><group>2</group></selectoption>
+  <selectoption><text>Boundary Clock</text><group>2</group></selectoption>
+  <selectoption><text>Preferred Master</text><group>3</group></selectoption>
+  <selectoption><text>Ordinary Clock</text><group>3</group></selectoption>
+  <selectoption><text>Boundary Clock</text><group>3</group></selectoption>
+</question>
+
+<!-- Q12: multichoice (1P) – Flow Control deaktivieren -->
+<question type="multichoice">
+  <name><text>Dante Flow Control deaktivieren</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Warum muss <strong>Flow Control (IEEE 802.3x)</strong> am Switch für Dante-Netzwerke <em>deaktiviert</em> werden?</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>true</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig!</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Falsch. Flow Control sendet PAUSE-Frames, die bei Dante zu Jitter und Audioaussetzern führen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Flow Control sendet bei Überlast PAUSE-Frames an den Sender. Diese unvorhersehbaren Verzögerungen erzeugen Jitter im Dante-Audiostrom und führen zu Aussetzern (Dropouts) – besonders bei kleinen Latenzeinstellungen.</p>]]></text></generalfeedback>
+  <answer fraction="100" format="html"><text><![CDATA[Flow Control sendet PAUSE-Frames bei Überlast, die unvorhersehbaren Jitter im Dante-Audiostrom erzeugen und zu Dropouts führen]]></text><feedback format="html"><text><![CDATA[<p>Korrekt!</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Flow Control erhöht die Netzwerklast erheblich, weil es zusätzliche Steuerpakete in das Netzwerk einspeist]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Der Hauptgrund sind die PAUSE-Frames, die Jitter im zeitkritischen Audiostrom verursachen.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Flow Control ist mit dem IGMP-Snooping inkompatibel und verhindert die korrekte Multicast-Weiterleitung]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Flow Control und IGMP Snooping sind separate Funktionen ohne direkte Inkompatibilität.</p>]]></text></feedback></answer>
+  <answer fraction="-33.33333" format="html"><text><![CDATA[Flow Control ist ein veraltetes Protokoll, das von modernen Dante-Geräten nicht mehr unterstützt wird]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Flow Control (IEEE 802.3x) ist weit verbreitet – der Grund für die Deaktivierung sind die PAUSE-Frames.</p>]]></text></feedback></answer>
+</question>
+
+<!-- Q13: ddmatch (5P) – Dante-Begriffe -->
+<question type="ddmatch">
+  <name><text>Dante Begriffe Zuordnung</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jeden Dante-Begriff seiner korrekten Bedeutung zu.</p>]]></text></questiontext>
+  <defaultgrade>5</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle Dante-Begriffe korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Wiederholen Sie die Dante-Grundlagen.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Dante Controller: Konfigurationssoftware | DVS: Software-Netzwerkschnittstelle | Dropout: Audioaussetzer | Multicast: 1→n | Dante Domain Manager: Enterprise-Verwaltung</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Dante Controller]]></text><answer><text>Kostenlose Konfigurationssoftware von Audinate zum Verwalten von Routen und Geräteeinstellungen</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Dante Virtual Soundcard (DVS)]]></text><answer><text>Software-Netzwerkschnittstelle: macht einen PC/Mac zum Dante-fähigen Gerät ohne Hardware</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Dropout]]></text><answer><text>Kurzer Audioaussetzer im Dante-Netzwerk, oft verursacht durch Jitter oder zu kleine Latenzeinstellung</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Multicast-Verbindung]]></text><answer><text>Ein Sender überträgt an mehrere Empfänger gleichzeitig; spart Bandbreite gegenüber mehreren Unicast-Strömen</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Dante Domain Manager (DDM)]]></text><answer><text>Enterprise-Verwaltungssoftware für große Dante-Netzwerke mit Benutzerverwaltung und Auditing</text></answer></subquestion>
+</question>
+
+<!-- Q14: ddwtos mit SVG (4P) – Latenzentscheidung -->
+<question type="ddwtos">
+  <name><text>Dante Latenzeinstellungen</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie die Latenzeinstellungen den richtigen Szenarien zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="560" height="160" viewBox="0 0 560 160" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;max-width:100%;height:auto;">
+  <rect x="5" y="5" width="130" height="65" fill="#1e40af" rx="6" stroke="#1e3a8a" stroke-width="1.5"/>
+  <text x="70" y="26" text-anchor="middle" fill="white" font-weight="bold">0,25 ms</text>
+  <text x="70" y="41" text-anchor="middle" fill="#bfdbfe" font-size="10">Ultra-niedrig</text>
+  <text x="70" y="55" text-anchor="middle" fill="#93c5fd" font-size="9">Direktverbindung</text>
+  <text x="70" y="67" text-anchor="middle" fill="#93c5fd" font-size="9">profi Hardware</text>
+  <rect x="145" y="5" width="130" height="65" fill="#16a34a" rx="6" stroke="#15803d" stroke-width="1.5"/>
+  <text x="210" y="26" text-anchor="middle" fill="white" font-weight="bold">1 ms</text>
+  <text x="210" y="41" text-anchor="middle" fill="#bbf7d0" font-size="10">Standard Live</text>
+  <text x="210" y="55" text-anchor="middle" fill="#86efac" font-size="9">Managed Switch</text>
+  <text x="210" y="67" text-anchor="middle" fill="#86efac" font-size="9">QoS aktiv</text>
+  <rect x="285" y="5" width="130" height="65" fill="#d97706" rx="6" stroke="#b45309" stroke-width="1.5"/>
+  <text x="350" y="26" text-anchor="middle" fill="white" font-weight="bold">5 ms</text>
+  <text x="350" y="41" text-anchor="middle" fill="#fef3c7" font-size="10">Lange Wege</text>
+  <text x="350" y="55" text-anchor="middle" fill="#fde68a" font-size="9">ältere Switches</text>
+  <text x="350" y="67" text-anchor="middle" fill="#fde68a" font-size="9">kein QoS</text>
+  <rect x="425" y="5" width="130" height="65" fill="#dc2626" rx="6" stroke="#b91c1c" stroke-width="1.5"/>
+  <text x="490" y="26" text-anchor="middle" fill="white" font-weight="bold">10 ms</text>
+  <text x="490" y="41" text-anchor="middle" fill="#fecaca" font-size="10">Unkritisch</text>
+  <text x="490" y="55" text-anchor="middle" fill="#fca5a5" font-size="9">instabile Netze</text>
+  <text x="490" y="67" text-anchor="middle" fill="#fca5a5" font-size="9">hohe Toleranz</text>
+  <text x="5" y="98" font-size="11" fill="#374151">Szenario A: Rock-Konzert, professionelle Yamaha-Geräte, managed Switch, stabile Infrastruktur</text>
+  <text x="5" y="115" font-size="11" fill="#374151">Szenario B: Theater, 120-m-Kabel, zwei ältere unmanaged Switches ohne QoS</text>
+  <text x="5" y="132" font-size="11" fill="#374151">Szenario C: Rundfunk, Direktverbindung Pult→Sender, On-Air-Monitoring, höchste Stabilität</text>
+  <text x="5" y="150" font-size="11" fill="#374151">Szenario D: Foyer-Beschallung, unkritisch, gelegentlich instabiles Netzwerk</text>
+</svg>
+<p>Empfohlene Latenz für Szenario A: <strong>[[1]]</strong>; für Szenario B: <strong>[[2]]</strong>; für Szenario C: <strong>[[3]]</strong>; für Szenario D: <strong>[[4]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle vier Latenzentscheidungen korrekt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. A=1ms, B=5ms, C=0,25ms, D=10ms.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> A: 1 ms (Standard Live, managed Switch) | B: 5 ms (lange Wege, ältere Switches) | C: 0,25 ms (Rundfunk, Direktverbindung) | D: 10 ms (unkritisch, instabiles Netz)</p>]]></text></generalfeedback>
+  <dragbox><text>1 ms</text><group>1</group></dragbox>
+  <dragbox><text>5 ms</text><group>2</group></dragbox>
+  <dragbox><text>0,25 ms</text><group>3</group></dragbox>
+  <dragbox><text>10 ms</text><group>4</group></dragbox>
+  <dragbox><text>0,5 ms</text><group>1</group></dragbox>
+  <dragbox><text>2 ms</text><group>2</group></dragbox>
+  <dragbox><text>1 ms</text><group>3</group></dragbox>
+  <dragbox><text>5 ms</text><group>4</group></dragbox>
+</question>
+
+<!-- Q15: ordering (1P) – Dante-Einrichtungsschritte -->
+<question type="ordering">
+  <name><text>Dante Einrichtungsschritte</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bringen Sie die Schritte zur Inbetriebnahme eines Dante-Netzwerks in die korrekte Reihenfolge:</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Korrekte Reihenfolge:</strong> 1. Switch konfigurieren (QoS, IGMP, kein Flow Control, kein EEE) → 2. Alle Dante-Geräte mit dem Switch verbinden → 3. Dante Controller starten und alle Geräte im Discovery-Bereich sehen → 4. PTP-Grandmaster und Preferred Master festlegen → 5. Audio-Routen (TX → RX) im Dante Controller zuweisen</p>]]></text></generalfeedback>
+  <answer fraction="0"><text>Managed Switch konfigurieren: QoS/DSCP aktivieren, Flow Control und EEE deaktivieren, IGMP Snooping aktivieren</text></answer>
+  <answer fraction="0"><text>Alle Dante-Geräte mit dem Switch verbinden und Netzwerkeinstellungen prüfen</text></answer>
+  <answer fraction="0"><text>Dante Controller starten und alle erkannten Geräte im Discovery-Bereich überprüfen</text></answer>
+  <answer fraction="0"><text>PTP-Rollen festlegen: Grandmaster und Preferred Master bestimmen</text></answer>
+  <answer fraction="0"><text>Audio-Routen konfigurieren: TX-Kanäle den gewünschten RX-Geräten zuweisen</text></answer>
+</question>
+
+<!-- Q16: gapselect (3P) – Switch-Konfiguration -->
+<question type="gapselect">
+  <name><text>Dante Switch-Konfiguration Fehler</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Bei einem Switch für Dante gilt: <strong>Flow Control</strong> (IEEE 802.3x) muss <strong>[[1]]</strong> werden, da PAUSE-Frames Jitter verursachen. <strong>IGMP Snooping</strong> muss <strong>[[2]]</strong> werden, um unkontrollierte Multicast-Überflutung zu verhindern. <strong>Energy Efficient Ethernet (EEE)</strong> muss <strong>[[3]]</strong> werden, weil es unvorhersehbare Schlaf-Pausen in der Verbindung einführt.</p>]]></text></questiontext>
+  <defaultgrade>3</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Switch-Anforderungen für Dante korrekt erkannt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Flow Control: deaktiviert | IGMP Snooping: aktiviert | EEE: deaktiviert.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> deaktiviert | aktiviert | deaktiviert</p>]]></text></generalfeedback>
+  <selectoption><text>deaktiviert</text><group>1</group></selectoption>
+  <selectoption><text>aktiviert</text><group>1</group></selectoption>
+  <selectoption><text>aktiviert</text><group>2</group></selectoption>
+  <selectoption><text>deaktiviert</text><group>2</group></selectoption>
+  <selectoption><text>deaktiviert</text><group>3</group></selectoption>
+  <selectoption><text>aktiviert</text><group>3</group></selectoption>
+</question>
+
+<!-- Q17: ddmatch (4P) – Multicast vs Unicast -->
+<question type="ddmatch">
+  <name><text>Dante Multicast vs Unicast</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie jede Eigenschaft dem korrekten Übertragungstyp zu: <strong>Multicast</strong> oder <strong>Unicast</strong>.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Perfekt! Multicast/Unicast-Unterschiede korrekt erkannt.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Multicast: 1→n, spart Bandbreite | Unicast: 1→1, wird bei 3+ Empfängern teuer.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Multicast: ein Sender → viele Empfänger, Adresse 239.255.x.x, spart Bandbreite | Unicast: ein Sender → ein Empfänger, bei vielen Empfängern hohe Last</p>]]></text></generalfeedback>
+  <subquestion format="html"><text><![CDATA[Ein Sender überträgt an mehrere Empfänger gleichzeitig]]></text><answer><text>Multicast</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Zieladresse im Bereich 239.255.x.x]]></text><answer><text>Multicast</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Spart Bandbreite bei 3 oder mehr Empfängern des gleichen Signals]]></text><answer><text>Multicast</text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Punkt-zu-Punkt-Verbindung zwischen genau einem Sender und einem Empfänger]]></text><answer><text>Unicast</text></answer></subquestion>
+</question>
+
+<!-- Q18: numerical (1P) – 112 TX-Kanäle @ 48 kHz / 24 bit in Mbit/s -->
+<question type="numerical">
+  <name><text>Dante Bandbreite 112 Kanaele Konzert</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Das Konzert-Setup „Arena Frankfurt" hat insgesamt <strong>112 TX-Kanäle</strong> (Stage Box A: 32 + Stage Box B: 16 + CL5: 16 + QL5: 16 + DAW: 32).</p><p>Berechnen Sie die Gesamt-Sendebandbreite in <strong>Mbit/s</strong> (gerundet):</p><p style="text-align:center;font-family:monospace;background:#f0faf0;padding:0.5rem;border-radius:4px;">Bandbreite = Kanäle × 48.000 × 24 × 1,05 ÷ 1.000.000</p>]]></text></questiontext>
+  <defaultgrade>1</defaultgrade><penalty>0</penalty><hidden>0</hidden>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> 112 × 48.000 × 24 × 1,05 ÷ 1.000.000 = 112 × 1,2096 ≈ <strong>135 Mbit/s</strong>. Ein 1-GbE-Switch (1.000 Mbit/s) reicht für dieses Setup problemlos aus.</p>]]></text></generalfeedback>
+  <answer fraction="100"><text>135</text><tolerance>5</tolerance></answer>
+</question>
+
+<!-- Q19: multichoice multiple (2P) – Dante Fehlerquellen -->
+<question type="multichoice">
+  <name><text>Dante Fehlerquellen Dropouts</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Welche <strong>zwei</strong> Ursachen führen am häufigsten zu Audioaussetzern (Dropouts) in Dante-Netzwerken?</p>]]></text></questiontext>
+  <defaultgrade>2</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden>
+  <single>false</single><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Richtig! Die zwei häufigsten Dropout-Ursachen korrekt identifiziert.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Häufigste Ursachen: falsch konfigurierter Switch (Flow Control an, QoS aus) und unterschiedliche Abtastraten.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p>Häufigste Dante-Dropout-Ursachen: 1) Falsch konfigurierter Switch (Flow Control aktiv, QoS deaktiviert, EEE aktiv) 2) Unterschiedliche Abtastraten auf Geräten im selben Netzwerk</p>]]></text></generalfeedback>
+  <answer fraction="50" format="html"><text><![CDATA[Flow Control am Switch ist aktiviert und erzeugt PAUSE-Frames, die Jitter im Audiostrom verursachen]]></text><feedback format="html"><text><![CDATA[<p>Korrekt! Flow Control ist eine der häufigsten Dropout-Ursachen bei Dante.</p>]]></text></feedback></answer>
+  <answer fraction="50" format="html"><text><![CDATA[Geräte im selben Dante-Netzwerk sind auf unterschiedliche Abtastraten (z. B. ein Gerät auf 48 kHz, ein anderes auf 96 kHz) eingestellt]]></text><feedback format="html"><text><![CDATA[<p>Korrekt! Unterschiedliche Abtastraten führen zwingend zu Audioaussetzern.</p>]]></text></feedback></answer>
+  <answer fraction="-50" format="html"><text><![CDATA[Zu viele Dante-Geräte im Netzwerk überlasten den Dante Controller und führen zu Konfigurationsfehlern]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Der Dante Controller ist eine passive Konfigurationssoftware; seine Auslastung verursacht keine Dropouts.</p>]]></text></feedback></answer>
+  <answer fraction="-50" format="html"><text><![CDATA[Cat-5e-Kabel anstelle von Cat-6 senken die Übertragungsqualität auf unter 100 Mbit/s und verursachen Dropouts]]></text><feedback format="html"><text><![CDATA[<p>Falsch. Cat-5e unterstützt problemlos 1 GbE über kurze Strecken; die Kabelkategorie ist selten eine Dropout-Ursache.</p>]]></text></feedback></answer>
+</question>
+
+<!-- Q20: ddwtos (4P) – Dante Protokollschichten -->
+<question type="ddwtos">
+  <name><text>Dante Protokollschichten OSI</text></name>
+  <questiontext format="html"><text><![CDATA[<p>Ordnen Sie die Dante-Dienste den korrekten OSI-Schichten zu: Der Audiostrom wird auf OSI-Schicht 4 (Transport) per <strong>[[1]]</strong> übertragen. Die Discovery-Funktion (DDPM) nutzt UDP-Port <strong>[[2]]</strong>. Auf Schicht 3 (Netzwerk) nutzt Dante <strong>[[3]]</strong>. Der empfohlene physikalische Mindeststandard (Schicht 1) ist <strong>[[4]]</strong>.</p>]]></text></questiontext>
+  <defaultgrade>4</defaultgrade><penalty>0.3333333</penalty><hidden>0</hidden><shuffleanswers>1</shuffleanswers>
+  <correctfeedback format="html"><text><![CDATA[<p>Ausgezeichnet! Alle Dante-Protokollschichten korrekt zugeordnet.</p>]]></text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text><![CDATA[<p>Teilweise richtig.</p>]]></text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text><![CDATA[<p>Nicht korrekt. Transport: UDP | Discovery: 4440 | Netzwerk: IPv4 | Physisch: 1 GbE.</p>]]></text></incorrectfeedback>
+  <generalfeedback format="html"><text><![CDATA[<p><strong>Lösung:</strong> UDP | 4440 | IPv4 | 1 GbE</p>]]></text></generalfeedback>
+  <dragbox><text>UDP</text><group>1</group></dragbox>
+  <dragbox><text>4440</text><group>2</group></dragbox>
+  <dragbox><text>IPv4</text><group>3</group></dragbox>
+  <dragbox><text>1 GbE</text><group>4</group></dragbox>
+  <dragbox><text>TCP</text><group>1</group></dragbox>
+  <dragbox><text>8800</text><group>2</group></dragbox>
+  <dragbox><text>IPv6</text><group>3</group></dragbox>
+  <dragbox><text>100 MbE</text><group>4</group></dragbox>
+</question>
+
+</quiz>

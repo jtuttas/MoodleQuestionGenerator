@@ -1,0 +1,953 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+
+<!-- question: q01 -->
+<question type="ddmatch">
+  <name><text>L1-K1 Steckertypen Zuordnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Beim Konzert-Aufbau muessen verschiedene Kabel und Stecker verwendet werden. Ordnen Sie jeden Steckertyp dem passenden Signaltyp zu.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="160" viewBox="0 0 560 160" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="160" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <rect x="20" y="20" width="110" height="40" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="75" y="45" text-anchor="middle" font-weight="bold" fill="#212529">XLR (3-pol)</text>
+  <rect x="150" y="20" width="110" height="40" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="205" y="45" text-anchor="middle" font-weight="bold" fill="#212529">RJ-45</text>
+  <rect x="280" y="20" width="120" height="40" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="340" y="45" text-anchor="middle" font-weight="bold" fill="#212529">BNC / Koax</text>
+  <rect x="420" y="20" width="120" height="40" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="480" y="45" text-anchor="middle" font-weight="bold" fill="#212529">SC / LC (LWL)</text>
+  <text x="20" y="90" font-size="11" fill="#6c757d">Ordne jeden Steckertyp dem passenden Signaltyp zu.</text>
+  <rect x="20" y="100" width="520" height="45" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="3"/>
+  <text x="30" y="118" font-size="11" fill="#495057">Signaltypen: Symmetrisches Audio | Ethernet-Datennetz | Videosignal | Optisches Signal</text>
+  <text x="30" y="136" font-size="11" fill="#495057">Stecker und Signaltyp muessen eindeutig zugeordnet werden.</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>XLR (3-pol): symmetrisches Audiosignal (Mikrofon, Line). RJ-45: Ethernet-Datennetzwerk. BNC/Koax: Videosignal (SDI, HF). SC/LC: optisches Signal (Glasfaser/LWL). DMX-Stecker ist XLR-5-pol.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text><![CDATA[XLR (3-pol)]]></text><answer><text><![CDATA[Symmetrisches Audiosignal]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[RJ-45]]></text><answer><text><![CDATA[Ethernet-Datennetzwerk]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[BNC (Koaxial)]]></text><answer><text><![CDATA[Videosignal (SDI/HF)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[SC / LC (LWL)]]></text><answer><text><![CDATA[Optisches Signal (Glasfaser)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[]]></text><answer><text><![CDATA[Unsymmetrisches Audiosignal (Klinke)]]></text></answer></subquestion>
+</question>
+
+<!-- question: q02 -->
+<question type="gapselect">
+  <name><text>L2-K1 XLR Pinbelegung Lueckentext</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Beim Aufbau der Ton-Stagebox pruefen Sie die XLR-Verkabelung. Ergaenzen Sie die Pinbelegung.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="170" viewBox="0 0 560 170" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="170" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-size="14" font-weight="bold" fill="#212529">XLR-3-pol Stecker (Frontansicht)</text>
+  <circle cx="100" cy="90" r="55" fill="#e9ecef" stroke="#adb5bd" stroke-width="2"/>
+  <circle cx="100" cy="65" r="10" fill="#fff" stroke="#343a40" stroke-width="2"/>
+  <text x="100" y="70" text-anchor="middle" font-size="11" fill="#212529">1</text>
+  <circle cx="77" cy="107" r="10" fill="#fff" stroke="#343a40" stroke-width="2"/>
+  <text x="77" y="112" text-anchor="middle" font-size="11" fill="#212529">2</text>
+  <circle cx="123" cy="107" r="10" fill="#fff" stroke="#343a40" stroke-width="2"/>
+  <text x="123" y="112" text-anchor="middle" font-size="11" fill="#212529">3</text>
+  <rect x="175" y="35" width="370" height="120" fill="#fff" stroke="#dee2e6" stroke-width="1" rx="4"/>
+  <text x="185" y="58" font-size="12" font-weight="bold" fill="#212529">Pin 1:</text>
+  <text x="240" y="58" font-size="12" fill="#495057">Schirm / Masse</text>
+  <text x="185" y="80" font-size="12" font-weight="bold" fill="#212529">Pin 2:</text>
+  <text x="240" y="80" font-size="12" fill="#495057">Signal+ (Hot / positiv)</text>
+  <text x="185" y="102" font-size="12" font-weight="bold" fill="#212529">Pin 3:</text>
+  <text x="240" y="102" font-size="12" fill="#495057">Signal- (Cold / negativ)</text>
+  <text x="185" y="128" font-size="11" fill="#6c757d">Symmetrische Uebertragung: Stoerungen werden eliminiert</text>
+  <text x="185" y="145" font-size="11" fill="#6c757d">Einsatz: Mikrofon, Stagebox, Mischpult, DI-Box</text>
+</svg><p>XLR Pin 1 fuehrt [[1]], Pin 2 fuehrt das Signal [[2]] und Pin 3 fuehrt das Signal [[3]]. Das Uebertragungsprinzip, das Stoerungen durch Gegenphasigkeit eliminiert, heisst [[4]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Pin 1 = Schirm/Masse. Pin 2 = Signal+ (Hot). Pin 3 = Signal- (Cold). Prinzip: symmetrische Uebertragung. Stoersignale werden als Gleichtaktsignal erkannt und durch den Differenzverstaerker eliminiert.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <selectoption><text>Schirm (Masse)</text><group>1</group></selectoption>
+  <selectoption><text>Signal plus</text><group>1</group></selectoption>
+  <selectoption><text>Speisespannung</text><group>1</group></selectoption>
+  <selectoption><text>plus (Hot)</text><group>2</group></selectoption>
+  <selectoption><text>minus (Cold)</text><group>2</group></selectoption>
+  <selectoption><text>Schirm</text><group>2</group></selectoption>
+  <selectoption><text>minus (Cold)</text><group>3</group></selectoption>
+  <selectoption><text>plus (Hot)</text><group>3</group></selectoption>
+  <selectoption><text>Phantomspeisung</text><group>3</group></selectoption>
+  <selectoption><text>symmetrische Uebertragung</text><group>4</group></selectoption>
+  <selectoption><text>asymmetrische Uebertragung</text><group>4</group></selectoption>
+  <selectoption><text>Modulationsverfahren</text><group>4</group></selectoption>
+</question>
+
+<!-- question: q03 -->
+<question type="numerical">
+  <name><text>L3-K1 DMX512 max Kanaele</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein Buehnentechniker plant die Lichtsteuerung fuer ein Konzert mit DMX512.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="165" viewBox="0 0 560 165" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="165" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">DMX512 Signalkette</text>
+  <rect x="14" y="35" width="90" height="38" fill="#dce8ff" stroke="#6ea8fe" stroke-width="1.5" rx="4"/>
+  <text x="59" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#0a58ca">Lichtpult</text>
+  <text x="59" y="68" text-anchor="middle" font-size="10" fill="#495057">Controller</text>
+  <line x1="104" y1="54" x2="140" y2="54" stroke="#343a40" stroke-width="2"/>
+  <rect x="140" y="35" width="90" height="38" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="185" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">Dimmer</text>
+  <text x="185" y="68" text-anchor="middle" font-size="10" fill="#495057">Kanal 1-8</text>
+  <line x1="230" y1="54" x2="266" y2="54" stroke="#343a40" stroke-width="2"/>
+  <rect x="266" y="35" width="90" height="38" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="311" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">Moving</text>
+  <text x="311" y="68" text-anchor="middle" font-size="10" fill="#495057">Kanal 9+</text>
+  <line x1="356" y1="54" x2="392" y2="54" stroke="#343a40" stroke-width="2"/>
+  <rect x="392" y="35" width="90" height="38" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="437" y="55" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">LED-PAR</text>
+  <text x="437" y="68" text-anchor="middle" font-size="10" fill="#495057">letztes Geraet</text>
+  <line x1="482" y1="54" x2="518" y2="54" stroke="#343a40" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="538" y="58" font-size="11" fill="#6c757d">120&#937;</text>
+  <text x="14" y="110" font-size="11" fill="#495057">DMX512: RS-485, 250 kBaud, max. 512 Kanaele, Daisy-Chain-Topologie</text>
+  <rect x="14" y="120" width="532" height="33" fill="#fff3cd" stroke="#ffc107" stroke-width="1" rx="3"/>
+  <text x="24" y="138" font-size="11" fill="#664d03">Max. Leitungslaenge: 1200 m | Abschluss: 120 Ohm am letzten Geraet</text>
+  <text x="24" y="152" font-size="11" fill="#664d03">Stecker: XLR-5-pol (DMX-Standard) oder XLR-3-pol (nicht empfohlen)</text>
+</svg><p>Wie viele Kanaele kann ein einzelnes DMX512-Universum maximal uebertragen?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>DMX<strong>512</strong>: der Name sagt es - 512 Kanaele pro Universum. Jeder Kanal traegt einen Wert von 0-255 (8 Bit). Mit 250 kBaud werden alle 512 Kanaele etwa 44-mal pro Sekunde uebertragen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>512</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q04 -->
+<question type="ddwtos">
+  <name><text>M1-K1 Glasfaser Kabeltypen Lueckentext</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Fuer die Verbindung zwischen FOH und Stage (Abstand 280 m) wird Glasfaser geplant.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="155" viewBox="0 0 560 155" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="155" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-size="14" font-weight="bold" fill="#212529">Glasfaser-Kabeltypen im Vergleich</text>
+  <rect x="14" y="30" width="240" height="55" fill="#fff3cd" stroke="#ffc107" stroke-width="1.5" rx="4"/>
+  <text x="134" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#664d03">Multimode (OM3/OM4)</text>
+  <text x="134" y="67" text-anchor="middle" font-size="11" fill="#664d03">Kern: 50 oder 62,5 &#956;m</text>
+  <text x="134" y="80" text-anchor="middle" font-size="11" fill="#664d03">Reichweite: bis ca. 300 m</text>
+  <rect x="268" y="30" width="278" height="55" fill="#cce5ff" stroke="#4dabf7" stroke-width="1.5" rx="4"/>
+  <text x="407" y="52" text-anchor="middle" font-size="12" font-weight="bold" fill="#1c7ed6">Singlemode (OS2)</text>
+  <text x="407" y="67" text-anchor="middle" font-size="11" fill="#1c7ed6">Kern: 9 &#956;m</text>
+  <text x="407" y="80" text-anchor="middle" font-size="11" fill="#1c7ed6">Reichweite: mehrere km</text>
+  <text x="14" y="106" font-size="11" fill="#495057">Stecker: SC (Push-Pull), LC (Kleinformat, bevorzugt), ST (Bajonett)</text>
+  <text x="14" y="122" font-size="11" fill="#495057">Einsatz VT: Stagebox zu FOH, stoerungsimmun, galvanische Trennung</text>
+  <text x="14" y="138" font-size="11" fill="#495057">Wellenlaenge Multimode: 850/1300 nm (LED) | Singlemode: 1310/1550 nm (Laser)</text>
+</svg><p>Multimode-Fasern haben einen Kerndurchmesser von [[1]] Mikrometern, Singlemode von [[2]] Mikrometern. Fuer 280 m und 10 GbE wird [[3]] empfohlen. Der bevorzugte Stecker in Patchpanels ist [[4]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Multimode OM3/OM4: 50 µm. Singlemode OS2: 9 µm. Fuer 280 m und 10 GbE reicht OM3 (bis ca. 300 m). LC-Stecker ist kompakter als SC und in modernen Patchpanels bevorzugt.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>50</text><group>1</group></dragbox>
+  <dragbox><text>9</text><group>2</group></dragbox>
+  <dragbox><text>Multimode (OM3)</text><group>3</group></dragbox>
+  <dragbox><text>LC</text><group>4</group></dragbox>
+  <dragbox><text>62,5</text><group>1</group></dragbox>
+  <dragbox><text>25</text><group>2</group></dragbox>
+  <dragbox><text>Singlemode (OS2)</text><group>3</group></dragbox>
+  <dragbox><text>SC</text><group>4</group></dragbox>
+</question>
+
+<!-- question: q05 -->
+<question type="ordering">
+  <name><text>L4-K1 DMX Signalkette Reihenfolge</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bringen Sie die Komponenten einer DMX512-Signalkette in die richtige Reihenfolge - vom Controller bis zum Abschluss:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Korrekte Reihenfolge: 1. Lichtpult (Controller) &rarr; 2. DMX-Splitter (optional) &rarr; 3. Erstes DMX-Geraet &rarr; 4. Weiteres Geraet (Daisy-Chain) &rarr; 5. Abschlusswiderstand 120 Ohm. Ohne Abschluss: Reflexionen koennen Stoerungen verursachen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>0</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html"><text><![CDATA[Lichtpult (DMX-Controller)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text><![CDATA[DMX-Splitter / Verstaerker (optional)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text><![CDATA[Erstes DMX-Geraet (z.B. Dimmer)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text><![CDATA[Weiteres DMX-Geraet (Daisy-Chain)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="5" format="html"><text><![CDATA[Abschlusswiderstand 120 Ohm]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <correctfeedback format="html"><text>Korrekt! Die DMX-Signalkette ist vollstaendig.</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- question: q06 -->
+<question type="numerical">
+  <name><text>S1-K1 Koaxkabel Wellenwiderstand SDI</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Sie installieren eine HD-SDI-Videoverbindung fuer eine Buehnen-Kamera. Der Standard schreibt fuer SDI-Koaxialkabel (BNC) einen bestimmten Wellenwiderstand vor.</p><p>Welchen Wellenwiderstand (in Ohm) haben SDI-Koaxialkabel und Videoantennenanlagen per Standard?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>75 Ohm</strong>: Standard fuer SDI-Video (BNC) und Antennentechnik. Hinweis: Ethernet (10BASE2) nutzt 50 Ohm. Der Wellenwiderstand muss durchgehend stimmen, sonst entstehen Reflexionen (Geisterbild, Signalverlust).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>75</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q07 -->
+<question type="ddwtos">
+  <name><text>L1-K2 Binaer zu Dezimal Umrechnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bei der Konfiguration eines Netzwerkgeraets muessen Sie Binaer- und Dezimalwerte umrechnen.</p><p><strong>10110100</strong> (binaer) = [[1]] (dezimal)</p><p><strong>11001010</strong> (binaer) = [[2]] (dezimal)</p><p><strong>01111111</strong> (binaer) = [[3]] (dezimal)</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>10110100: 128+32+16+4 = <strong>180</strong>. 11001010: 128+64+8+2 = <strong>202</strong>. 01111111: 64+32+16+8+4+2+1 = <strong>127</strong> (hoechste Hostadresse /25).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>180</text><group>1</group></dragbox>
+  <dragbox><text>202</text><group>2</group></dragbox>
+  <dragbox><text>127</text><group>3</group></dragbox>
+  <dragbox><text>164</text><group>1</group></dragbox>
+  <dragbox><text>192</text><group>2</group></dragbox>
+  <dragbox><text>255</text><group>3</group></dragbox>
+</question>
+
+<!-- question: q08 -->
+<question type="gapselect">
+  <name><text>L2-K2 OSI-Schichten Zuordnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bei der Planung eines Netzwerks werden Geraete nach OSI-Schichten eingeordnet.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Netzwerktopologie: PC - Switch - Router</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="18" y="45" width="78" height="70"/>
+  <text x="57" y="127" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-A</text>
+  <text x="57" y="141" text-anchor="middle" font-size="10" fill="#495057">192.168.1.10</text>
+  <line x1="96" y1="80" x2="196" y2="80" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="196" y="63" width="66" height="34"/>
+  <text x="229" y="109" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-1</text>
+  <line x1="262" y1="80" x2="356" y2="80" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="356" y="52" width="84" height="57"/>
+  <text x="398" y="121" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">R1 (Gateway)</text>
+  <text x="398" y="135" text-anchor="middle" font-size="10" fill="#495057">192.168.1.1</text>
+  <text x="14" y="165" font-size="11" fill="#495057">Switch: Layer 2 (MAC), Router: Layer 3 (IP)</text>
+  <text x="14" y="180" font-size="11" fill="#495057">Stern-Topologie: alle Geraete ueber zentralen Switch verbunden</text>
+</svg><p>Ein Ethernet-Switch arbeitet auf OSI-Schicht [[1]]. Ein Router auf Schicht [[2]]. MAC-Adressen gehoeren zu Schicht [[3]]. IP-Adressen zu Schicht [[4]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Switch = Layer 2 (Data Link, MAC). Router = Layer 3 (Network, IP). MAC: Layer 2. IP: Layer 3.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <selectoption><text>2 (Data Link)</text><group>1</group></selectoption>
+  <selectoption><text>1 (Physical)</text><group>1</group></selectoption>
+  <selectoption><text>3 (Network)</text><group>1</group></selectoption>
+  <selectoption><text>3 (Network)</text><group>2</group></selectoption>
+  <selectoption><text>2 (Data Link)</text><group>2</group></selectoption>
+  <selectoption><text>4 (Transport)</text><group>2</group></selectoption>
+  <selectoption><text>2 (Data Link)</text><group>3</group></selectoption>
+  <selectoption><text>3 (Network)</text><group>3</group></selectoption>
+  <selectoption><text>1 (Physical)</text><group>3</group></selectoption>
+  <selectoption><text>3 (Network)</text><group>4</group></selectoption>
+  <selectoption><text>2 (Data Link)</text><group>4</group></selectoption>
+  <selectoption><text>4 (Transport)</text><group>4</group></selectoption>
+</question>
+
+<!-- question: q09 -->
+<question type="numerical">
+  <name><text>L3-K2 Subnetz Hosts berechnen 24</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Fuer ein Veranstaltungs-Netzwerk wird das Subnetz <code>10.10.0.0/24</code> verwendet.</p><p>Wie viele nutzbare Hostadressen stehen zur Verfuegung?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/24 = 8 Hostbits: 2<sup>8</sup> - 2 = 256 - 2 = <strong>254</strong> nutzbare Hostadressen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>254</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q10 -->
+<question type="ddwtos">
+  <name><text>M1-K2 Netzwerkadresse AND berechnen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Gegeben: IP <code>192.168.20.150</code>, Praefix <code>/26</code> (Maske: 255.255.255.192).</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">IPv4-Header (vereinfacht, 20 Byte Minimum)</text>
+  <rect x="14" y="32" width="60" height="32" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <text x="44" y="52" text-anchor="middle" font-size="10" fill="#2f9e44">Ver/IHL</text>
+  <rect x="74" y="32" width="60" height="32" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="104" y="52" text-anchor="middle" font-size="10" fill="#1864ab">DSCP</text>
+  <rect x="134" y="32" width="100" height="32" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="184" y="52" text-anchor="middle" font-size="10" fill="#664d03">Total Length</text>
+  <rect x="234" y="32" width="120" height="32" fill="#ffe8cc" stroke="#fd7e14" stroke-width="1.5"/>
+  <text x="294" y="52" text-anchor="middle" font-size="10" fill="#7d3a00">ID / Flags / Offset</text>
+  <rect x="354" y="32" width="60" height="32" fill="#f3d9fa" stroke="#cc5de8" stroke-width="1.5"/>
+  <text x="384" y="52" text-anchor="middle" font-size="10" fill="#6741d9">TTL</text>
+  <rect x="414" y="32" width="60" height="32" fill="#ffd6cc" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="444" y="52" text-anchor="middle" font-size="10" fill="#c92a2a">Protocol</text>
+  <rect x="474" y="32" width="72" height="32" fill="#d0ebff" stroke="#4dabf7" stroke-width="1.5"/>
+  <text x="510" y="52" text-anchor="middle" font-size="10" fill="#1c7ed6">Checksum</text>
+  <rect x="14" y="64" width="268" height="30" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="148" y="84" text-anchor="middle" font-size="11" fill="#1864ab">Source IP Address (32 Bit)</text>
+  <rect x="282" y="64" width="264" height="30" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="414" y="84" text-anchor="middle" font-size="11" fill="#664d03">Destination IP Address (32 Bit)</text>
+  <rect x="14" y="94" width="532" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+  <text x="280" y="113" text-anchor="middle" font-size="11" fill="#495057">Options (variabel) + Padding</text>
+  <rect x="14" y="122" width="532" height="28" fill="#fff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="280" y="141" text-anchor="middle" font-size="11" fill="#212529">Nutzdaten (UDP/TCP - z.B. ArtNet-Daten)</text>
+  <text x="14" y="165" font-size="11" fill="#6c757d">Protocol-Feld: 6=TCP, 17=UDP | TTL: max. Hops</text>
+</svg><p>Die Netzwerkadresse lautet [[1]]. Der Broadcast lautet [[2]]. Die /26-Maske im letzten Oktet binaer ist [[3]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/26: Letztes Oktet 150=10010110, Maske=11000000. AND: 10000000=128. Netzadresse: 192.168.20.128. Broadcast: alle Hostbits=1: 10111111=191 &rarr; 192.168.20.191. /26 Maske letztes Oktet: 11000000.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>192.168.20.128</text><group>1</group></dragbox>
+  <dragbox><text>192.168.20.191</text><group>2</group></dragbox>
+  <dragbox><text>11000000</text><group>3</group></dragbox>
+  <dragbox><text>192.168.20.192</text><group>1</group></dragbox>
+  <dragbox><text>192.168.20.255</text><group>2</group></dragbox>
+  <dragbox><text>11111100</text><group>3</group></dragbox>
+</question>
+
+<!-- question: q11 -->
+<question type="ddmatch">
+  <name><text>M2-K2 IP-Header Felder Bedeutung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Beim Analysieren eines Netzwerk-Datenstroms mit Wireshark sehen Sie IPv4-Header-Felder. Ordnen Sie jedem Feld seine Bedeutung zu.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">IPv4-Header (vereinfacht, 20 Byte Minimum)</text>
+  <rect x="14" y="32" width="60" height="32" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <text x="44" y="52" text-anchor="middle" font-size="10" fill="#2f9e44">Ver/IHL</text>
+  <rect x="74" y="32" width="60" height="32" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="104" y="52" text-anchor="middle" font-size="10" fill="#1864ab">DSCP</text>
+  <rect x="134" y="32" width="100" height="32" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="184" y="52" text-anchor="middle" font-size="10" fill="#664d03">Total Length</text>
+  <rect x="234" y="32" width="120" height="32" fill="#ffe8cc" stroke="#fd7e14" stroke-width="1.5"/>
+  <text x="294" y="52" text-anchor="middle" font-size="10" fill="#7d3a00">ID / Flags / Offset</text>
+  <rect x="354" y="32" width="60" height="32" fill="#f3d9fa" stroke="#cc5de8" stroke-width="1.5"/>
+  <text x="384" y="52" text-anchor="middle" font-size="10" fill="#6741d9">TTL</text>
+  <rect x="414" y="32" width="60" height="32" fill="#ffd6cc" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="444" y="52" text-anchor="middle" font-size="10" fill="#c92a2a">Protocol</text>
+  <rect x="474" y="32" width="72" height="32" fill="#d0ebff" stroke="#4dabf7" stroke-width="1.5"/>
+  <text x="510" y="52" text-anchor="middle" font-size="10" fill="#1c7ed6">Checksum</text>
+  <rect x="14" y="64" width="268" height="30" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="148" y="84" text-anchor="middle" font-size="11" fill="#1864ab">Source IP Address (32 Bit)</text>
+  <rect x="282" y="64" width="264" height="30" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="414" y="84" text-anchor="middle" font-size="11" fill="#664d03">Destination IP Address (32 Bit)</text>
+  <rect x="14" y="94" width="532" height="28" fill="#e9ecef" stroke="#adb5bd" stroke-width="1"/>
+  <text x="280" y="113" text-anchor="middle" font-size="11" fill="#495057">Options (variabel) + Padding</text>
+  <rect x="14" y="122" width="532" height="28" fill="#fff" stroke="#dee2e6" stroke-width="1"/>
+  <text x="280" y="141" text-anchor="middle" font-size="11" fill="#212529">Nutzdaten (UDP/TCP - z.B. ArtNet-Daten)</text>
+  <text x="14" y="165" font-size="11" fill="#6c757d">Protocol-Feld: 6=TCP, 17=UDP | TTL: max. Hops</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>TTL: begrenzt Lebensdauer. Protocol: 17=UDP, 6=TCP. Total Length: Gesamtgroesse. Flags/Offset: Fragmentierung. Source IP: Absender.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text><![CDATA[TTL (Time to Live)]]></text><answer><text><![CDATA[Maximale Anzahl Weiterleitungen (Hops)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Protocol]]></text><answer><text><![CDATA[Protokoll-Nummer (17=UDP, 6=TCP)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Total Length]]></text><answer><text><![CDATA[Gesamtgroesse des Pakets in Byte]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Flags / Fragment Offset]]></text><answer><text><![CDATA[Informationen zur Paketfragmentierung]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Source IP Address]]></text><answer><text><![CDATA[IP-Adresse des Absenders]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[]]></text><answer><text><![CDATA[Laenge des IP-Headers in 32-Bit-Worten]]></text></answer></subquestion>
+</question>
+
+<!-- question: q12 -->
+<question type="numerical">
+  <name><text>M3-K2 Subnetz berechnen 27</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Fuer ein Videosystem auf einer Messe wird das Subnetz <code>172.16.5.0/27</code> geplant.</p><p>Wie viele nutzbare Hostadressen stehen zur Verfuegung?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/27 = 5 Hostbits: 2<sup>5</sup> - 2 = 32 - 2 = <strong>30</strong> Hosts. Netzadresse: 172.16.5.0, Broadcast: 172.16.5.31.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>30</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q13 -->
+<question type="ordering">
+  <name><text>M4-K2 TCP 3-Wege-Handshake Reihenfolge</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bringen Sie die Schritte des TCP-3-Wege-Handshakes in die richtige Reihenfolge:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>TCP-Handshake: SYN &rarr; SYN-ACK &rarr; ACK. Danach: Verbindung hergestellt, Datentransfer beginnt. Hinweis: ArtNet nutzt UDP (verbindungslos), kein Handshake noetig.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>0</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html"><text><![CDATA[Client sendet SYN an Server]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text><![CDATA[Server antwortet mit SYN-ACK]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text><![CDATA[Client sendet ACK-Bestaetigung]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text><![CDATA[TCP-Verbindung ist hergestellt]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <correctfeedback format="html"><text>Korrekt! TCP-3-Wege-Handshake stimmt.</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- question: q14 -->
+<question type="gapselect">
+  <name><text>M5-K2 Subnetzmaske CIDR Lueckentext</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bei der Adressplanung eines Buehnen-Netzwerks werden CIDR-Praefix und Subnetzmaske benoetigt.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Netzwerk: zwei Subnetze ueber Router</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="14" y="40" width="78" height="70"/>
+  <text x="53" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-A</text>
+  <text x="53" y="136" text-anchor="middle" font-size="10" fill="#495057">192.168.1.10</text>
+  <line x1="92" y1="75" x2="152" y2="90" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="152" y="73" width="66" height="34"/>
+  <text x="185" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-1</text>
+  <line x1="218" y1="90" x2="278" y2="85" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="278" y="57" width="84" height="57"/>
+  <text x="320" y="126" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">R1</text>
+  <line x1="362" y1="85" x2="412" y2="90" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="412" y="73" width="66" height="34"/>
+  <text x="445" y="119" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-2</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="462" y="40" width="78" height="70"/>
+  <text x="501" y="122" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-C</text>
+  <text x="501" y="136" text-anchor="middle" font-size="10" fill="#495057">10.0.0.5</text>
+  <line x1="478" y1="90" x2="478" y2="110" stroke="#495057" stroke-width="2"/>
+  <text x="14" y="162" font-size="11" fill="#495057">Router verbindet zwei Subnetze: 192.168.1.0/24 und 10.0.0.0/24</text>
+  <text x="14" y="178" font-size="11" fill="#495057">Default Gateway: PC-A = 192.168.1.1 (R1-Interface links)</text>
+</svg><p>Die Subnetzmaske 255.255.255.0 entspricht [[1]]. Die Maske 255.255.255.128 entspricht [[2]]. Ein /28 erlaubt max. [[3]] nutzbare Hostadressen. Das private Klasse-C-Netz beginnt mit [[4]].</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>255.255.255.0=/24. 255.255.255.128=/25. /28: 2^4-2=14. Klasse-C-privat: 192.168.x.x</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <selectoption><text>/24</text><group>1</group></selectoption>
+  <selectoption><text>/25</text><group>1</group></selectoption>
+  <selectoption><text>/26</text><group>1</group></selectoption>
+  <selectoption><text>/25</text><group>2</group></selectoption>
+  <selectoption><text>/24</text><group>2</group></selectoption>
+  <selectoption><text>/26</text><group>2</group></selectoption>
+  <selectoption><text>14</text><group>3</group></selectoption>
+  <selectoption><text>16</text><group>3</group></selectoption>
+  <selectoption><text>30</text><group>3</group></selectoption>
+  <selectoption><text>192.168</text><group>4</group></selectoption>
+  <selectoption><text>172.16</text><group>4</group></selectoption>
+  <selectoption><text>10.0</text><group>4</group></selectoption>
+</question>
+
+<!-- question: q15 -->
+<question type="ddmatch">
+  <name><text>M6-K2 Switch vs Router Funktionen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Im Konzert-Netzwerk werden Switch und Router eingesetzt. Ordnen Sie die Funktionen dem richtigen Geraet zu.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="20" font-weight="bold" font-size="13" fill="#212529">Netzwerktopologie: PC - Switch - Router</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="18" y="45" width="78" height="70"/>
+  <text x="57" y="127" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">PC-A</text>
+  <text x="57" y="141" text-anchor="middle" font-size="10" fill="#495057">192.168.1.10</text>
+  <line x1="96" y1="80" x2="196" y2="80" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="196" y="63" width="66" height="34"/>
+  <text x="229" y="109" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">SW-1</text>
+  <line x1="262" y1="80" x2="356" y2="80" stroke="#495057" stroke-width="2"/>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="356" y="52" width="84" height="57"/>
+  <text x="398" y="121" text-anchor="middle" font-size="11" font-weight="bold" fill="#212529">R1 (Gateway)</text>
+  <text x="398" y="135" text-anchor="middle" font-size="10" fill="#495057">192.168.1.1</text>
+  <text x="14" y="165" font-size="11" fill="#495057">Switch: Layer 2 (MAC), Router: Layer 3 (IP)</text>
+  <text x="14" y="180" font-size="11" fill="#495057">Stern-Topologie: alle Geraete ueber zentralen Switch verbunden</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Switch (L2): MAC-Adressen lernen, VLANs, Kollisionsdomaenen trennen. Router (L3): Subnetze verbinden, IP-Routing, Default Gateway.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text><![CDATA[MAC-Adressen lernen und weiterleiten]]></text><answer><text><![CDATA[Switch (Layer 2)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Verschiedene Subnetze verbinden]]></text><answer><text><![CDATA[Router (Layer 3)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[VLAN-Segmentierung ermoeglichen]]></text><answer><text><![CDATA[Switch (Layer 2)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Default Gateway fuer Endgeraete]]></text><answer><text><![CDATA[Router (Layer 3)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Kollisionsdomaenen trennen]]></text><answer><text><![CDATA[Switch (Layer 2)]]></text></answer></subquestion>
+</question>
+
+<!-- question: q16 -->
+<question type="numerical">
+  <name><text>S1-K2 VLSM Subnetz fuer 60 Hosts</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bei einer Messe soll VLSM eingesetzt werden. Aus dem Netz <code>192.168.10.0/24</code> wird ein Subnetz fuer genau 60 Hosts benoetigt.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">VLSM - Subnetz-Aufteilung (192.168.10.0/24)</text>
+  <rect x="14" y="35" width="360" height="32" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="194" y="56" text-anchor="middle" font-size="12" font-weight="bold" fill="#2f9e44">Subnetz A: /25 - 126 Hosts</text>
+  <rect x="14" y="75" width="176" height="32" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5" rx="4"/>
+  <text x="102" y="96" text-anchor="middle" font-size="11" font-weight="bold" fill="#1864ab">Subnetz B: .128/26</text>
+  <rect x="198" y="75" width="88" height="32" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5" rx="4"/>
+  <text x="242" y="96" text-anchor="middle" font-size="11" font-weight="bold" fill="#664d03">C: .192/27</text>
+  <rect x="294" y="75" width="44" height="32" fill="#ffe8cc" stroke="#fd7e14" stroke-width="1.5" rx="4"/>
+  <text x="316" y="96" text-anchor="middle" font-size="10" font-weight="bold" fill="#7d3a00">D:.224/28</text>
+  <text x="14" y="130" font-size="11" fill="#495057">VLSM: verschieden grosse Subnetze im selben Adressraum</text>
+  <text x="14" y="146" font-size="11" fill="#495057">A /25: .0 - .127 (126 Hosts) | B /26: .128 - .191 (62)</text>
+  <text x="14" y="162" font-size="11" fill="#495057">C /27: .192 - .223 (30) | D /28: .224 - .239 (14 Hosts)</text>
+</svg><p>Welches ist der kleinste CIDR-Praefix (als Zahl, z.B. "26"), der mindestens 60 Hostadressen bietet?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>/26: 2^6-2=62 &ge;60 ✓. /27: 2^5-2=30 &lt;60 ✗. Antwort: <strong>26</strong>. Subnetz: 192.168.10.0/26, Broadcast: .63.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>26</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q17 -->
+<question type="ddwtos">
+  <name><text>S2-K2 IP Fragmentierung Berechnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein UDP-Paket mit 3020 Byte Nutzdaten soll durch ein Netz mit MTU 1500 Byte. IP-Header: 20 Byte.</p><p>Max. Nutzdaten/Fragment: [[1]] Byte. Anzahl Fragmente: [[2]]. Letztes Fragment traegt [[3]] Byte Nutzdaten.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>1500-20=1480 Byte/Fragment. 3020/1480=2,04 &rarr; 3 Fragmente. Fragment 3: 3020-2&times;1480=60 Byte. Fragment Offset: durch 8 teilbar (1480=185&times;8 ✓).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>1480</text><group>1</group></dragbox>
+  <dragbox><text>3</text><group>2</group></dragbox>
+  <dragbox><text>60</text><group>3</group></dragbox>
+  <dragbox><text>1460</text><group>1</group></dragbox>
+  <dragbox><text>2</text><group>2</group></dragbox>
+  <dragbox><text>80</text><group>3</group></dragbox>
+</question>
+
+<!-- question: q18 -->
+<question type="ddmatch">
+  <name><text>L1-K3 STP Begriffe Zuordnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Beim Einrichten eines redundanten Buehnen-Netzwerks mit STP (IEEE 802.1D) muessen Sie die Grundbegriffe kennen. Ordnen Sie zu.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="235" viewBox="0 0 560 235" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="235" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">STP-Topologie (4 Switches, Ring)</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="30" width="66" height="34"/>
+  <text x="260" y="76" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-A</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="60" y="120" width="66" height="34"/>
+  <text x="93" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-B</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="390" y="120" width="66" height="34"/>
+  <text x="423" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-C</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="175" width="66" height="34"/>
+  <text x="260" y="221" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-D</text>
+  <line x1="260" y1="64" x2="93" y2="120" stroke="#343a40" stroke-width="2"/>
+  <line x1="260" y1="64" x2="423" y2="120" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="154" x2="260" y2="175" stroke="#343a40" stroke-width="2"/>
+  <line x1="423" y1="154" x2="260" y2="175" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="137" x2="423" y2="137" stroke="#e03131" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="258" y="133" text-anchor="middle" font-size="10" fill="#c92a2a">? (Zustand offen)</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Root Bridge: kleinste Bridge-ID. Root Port: bester Pfad zur Root. Designated Port: weiterleitend je Segment. Blocked Port: deaktiviert zur Schleifenverhinderung. BPDU: STP-Steuerframe.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text><![CDATA[Root Bridge]]></text><answer><text><![CDATA[Switch mit der niedrigsten Bridge-ID]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Root Port]]></text><answer><text><![CDATA[Port mit bestem Pfad zur Root Bridge]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Designated Port]]></text><answer><text><![CDATA[Weiterleitender Port je Netzwerksegment]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Blocked Port]]></text><answer><text><![CDATA[Deaktivierter Port zur Schleifenverhinderung]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[BPDU]]></text><answer><text><![CDATA[STP-Steuerframe fuer Informationsaustausch]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[]]></text><answer><text><![CDATA[Protokoll fuer WLAN-Zugangsverwaltung]]></text></answer></subquestion>
+</question>
+
+<!-- question: q19 -->
+<question type="ordering">
+  <name><text>L2-K3 STP Initialisierungsschritte</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bringen Sie die STP-Initialisierungsschritte (IEEE 802.1D) in die richtige Reihenfolge:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>STP-Ablauf: 1. BPDUs senden 2. Root Bridge waehlen 3. Root Ports bestimmen 4. Designated Ports festlegen 5. Verbleibende Ports blockieren. Konvergenz: 30-50 Sekunden.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>0</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html"><text><![CDATA[Alle Switches senden BPDUs mit eigener Bridge-ID]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text><![CDATA[Root Bridge gewaehlt: kleinste Bridge-ID gewinnt]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text><![CDATA[Root Ports je Switch bestimmen (guenstigster Pfad)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text><![CDATA[Designated Ports pro Netzwerksegment festlegen]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="5" format="html"><text><![CDATA[Verbleibende Ports blockieren (Schleifen verhindern)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <correctfeedback format="html"><text>Korrekt! STP-Initialisierung vollstaendig richtig.</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- question: q20 -->
+<question type="ddwtos">
+  <name><text>M1-K3 RSTP Portzustaende Lueckentext</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Fuer ein redundantes Theater-Netzwerk wird RSTP (IEEE 802.1w) eingesetzt.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <defs>
+    <marker id="arrr" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#343a40"/>
+    </marker>
+  </defs>
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-size="14" font-weight="bold" fill="#212529">RSTP - Port-Zustaende (IEEE 802.1w)</text>
+  <rect x="14" y="35" width="130" height="38" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="79" y="59" text-anchor="middle" font-weight="bold" fill="#2f9e44">Discarding</text>
+  <rect x="180" y="35" width="130" height="38" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5" rx="4"/>
+  <text x="245" y="59" text-anchor="middle" font-weight="bold" fill="#664d03">Learning</text>
+  <rect x="346" y="35" width="130" height="38" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5" rx="4"/>
+  <text x="411" y="59" text-anchor="middle" font-weight="bold" fill="#1864ab">Forwarding</text>
+  <line x1="144" y1="54" x2="180" y2="54" stroke="#343a40" stroke-width="1.5" marker-end="url(#arrr)"/>
+  <line x1="310" y1="54" x2="346" y2="54" stroke="#343a40" stroke-width="1.5" marker-end="url(#arrr)"/>
+  <text x="14" y="96" font-size="11" fill="#495057">Discarding: kein Weiterleiten, kein Lernen (ersetzt Blocking+Listening aus STP)</text>
+  <text x="14" y="112" font-size="11" fill="#495057">Learning: lernt MAC-Adressen, leitet keinen Daten-Traffic weiter</text>
+  <text x="14" y="128" font-size="11" fill="#495057">Forwarding: normaler Betrieb, Traffic wird weitergeleitet</text>
+  <text x="14" y="146" font-size="11" fill="#495057">RSTP-Konvergenz: unter 1 Sekunde (vs. STP 30-50 Sekunden)</text>
+  <text x="14" y="162" font-size="11" fill="#495057">Port-Rollen: Root Port, Designated Port, Alternate Port, Backup Port</text>
+</svg><p>RSTP kennt die Port-Zustaende [[1]] (kein Forwarding, kein Lernen), [[2]] (Lernen, kein Forwarding) und [[3]] (normaler Betrieb). Die RSTP-Konvergenzzeit ist unter [[4]] Sekunde.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>RSTP-Zustaende: Discarding (ersetzt Blocking+Listening), Learning, Forwarding. Konvergenz unter 1 Sekunde. RSTP ist rueckwaertskompatibel zu STP.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>Discarding</text><group>1</group></dragbox>
+  <dragbox><text>Learning</text><group>2</group></dragbox>
+  <dragbox><text>Forwarding</text><group>3</group></dragbox>
+  <dragbox><text>1</text><group>4</group></dragbox>
+  <dragbox><text>Blocking</text><group>1</group></dragbox>
+  <dragbox><text>Listening</text><group>2</group></dragbox>
+  <dragbox><text>Passing</text><group>3</group></dragbox>
+  <dragbox><text>30</text><group>4</group></dragbox>
+</question>
+
+<!-- question: q21 -->
+<question type="ddmatch">
+  <name><text>M2-K3 Redundanzverfahren Zuordnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Fuer ein redundantes Veranstaltungsnetzwerk werden verschiedene Verfahren eingesetzt. Ordnen Sie zu.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="185" viewBox="0 0 560 185" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="185" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">LACP - Link Aggregation (IEEE 802.3ad)</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="60" y="55" width="66" height="34"/>
+  <text x="93" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-1</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="390" y="55" width="66" height="34"/>
+  <text x="423" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-2</text>
+  <line x1="126" y1="65" x2="390" y2="65" stroke="#1864ab" stroke-width="3"/>
+  <line x1="126" y1="78" x2="390" y2="78" stroke="#1864ab" stroke-width="3"/>
+  <text x="258" y="61" text-anchor="middle" font-size="10" fill="#1864ab">Port-Channel (2 x GbE)</text>
+  <text x="258" y="93" text-anchor="middle" font-size="10" fill="#1864ab">LACP IEEE 802.3ad</text>
+  <text x="14" y="125" font-size="11" fill="#495057">LACP: mehrere physische Links zu einem logischen Port-Channel buendeln</text>
+  <text x="14" y="141" font-size="11" fill="#495057">Vorteile: erhoehte Bandbreite, Lastverteilung, Redundanz bei Link-Ausfall</text>
+  <text x="14" y="157" font-size="11" fill="#495057">Modi: active (sendet LACPDUs) / passive (wartet) - min. eine Seite active!</text>
+  <text x="14" y="173" font-size="11" fill="#495057">Anzeige: show etherchannel summary</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>LACP: physische Links buendeln. STP/RSTP: Schleifen verhindern. Ring-Topologie: physisch Ring, logisch Baum (STP blockiert). Hot-Standby: Reserve bei Ausfall.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text><![CDATA[LACP (IEEE 802.3ad)]]></text><answer><text><![CDATA[Mehrere physische Links zu einem logischen Kanal buendeln]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[STP / RSTP]]></text><answer><text><![CDATA[Broadcast-Schleifen durch Port-Blockierung verhindern]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Ring-Topologie]]></text><answer><text><![CDATA[Physisch geschlossen, logisch offen (ein Port blockiert)]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Hot-Standby / Failover]]></text><answer><text><![CDATA[Reservegeraet uebernimmt automatisch bei Ausfall]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[]]></text><answer><text><![CDATA[Automatische IP-Adress-Vergabe im Netz]]></text></answer></subquestion>
+</question>
+
+<!-- question: q22 -->
+<question type="ordering">
+  <name><text>M3-K3 LACP Konfigurationsschritte</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein Stage-Switch soll mit LACP konfiguriert werden. Bringen Sie die Konfigurationsschritte in die richtige Reihenfolge:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>1. Port-Channel anlegen. 2. Ports zuweisen (channel-group mode active). 3. LACP-Modus setzen (min. eine Seite "active"). 4. Status pruefen (show etherchannel summary). 5. Trunk/Access konfigurieren. Hinweis: "passive/passive" funktioniert nicht!</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>0</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html"><text><![CDATA[Port-Channel Interface anlegen (interface port-channel 1)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text><![CDATA[Physische Ports dem Port-Channel zuweisen]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text><![CDATA[LACP-Modus "active" auf mind. einer Seite setzen]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text><![CDATA[Status pruefen (show etherchannel summary)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="5" format="html"><text><![CDATA[Trunk/Access-Modus fuer Port-Channel konfigurieren]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <correctfeedback format="html"><text>Korrekt! LACP-Konfigurationsreihenfolge stimmt.</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- question: q23 -->
+<question type="numerical">
+  <name><text>S1-K3 STP Pfadkosten Berechnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In einem STP-Netz (IEEE 802.1D) mit 100-Mbit/s-Verbindungen (Kosten je 19) hat SW-B zwei Pfade zur Root Bridge (SW-A):</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="205" viewBox="0 0 560 205" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="205" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">Ring-Topologie mit STP-Redundanz</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="32" width="66" height="34"/>
+  <text x="260" y="78" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-1 (Root)</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="60" y="110" width="66" height="34"/>
+  <text x="93" y="156" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-2</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="390" y="110" width="66" height="34"/>
+  <text x="423" y="156" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-3</text>
+  <line x1="260" y1="66" x2="93" y2="110" stroke="#343a40" stroke-width="2"/>
+  <line x1="260" y1="66" x2="423" y2="110" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="144" x2="423" y2="144" stroke="#e03131" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="258" y="140" text-anchor="middle" font-size="10" fill="#c92a2a">Blocked (STP)</text>
+  <text x="14" y="174" font-size="11" fill="#495057">Ring: physisch geschlossen, logisch offen (STP blockiert eine Verbindung)</text>
+  <text x="14" y="190" font-size="11" fill="#495057">Failover: bei Ausfall einer Verbindung aktiviert STP den blockierten Port</text>
+</svg><p>Direkter Pfad SW-B &rarr; SW-A: Kosten 19. Alternativer Pfad ueber SW-C: SW-B &rarr; SW-C (Kosten 19) + SW-C &rarr; SW-A (Kosten 19).</p><p>Wie hoch sind die Gesamtpfadkosten des alternativen Wegs ueber SW-C?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Alternativpfad: 19 + 19 = <strong>38</strong>. Da 38 &gt; 19 (Direktpfad), wird der Direktpfad bevorzugt. Der Link SW-B &rarr; SW-C wird als Alternate Port blockiert.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>38</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q24 -->
+<question type="ddwtos">
+  <name><text>S2-K3 STP Blocked Port Analyse</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>In einem STP-Netz (Ring, 3 Switches): SW-A Priority 4096, SW-B Priority 8192, SW-C Priority 8192. MACs: SW-A=AA:AA, SW-B=BB:BB, SW-C=CC:CC.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="235" viewBox="0 0 560 235" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="235" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">STP-Topologie (4 Switches, Ring)</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="30" width="66" height="34"/>
+  <text x="260" y="76" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-A</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="60" y="120" width="66" height="34"/>
+  <text x="93" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-B</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="390" y="120" width="66" height="34"/>
+  <text x="423" y="166" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-C</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="227" y="175" width="66" height="34"/>
+  <text x="260" y="221" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-D</text>
+  <line x1="260" y1="64" x2="93" y2="120" stroke="#343a40" stroke-width="2"/>
+  <line x1="260" y1="64" x2="423" y2="120" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="154" x2="260" y2="175" stroke="#343a40" stroke-width="2"/>
+  <line x1="423" y1="154" x2="260" y2="175" stroke="#343a40" stroke-width="2"/>
+  <line x1="93" y1="137" x2="423" y2="137" stroke="#e03131" stroke-width="2" stroke-dasharray="8,4"/>
+  <text x="258" y="133" text-anchor="middle" font-size="10" fill="#c92a2a">? (Zustand offen)</text>
+</svg><p>Die Root Bridge ist [[1]]. Der Port SW-C &rarr; SW-B wird blockiert, weil SW-C eine [[2]] MAC-Adresse als SW-B hat. Bei RSTP konvergiert das Netz nach Ausfall in unter [[3]] Sekunde(n).</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Root Bridge = kleinste Bridge-ID: SW-A (Priority 4096 &lt; 8192). SW-B und SW-C: gleiche Priority 8192, dann MAC-Vergleich: BB:BB &lt; CC:CC &rarr; SW-B gewinnt &rarr; SW-C blockiert seinen Port Richtung SW-B. RSTP: &lt;1 Sekunde.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>SW-A</text><group>1</group></dragbox>
+  <dragbox><text>groessere</text><group>2</group></dragbox>
+  <dragbox><text>1</text><group>3</group></dragbox>
+  <dragbox><text>SW-B</text><group>1</group></dragbox>
+  <dragbox><text>kleinere</text><group>2</group></dragbox>
+  <dragbox><text>30</text><group>3</group></dragbox>
+</question>
+
+<!-- question: q25 -->
+<question type="numerical">
+  <name><text>S3-K3 LACP Bandbreite Berechnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Fuer eine grosse Buehnenproduktion werden 4 Gigabit-Ethernet-Links (je 1 GbE = 1000 Mbit/s) mit LACP zu einem Port-Channel gebuendelt.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="185" viewBox="0 0 560 185" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="185" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">LACP - Link Aggregation (IEEE 802.3ad)</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="60" y="55" width="66" height="34"/>
+  <text x="93" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-1</text>
+  <image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="390" y="55" width="66" height="34"/>
+  <text x="423" y="101" text-anchor="middle" font-size="12" font-weight="bold" fill="#212529">SW-2</text>
+  <line x1="126" y1="65" x2="390" y2="65" stroke="#1864ab" stroke-width="3"/>
+  <line x1="126" y1="78" x2="390" y2="78" stroke="#1864ab" stroke-width="3"/>
+  <text x="258" y="61" text-anchor="middle" font-size="10" fill="#1864ab">Port-Channel (2 x GbE)</text>
+  <text x="258" y="93" text-anchor="middle" font-size="10" fill="#1864ab">LACP IEEE 802.3ad</text>
+  <text x="14" y="125" font-size="11" fill="#495057">LACP: mehrere physische Links zu einem logischen Port-Channel buendeln</text>
+  <text x="14" y="141" font-size="11" fill="#495057">Vorteile: erhoehte Bandbreite, Lastverteilung, Redundanz bei Link-Ausfall</text>
+  <text x="14" y="157" font-size="11" fill="#495057">Modi: active (sendet LACPDUs) / passive (wartet) - min. eine Seite active!</text>
+  <text x="14" y="173" font-size="11" fill="#495057">Anzeige: show etherchannel summary</text>
+</svg><p>Wie gross ist die theoretische Gesamtbandbreite des Port-Channels in Mbit/s?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>4 &times; 1000 Mbit/s = <strong>4000 Mbit/s</strong> (= 4 Gbit/s). Hinweis: LACP verteilt die Last per Flow - ein einzelner Flow kann nicht alle 4 GbE nutzen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>4000</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q26 -->
+<question type="ddmatch">
+  <name><text>L1-K4 ArtNet Grundbegriffe Zuordnung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bei einer Lichtshow soll ArtNet als Protokoll zur DMX-Uebertragung ueber Ethernet eingesetzt werden. Ordnen Sie die Begriffe zu.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">ArtNet - Universum-Struktur</text>
+  <rect x="14" y="35" width="150" height="50" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5" rx="4"/>
+  <text x="89" y="58" text-anchor="middle" font-weight="bold" fill="#1864ab">Lichtpult</text>
+  <text x="89" y="73" text-anchor="middle" font-size="11" fill="#1864ab">ArtNet-Controller</text>
+  <line x1="164" y1="60" x2="208" y2="60" stroke="#495057" stroke-width="2"/>
+  <rect x="208" y="35" width="120" height="50" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="268" y="58" text-anchor="middle" font-weight="bold" fill="#212529">Netzwerk</text>
+  <text x="268" y="73" text-anchor="middle" font-size="11" fill="#212529">Switch</text>
+  <line x1="328" y1="45" x2="376" y2="30" stroke="#495057" stroke-width="2"/>
+  <line x1="328" y1="60" x2="376" y2="60" stroke="#495057" stroke-width="2"/>
+  <line x1="328" y1="75" x2="376" y2="90" stroke="#495057" stroke-width="2"/>
+  <rect x="376" y="18" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node A: Universum 0</text>
+  <rect x="376" y="45" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="65" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node B: Universum 1</text>
+  <rect x="376" y="72" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node C: Universum 2</text>
+  <text x="14" y="125" font-size="11" fill="#495057">Jeder Node empfaengt DMX-Daten als ArtDmx-UDP-Pakete (Port 6454)</text>
+  <text x="14" y="141" font-size="11" fill="#495057">1 Universum = 512 DMX-Kanaele = 512 Byte Nutzdaten/Paket</text>
+  <text x="14" y="157" font-size="11" fill="#495057">Art-Net 4: 15-Bit-Adresse = Net (7) + SubNet (4) + Universe (4)</text>
+  <text x="14" y="173" font-size="11" fill="#495057">Max. adressierbare Universen: 2^15 = 32768</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>ArtDmx: DMX-Lichtsteuerdaten. ArtPoll: Geraetesuche. Universe: 512 DMX-Kanaele. Node: wandelt ArtNet in DMX. Port 6454: UDP-Standardport.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <subquestion format="html"><text><![CDATA[ArtDmx]]></text><answer><text><![CDATA[Pakettyp fuer DMX-Lichtsteuerdaten ueber Ethernet]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[ArtPoll]]></text><answer><text><![CDATA[Paket zur Suche von ArtNet-Knoten im Netzwerk]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[Universe (Universum)]]></text><answer><text><![CDATA[512 DMX-Kanaele als logische Einheit]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[ArtNet-Node]]></text><answer><text><![CDATA[Geraet, das ArtNet-Pakete in DMX-Signal wandelt]]></text></answer></subquestion>
+  <subquestion format="html"><text><![CDATA[]]></text><answer><text><![CDATA[Protokoll fuer Audionetzwerke]]></text></answer></subquestion>
+</question>
+
+<!-- question: q27 -->
+<question type="numerical">
+  <name><text>L2-K4 ArtNet UDP Port</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein Lichtpult soll ArtNet-Pakete an alle Nodes im Netzwerk senden. Auf welchem UDP-Port kommuniziert ArtNet per Standard?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>ArtNet nutzt UDP-Port <strong>6454</strong>. Der Port ist fest definiert und kann nicht geaendert werden. ArtNet-Pakete werden als UDP-Broadcast oder Unicast versendet.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>6454</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q28 -->
+<question type="ddwtos">
+  <name><text>M1-K4 ArtNet Paketfelder Lueckentext</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Beim Analysieren eines ArtDmx-Pakets ergaenzen Sie die Beschreibung.</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="175" viewBox="0 0 560 175" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="175" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-size="14" font-weight="bold" fill="#212529">ArtDmx-Paket-Struktur</text>
+  <rect x="14" y="32" width="80" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5"/>
+  <text x="54" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#2f9e44">ID</text>
+  <rect x="94" y="32" width="60" height="30" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5"/>
+  <text x="124" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#1864ab">OpCode</text>
+  <rect x="154" y="32" width="60" height="30" fill="#fff3bf" stroke="#fcc419" stroke-width="1.5"/>
+  <text x="184" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#664d03">ProtVer</text>
+  <rect x="214" y="32" width="50" height="30" fill="#ffe8cc" stroke="#fd7e14" stroke-width="1.5"/>
+  <text x="239" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#7d3a00">Seq</text>
+  <rect x="264" y="32" width="50" height="30" fill="#f3d9fa" stroke="#cc5de8" stroke-width="1.5"/>
+  <text x="289" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#6741d9">Phys</text>
+  <rect x="314" y="32" width="70" height="30" fill="#ffd6cc" stroke="#ff6b6b" stroke-width="1.5"/>
+  <text x="349" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#c92a2a">Universe</text>
+  <rect x="384" y="32" width="60" height="30" fill="#d0ebff" stroke="#4dabf7" stroke-width="1.5"/>
+  <text x="414" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#1c7ed6">Length</text>
+  <rect x="444" y="32" width="102" height="30" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5"/>
+  <text x="495" y="51" text-anchor="middle" font-size="10" font-weight="bold" fill="#212529">DMX Data</text>
+  <text x="14" y="84" font-size="11" fill="#495057">ArtNet nutzt UDP Port 6454 | Broadcast oder Unicast</text>
+  <text x="14" y="100" font-size="11" fill="#495057">ID-Feld: "Art-Net" + Null-Terminator (8 Byte ASCII)</text>
+  <text x="14" y="116" font-size="11" fill="#495057">OpCode: 0x5000 = ArtDmx | 0x2000 = ArtPoll (Geraetesuche)</text>
+  <text x="14" y="132" font-size="11" fill="#495057">Universe: 15 Bit (Net 7 + SubNet 4 + Universe 4 Bit)</text>
+  <text x="14" y="148" font-size="11" fill="#495057">Length: 1 - 512 (Anzahl DMX-Kanaele in diesem Paket)</text>
+  <text x="14" y="164" font-size="11" fill="#495057">Sequence: verhindert Paketreihenfolgefehler (0 = deaktiviert)</text>
+</svg><p>Das ID-Feld enthaelt den String [[1]]. Der OpCode fuer ArtDmx-Datenpakete ist [[2]]. Maximale Byte im Datenfeld: [[3]]. Die Universe-Adresse nutzt [[4]] Bit.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>ID: "Art-Net" (8 Byte, Null-terminiert). OpCode: 0x5000 = ArtDmx. Max. Daten: 512 Byte. Universe: 15 Bit (Net 7 + SubNet 4 + Universe 4).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <dragbox><text>Art-Net</text><group>1</group></dragbox>
+  <dragbox><text>0x5000</text><group>2</group></dragbox>
+  <dragbox><text>512</text><group>3</group></dragbox>
+  <dragbox><text>15</text><group>4</group></dragbox>
+  <dragbox><text>ArtNet-II</text><group>1</group></dragbox>
+  <dragbox><text>0x2000</text><group>2</group></dragbox>
+  <dragbox><text>256</text><group>3</group></dragbox>
+  <dragbox><text>12</text><group>4</group></dragbox>
+</question>
+
+<!-- question: q29 -->
+<question type="numerical">
+  <name><text>M2-K4 ArtNet max Universes berechnen</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Die Universe-Adresse in Art-Net 4 besteht aus: Net (7 Bit) + SubNet (4 Bit) + Universe (4 Bit).</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">ArtNet - Universum-Struktur</text>
+  <rect x="14" y="35" width="150" height="50" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5" rx="4"/>
+  <text x="89" y="58" text-anchor="middle" font-weight="bold" fill="#1864ab">Lichtpult</text>
+  <text x="89" y="73" text-anchor="middle" font-size="11" fill="#1864ab">ArtNet-Controller</text>
+  <line x1="164" y1="60" x2="208" y2="60" stroke="#495057" stroke-width="2"/>
+  <rect x="208" y="35" width="120" height="50" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="268" y="58" text-anchor="middle" font-weight="bold" fill="#212529">Netzwerk</text>
+  <text x="268" y="73" text-anchor="middle" font-size="11" fill="#212529">Switch</text>
+  <line x1="328" y1="45" x2="376" y2="30" stroke="#495057" stroke-width="2"/>
+  <line x1="328" y1="60" x2="376" y2="60" stroke="#495057" stroke-width="2"/>
+  <line x1="328" y1="75" x2="376" y2="90" stroke="#495057" stroke-width="2"/>
+  <rect x="376" y="18" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node A: Universum 0</text>
+  <rect x="376" y="45" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="65" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node B: Universum 1</text>
+  <rect x="376" y="72" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node C: Universum 2</text>
+  <text x="14" y="125" font-size="11" fill="#495057">Jeder Node empfaengt DMX-Daten als ArtDmx-UDP-Pakete (Port 6454)</text>
+  <text x="14" y="141" font-size="11" fill="#495057">1 Universum = 512 DMX-Kanaele = 512 Byte Nutzdaten/Paket</text>
+  <text x="14" y="157" font-size="11" fill="#495057">Art-Net 4: 15-Bit-Adresse = Net (7) + SubNet (4) + Universe (4)</text>
+  <text x="14" y="173" font-size="11" fill="#495057">Max. adressierbare Universen: 2^15 = 32768</text>
+</svg><p>Wie viele Universen koennen in Art-Net 4 maximal adressiert werden?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>7+4+4 = 15 Bit: 2<sup>15</sup> = <strong>32768</strong> Universen. Jedes mit 512 Kanaelen: 32768 &times; 512 = 16 777 216 DMX-Kanaele (theoretisch).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <answer fraction="100" format="moodle_auto_format"><text>32768</text><tolerance>0</tolerance></answer>
+</question>
+
+<!-- question: q30 -->
+<question type="ordering">
+  <name><text>S1-K4 ArtNet Signalweg Reihenfolge</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bringen Sie den ArtNet-Signalweg (Regler am Pult bis Helligkeitsaenderung der Leuchte) in die richtige Reihenfolge:</p><svg xmlns="http://www.w3.org/2000/svg" width="560" height="195" viewBox="0 0 560 195" style="font-family:Arial,sans-serif;font-size:13px;display:block;margin:10px auto;">
+  <rect x="0" y="0" width="560" height="195" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5" rx="6"/>
+  <text x="14" y="22" font-weight="bold" font-size="14" fill="#212529">ArtNet - Universum-Struktur</text>
+  <rect x="14" y="35" width="150" height="50" fill="#e7f5ff" stroke="#339af0" stroke-width="1.5" rx="4"/>
+  <text x="89" y="58" text-anchor="middle" font-weight="bold" fill="#1864ab">Lichtpult</text>
+  <text x="89" y="73" text-anchor="middle" font-size="11" fill="#1864ab">ArtNet-Controller</text>
+  <line x1="164" y1="60" x2="208" y2="60" stroke="#495057" stroke-width="2"/>
+  <rect x="208" y="35" width="120" height="50" fill="#e9ecef" stroke="#adb5bd" stroke-width="1.5" rx="4"/>
+  <text x="268" y="58" text-anchor="middle" font-weight="bold" fill="#212529">Netzwerk</text>
+  <text x="268" y="73" text-anchor="middle" font-size="11" fill="#212529">Switch</text>
+  <line x1="328" y1="45" x2="376" y2="30" stroke="#495057" stroke-width="2"/>
+  <line x1="328" y1="60" x2="376" y2="60" stroke="#495057" stroke-width="2"/>
+  <line x1="328" y1="75" x2="376" y2="90" stroke="#495057" stroke-width="2"/>
+  <rect x="376" y="18" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="38" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node A: Universum 0</text>
+  <rect x="376" y="45" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="65" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node B: Universum 1</text>
+  <rect x="376" y="72" width="170" height="30" fill="#d3f9d8" stroke="#40c057" stroke-width="1.5" rx="4"/>
+  <text x="461" y="92" text-anchor="middle" font-size="11" font-weight="bold" fill="#2f9e44">Node C: Universum 2</text>
+  <text x="14" y="125" font-size="11" fill="#495057">Jeder Node empfaengt DMX-Daten als ArtDmx-UDP-Pakete (Port 6454)</text>
+  <text x="14" y="141" font-size="11" fill="#495057">1 Universum = 512 DMX-Kanaele = 512 Byte Nutzdaten/Paket</text>
+  <text x="14" y="157" font-size="11" fill="#495057">Art-Net 4: 15-Bit-Adresse = Net (7) + SubNet (4) + Universe (4)</text>
+  <text x="14" y="173" font-size="11" fill="#495057">Max. adressierbare Universen: 2^15 = 32768</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Signalweg: Regler bewegen &rarr; DMX-Kanalwert berechnen &rarr; ArtDmx-Paket erstellen &rarr; UDP-Paket senden &rarr; Node empfaengt &rarr; Node wandelt in DMX &rarr; Dimmer steuert Leuchte.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>0</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html"><text><![CDATA[Bediener bewegt Regler am Lichtpult]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="2" format="html"><text><![CDATA[Pult berechnet DMX-Kanalwert (0-255)]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="3" format="html"><text><![CDATA[Pult erstellt ArtDmx-UDP-Paket]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="4" format="html"><text><![CDATA[Paket wird per Ethernet an ArtNet-Node gesendet]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="5" format="html"><text><![CDATA[Node wandelt ArtNet-Paket in DMX512-Signal]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="6" format="html"><text><![CDATA[DMX-Kanal steuert Dimmer / LED-Treiber]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <answer fraction="7" format="html"><text><![CDATA[Leuchte aendert Helligkeit]]></text><feedback format="html"><text></text></feedback><md5key></md5key></answer>
+  <correctfeedback format="html"><text>Korrekt! Der vollstaendige ArtNet-Signalweg.</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+</quiz>

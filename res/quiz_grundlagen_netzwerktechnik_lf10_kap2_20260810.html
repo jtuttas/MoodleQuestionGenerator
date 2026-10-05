@@ -1,0 +1,679 @@
+﻿<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Quiz-Vorschau: LF10 Kapitel 2 – Grundlagen Netzwerktechnik</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Source Sans 3',sans-serif;background:#f0f2f5;color:#212529}
+header{background:#f98012;color:#fff;padding:16px 32px;display:flex;align-items:center;gap:16px;position:sticky;top:0;z-index:100;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+header h1{font-size:20px;font-weight:700}
+header .meta{font-size:13px;opacity:.9}
+.layout{display:grid;grid-template-columns:1fr 220px;gap:24px;max-width:1100px;margin:24px auto;padding:0 16px}
+.questions{display:flex;flex-direction:column;gap:20px}
+.card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);overflow:hidden}
+.card-header{background:#495057;color:#fff;padding:12px 20px;display:flex;justify-content:space-between;align-items:center}
+.card-header .qnum{font-size:13px;opacity:.8}
+.card-header .qtype{font-size:12px;background:rgba(255,255,255,.2);padding:2px 8px;border-radius:12px}
+.card-header .pts{font-size:13px;font-weight:700}
+.card-body{padding:20px}
+.card-body p{margin-bottom:10px;line-height:1.6}
+svg{max-width:100%;height:auto}
+.answer-options{display:flex;flex-direction:column;gap:8px;margin-top:12px}
+.opt{border:2px solid #dee2e6;border-radius:8px;padding:10px 14px;cursor:pointer;transition:all .2s;display:flex;align-items:center;gap:10px}
+.opt:hover{border-color:#f98012;background:#fff8f2}
+.opt.correct{border-color:#28a745;background:#f0fff4;color:#155724}
+.opt.wrong{border-color:#dc3545;background:#fff5f5;color:#721c24}
+.opt input{accent-color:#f98012;width:16px;height:16px;flex-shrink:0}
+.match-table{width:100%;border-collapse:collapse;margin-top:12px}
+.match-table td,.match-table th{padding:8px 12px;border:1px solid #dee2e6;font-size:14px}
+.match-table th{background:#f8f9fa;font-weight:600}
+.match-table select{width:100%;border:1px solid #adb5bd;border-radius:4px;padding:4px 8px;font-size:13px;font-family:inherit}
+.gap-text{line-height:2.2;font-size:15px}
+.gap{display:inline-block;min-width:120px;border-bottom:2px solid #f98012;padding:2px 8px;margin:0 4px;background:#fff8f2;border-radius:4px;font-size:13px;color:#495057}
+.gap.filled{background:#e8f5e9;border-color:#28a745;color:#155724}
+.drag-pool{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0;padding:12px;background:#f8f9fa;border-radius:8px;border:1px dashed #dee2e6}
+.chip{background:#fff;border:2px solid #dee2e6;border-radius:20px;padding:4px 14px;font-size:13px;cursor:pointer;user-select:none;transition:all .2s}
+.chip:hover{border-color:#f98012;background:#fff8f2}
+.chip.used{opacity:.4;cursor:default;pointer-events:none}
+.num-input{display:flex;align-items:center;gap:10px;margin-top:12px}
+.num-input input{border:2px solid #dee2e6;border-radius:8px;padding:8px 12px;font-size:15px;width:140px;font-family:'Source Code Pro',monospace}
+.order-list{list-style:none;margin-top:12px}
+.order-list li{background:#f8f9fa;border:1px solid #dee2e6;border-radius:6px;padding:10px 14px;margin:4px 0;font-size:14px;cursor:ns-resize;display:flex;align-items:center;gap:10px}
+.order-list li::before{content:'☰';color:#adb5bd;font-size:18px}
+.btn{background:#f98012;color:#fff;border:none;border-radius:8px;padding:10px 20px;font-size:14px;font-weight:600;cursor:pointer;margin-top:14px;transition:background .2s}
+.btn:hover{background:#e07010}
+.btn-outline{background:#fff;color:#f98012;border:2px solid #f98012;border-radius:8px;padding:8px 16px;font-size:13px;cursor:pointer;margin-top:10px}
+.feedback{margin-top:12px;padding:12px 16px;border-radius:8px;font-size:14px;display:none}
+.feedback.show{display:block}
+.feedback.ok{background:#d4edda;border:1px solid #c3e6cb;color:#155724}
+.feedback.err{background:#f8d7da;border:1px solid #f5c6cb;color:#721c24}
+.feedback.info{background:#d1ecf1;border:1px solid #bee5eb;color:#0c5460}
+/* Sidebar */
+.sidebar{position:sticky;top:74px;align-self:start;display:flex;flex-direction:column;gap:16px}
+.sidebar-card{background:#fff;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.08);padding:16px}
+.sidebar-card h3{font-size:14px;font-weight:700;color:#495057;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #dee2e6}
+.nav-links{display:flex;flex-direction:column;gap:4px}
+.nav-links a{font-size:12px;color:#495057;text-decoration:none;padding:4px 8px;border-radius:4px;transition:background .2s}
+.nav-links a:hover{background:#f8f9fa;color:#f98012}
+.score-box{text-align:center;padding:8px}
+.score-box .score-num{font-size:32px;font-weight:700;color:#f98012}
+.score-box .score-max{font-size:14px;color:#6c757d}
+.tool-btns{display:flex;flex-direction:column;gap:6px}
+.tool-btn{background:#f8f9fa;border:1px solid #dee2e6;border-radius:6px;padding:8px 10px;font-size:12px;cursor:pointer;text-align:left;transition:background .2s}
+.tool-btn:hover{background:#e9ecef}
+code{font-family:'Source Code Pro',monospace;background:#f1f3f5;padding:1px 4px;border-radius:3px;font-size:13px}
+</style>
+</head>
+<body>
+<header>
+  <div>
+    <h1>LF10 Kapitel 2 – Grundlagen Netzwerktechnik</h1>
+    <div class="meta">20 Fragen · Typen: ddwtos, ddmatch, gapselect, ordering, numerical, multichoice · ≈ 40 min</div>
+  </div>
+  <div style="margin-left:auto;font-size:24px;font-weight:700">46 P.</div>
+</header>
+
+<div class="layout">
+<div class="questions">
+
+<!-- Q01 ddwtos MAC hex->binaer/dezimal -->
+<div class="card" id="q1">
+  <div class="card-header">
+    <span class="qnum">Frage 1</span>
+    <span class="qtype">Drag &amp; Drop in Text</span>
+    <span class="pts">4 P.</span>
+  </div>
+  <div class="card-body">
+    <p>Beim Einrichten eines Dante-Audionetzwerks prüfen Sie die MAC-Adresse eines Mischpults: <strong>DE:AD:BE:EF:00:01</strong>.</p>
+    <p>Rechnen Sie die ersten beiden Bytes um:</p>
+    <div class="drag-pool" id="pool1">
+      <span class="chip" onclick="placeChip(this,'g1a','11011110')">11011110</span>
+      <span class="chip" onclick="placeChip(this,'g1b','222')">222</span>
+      <span class="chip" onclick="placeChip(this,'g1a','10101101')">10101101</span>
+      <span class="chip" onclick="placeChip(this,'g1b','173')">173</span>
+      <span class="chip" onclick="placeChip(this,'g1a','11101101')">11101101</span>
+      <span class="chip" onclick="placeChip(this,'g1b','198')">198</span>
+      <span class="chip" onclick="placeChip(this,'g1a','10110101')">10110101</span>
+      <span class="chip" onclick="placeChip(this,'g1b','182')">182</span>
+    </div>
+    <div class="gap-text">
+      <strong>DE</strong> (hex) = <span class="gap" id="g1a" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (binär) = <span class="gap" id="g1b" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;</span> (dezimal)<br><br>
+      <strong>AD</strong> (hex) = <span class="gap" id="g1c" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> (binär) = <span class="gap" id="g1d" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;</span> (dezimal)
+    </div>
+    <div style="margin-top:8px;font-size:12px;color:#6c757d">Klick auf Chip = in nächste freie Lücke; Klick auf Lücke = zurücklegen</div>
+    <button class="btn" onclick="checkQ1()">Prüfen</button>
+    <div class="feedback" id="fb1"></div>
+  </div>
+</div>
+
+<!-- Q02 numerical /25 hosts -->
+<div class="card" id="q2">
+  <div class="card-header">
+    <span class="qnum">Frage 2</span><span class="qtype">Numerisch</span><span class="pts">1 P.</span>
+  </div>
+  <div class="card-body">
+    <p>Ein Dante-Netzwerk nutzt das Subnetz <code>10.0.1.0/25</code>. Wie viele IP-Adressen können als <strong>nutzbare Hostadressen</strong> vergeben werden? (Netzwerk- und Broadcastadresse zählen nicht.)</p>
+    <div class="num-input"><input type="number" id="ans2" placeholder="Zahl eingeben"><button class="btn" onclick="checkNum('ans2','126','fb2')">Prüfen</button></div>
+    <div class="feedback" id="fb2"></div>
+  </div>
+</div>
+
+<!-- Q03 gapselect -->
+<div class="card" id="q3">
+  <div class="card-header">
+    <span class="qnum">Frage 3</span><span class="qtype">Lückentext (Auswahl)</span><span class="pts">4 P.</span>
+  </div>
+  <div class="card-body">
+    <p>Wählen Sie die richtigen Begriffe:</p>
+    <div class="gap-text">
+      MAC-Adressen werden <select id="s3a" style="font-size:14px;padding:4px"><option value="">– wählen –</option><option>hexadezimal</option><option>dezimal</option><option>binär</option><option>oktal</option></select> dargestellt,
+      während IPv4-Adressen in <select id="s3b" style="font-size:14px;padding:4px"><option value="">– wählen –</option><option>dezimaler</option><option>hexadezimaler</option><option>binärer</option><option>oktaler</option></select> Punktnotation angegeben werden.
+      Das Binärsystem arbeitet mit der Basis <select id="s3c" style="font-size:14px;padding:4px"><option value="">– wählen –</option><option>2</option><option>8</option><option>10</option><option>16</option></select>.
+      Eine IPv4-Adresse besteht aus <select id="s3d" style="font-size:14px;padding:4px"><option value="">– wählen –</option><option>32</option><option>16</option><option>64</option><option>128</option></select> Bit.
+    </div>
+    <button class="btn" onclick="checkGapselect3()">Prüfen</button>
+    <div class="feedback" id="fb3"></div>
+  </div>
+</div>
+
+<!-- Q04 ddmatch CIDR/Subnetzmaske -->
+<div class="card" id="q4">
+  <div class="card-header">
+    <span class="qnum">Frage 4</span><span class="qtype">Zuordnung</span><span class="pts">5 P.</span>
+  </div>
+  <div class="card-body">
+    <p>Ordnen Sie jedem CIDR-Präfix die richtige Subnetzmaske zu:</p>
+    <table class="match-table">
+      <tr><th>CIDR-Präfix</th><th>Subnetzmaske</th></tr>
+      <tr><td>/16</td><td><select id="m4a"><option value="">– wählen –</option><option>255.255.0.0</option><option>255.255.255.0</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.128.0</option></select></td></tr>
+      <tr><td>/24</td><td><select id="m4b"><option value="">– wählen –</option><option>255.255.0.0</option><option>255.255.255.0</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.128.0</option></select></td></tr>
+      <tr><td>/26</td><td><select id="m4c"><option value="">– wählen –</option><option>255.255.0.0</option><option>255.255.255.0</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.128.0</option></select></td></tr>
+      <tr><td>/27</td><td><select id="m4d"><option value="">– wählen –</option><option>255.255.0.0</option><option>255.255.255.0</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.128.0</option></select></td></tr>
+      <tr><td>/28</td><td><select id="m4e"><option value="">– wählen –</option><option>255.255.0.0</option><option>255.255.255.0</option><option>255.255.255.192</option><option>255.255.255.224</option><option>255.255.255.240</option><option>255.255.128.0</option></select></td></tr>
+    </table>
+    <button class="btn" onclick="checkMatch4()">Prüfen</button>
+    <div class="feedback" id="fb4"></div>
+  </div>
+</div>
+
+<!-- Q05 numerical /26 hosts -->
+<div class="card" id="q5">
+  <div class="card-header"><span class="qnum">Frage 5</span><span class="qtype">Numerisch</span><span class="pts">1 P.</span></div>
+  <div class="card-body">
+    <p>Das Dante-Subnetz <code>192.168.20.0/26</code>: Wie viele nutzbare Host-Adressen stehen zur Verfügung?</p>
+    <div class="num-input"><input type="number" id="ans5" placeholder="Zahl eingeben"><button class="btn" onclick="checkNum('ans5','62','fb5')">Prüfen</button></div>
+    <div class="feedback" id="fb5"></div>
+  </div>
+</div>
+
+<!-- Q06 ddwtos AND-Verknuepfung (SVG) -->
+<div class="card" id="q6">
+  <div class="card-header"><span class="qnum">Frage 6</span><span class="qtype">Drag &amp; Drop in Text</span><span class="pts">3 P.</span></div>
+  <div class="card-body">
+    <p>Gegeben: IP <code>192.168.10.77</code>, Präfix <code>/26</code> (= 255.255.255.192):</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="125" viewBox="0 0 600 125" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;"><rect width="600" height="125" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/><text x="12" y="20" font-size="13" font-weight="bold" fill="#343a40">Bitweise AND-Verknüpfung: 192.168.10.77 / 26</text><text x="12" y="46" font-family="monospace" font-size="12" fill="#212529">IP:    11000000.10101000.00001010.01001101  (192.168.10.77)</text><text x="12" y="66" font-family="monospace" font-size="12" fill="#212529">Maske: 11111111.11111111.11111111.11000000  (255.255.255.192)</text><line x1="12" y1="76" x2="588" y2="76" stroke="#6c757d" stroke-width="1.5" stroke-dasharray="4,2"/><text x="12" y="94" font-family="monospace" font-size="12" fill="#155724">AND:   11000000.10101000.00001010.01000000  = ?</text><text x="12" y="115" font-size="11" fill="#6c757d">Hostbits = 0: Netzwerkadresse | Hostbits = 1: Broadcastadresse</text></svg>
+    <div class="drag-pool" id="pool6">
+      <span class="chip" onclick="placeChipQ6(this,'g6a','192.168.10.64')">192.168.10.64</span>
+      <span class="chip" onclick="placeChipQ6(this,'g6b','192.168.10.65')">192.168.10.65</span>
+      <span class="chip" onclick="placeChipQ6(this,'g6c','192.168.10.127')">192.168.10.127</span>
+      <span class="chip" onclick="placeChipQ6(this,'g6a','192.168.10.0')">192.168.10.0</span>
+      <span class="chip" onclick="placeChipQ6(this,'g6a','192.168.10.63')">192.168.10.63</span>
+      <span class="chip" onclick="placeChipQ6(this,'g6c','192.168.10.128')">192.168.10.128</span>
+    </div>
+    <div class="gap-text">
+      Netzwerkadresse: <span class="gap" id="g6a" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br>
+      Erste gültige Host-Adresse: <span class="gap" id="g6b" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><br>
+      Broadcastadresse: <span class="gap" id="g6c" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+    </div>
+    <button class="btn" onclick="checkQ6()">Prüfen</button>
+    <div class="feedback" id="fb6"></div>
+  </div>
+</div>
+
+<!-- Q07 ddmatch IPv4 Header -->
+<div class="card" id="q7">
+  <div class="card-header"><span class="qnum">Frage 7</span><span class="qtype">Zuordnung</span><span class="pts">5 P.</span></div>
+  <div class="card-body">
+    <p>Ordnen Sie jedem IPv4-Header-Feld seine Bedeutung zu:</p>
+    <table class="match-table">
+      <tr><th>Header-Feld</th><th>Bedeutung</th></tr>
+      <tr><td>TTL (Time to Live)</td><td><select id="m7a"><option value="">– wählen –</option><option>Begrenzt die max. Anzahl von Router-Weiterleitungen</option><option>Gibt an, ob TCP oder UDP im Datenteil steckt</option><option>Gesamtgröße des IP-Pakets in Byte</option><option>IP-Adresse des Absenders</option><option>IP-Adresse des Empfängers</option><option>Erkennt Bit-Fehler im Header</option></select></td></tr>
+      <tr><td>Protocol</td><td><select id="m7b"><option value="">– wählen –</option><option>Begrenzt die max. Anzahl von Router-Weiterleitungen</option><option>Gibt an, ob TCP oder UDP im Datenteil steckt</option><option>Gesamtgröße des IP-Pakets in Byte</option><option>IP-Adresse des Absenders</option><option>IP-Adresse des Empfängers</option><option>Erkennt Bit-Fehler im Header</option></select></td></tr>
+      <tr><td>Total Length</td><td><select id="m7c"><option value="">– wählen –</option><option>Begrenzt die max. Anzahl von Router-Weiterleitungen</option><option>Gibt an, ob TCP oder UDP im Datenteil steckt</option><option>Gesamtgröße des IP-Pakets in Byte</option><option>IP-Adresse des Absenders</option><option>IP-Adresse des Empfängers</option><option>Erkennt Bit-Fehler im Header</option></select></td></tr>
+      <tr><td>Source Address</td><td><select id="m7d"><option value="">– wählen –</option><option>Begrenzt die max. Anzahl von Router-Weiterleitungen</option><option>Gibt an, ob TCP oder UDP im Datenteil steckt</option><option>Gesamtgröße des IP-Pakets in Byte</option><option>IP-Adresse des Absenders</option><option>IP-Adresse des Empfängers</option><option>Erkennt Bit-Fehler im Header</option></select></td></tr>
+      <tr><td>Destination Address</td><td><select id="m7e"><option value="">– wählen –</option><option>Begrenzt die max. Anzahl von Router-Weiterleitungen</option><option>Gibt an, ob TCP oder UDP im Datenteil steckt</option><option>Gesamtgröße des IP-Pakets in Byte</option><option>IP-Adresse des Absenders</option><option>IP-Adresse des Empfängers</option><option>Erkennt Bit-Fehler im Header</option></select></td></tr>
+    </table>
+    <button class="btn" onclick="checkMatch7()">Prüfen</button>
+    <div class="feedback" id="fb7"></div>
+  </div>
+</div>
+
+<!-- Q08 gapselect MTU -->
+<div class="card" id="q8">
+  <div class="card-header"><span class="qnum">Frage 8</span><span class="qtype">Lückentext (Auswahl)</span><span class="pts">3 P.</span></div>
+  <div class="card-body">
+    <div class="gap-text">
+      Standard-Ethernet-MTU: <select id="s8a" style="font-size:14px;padding:4px"><option value="">–</option><option>576</option><option>1492</option><option>1500</option><option>9000</option></select> Byte.
+      PPPoE-MTU: <select id="s8b" style="font-size:14px;padding:4px"><option value="">–</option><option>576</option><option>1492</option><option>1500</option><option>9000</option></select> Byte.
+      Jumbo Frames (Gigabit-Ethernet): bis zu <select id="s8c" style="font-size:14px;padding:4px"><option value="">–</option><option>1500</option><option>4096</option><option>9000</option><option>65535</option></select> Byte.
+    </div>
+    <button class="btn" onclick="checkGapMTU()">Prüfen</button>
+    <div class="feedback" id="fb8"></div>
+  </div>
+</div>
+
+<!-- Q09 ordering Schritte Netzwerkadresse -->
+<div class="card" id="q9">
+  <div class="card-header"><span class="qnum">Frage 9</span><span class="qtype">Reihenfolge</span><span class="pts">1 P.</span></div>
+  <div class="card-body">
+    <p>Bringen Sie die Schritte zur Berechnung der Netzwerkadresse in die richtige Reihenfolge (ziehen oder Pfeile verwenden):</p>
+    <ol class="order-list" id="olist9">
+      <li data-correct="3">Bitweises AND zwischen IP-Adresse und Subnetzmaske durchführen</li>
+      <li data-correct="1">CIDR-Präfix in dezimale Subnetzmaske umrechnen (z.B. /26 → 255.255.255.192)</li>
+      <li data-correct="5">Broadcastadresse bestimmen: alle Hostbits auf 1 setzen</li>
+      <li data-correct="2">IP-Adresse bitweise ins Binärsystem konvertieren</li>
+      <li data-correct="4">Binäres Ergebnis in Dezimalnotation zurückkonvertieren (= Netzwerkadresse)</li>
+    </ol>
+    <button class="btn" onclick="checkOrder9()">Prüfen</button>
+    <button class="btn-outline" onclick="showSolutionOrder9()">Lösung anzeigen</button>
+    <div class="feedback" id="fb9"></div>
+  </div>
+</div>
+
+<!-- Q10 ddwtos TCP vs UDP -->
+<div class="card" id="q10">
+  <div class="card-header"><span class="qnum">Frage 10</span><span class="qtype">Drag &amp; Drop in Text</span><span class="pts">4 P.</span></div>
+  <div class="card-body">
+    <div class="drag-pool">
+      <span class="chip" onclick="setGap('g10a','verbindungsorientiert',this)">verbindungsorientiert</span>
+      <span class="chip" onclick="setGap('g10b','Empfangsbestätigungen (ACKs)',this)">Empfangsbestätigungen (ACKs)</span>
+      <span class="chip" onclick="setGap('g10c','verbindungslos',this)">verbindungslos</span>
+      <span class="chip" onclick="setGap('g10d','Dante (Audio over IP)',this)">Dante (Audio over IP)</span>
+      <span class="chip" onclick="setGap('g10a','paketbasiert',this)">paketbasiert</span>
+      <span class="chip" onclick="setGap('g10b','Prüfsummen',this)">Prüfsummen</span>
+      <span class="chip" onclick="setGap('g10d','HTTP-Webinterfaces',this)">HTTP-Webinterfaces</span>
+    </div>
+    <div class="gap-text">
+      TCP arbeitet <span class="gap" id="g10a" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> und sichert korrekte Übertragung durch <span class="gap" id="g10b" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> für jedes Paket. UDP ist <span class="gap" id="g10c" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> und wird bevorzugt bei latenz-kritischen Anwendungen wie <span class="gap" id="g10d" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>.
+    </div>
+    <button class="btn" onclick="checkQ10()">Prüfen</button>
+    <div class="feedback" id="fb10"></div>
+  </div>
+</div>
+
+<!-- Q11 multichoice OSI Switch -->
+<div class="card" id="q11">
+  <div class="card-header"><span class="qnum">Frage 11</span><span class="qtype">Einfachauswahl</span><span class="pts">1 P.</span></div>
+  <div class="card-body">
+    <p>Auf welcher OSI-Schicht arbeitet ein herkömmlicher <strong>Layer-2-Switch</strong> primär?</p>
+    <div class="answer-options">
+      <label class="opt"><input type="radio" name="q11" value="a"> Schicht 1 (Bitübertragungsschicht) – wie ein Hub, leitet alle Bits weiter</label>
+      <label class="opt"><input type="radio" name="q11" value="b"> Schicht 2 (Sicherungsschicht) – arbeitet mit MAC-Adressen</label>
+      <label class="opt"><input type="radio" name="q11" value="c"> Schicht 3 (Netzwerkschicht) – wertet IP-Adressen aus wie ein Router</label>
+      <label class="opt"><input type="radio" name="q11" value="d"> Schicht 4 (Transportschicht) – verwaltet TCP/UDP-Verbindungen</label>
+    </div>
+    <button class="btn" onclick="checkMC('q11','b','fb11')">Prüfen</button>
+    <div class="feedback" id="fb11"></div>
+  </div>
+</div>
+
+<!-- Q12 ddmatch Netzwerkgeraete (Cisco SVG) -->
+<div class="card" id="q12">
+  <div class="card-header"><span class="qnum">Frage 12</span><span class="qtype">Zuordnung</span><span class="pts">4 P.</span></div>
+  <div class="card-body">
+    <p>Ordnen Sie jedem Gerät die richtige OSI-Schicht und Funktion zu:</p>
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="190" viewBox="0 0 640 190" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;"><rect width="640" height="190" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/><text x="320" y="17" text-anchor="middle" font-size="13" font-weight="bold" fill="#343a40">Netzwerktopologie – OSI-Schichten</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="5" y="48" width="78" height="70"/><text x="44" y="130" text-anchor="middle" font-size="11" font-weight="bold">PC-A</text><text x="44" y="143" text-anchor="middle" font-size="10" fill="#6c757d">192.168.1.10</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="130" y="66" width="66" height="34"/><text x="163" y="113" text-anchor="middle" font-size="11" font-weight="bold">SW-1</text><text x="163" y="126" text-anchor="middle" font-size="10" fill="#6c757d">Layer 2</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNjAgNDEiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9Im5vbmUiIGZpbGw9IiMwZTZmOWMiLz48dXNlIHhsaW5rOmhyZWY9IiNDIiBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9Im5vbmUiIHN0cm9rZS13aWR0aD0iLjc4OCIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0ibm9uZSIgZmlsbD0iIzBlNmY5YyIvPjx1c2UgeGxpbms6aHJlZj0iI0QiIHN0cm9rZT0iI2ZmZiIgc3Ryb2tlLWxpbmVqb2luPSJtaXRlciIgZmlsbD0ibm9uZSIgc3Ryb2tlLXdpZHRoPSIuNzg4Ii8+PHBhdGggZD0iTTIyLjQ0OCA3LjA4MWwyLjM2MyAzLjU0NC05LjA1NiAxLjk2OSAxLjk2OS0xLjU3NUwzLjk0MiA4LjY1NiA3LjQ4NiA1LjlsMTMuMzg4IDIuMzYyIDEuNTc1LTEuMTgxem0xMi45OTQgOC42NjJMMzMuNDczIDEyLjJsOC4yNjktMS45NjktMS4xODEgMS41NzUgMTMuMzg4IDIuMzYyLTMuMTUgMi4zNjMtMTMuNzgxLTIuMzYzLTEuNTc1IDEuNTc1ek0zMC43MTcgNS4xMTNsOS4wNTYtMi4zNjIuMzk0IDMuNTQ0LTIuMzYzLS4zOTQtNC4zMzEgMy45MzgtNC4zMzEtLjc4NyA0LjMzMS0zLjU0NC0yLjc1Ni0uMzk0ek0yNi43OCAxOS4yODhsLTguNjYyIDEuNTc1LS4zOTQtNC4zMzEgMi43NTYuNzg3IDQuNzI1LTQuMzMxIDQuMzMxLjc4Ny01LjExOSA0LjcyNSAyLjM2Mi43ODh6IiBzdHJva2U9Im5vbmUiLz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik01OC4yNzQgMTEuNDE5YzAgNi4zLTEyLjk5NCAxMS40MTktMjkuMTM3IDExLjQxOVMwIDE3LjcxOSAwIDExLjQxOXYxNi41MzdjMCA2LjMgMTIuOTk0IDExLjQxOSAyOS4xMzcgMTEuNDE5czI5LjEzNy01LjExOSAyOS4xMzctMTEuNDE5eiIvPjxwYXRoIGlkPSJEIiBkPSJNMjkuMTM3IDIyLjgzN2MxNi4xNDQgMCAyOS4xMzctNS4xMTkgMjkuMTM3LTExLjQxOVM0NS4yODEgMCAyOS4xMzcgMCAwIDUuMTE5IDAgMTEuNDE5czEyLjk5NCAxMS40MTkgMjkuMTM3IDExLjQxOXoiLz48L2RlZnM+PC9zdmc+" x="252" y="55" width="84" height="57"/><text x="294" y="124" text-anchor="middle" font-size="11" font-weight="bold">Router R1</text><text x="294" y="137" text-anchor="middle" font-size="10" fill="#6c757d">Layer 3</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="375" y="66" width="66" height="34"/><text x="408" y="113" text-anchor="middle" font-size="11" font-weight="bold">SW-2</text><text x="408" y="126" text-anchor="middle" font-size="10" fill="#6c757d">Layer 2</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="495" y="48" width="78" height="70"/><text x="534" y="130" text-anchor="middle" font-size="11" font-weight="bold">PC-B</text><text x="534" y="143" text-anchor="middle" font-size="10" fill="#6c757d">192.168.2.20</text><line x1="83" y1="83" x2="130" y2="83" stroke="#495057" stroke-width="2"/><line x1="196" y1="83" x2="252" y2="83" stroke="#495057" stroke-width="2"/><line x1="336" y1="83" x2="375" y2="83" stroke="#495057" stroke-width="2"/><line x1="441" y1="83" x2="495" y2="83" stroke="#495057" stroke-width="2"/><text x="320" y="175" text-anchor="middle" font-size="11" fill="#6c757d">Ordnen Sie jedem Gerät die richtige OSI-Schicht zu!</text></svg>
+    <table class="match-table" style="margin-top:12px">
+      <tr><th>Gerät</th><th>OSI-Schicht und Funktion</th></tr>
+      <tr><td>Hub</td><td><select id="m12a"><option value="">– wählen –</option><option>Schicht 1 – sendet alle Pakete an jeden Port (Broadcast)</option><option>Schicht 2 – leitet Pakete anhand der MAC-Adresse gezielt weiter</option><option>Schicht 3 – verbindet IP-Netzwerke, routet anhand von IP-Adressen</option><option>Schicht 2+3 – kombiniert MAC-Switching mit IP-Routing</option><option>Schicht 7 – verwaltet DNS-Namensauflösung</option></select></td></tr>
+      <tr><td>Switch (Layer 2)</td><td><select id="m12b"><option value="">– wählen –</option><option>Schicht 1 – sendet alle Pakete an jeden Port (Broadcast)</option><option>Schicht 2 – leitet Pakete anhand der MAC-Adresse gezielt weiter</option><option>Schicht 3 – verbindet IP-Netzwerke, routet anhand von IP-Adressen</option><option>Schicht 2+3 – kombiniert MAC-Switching mit IP-Routing</option><option>Schicht 7 – verwaltet DNS-Namensauflösung</option></select></td></tr>
+      <tr><td>Router</td><td><select id="m12c"><option value="">– wählen –</option><option>Schicht 1 – sendet alle Pakete an jeden Port (Broadcast)</option><option>Schicht 2 – leitet Pakete anhand der MAC-Adresse gezielt weiter</option><option>Schicht 3 – verbindet IP-Netzwerke, routet anhand von IP-Adressen</option><option>Schicht 2+3 – kombiniert MAC-Switching mit IP-Routing</option><option>Schicht 7 – verwaltet DNS-Namensauflösung</option></select></td></tr>
+      <tr><td>Layer-3-Switch</td><td><select id="m12d"><option value="">– wählen –</option><option>Schicht 1 – sendet alle Pakete an jeden Port (Broadcast)</option><option>Schicht 2 – leitet Pakete anhand der MAC-Adresse gezielt weiter</option><option>Schicht 3 – verbindet IP-Netzwerke, routet anhand von IP-Adressen</option><option>Schicht 2+3 – kombiniert MAC-Switching mit IP-Routing</option><option>Schicht 7 – verwaltet DNS-Namensauflösung</option></select></td></tr>
+    </table>
+    <button class="btn" onclick="checkMatch12()">Prüfen</button>
+    <div class="feedback" id="fb12"></div>
+  </div>
+</div>
+
+<!-- Q13 gapselect MAC-Learning -->
+<div class="card" id="q13">
+  <div class="card-header"><span class="qnum">Frage 13</span><span class="qtype">Lückentext (Auswahl)</span><span class="pts">3 P.</span></div>
+  <div class="card-body">
+    <div class="gap-text">
+      Ein Switch liest die <select id="s13a" style="font-size:14px;padding:4px"><option value="">–</option><option>MAC</option><option>IP</option><option>DNS</option><option>ARP</option></select>-Adresse des Absenders. Bei unbekanntem Ziel <select id="s13b" style="font-size:14px;padding:4px"><option value="">–</option><option>flutet</option><option>verwirft</option><option>blockiert</option><option>routet</option></select> er das Paket. Dieses Verfahren heißt <select id="s13c" style="font-size:14px;padding:4px"><option value="">–</option><option>MAC-Learning</option><option>ARP-Caching</option><option>IP-Routing</option><option>DNS-Resolution</option></select>.
+    </div>
+    <button class="btn" onclick="checkGap13()">Prüfen</button>
+    <div class="feedback" id="fb13"></div>
+  </div>
+</div>
+
+<!-- Q14 ddwtos VLAN Port-Typen (Cisco SVG) -->
+<div class="card" id="q14">
+  <div class="card-header"><span class="qnum">Frage 14</span><span class="qtype">Drag &amp; Drop in Text</span><span class="pts">4 P.</span></div>
+  <div class="card-body">
+    <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="220" viewBox="0 0 520 220" style="font-family:Arial,sans-serif;font-size:12px;display:block;margin:10px auto;"><rect width="520" height="220" rx="8" fill="#f8f9fa" stroke="#dee2e6" stroke-width="1.5"/><text x="10" y="17" font-size="13" font-weight="bold" fill="#343a40">VLAN-Konfiguration am Switch</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="5" y="25" width="78" height="70"/><text x="44" y="107" text-anchor="middle" font-size="11" font-weight="bold">Lichtpult</text><text x="44" y="120" text-anchor="middle" font-size="10" fill="#1a6fc4">VLAN 10</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNTkgNTMiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxzdHlsZT48IVtDREFUQVsuQntzdHJva2U6I2ZmZn0uQ3tzdHJva2UtbGluZWpvaW46bWl0ZXJ9LkR7ZmlsbDojMGY3M2EwfS5Fe3N0cm9rZS13aWR0aDouNzg3fS5Ge2ZpbGw6IzBiNzE5Zn0uR3tzdHJva2UtbGluZWNhcDpzcXVhcmV9XV0+PC9zdHlsZT48dXNlIHhsaW5rOmhyZWY9IiNBIiB4PSIuNSIgeT0iLjUiLz48c3ltYm9sIGlkPSJBIiBvdmVyZmxvdz0idmlzaWJsZSI+PHBhdGggZD0iTTQ5LjU3MyA0NC40NTl2LTkuNDQzSDB2OS40NDNoNDkuNTczeiIgY2xhc3M9IkIgQyBEIEUiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48cGF0aCBkPSJNMzQuMjI5IDQwLjEzMWgxMi41OSIgZmlsbD0ibm9uZSIgY2xhc3M9IkIgQyBFIEciLz48cGF0aCBkPSJNMzQuMjI5IDM5LjczN2gxMi41OXoiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkYiLz48ZyBjbGFzcz0iQiBDIEUiPjxwYXRoIGQ9Ik0zNC4yMjkgMzkuNzM3aDEyLjU5IiBmaWxsPSJub25lIiBjbGFzcz0iRyIvPjxnIGNsYXNzPSJEIj48cGF0aCBkPSJNNTcuODM1IDM1LjQwOXYtOC4yNjJsLTguMjYyIDcuODY5djkuNDQzbDguMjYyLTkuMDQ5ek00MC45MTcgNTEuOTMzdi0xLjk2N2w0LjMyOC02LjI5NXYzLjkzNGwtNC4zMjggNC4zMjh6Ii8+PHBhdGggZD0iTTQwLjkxNyA0OS45NjZ2MS45NjdIMS4xOHYtMS45NjdoMzkuNzM3eiIvPjxwYXRoIGQ9Ik00MC45MTcgNDkuOTY2SDEuMThsNC4zMjgtNi4yOTVoMzkuNzM3bC00LjMyOCA2LjI5NXptMTYuOTE4LTIyLjgxOUg4LjI2MkwwIDM1LjAxNmg0OS41NzNsOC4yNjItNy44Njl6Ii8+PHBhdGggZD0iTTQyLjg4NSAzMC4yOTVWNS41MDhIOS4wNDl2MjQuNzg3aDMzLjgzNnoiLz48L2c+PC9nPjx1c2UgeGxpbms6aHJlZj0iI0MiIHN0cm9rZT0ibm9uZSIgY2xhc3M9IkQiLz48ZyBjbGFzcz0iQiBDIEUiPjx1c2UgeGxpbms6aHJlZj0iI0MiIGZpbGw9Im5vbmUiLz48cGF0aCBkPSJNNDguNzg2IDBIMTQuNTU3TDkuMDQ5IDUuNTA4aDMzLjgzNkw0OC43ODYgMHoiIGNsYXNzPSJEIi8+PHBhdGggZD0iTTQ4Ljc4NyAyNS4xOFYwbC01LjkwMSA1LjUwOHYyNC43ODdsNS45MDEtNS4xMTV6IiBjbGFzcz0iRiIvPjwvZz48L3N5bWJvbD48ZGVmcyA+PHBhdGggaWQ9IkMiIGQ9Ik0xMS43OTggMTEuMDIzYzAtMi43NTQgMi4zNjEtMy4xNDggMi4zNjEtMy4xNDhoMjIuODE5YzMuMTQ4IDAgMy4xNDggMy4xNDggMy4xNDggMy4xNDh2MTQuMTY0YzAgMS41NzQtMi43NTQgMi4zNjEtMi43NTQgMi4zNjFIMTQuNTUyYy0xLjk2NyAwLTIuNzU0LTIuMzYxLTIuNzU0LTIuMzYxeiIvPjwvZGVmcz48L3N2Zz4=" x="5" y="135" width="78" height="70"/><text x="44" y="214" text-anchor="middle" font-size="11" font-weight="bold">Dante-Pult</text><image href="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2aWV3Qm94PSIwIDAgNzcgMzkiIGZpbGw9IiNmZmYiIGZpbGwtcnVsZT0iZXZlbm9kZCIgc3Ryb2tlPSIjMDAwIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjx1c2UgeGxpbms6aHJlZj0iI0EiIHg9Ii41IiB5PSIuNSIvPjxzeW1ib2wgaWQ9IkEiIG92ZXJmbG93PSJ2aXNpYmxlIj48ZyBzdHJva2U9IiNmZmYiIHN0cm9rZS1saW5lam9pbj0ibWl0ZXIiIGZpbGw9IiMxMjZkOTkiIHN0cm9rZS13aWR0aD0iLjc4NyI+PHBhdGggZD0iTTU2LjY2MiAzNi41OTR2LTE4LjFILjM5NHYxOC4xaDU2LjI2OHoiLz48cGF0aCBkPSJNMCAxOC40OTRMMjIuODIyIDBoNTIuMzM0TDU2LjI2OCAxOC40OTRIMHptNTYuNjYyIDE4Ljg4N0w3NS4xNTYgMTYuOTJWMEw1Ni42NjIgMTguNDk0djE4Ljg4N3oiLz48L2c+PHBhdGggZD0iTTMzLjA1MyAxMy43NzJsLTEuMTgxLjc4N0gxOC4xMDFsLTEuNTc0IDEuNTc0LTMuOTM1LTEuNTc0IDcuODctMi4zNjEtMS41NzQgMS41NzRoMTQuMTY2em0xMS4wMTgtNy4wODNMNDIuODkgNy44NjlIMjkuMTE4bC0xLjU3NCAxLjE4LTMuOTM1LTEuNTc0IDcuODctMS45NjctMS41NzQgMS4xOGgxNC4xNjZ6bS04LjY1NyA0LjcyMmwxLjE4LS43ODdINTAuNzZsMS4xOC0xLjU3NCAzLjkzNSAxLjU3NC03LjQ3NiAyLjM2MSAxLjE4LTEuNTc0SDM1LjQxNHptNy40NzYtNy4wODNsMS4xODEtLjc4N2gxMy43NzJsMS41NzQtMS41NzQgMy45MzUgMS45NjctNy44NyAxLjk2NyAxLjU3NC0xLjU3NEg0Mi44OXoiIHN0cm9rZT0ibm9uZSIvPjwvc3ltYm9sPjwvc3ZnPg==" x="195" y="85" width="66" height="34"/><text x="228" y="132" text-anchor="middle" font-size="11" font-weight="bold">SW-1</text><line x1="83" y1="60" x2="195" y2="96" stroke="#495057" stroke-width="2"/><text x="136" y="65" font-size="10" fill="#1a6fc4" font-weight="bold">Access-Port</text><line x1="83" y1="170" x2="195" y2="109" stroke="#495057" stroke-width="2"/><text x="115" y="152" font-size="10" fill="#2a9d8f" font-weight="bold">Access-Port</text><line x1="261" y1="102" x2="400" y2="102" stroke="#e63946" stroke-width="3"/><text x="330" y="93" text-anchor="middle" font-size="11" fill="#e63946" font-weight="bold">Trunk-Port</text><rect x="400" y="82" width="110" height="40" rx="5" fill="#dee2e6" stroke="#adb5bd" stroke-width="1.5"/><text x="455" y="105" text-anchor="middle" font-size="11" fill="#495057">Router / SW-2</text></svg>
+    <div class="drag-pool">
+      <span class="chip" onclick="setGap('g14a','Access',this)">Access</span>
+      <span class="chip" onclick="setGap('g14b','Trunk',this)">Trunk</span>
+      <span class="chip" onclick="setGap('g14c','802.1Q',this)">802.1Q</span>
+      <span class="chip" onclick="setGap('g14d','Native',this)">Native</span>
+      <span class="chip" onclick="setGap('g14a','Uplink',this)">Uplink</span>
+      <span class="chip" onclick="setGap('g14c','802.3ad',this)">802.3ad</span>
+      <span class="chip" onclick="setGap('g14d','Standard',this)">Standard</span>
+    </div>
+    <div class="gap-text">
+      Endgeräte werden an <span class="gap" id="g14a" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-Ports angeschlossen. Verbindungen zwischen Switches: <span class="gap" id="g14b" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>-Port. IEEE <span class="gap" id="g14c" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> definiert das VLAN-Tagging. Pakete ohne Tag gehören zum <span class="gap" id="g14d" onclick="clearGap(this)">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span> VLAN.
+    </div>
+    <button class="btn" onclick="checkQ14()">Prüfen</button>
+    <div class="feedback" id="fb14"></div>
+  </div>
+</div>
+
+<!-- Q15 ddmatch VLAN-IDs Festival -->
+<div class="card" id="q15">
+  <div class="card-header"><span class="qnum">Frage 15</span><span class="qtype">Zuordnung</span><span class="pts">5 P.</span></div>
+  <div class="card-body">
+    <p>Festivalnetzwerk: Ordnen Sie jeder VLAN-ID das richtige Gewerk zu:</p>
+    <table class="match-table">
+      <tr><th>VLAN-ID</th><th>Gewerk</th></tr>
+      <tr><td>VLAN 10</td><td><select id="m15a"><option value="">–</option><option>Lichttechnik (Art-Net Nodes, DMX-Controller)</option><option>Audiotechnik (Dante-Netzwerk)</option><option>Videotechnik (NDI-Kameras, Videomischer)</option><option>Management (Monitoring, Fernwartung)</option><option>Gäste-WLAN (Internetzugang, isoliert)</option></select></td></tr>
+      <tr><td>VLAN 20</td><td><select id="m15b"><option value="">–</option><option>Lichttechnik (Art-Net Nodes, DMX-Controller)</option><option>Audiotechnik (Dante-Netzwerk)</option><option>Videotechnik (NDI-Kameras, Videomischer)</option><option>Management (Monitoring, Fernwartung)</option><option>Gäste-WLAN (Internetzugang, isoliert)</option></select></td></tr>
+      <tr><td>VLAN 30</td><td><select id="m15c"><option value="">–</option><option>Lichttechnik (Art-Net Nodes, DMX-Controller)</option><option>Audiotechnik (Dante-Netzwerk)</option><option>Videotechnik (NDI-Kameras, Videomischer)</option><option>Management (Monitoring, Fernwartung)</option><option>Gäste-WLAN (Internetzugang, isoliert)</option></select></td></tr>
+      <tr><td>VLAN 40</td><td><select id="m15d"><option value="">–</option><option>Lichttechnik (Art-Net Nodes, DMX-Controller)</option><option>Audiotechnik (Dante-Netzwerk)</option><option>Videotechnik (NDI-Kameras, Videomischer)</option><option>Management (Monitoring, Fernwartung)</option><option>Gäste-WLAN (Internetzugang, isoliert)</option></select></td></tr>
+      <tr><td>VLAN 50</td><td><select id="m15e"><option value="">–</option><option>Lichttechnik (Art-Net Nodes, DMX-Controller)</option><option>Audiotechnik (Dante-Netzwerk)</option><option>Videotechnik (NDI-Kameras, Videomischer)</option><option>Management (Monitoring, Fernwartung)</option><option>Gäste-WLAN (Internetzugang, isoliert)</option></select></td></tr>
+    </table>
+    <button class="btn" onclick="checkMatch15()">Prüfen</button>
+    <div class="feedback" id="fb15"></div>
+  </div>
+</div>
+
+<!-- Q16 numerical max VLAN-ID -->
+<div class="card" id="q16">
+  <div class="card-header"><span class="qnum">Frage 16</span><span class="qtype">Numerisch</span><span class="pts">1 P.</span></div>
+  <div class="card-body">
+    <p>IEEE 802.1Q definiert einen <strong>12-Bit-VLAN-Identifier</strong>. Welche maximale VLAN-ID ist nutzbar (VLAN 0 und 4095 sind reserviert)?</p>
+    <div class="num-input"><input type="number" id="ans16" placeholder="VLAN-ID eingeben"><button class="btn" onclick="checkNum('ans16','4094','fb16')">Prüfen</button></div>
+    <div class="feedback" id="fb16"></div>
+  </div>
+</div>
+
+<!-- Q17 ddmatch Protokoll/Port -->
+<div class="card" id="q17">
+  <div class="card-header"><span class="qnum">Frage 17</span><span class="qtype">Zuordnung</span><span class="pts">5 P.</span></div>
+  <div class="card-body">
+    <p>Ordnen Sie jedem VT-Protokoll das Transportprotokoll und den Port zu:</p>
+    <table class="match-table">
+      <tr><th>Protokoll</th><th>Transport / Port</th></tr>
+      <tr><td>Art-Net 4</td><td><select id="m17a"><option value="">–</option><option>UDP, Port 6454 (Broadcast oder Unicast)</option><option>UDP, Multicast 239.255.x.x (IGMP-Snooping)</option><option>UDP, Port frei konfigurierbar</option><option>RTP/UDP, Port 5004/5005</option><option>UDP, proprietäre Ports (Audinate)</option></select></td></tr>
+      <tr><td>sACN (E1.31)</td><td><select id="m17b"><option value="">–</option><option>UDP, Port 6454 (Broadcast oder Unicast)</option><option>UDP, Multicast 239.255.x.x (IGMP-Snooping)</option><option>UDP, Port frei konfigurierbar</option><option>RTP/UDP, Port 5004/5005</option><option>UDP, proprietäre Ports (Audinate)</option></select></td></tr>
+      <tr><td>OSC</td><td><select id="m17c"><option value="">–</option><option>UDP, Port 6454 (Broadcast oder Unicast)</option><option>UDP, Multicast 239.255.x.x (IGMP-Snooping)</option><option>UDP, Port frei konfigurierbar</option><option>RTP/UDP, Port 5004/5005</option><option>UDP, proprietäre Ports (Audinate)</option></select></td></tr>
+      <tr><td>RTP-MIDI</td><td><select id="m17d"><option value="">–</option><option>UDP, Port 6454 (Broadcast oder Unicast)</option><option>UDP, Multicast 239.255.x.x (IGMP-Snooping)</option><option>UDP, Port frei konfigurierbar</option><option>RTP/UDP, Port 5004/5005</option><option>UDP, proprietäre Ports (Audinate)</option></select></td></tr>
+      <tr><td>Dante</td><td><select id="m17e"><option value="">–</option><option>UDP, Port 6454 (Broadcast oder Unicast)</option><option>UDP, Multicast 239.255.x.x (IGMP-Snooping)</option><option>UDP, Port frei konfigurierbar</option><option>RTP/UDP, Port 5004/5005</option><option>UDP, proprietäre Ports (Audinate)</option></select></td></tr>
+    </table>
+    <button class="btn" onclick="checkMatch17()">Prüfen</button>
+    <div class="feedback" id="fb17"></div>
+  </div>
+</div>
+
+<!-- Q18 multichoice multi sACN -->
+<div class="card" id="q18">
+  <div class="card-header"><span class="qnum">Frage 18</span><span class="qtype">Mehrfachauswahl</span><span class="pts">3 P.</span></div>
+  <div class="card-body">
+    <p>Welche Aussagen über <strong>sACN (E1.31)</strong> sind korrekt? <em>(Mehrere möglich)</em></p>
+    <div class="answer-options">
+      <label class="opt"><input type="checkbox" name="q18" value="a"> Nutzt IP-Multicast statt Broadcast für effizientere Verteilung</label>
+      <label class="opt"><input type="checkbox" name="q18" value="b"> Nutzt ausschließlich TCP als Transportprotokoll</label>
+      <label class="opt"><input type="checkbox" name="q18" value="c"> Basiert auf dem ACN-Standard (Architecture for Control Networks)</label>
+      <label class="opt"><input type="checkbox" name="q18" value="d"> Wurde von Artistic Licence als Weiterentwicklung von DMX512 entwickelt</label>
+      <label class="opt"><input type="checkbox" name="q18" value="e"> Erfordert IGMP-Snooping für effizienten Multicast-Betrieb am Switch</label>
+      <label class="opt"><input type="checkbox" name="q18" value="f"> Benötigt keine VLAN-Segmentierung, da Multicast-Gruppen ausreichen</label>
+    </div>
+    <button class="btn" onclick="checkQ18()">Prüfen</button>
+    <div class="feedback" id="fb18"></div>
+  </div>
+</div>
+
+<!-- Q19 ordering Dante-Planung -->
+<div class="card" id="q19">
+  <div class="card-header"><span class="qnum">Frage 19</span><span class="qtype">Reihenfolge</span><span class="pts">1 P.</span></div>
+  <div class="card-body">
+    <p>Bringen Sie die Planungsschritte für ein Dante-Netzwerk in die richtige Reihenfolge:</p>
+    <ol class="order-list" id="olist19">
+      <li data-correct="3">Netzwerkadresse und Broadcastadresse berechnen (bitweises AND)</li>
+      <li data-correct="1">Anforderungen ermitteln: Geräteanzahl, Latenz, Redundanz</li>
+      <li data-correct="5">Separates VLAN konfigurieren und QoS (DSCP) am Switch aktivieren</li>
+      <li data-correct="2">Geeignetes Subnetz wählen (CIDR) mit ausreichend Hostadressen</li>
+      <li data-correct="4">Statische IP-Adressen für alle Dante-Geräte vergeben und dokumentieren</li>
+    </ol>
+    <button class="btn" onclick="checkOrder19()">Prüfen</button>
+    <button class="btn-outline" onclick="showSolutionOrder19()">Lösung anzeigen</button>
+    <div class="feedback" id="fb19"></div>
+  </div>
+</div>
+
+<!-- Q20 numerical Broadcast /27 -->
+<div class="card" id="q20">
+  <div class="card-header"><span class="qnum">Frage 20</span><span class="qtype">Numerisch</span><span class="pts">1 P.</span></div>
+  <div class="card-body">
+    <p>NDI-Videosubnetz: <code>192.168.20.0/27</code>. Welches ist das <strong>letzte Oktett der Broadcastadresse</strong>?</p>
+    <p><em>Tipp: /27 = Blockgröße 32. Broadcast = Netzadresse + 31.</em></p>
+    <div class="num-input"><input type="number" id="ans20" placeholder="Letzes Oktett"><button class="btn" onclick="checkNum('ans20','31','fb20')">Prüfen</button></div>
+    <div class="feedback" id="fb20"></div>
+  </div>
+</div>
+
+</div><!-- /questions -->
+
+<!-- Sidebar -->
+<div class="sidebar">
+  <div class="sidebar-card">
+    <h3>Fragennavigation</h3>
+    <div class="nav-links">
+      <a href="#q1">1. MAC hex/binär/dez (4P)</a>
+      <a href="#q2">2. Hosts /25 (1P)</a>
+      <a href="#q3">3. Zahlensysteme (4P)</a>
+      <a href="#q4">4. CIDR/Maske (5P)</a>
+      <a href="#q5">5. Hosts /26 (1P)</a>
+      <a href="#q6">6. AND-Verknüpfung (3P)</a>
+      <a href="#q7">7. IPv4 Header (5P)</a>
+      <a href="#q8">8. MTU-Werte (3P)</a>
+      <a href="#q9">9. Netzadresse Schritte (1P)</a>
+      <a href="#q10">10. TCP vs UDP (4P)</a>
+      <a href="#q11">11. OSI-Schicht Switch (1P)</a>
+      <a href="#q12">12. Netzwerkgeräte (4P)</a>
+      <a href="#q13">13. MAC-Learning (3P)</a>
+      <a href="#q14">14. VLAN Ports (4P)</a>
+      <a href="#q15">15. VLAN Festival (5P)</a>
+      <a href="#q16">16. Max. VLAN-ID (1P)</a>
+      <a href="#q17">17. Protokolle/Ports (5P)</a>
+      <a href="#q18">18. sACN Eigenschaften (3P)</a>
+      <a href="#q19">19. Dante-Planung (1P)</a>
+      <a href="#q20">20. Broadcast /27 (1P)</a>
+    </div>
+  </div>
+  <div class="sidebar-card">
+    <h3>Punktestand</h3>
+    <div class="score-box">
+      <div class="score-num" id="scoreNum">0</div>
+      <div class="score-max">von 46 Punkten</div>
+    </div>
+  </div>
+  <div class="sidebar-card">
+    <h3>Lehrkraft-Werkzeuge</h3>
+    <div class="tool-btns">
+      <button class="tool-btn" onclick="showAllSolutions()">✓ Alle Lösungen anzeigen</button>
+      <button class="tool-btn" onclick="resetAll()">↺ Neu beginnen</button>
+    </div>
+  </div>
+</div>
+
+</div><!-- /layout -->
+
+<script>
+let totalScore = 0;
+const maxScores = {1:4,2:1,3:4,4:5,5:1,6:3,7:5,8:3,9:1,10:4,11:1,12:4,13:3,14:4,15:5,16:1,17:5,18:3,19:1,20:1};
+const answered = {};
+
+function addScore(q, pts) {
+  if (!answered[q]) { answered[q] = true; totalScore += pts; document.getElementById('scoreNum').textContent = totalScore; }
+}
+
+function showFb(id, ok, msg) {
+  const el = document.getElementById(id);
+  el.className = 'feedback show ' + (ok ? 'ok' : 'err');
+  el.innerHTML = (ok ? '✅ ' : '❌ ') + msg;
+}
+
+function checkNum(inId, correct, fbId) {
+  const val = document.getElementById(inId).value.trim();
+  const ok = val === correct;
+  showFb(fbId, ok, ok ? 'Richtig!' : Falsch. Richtige Antwort: );
+  if (ok) { const q = fbId.replace('fb',''); addScore(q, maxScores[q]); }
+}
+
+function checkMC(name, correct, fbId) {
+  const sel = document.querySelector(input[name=""]:checked);
+  if (!sel) { showFb(fbId, false, 'Bitte eine Antwort wählen.'); return; }
+  const ok = sel.value === correct;
+  showFb(fbId, ok, ok ? 'Richtig!' : 'Falsch. Richtige Antwort: Schicht 2 (Sicherungsschicht) – MAC-Adressen.');
+  if (ok) { const q = fbId.replace('fb',''); addScore(q, maxScores[q]); }
+}
+
+// Q1 drag helpers
+const gapNext = {g1a:'g1c', g1b:'g1d', g1c:null, g1d:null};
+function placeChip(chip, gapId, val) {
+  const el = document.getElementById(gapId);
+  if (el && !el.dataset.val) { el.textContent = val; el.dataset.val = val; el.classList.add('filled'); chip.classList.add('used'); }
+  else {
+    const next = gapNext[gapId];
+    if (next) placeChip(chip, next, val);
+  }
+}
+function clearGap(el) { if (el.dataset.val) { el.textContent = '       '; delete el.dataset.val; el.classList.remove('filled'); } }
+function setGap(id, val, chip) {
+  const el = document.getElementById(id);
+  if (el) { clearGap(el); el.textContent = val; el.dataset.val = val; el.classList.add('filled'); chip.classList.add('used'); }
+}
+function placeChipQ6(chip, gapId, val) { setGap(gapId, val, chip); }
+
+function checkQ1() {
+  const a=document.getElementById('g1a').dataset.val, b=document.getElementById('g1b').dataset.val,
+        c=document.getElementById('g1c').dataset.val, d=document.getElementById('g1d').dataset.val;
+  const ok = a==='11011110' && b==='222' && c==='10101101' && d==='173';
+  let pts = [a==='11011110',b==='222',c==='10101101',d==='173'].filter(Boolean).length;
+  showFb('fb1', ok, ok ? 'Alle 4 Lücken korrekt!' : ${pts}/4 Lücken richtig. DE=11011110(222), AD=10101101(173));
+  if (ok) addScore('1', 4);
+}
+
+function checkQ6() {
+  const a=document.getElementById('g6a').dataset.val, b=document.getElementById('g6b').dataset.val, c=document.getElementById('g6c').dataset.val;
+  const ok = a==='192.168.10.64' && b==='192.168.10.65' && c==='192.168.10.127';
+  showFb('fb6', ok, ok ? 'Alle 3 Lücken korrekt!' : 'Netzwerkadresse: 192.168.10.64 | Erste Host: 192.168.10.65 | Broadcast: 192.168.10.127');
+  if (ok) addScore('6', 3);
+}
+
+function checkQ10() {
+  const a=document.getElementById('g10a').dataset.val, b=document.getElementById('g10b').dataset.val,
+        c=document.getElementById('g10c').dataset.val, d=document.getElementById('g10d').dataset.val;
+  const ok = a==='verbindungsorientiert' && b==='Empfangsbestätigungen (ACKs)' && c==='verbindungslos' && d==='Dante (Audio over IP)';
+  showFb('fb10', ok, ok ? 'Alle korrekt!' : 'TCP=verbindungsorientiert+ACKs, UDP=verbindungslos, Dante=Audio over IP');
+  if (ok) addScore('10', 4);
+}
+
+function checkQ14() {
+  const a=document.getElementById('g14a').dataset.val, b=document.getElementById('g14b').dataset.val,
+        c=document.getElementById('g14c').dataset.val, d=document.getElementById('g14d').dataset.val;
+  const ok = a==='Access' && b==='Trunk' && c==='802.1Q' && d==='Native';
+  showFb('fb14', ok, ok ? 'Alle korrekt!' : 'Endgeräte=Access, Switch-Switch=Trunk, Standard=802.1Q, untagged=Native VLAN');
+  if (ok) addScore('14', 4);
+}
+
+function checkGapselect3() {
+  const ok = document.getElementById('s3a').value==='hexadezimal' && document.getElementById('s3b').value==='dezimaler' && document.getElementById('s3c').value==='2' && document.getElementById('s3d').value==='32';
+  showFb('fb3', ok, ok ? 'Alle Lücken korrekt!' : 'MAC=hexadezimal, IPv4=dezimaler Notation, Basis=2, Länge=32 Bit');
+  if (ok) addScore('3', 4);
+}
+
+function checkGapMTU() {
+  const ok = document.getElementById('s8a').value==='1500' && document.getElementById('s8b').value==='1492' && document.getElementById('s8c').value==='9000';
+  showFb('fb8', ok, ok ? 'Richtig!' : 'Standard-Ethernet: 1500 Byte | PPPoE: 1492 Byte | Jumbo Frames: bis 9000 Byte');
+  if (ok) addScore('8', 3);
+}
+
+function checkGap13() {
+  const ok = document.getElementById('s13a').value==='MAC' && document.getElementById('s13b').value==='flutet' && document.getElementById('s13c').value==='MAC-Learning';
+  showFb('fb13', ok, ok ? 'Richtig!' : 'Der Switch liest die MAC-Adresse, flutet bei unbekanntem Ziel (MAC-Learning).');
+  if (ok) addScore('13', 3);
+}
+
+function checkMatch4() {
+  const correct = {m4a:'255.255.0.0',m4b:'255.255.255.0',m4c:'255.255.255.192',m4d:'255.255.255.224',m4e:'255.255.255.240'};
+  let pts = 0;
+  for (const [id,val] of Object.entries(correct)) { if (document.getElementById(id).value===val) pts++; }
+  const ok = pts===5;
+  showFb('fb4', ok, ok ? '5/5 Punkte!' : ${pts}/5 richtig. /16=255.255.0.0, /24=255.255.255.0, /26=.192, /27=.224, /28=.240);
+  if (ok) addScore('4', 5);
+}
+
+function checkMatch7() {
+  const correct = {m7a:'Begrenzt die max. Anzahl von Router-Weiterleitungen',m7b:'Gibt an, ob TCP oder UDP im Datenteil steckt',m7c:'Gesamtgröße des IP-Pakets in Byte',m7d:'IP-Adresse des Absenders',m7e:'IP-Adresse des Empfängers'};
+  let pts = Object.entries(correct).filter(([id,v])=>document.getElementById(id).value===v).length;
+  const ok = pts===5;
+  showFb('fb7', ok, ok ? '5/5 Punkte!' : ${pts}/5 richtig.);
+  if (ok) addScore('7', 5);
+}
+
+function checkMatch12() {
+  const correct = {m12a:'Schicht 1 – sendet alle Pakete an jeden Port (Broadcast)',m12b:'Schicht 2 – leitet Pakete anhand der MAC-Adresse gezielt weiter',m12c:'Schicht 3 – verbindet IP-Netzwerke, routet anhand von IP-Adressen',m12d:'Schicht 2+3 – kombiniert MAC-Switching mit IP-Routing'};
+  let pts = Object.entries(correct).filter(([id,v])=>document.getElementById(id).value===v).length;
+  const ok = pts===4;
+  showFb('fb12', ok, ok ? '4/4 Punkte!' : ${pts}/4 richtig.);
+  if (ok) addScore('12', 4);
+}
+
+function checkMatch15() {
+  const correct = {m15a:'Lichttechnik (Art-Net Nodes, DMX-Controller)',m15b:'Audiotechnik (Dante-Netzwerk)',m15c:'Videotechnik (NDI-Kameras, Videomischer)',m15d:'Management (Monitoring, Fernwartung)',m15e:'Gäste-WLAN (Internetzugang, isoliert)'};
+  let pts = Object.entries(correct).filter(([id,v])=>document.getElementById(id).value===v).length;
+  const ok = pts===5;
+  showFb('fb15', ok, ok ? '5/5 Punkte!' : ${pts}/5 richtig.);
+  if (ok) addScore('15', 5);
+}
+
+function checkMatch17() {
+  const correct = {m17a:'UDP, Port 6454 (Broadcast oder Unicast)',m17b:'UDP, Multicast 239.255.x.x (IGMP-Snooping)',m17c:'UDP, Port frei konfigurierbar',m17d:'RTP/UDP, Port 5004/5005',m17e:'UDP, proprietäre Ports (Audinate)'};
+  let pts = Object.entries(correct).filter(([id,v])=>document.getElementById(id).value===v).length;
+  const ok = pts===5;
+  showFb('fb17', ok, ok ? '5/5 Punkte!' : ${pts}/5 richtig.);
+  if (ok) addScore('17', 5);
+}
+
+function checkQ18() {
+  const checked = [...document.querySelectorAll('input[name="q18"]:checked')].map(x=>x.value);
+  const correct = ['a','c','e'].sort();
+  const ok = JSON.stringify(checked.sort())===JSON.stringify(correct);
+  showFb('fb18', ok, ok ? 'Richtig! Multicast, ACN-Standard, IGMP-Snooping.' : 'Falsch. Richtig: a) Multicast, c) ACN-Standard, e) IGMP-Snooping.');
+  if (ok) addScore('18', 3);
+}
+
+function checkOrder9() {
+  const items = document.querySelectorAll('#olist9 li');
+  let ok = true;
+  items.forEach((li, idx) => { if (parseInt(li.dataset.correct) !== idx+1) ok = false; });
+  showFb('fb9', ok, ok ? 'Reihenfolge korrekt!' : 'Nicht korrekt. Richtig: CIDR→Maske → IP binär → AND → Dezimal → Broadcast.');
+  if (ok) addScore('9', 1);
+}
+
+function showSolutionOrder9() {
+  const order = [1,2,3,4,5];
+  const list = document.getElementById('olist9');
+  const items = [...list.querySelectorAll('li')].sort((a,b)=>parseInt(a.dataset.correct)-parseInt(b.dataset.correct));
+  items.forEach(li=>list.appendChild(li));
+  showFb('fb9', false, 'Lösung angezeigt.');
+}
+
+function checkOrder19() {
+  const items = document.querySelectorAll('#olist19 li');
+  let ok = true;
+  items.forEach((li, idx) => { if (parseInt(li.dataset.correct) !== idx+1) ok = false; });
+  showFb('fb19', ok, ok ? 'Reihenfolge korrekt!' : 'Falsch. Richtig: Anforderungen → Subnetz → Netz/Broadcast → IP-Vergabe → VLAN+QoS.');
+  if (ok) addScore('19', 1);
+}
+
+function showSolutionOrder19() {
+  const list = document.getElementById('olist19');
+  const items = [...list.querySelectorAll('li')].sort((a,b)=>parseInt(a.dataset.correct)-parseInt(b.dataset.correct));
+  items.forEach(li=>list.appendChild(li));
+  showFb('fb19', false, 'Lösung angezeigt.');
+}
+
+function showAllSolutions() {
+  document.getElementById('fb1').className='feedback show info'; document.getElementById('fb1').innerHTML='✓ Lösung: DE=11011110(222), AD=10101101(173)';
+  document.getElementById('fb2').className='feedback show info'; document.getElementById('fb2').innerHTML='✓ 126';
+  document.getElementById('fb3').className='feedback show info'; document.getElementById('fb3').innerHTML='✓ hexadezimal | dezimaler | 2 | 32';
+  document.getElementById('fb4').className='feedback show info'; document.getElementById('fb4').innerHTML='✓ /16=255.255.0.0 | /24=255.255.255.0 | /26=255.255.255.192 | /27=255.255.255.224 | /28=255.255.255.240';
+  document.getElementById('fb5').className='feedback show info'; document.getElementById('fb5').innerHTML='✓ 62';
+  document.getElementById('fb6').className='feedback show info'; document.getElementById('fb6').innerHTML='✓ 192.168.10.64 | 192.168.10.65 | 192.168.10.127';
+  document.getElementById('fb7').className='feedback show info'; document.getElementById('fb7').innerHTML='✓ TTL=Weiterleitungsbegrenzer | Protocol=TCP/UDP-Kennung | Total Length=Gesamtgröße | Src=Absender | Dst=Empfänger';
+  document.getElementById('fb8').className='feedback show info'; document.getElementById('fb8').innerHTML='✓ 1500 | 1492 | 9000';
+  document.getElementById('fb9').className='feedback show info'; document.getElementById('fb9').innerHTML='✓ CIDR→Maske → IP binär → AND → Dezimal → Broadcast';
+  document.getElementById('fb10').className='feedback show info'; document.getElementById('fb10').innerHTML='✓ verbindungsorientiert | ACKs | verbindungslos | Dante';
+  document.getElementById('fb11').className='feedback show info'; document.getElementById('fb11').innerHTML='✓ Schicht 2 (Sicherungsschicht) – MAC-Adressen';
+  document.getElementById('fb12').className='feedback show info'; document.getElementById('fb12').innerHTML='✓ Hub=L1 Broadcast | Switch=L2 MAC | Router=L3 IP | L3-Switch=L2+L3';
+  document.getElementById('fb13').className='feedback show info'; document.getElementById('fb13').innerHTML='✓ MAC | flutet | MAC-Learning';
+  document.getElementById('fb14').className='feedback show info'; document.getElementById('fb14').innerHTML='✓ Access | Trunk | 802.1Q | Native';
+  document.getElementById('fb15').className='feedback show info'; document.getElementById('fb15').innerHTML='✓ 10=Licht | 20=Audio | 30=Video | 40=Management | 50=Gäste-WLAN';
+  document.getElementById('fb16').className='feedback show info'; document.getElementById('fb16').innerHTML='✓ 4094';
+  document.getElementById('fb17').className='feedback show info'; document.getElementById('fb17').innerHTML='✓ Art-Net=UDP 6454 | sACN=UDP Multicast | OSC=UDP frei | RTP-MIDI=RTP/UDP 5004 | Dante=UDP Audinate';
+  document.getElementById('fb18').className='feedback show info'; document.getElementById('fb18').innerHTML='✓ a) Multicast, c) ACN-Standard, e) IGMP-Snooping';
+  document.getElementById('fb19').className='feedback show info'; document.getElementById('fb19').innerHTML='✓ Anforderungen → Subnetz → Netz/Broadcast → IP-Vergabe → VLAN+QoS';
+  document.getElementById('fb20').className='feedback show info'; document.getElementById('fb20').innerHTML='✓ 31';
+}
+
+function resetAll() { location.reload(); }
+</script>
+</body>
+</html>

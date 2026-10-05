@@ -1,0 +1,1342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!-- 
+═══════════════════════════════════════════════════════════════════════════════
+Test: Netzwerktechnik - Switches, Router und VLANs
+Kapitel 2 - Aufgaben 4* und 5*
+Zielgruppe: Fachkraft für Veranstaltungstechnik, 3. Ausbildungsjahr
+Anzahl Fragen: 26 (davon 7 mit SVG-Grafiken)
+Fragetypen: multichoice, ddmatch, ddwtos, ddimageortext, cloze, gapselect, ordering
+(shortanswer, truefalse und SHORTANSWER in cloze entfernt – keine Templates vorhanden)
+cloze-Fragen verwenden ausschließlich: MULTICHOICE, MULTIRESPONSE, NUMERICAL
+Erstellt: Februar 2026
+═══════════════════════════════════════════════════════════════════════════════
+-->
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TEIL A: SWITCHES UND ROUTER (10 Fragen)
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Frage 1: Hauptunterschied Switch vs Router (multichoice single) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 1: Hauptunterschied Switch vs Router</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Was ist der Hauptunterschied zwischen einem Switch und einem Router?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Ein <strong>Switch</strong> arbeitet auf Layer 2 (Sicherungsschicht) und verbindet Geräte <em>innerhalb</em> eines Netzwerks über MAC-Adressen. Ein <strong>Router</strong> arbeitet auf Layer 3 (Vermittlungsschicht) und verbindet <em>verschiedene</em> Netzwerke über IP-Adressen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Ein Switch arbeitet auf Layer 3, ein Router auf Layer 2</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Es ist genau umgekehrt: Switches arbeiten auf Layer 2, Router auf Layer 3.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="100" format="html">
+    <text><![CDATA[<p>Ein Switch verbindet Geräte innerhalb eines Netzwerks, ein Router verbindet verschiedene Netzwerke</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Switches arbeiten lokal in einem Netzwerk, Router verbinden verschiedene Netzwerke miteinander.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Ein Switch ist schneller als ein Router</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Diese Aussage ist zu pauschal. Switches haben oft geringere Latenz bei Layer-2-Forwarding, aber die Geschwindigkeit hängt von vielen Faktoren ab.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Ein Switch nutzt IP-Adressen, ein Router nutzt MAC-Adressen</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Es ist genau umgekehrt: Switches nutzen MAC-Adressen (Layer 2), Router nutzen IP-Adressen (Layer 3).</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- Frage 2: Begriffe zuordnen (ddmatch) -->
+<question type="ddmatch">
+  <name>
+    <text>Frage 2: Netzwerk-Begriffe zuordnen</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie die folgenden Netzwerk-Begriffe den richtigen Definitionen zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Diese Grundbegriffe sind essentiell für das Verständnis von Netzwerktechnik in der Veranstaltungstechnik.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>MAC-Adresse</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Physische Adresse einer Netzwerkkarte (Hardware-Adresse)</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>IP-Adresse</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Logische Adresse zur Identifikation in einem Netzwerk</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Layer 2</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Sicherungsschicht im OSI-Modell (Switches arbeiten hier)</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Layer 3</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Vermittlungsschicht im OSI-Modell (Router arbeiten hier)</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Broadcast-Domain</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Bereich, in dem Broadcast-Pakete alle Geräte erreichen</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Collision-Domain</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Bereich, in dem Kollisionen auftreten können (bei Hubs)</p>]]></text>
+    </answer>
+  </subquestion>
+</question>
+
+<!-- Frage 3: MAC-Adressen lernen (ddwtos) -->
+<question type="ddwtos">
+  <name>
+    <text>Frage 3: MAC-Adressen lernen</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ergänzen Sie die Lücken zur Funktionsweise des MAC-Lernprozesses eines Switches:</p>
+    <p>Ein Switch lernt MAC-Adressen durch Analyse der [[1]]-MAC-Adresse eingehender Frames.
+    Diese MAC-Adresse wird zusammen mit dem [[2]], an dem der Frame eintraf, in der [[3]] gespeichert.
+    Ist die Ziel-MAC-Adresse dem Switch unbekannt, sendet er den Frame an [[4]].
+    Kennt der Switch die Ziel-MAC-Adresse, leitet er den Frame [[5]] weiter.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Der MAC-Lernprozess im Überblick:</strong></p>
+    <ol>
+      <li>Frame trifft ein → Switch liest die <strong>Quell</strong>-MAC-Adresse</li>
+      <li>Switch speichert: Quell-MAC + <strong>Eingangsport</strong> → in der <strong>MAC-Address-Table</strong></li>
+      <li>Ziel-MAC unbekannt → <strong>Flooding</strong>: Frame wird an alle Ports (außer dem Eingangsport) gesendet</li>
+      <li>Ziel-MAC bekannt → <strong>gezielt</strong> nur an den gelernten Port weiterleiten</li>
+    </ol>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  
+  <!-- Gruppe 1: Welche MAC-Adresse wird gelernt? -->
+  <dragbox>
+    <text>Quell</text>
+    <group>1</group>
+  </dragbox>
+  <dragbox>
+    <text>Ziel</text>
+    <group>1</group>
+  </dragbox>
+  <dragbox>
+    <text>IP</text>
+    <group>1</group>
+  </dragbox>
+  
+  <!-- Gruppe 2: Was wird zusätzlich gespeichert? -->
+  <dragbox>
+    <text>Eingangsport</text>
+    <group>2</group>
+  </dragbox>
+  <dragbox>
+    <text>der IP-Adresse</text>
+    <group>2</group>
+  </dragbox>
+  <dragbox>
+    <text>dem VLAN-Tag</text>
+    <group>2</group>
+  </dragbox>
+  
+  <!-- Gruppe 3: Wo wird gespeichert? -->
+  <dragbox>
+    <text>MAC-Address-Table</text>
+    <group>3</group>
+  </dragbox>
+  <dragbox>
+    <text>Routing-Tabelle</text>
+    <group>3</group>
+  </dragbox>
+  <dragbox>
+    <text>ARP-Cache</text>
+    <group>3</group>
+  </dragbox>
+  
+  <!-- Gruppe 4: Was passiert bei unbekannter Ziel-MAC? -->
+  <dragbox>
+    <text>alle Ports (außer dem Eingangsport)</text>
+    <group>4</group>
+  </dragbox>
+  <dragbox>
+    <text>nur den Router</text>
+    <group>4</group>
+  </dragbox>
+  <dragbox>
+    <text>keinen Port und verwirft ihn</text>
+    <group>4</group>
+  </dragbox>
+  
+  <!-- Gruppe 5: Was passiert bei bekannter Ziel-MAC? -->
+  <dragbox>
+    <text>gezielt nur an den gelernten Port</text>
+    <group>5</group>
+  </dragbox>
+  <dragbox>
+    <text>an alle Ports außer dem Eingangsport</text>
+    <group>5</group>
+  </dragbox>
+  <dragbox>
+    <text>an den Router zur Weiterleitung</text>
+    <group>5</group>
+  </dragbox>
+</question>
+
+
+<!-- Frage 4: Aussagen zu Switches (multichoice multi) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 4: Aussagen zu Switches</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Welche Aussagen zu Switches sind korrekt? <em>(Mehrfachauswahl)</em></p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Switches sind Layer-2-Geräte, die MAC-Adressen nutzen und Kollisionen durch separate Collision-Domains pro Port reduzieren.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>false</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="33.33333" format="html">
+    <text><![CDATA[<p>Switches lernen MAC-Adressen dynamisch</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Switches lernen MAC-Adressen durch Beobachtung des Datenverkehrs.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="33.33333" format="html">
+    <text><![CDATA[<p>Switches reduzieren Kollisionen durch separate Collision-Domains</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Jeder Port hat eine eigene Collision-Domain.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Switches können verschiedene Netzwerke miteinander verbinden</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Das ist die Aufgabe von Routern (Layer 3). Standard-Switches arbeiten nur innerhalb eines Netzwerks.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="33.33334" format="html">
+    <text><![CDATA[<p>Switches arbeiten standardmäßig auf Layer 2 des OSI-Modells</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Switches sind Layer-2-Geräte (Sicherungsschicht).</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Switches nutzen die Routing-Tabelle zur Weiterleitung</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Switches nutzen die MAC-Address-Table. Routing-Tabellen werden von Routern verwendet.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Switches erhöhen Broadcasts im gesamten Netzwerk</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Switches leiten Broadcasts weiter, erhöhen sie aber nicht. Mit VLANs können Broadcasts sogar reduziert werden.</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- Frage 5: OSI-Schicht Switch (multichoice) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 5: OSI-Schicht Switch</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Auf welcher OSI-Schicht (Layer) arbeitet ein Standard-Switch?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Standard-Switches arbeiten auf <strong>Layer 2</strong> (Sicherungsschicht / Data Link Layer). Sie nutzen MAC-Adressen zur Weiterleitung von Frames.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer 1 (Bitübertragungsschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Layer 1 ist die physische Schicht (Hubs, Kabel).</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="100" format="html">
+    <text><![CDATA[<p>Layer 2 (Sicherungsschicht / Data Link Layer)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Standard-Switches arbeiten auf Layer 2 und nutzen MAC-Adressen zur Weiterleitung.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer 3 (Vermittlungsschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Layer 3 ist die Schicht für Router (und Layer-3-Switches). Standard-Switches arbeiten nicht auf dieser Ebene.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer 4 (Transportschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Layer 4 ist die Transportschicht (TCP/UDP).</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- Frage 6: Port-Geschwindigkeiten zuordnen (ddmatch) -->
+<question type="ddmatch">
+  <name>
+    <text>Frage 6: Port-Geschwindigkeiten zuordnen</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie die Port-Geschwindigkeiten den passenden Anwendungsfällen in der Veranstaltungstechnik zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Die richtige Wahl der Port-Geschwindigkeit ist wichtig für Performance und Kosteneffizienz.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>100 Mbit/s (Fast Ethernet)</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>DMX-Steuerung, einfache Netzwerkgeräte</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>1 Gbit/s (Gigabit Ethernet)</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Dante-Audio (64 Kanäle), HD-Video-Streaming</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>10 Gbit/s (10GbE)</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>4K-Video, Backbone-Verbindungen, NDI-HX3</p>]]></text>
+    </answer>
+  </subquestion>
+</question>
+
+<!-- Frage 7: Switch-Datenblatt (multichoice multi) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 7: Switch-Datenblatt Angaben</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Welche der folgenden Angaben finden Sie typischerweise in einem Switch-Datenblatt?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Switch-Datenblätter enthalten Informationen über Ports, Geschwindigkeiten, Kapazität, Funktionen und PoE.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>false</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="20" format="html">
+    <text><![CDATA[<p>Anzahl der Ports</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Eine der wichtigsten Angaben.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="20" format="html">
+    <text><![CDATA[<p>Port-Geschwindigkeiten (z.B. 1 Gbit/s)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Essentiell für die Planung.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="20" format="html">
+    <text><![CDATA[<p>Switching-Kapazität (z.B. 52 Gbps)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Zeigt die maximale Durchsatzleistung.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="20" format="html">
+    <text><![CDATA[<p>VLAN-Unterstützung</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Wichtig für segmentierte Netzwerke.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>CPU-Taktrate des Switches</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Die interne CPU-Taktrate wird normalerweise nicht im Datenblatt angegeben.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="20" format="html">
+    <text><![CDATA[<p>PoE-Leistung pro Port</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Wichtig für PoE-fähige Geräte.</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- Frage 8: Netzwerktopologie Drag-Drop (ddimageortext mit SVG) -->
+<question type="ddimageortext">
+  <name>
+    <text>Frage 8: Netzwerktopologie - Komponenten zuordnen (SVG)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie die Netzwerkkomponenten den nummerierten Positionen im Diagramm zu.</p>
+    <p><em>Hinweis: Es gibt 2 zusätzliche Begriffe, die nicht passen.</em></p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>In diesem Netzwerk verbindet ein <strong>Switch</strong> (Layer 2) Geräte innerhalb von Netzwerk A, während ein <strong>Router</strong> (Layer 3) die beiden Netzwerke A und B miteinander verbindet.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>1</shuffleanswers>
+  
+  <!-- SVG als base64 eingebettet -->
+  <file name="background.svg" path="/" encoding="base64">PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiB2aWV3Qm94PSIwIDAgNjAwIDQwMCI+CiAgPGRlZnM+CiAgICA8c3R5bGU+CiAgICAgIC5kZXZpY2UtYm94IHsgZmlsbDogI2UzZjJmZDsgc3Ryb2tlOiAjMTk3NmQyOyBzdHJva2Utd2lkdGg6IDI7IH0KICAgICAgLnJvdXRlci1ib3ggeyBmaWxsOiAjZmZmM2UwOyBzdHJva2U6ICNmNTdjMDA7IHN0cm9rZS13aWR0aDogMjsgfQogICAgICAubGluZSB7IHN0cm9rZTogIzMzMzsgc3Ryb2tlLXdpZHRoOiAyOyB9CiAgICAgIC50ZXh0IHsgZm9udC1mYW1pbHk6IEFyaWFsOyBmb250LXNpemU6IDEycHg7IGZpbGw6ICMzMzM7IH0KICAgICAgLmxhYmVsLWNpcmNsZSB7IGZpbGw6ICNjMDA7IHN0cm9rZTogI2ZmZjsgc3Ryb2tlLXdpZHRoOiAxLjU7IH0KICAgICAgLmxhYmVsLXRleHQgeyBmb250LWZhbWlseTogQXJpYWw7IGZvbnQtc2l6ZTogMTFweDsgZmlsbDogI2ZmZjsgZm9udC13ZWlnaHQ6IGJvbGQ7IH0KICAgIDwvc3R5bGU+CiAgPC9kZWZzPgogIAogIDwhLS0gTmV0endlcmsgQSAobGlua3MpIC0tPgogIDx0ZXh0IHg9IjUwIiB5PSIzMCIgY2xhc3M9InRleHQiIGZvbnQtd2VpZ2h0PSJib2xkIj5OZXR6d2VyayBBOiAxOTIuMTY4LjEuMC8yNDwvdGV4dD4KICAKICA8IS0tIFN3aXRjaCAtLT4KICA8cmVjdCB4PSI3MCIgeT0iODAiIHdpZHRoPSIxMjAiIGhlaWdodD0iODAiIGNsYXNzPSJkZXZpY2UtYm94IiByeD0iNSIvPgogIDx0ZXh0IHg9IjEzMCIgeT0iMTE1IiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC13ZWlnaHQ9ImJvbGQiPlN3aXRjaDwvdGV4dD4KICA8dGV4dCB4PSIxMzAiIHk9IjEzNSIgY2xhc3M9InRleHQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtc2l6ZT0iMTAiPkxheWVyIDI8L3RleHQ+CiAgCiAgPCEtLSBQb3NpdGlvbiAxOiBTd2l0Y2ggLS0+CiAgPGNpcmNsZSBjeD0iMjAiIGN5PSIxMjAiIHI9IjExIiBjbGFzcz0ibGFiZWwtY2lyY2xlIi8+CiAgPHRleHQgeD0iMjAiIHk9IjEyNCIgY2xhc3M9ImxhYmVsLXRleHQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjE8L3RleHQ+CiAgCiAgPCEtLSBHZXLDpHRlIGFuIFN3aXRjaCAtLT4KICA8cmVjdCB4PSI3MCIgeT0iMjAwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGNsYXNzPSJkZXZpY2UtYm94IiByeD0iMyIvPgogIDx0ZXh0IHg9IjExMCIgeT0iMjI1IiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCI+UEMgMTwvdGV4dD4KICAKICA8cmVjdCB4PSI3MCIgeT0iMjYwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGNsYXNzPSJkZXZpY2UtYm94IiByeD0iMyIvPgogIDx0ZXh0IHg9IjExMCIgeT0iMjg1IiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCI+UEMgMjwvdGV4dD4KICAKICA8IS0tIFZlcmJpbmR1bmdlbiAtLT4KICA8bGluZSB4MT0iMTMwIiB5MT0iMTYwIiB4Mj0iMTEwIiB5Mj0iMjAwIiBjbGFzcz0ibGluZSIvPgogIDxsaW5lIHgxPSIxMzAiIHkxPSIxNjAiIHgyPSIxMTAiIHkyPSIyNjAiIGNsYXNzPSJsaW5lIi8+CiAgCiAgPCEtLSBOZXR6d2VyayBCIChyZWNodHMpIC0tPgogIDx0ZXh0IHg9IjM4MCIgeT0iMzAiIGNsYXNzPSJ0ZXh0IiBmb250LXdlaWdodD0iYm9sZCI+TmV0endlcmsgQjogMTAuMC4wLjAvMjQ8L3RleHQ+CiAgCiAgPCEtLSBSb3V0ZXIgaW4gZGVyIE1pdHRlIC0tPgogIDxyZWN0IHg9IjI2MCIgeT0iMTAwIiB3aWR0aD0iMTAwIiBoZWlnaHQ9IjYwIiBjbGFzcz0icm91dGVyLWJveCIgcng9IjUiLz4KICA8dGV4dCB4PSIzMTAiIHk9IjEyOCIgY2xhc3M9InRleHQiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGZvbnQtd2VpZ2h0PSJib2xkIj5Sb3V0ZXI8L3RleHQ+CiAgPHRleHQgeD0iMzEwIiB5PSIxNDUiIGNsYXNzPSJ0ZXh0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjEwIj5MYXllciAzPC90ZXh0PgogIAogIDwhLS0gUG9zaXRpb24gMjogUm91dGVyIC0tPgogIDxjaXJjbGUgY3g9IjM4NSIgY3k9IjEzMCIgcj0iMTEiIGNsYXNzPSJsYWJlbC1jaXJjbGUiLz4KICA8dGV4dCB4PSIzODUiIHk9IjEzNCIgY2xhc3M9ImxhYmVsLXRleHQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjI8L3RleHQ+CiAgCiAgPCEtLSBWZXJiaW5kdW5nIFN3aXRjaC1Sb3V0ZXIgLS0+CiAgPGxpbmUgeDE9IjE5MCIgeTE9IjEyMCIgeDI9IjI2MCIgeTI9IjEzMCIgY2xhc3M9ImxpbmUiLz4KICA8dGV4dCB4PSIyMjUiIHk9IjExNSIgY2xhc3M9InRleHQiIGZvbnQtc2l6ZT0iOSI+ZXRoMDwvdGV4dD4KICAKICA8IS0tIFNlcnZlciBpbSBOZXR6d2VyayBCIC0tPgogIDxyZWN0IHg9IjQyMCIgeT0iMTEwIiB3aWR0aD0iODAiIGhlaWdodD0iNDAiIGNsYXNzPSJkZXZpY2UtYm94IiByeD0iMyIvPgogIDx0ZXh0IHg9IjQ2MCIgeT0iMTM1IiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCI+U2VydmVyPC90ZXh0PgogIAogIDwhLS0gVmVyYmluZHVuZyBSb3V0ZXItU2VydmVyIC0tPgogIDxsaW5lIHgxPSIzNjAiIHkxPSIxMzAiIHgyPSI0MjAiIHkyPSIxMzAiIGNsYXNzPSJsaW5lIi8+CiAgPHRleHQgeD0iMzkwIiB5PSIxMjAiIGNsYXNzPSJ0ZXh0IiBmb250LXNpemU9IjkiPmV0aDE8L3RleHQ+CiAgCiAgPCEtLSBNQUMgdnMgSVAgTGFiZWxzIC0tPgogIDxyZWN0IHg9IjgwIiB5PSIzMzAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNTAiIGZpbGw9IiNmMGYwZjAiIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLXdpZHRoPSIxIiByeD0iMyIvPgogIDx0ZXh0IHg9IjE2MCIgeT0iMzUwIiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9ImJvbGQiPlBvc2l0aW9uIDM6PC90ZXh0PgogIDx0ZXh0IHg9IjE2MCIgeT0iMzY1IiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI5Ij5BcmJlaXRldCBtaXQ8L3RleHQ+CiAgPHRleHQgeD0iMTYwIiB5PSIzNzgiIGNsYXNzPSJ0ZXh0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjkiPklQLUFkcmVzc2VuPC90ZXh0PgogIAogIDxjaXJjbGUgY3g9IjU2OSIgY3k9IjM1NSIgcj0iMTEiIGNsYXNzPSJsYWJlbC1jaXJjbGUiLz4KICA8dGV4dCB4PSI1NjkiIHk9IjM1OSIgY2xhc3M9ImxhYmVsLXRleHQiIHRleHQtYW5jaG9yPSJtaWRkbGUiPjM8L3RleHQ+CiAgCiAgPHJlY3QgeD0iMzYwIiB5PSIzMzAiIHdpZHRoPSIxNjAiIGhlaWdodD0iNTAiIGZpbGw9IiNmMGYwZjAiIHN0cm9rZT0iIzY2NiIgc3Ryb2tlLXdpZHRoPSIxIiByeD0iMyIvPgogIDx0ZXh0IHg9IjQ0MCIgeT0iMzUwIiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSIxMCIgZm9udC13ZWlnaHQ9ImJvbGQiPlBvc2l0aW9uIDQ6PC90ZXh0PgogIDx0ZXh0IHg9IjQ0MCIgeT0iMzY1IiBjbGFzcz0idGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZm9udC1zaXplPSI5Ij5BcmJlaXRldCBtaXQ8L3RleHQ+CiAgPHRleHQgeD0iNDQwIiB5PSIzNzgiIGNsYXNzPSJ0ZXh0IiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmb250LXNpemU9IjkiPk1BQy1BZHJlc3NlbjwvdGV4dD4KICAKICA8Y2lyY2xlIGN4PSIyMCIgY3k9IjM1NSIgcj0iMTEiIGNsYXNzPSJsYWJlbC1jaXJjbGUiLz4KICA8dGV4dCB4PSIyMCIgeT0iMzU5IiBjbGFzcz0ibGFiZWwtdGV4dCIgdGV4dC1hbmNob3I9Im1pZGRsZSI+NDwvdGV4dD4KPC9zdmc+</file>
+  
+  <!-- Drag-Items -->
+  <drag>
+    <no>1</no>
+    <text>Switch (Layer 2 Gerät)</text>
+    <draggroup>1</draggroup>
+  </drag>
+  
+  <drag>
+    <no>2</no>
+    <text>Router (Layer 3 Gerät)</text>
+    <draggroup>1</draggroup>
+  </drag>
+  
+  <drag>
+    <no>3</no>
+    <text>MAC-Address-Table</text>
+    <draggroup>1</draggroup>
+  </drag>
+  
+  <drag>
+    <no>4</no>
+    <text>Routing-Tabelle</text>
+    <draggroup>1</draggroup>
+  </drag>
+  
+  <drag>
+    <no>5</no>
+    <text>Hub (Distractor)</text>
+    <draggroup>1</draggroup>
+  </drag>
+  
+  <drag>
+    <no>6</no>
+    <text>Modem (Distractor)</text>
+    <draggroup>1</draggroup>
+  </drag>
+  
+  <!-- Drop-Zonen -->
+  <drop>
+    <text></text>
+    <no>1</no>
+    <choice>1</choice>
+    <xleft>9</xleft>
+    <ytop>109</ytop>
+  </drop>
+  
+  <drop>
+    <text></text>
+    <no>2</no>
+    <choice>2</choice>
+    <xleft>374</xleft>
+    <ytop>119</ytop>
+  </drop>
+  
+  <drop>
+    <text></text>
+    <no>3</no>
+    <choice>4</choice>
+    <xleft>9</xleft>
+    <ytop>344</ytop>
+  </drop>
+  
+  <drop>
+    <text></text>
+    <no>4</no>
+    <choice>3</choice>
+    <xleft>558</xleft>
+    <ytop>344</ytop>
+  </drop>
+</question>
+
+<!-- Frage 9: OSI-Modell mit SVG (multichoice mit SVG) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 9: OSI-Modell - Switch-Layer (SVG)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Betrachten Sie das OSI-Modell-Diagramm. Auf welcher Schicht arbeitet ein Standard-Switch?</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="320" viewBox="0 0 400 320">
+  <defs>
+    <style>
+      .layer { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .layer-text { font-family: Arial; font-size: 14px; fill: #333; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- Layer 7 -->
+  <rect x="50" y="20" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="40" class="layer-text" text-anchor="middle">7. Anwendungsschicht</text>
+  
+  <!-- Layer 6 -->
+  <rect x="50" y="60" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="80" class="layer-text" text-anchor="middle">6. Darstellungsschicht</text>
+  
+  <!-- Layer 5 -->
+  <rect x="50" y="100" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="120" class="layer-text" text-anchor="middle">5. Sitzungsschicht</text>
+  
+  <!-- Layer 4 -->
+  <rect x="50" y="140" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="160" class="layer-text" text-anchor="middle">4. Transportschicht</text>
+  
+  <!-- Layer 3 -->
+  <rect x="50" y="180" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="200" class="layer-text" text-anchor="middle">3. Vermittlungsschicht</text>
+  
+  <!-- Layer 2 -->
+  <rect x="50" y="220" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="240" class="layer-text" text-anchor="middle">2. Sicherungsschicht</text>
+  
+  <!-- Layer 1 -->
+  <rect x="50" y="260" width="300" height="35" class="layer" rx="3"/>
+  <text x="200" y="280" class="layer-text" text-anchor="middle">1. Bitübertragungsschicht</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Standard-Switches arbeiten auf <strong>Layer 2 (Sicherungsschicht)</strong> des OSI-Modells. Sie nutzen MAC-Adressen zur Weiterleitung von Frames.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer 1 (Bitübertragungsschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Auf Layer 1 arbeiten Hubs und physische Kabel.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="100" format="html">
+    <text><![CDATA[<p>Layer 2 (Sicherungsschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Switches sind Layer-2-Geräte und nutzen MAC-Adressen.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer 3 (Vermittlungsschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Auf Layer 3 arbeiten Router (bzw. Layer-3-Switches).</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer 4 (Transportschicht)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Layer 4 ist für Protokolle wie TCP/UDP zuständig.</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TEIL B: VLANs - GRUNDLAGEN (8 Fragen)
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Frage 10: Was bedeutet VLAN (gapselect) -->
+<question type="gapselect">
+  <name>
+    <text>Frage 10: VLAN Bedeutung</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ergänzen Sie die Bedeutung der Abkürzung <strong>VLAN</strong>:</p>
+<p>Die Abkürzung VLAN steht für: Virtual [[1]] Area [[2]]</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>VLAN</strong> = <strong>V</strong>irtual <strong>L</strong>ocal <strong>A</strong>rea <strong>N</strong>etwork (Virtuelles lokales Netzwerk)</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+
+  <selectoption>
+    <text>Local</text>
+    <group>1</group>
+  </selectoption>
+  <selectoption>
+    <text>Logical</text>
+    <group>1</group>
+  </selectoption>
+  <selectoption>
+    <text>Link</text>
+    <group>1</group>
+  </selectoption>
+
+  <selectoption>
+    <text>Network</text>
+    <group>2</group>
+  </selectoption>
+  <selectoption>
+    <text>Node</text>
+    <group>2</group>
+  </selectoption>
+  <selectoption>
+    <text>Notation</text>
+    <group>2</group>
+  </selectoption>
+</question>
+
+<!-- Frage 11: VLAN-Vorteile zuordnen (ddmatch) -->
+<question type="ddmatch">
+  <name>
+    <text>Frage 11: VLAN-Vorteile kategorisieren</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie die Vorteile von VLANs den richtigen Kategorien zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>VLANs bieten Vorteile in den Bereichen Sicherheit, Performance, Flexibilität und Verwaltung.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Trennung von Gäste-WLAN und Produktivnetz</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Sicherheit</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Broadcast-Kontrolle durch Segmentierung</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Performance</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Geräte können logisch gruppiert werden</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Flexibilität</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Vereinfachte Fehlersuche in Segmenten</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Verwaltung</p>]]></text>
+    </answer>
+  </subquestion>
+</question>
+
+<!-- Frage 12: VLAN-Standard und ID-Bereich (cloze) -->
+<question type="cloze">
+  <name>
+    <text>Frage 12: VLAN-Standard und ID-Bereich</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>VLANs basieren auf dem Standard {1:MULTICHOICE:=IEEE 802.1Q~IEEE 802.3~IEEE 802.11~IEEE 802.15}. Jedes VLAN erhält eine eindeutige ID im Bereich von {2:NUMERICAL:=1:0} bis {3:NUMERICAL:=4094:0}.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>VLANs basieren auf <strong>IEEE 802.1Q</strong> (VLAN-Tagging). VLAN-IDs reichen von <strong>1 bis 4094</strong>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+</question>
+
+
+<!-- Frage 13: Broadcast-Domains und VLANs (multichoice multi) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 13: Broadcast-Domains und VLANs</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Welche Aussagen zu Broadcast-Domains und VLANs sind richtig?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Jedes VLAN bildet eine eigene Broadcast-Domain. Broadcasts überschreiten VLAN-Grenzen nicht.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>false</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="25" format="html">
+    <text><![CDATA[<p>Jedes VLAN bildet eine eigene Broadcast-Domain</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! VLANs segmentieren Broadcast-Domains.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="25" format="html">
+    <text><![CDATA[<p>Broadcasts in VLAN 10 erreichen nicht VLAN 20</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! VLANs sind isoliert.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Ein Switch ohne VLANs hat mehrere Broadcast-Domains</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Ein Switch ohne VLANs hat nur eine Broadcast-Domain.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="25" format="html">
+    <text><![CDATA[<p>Art-Net-Broadcasts bleiben innerhalb des Licht-VLANs</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Broadcasts werden durch VLANs eingeschränkt.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>VLANs vergrößern die Broadcast-Domain</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. VLANs verkleinern Broadcast-Domains durch Segmentierung.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="25" format="html">
+    <text><![CDATA[<p>Durch VLAN-Segmentierung wird die Netzwerk-Performance verbessert</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Weniger Broadcasts = bessere Performance.</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- Frage 14: VLAN-Tagging Reihenfolge (ordering) -->
+<question type="ordering">
+  <name>
+    <text>Frage 14: VLAN-Tagging Prozess</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Bringen Sie die fünf Schritte des VLAN-Tagging-Prozesses in die richtige Reihenfolge:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Korrekte Reihenfolge: (1) Endgerät sendet normalen Frame an den Switch → (2) Switch erkennt die VLAN-Zugehörigkeit des Ports → (3) Switch fügt VLAN-Tag hinzu → (4) Frame wird über den Trunk-Port weitergeleitet → (5) Ziel-Switch entfernt den Tag und leitet den Frame ans Endgerät weiter.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>0</gradingtype>
+  <showgrading>1</showgrading>
+
+  <answer fraction="1" format="html">
+    <text><![CDATA[<p>Endgerät sendet einen normalen (ungetaggten) Ethernet-Frame an den Switch</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+
+  <answer fraction="2" format="html">
+    <text><![CDATA[<p>Switch erkennt, welchem VLAN der Eingangsport angehört</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+
+  <answer fraction="3" format="html">
+    <text><![CDATA[<p>Switch fügt dem Frame einen VLAN-Tag (802.1Q) hinzu</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+
+  <answer fraction="4" format="html">
+    <text><![CDATA[<p>Frame wird über den Trunk-Port zum nächsten Switch weitergeleitet</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+
+  <answer fraction="5" format="html">
+    <text><![CDATA[<p>Ziel-Switch entfernt den VLAN-Tag und leitet den Frame an das Endgerät weiter</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+
+  <correctfeedback format="html">
+    <text>Die Reihenfolge ist vollständig korrekt!</text>
+  </correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- Frage 15: VLAN-Tagging Lückentext mit SVG (ddwtos mit SVG) -->
+<question type="ddwtos">
+  <name>
+    <text>Frage 15: VLAN-Tagging Prozess-Diagramm (SVG)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ergänzen Sie die Lücken zum VLAN-Tagging-Prozess:</p>
+<p>Ein Frame wird von einem Endgerät an einen [[1]]-Port gesendet. Der Switch fügt einen [[2]]-Tag mit der VLAN-ID hinzu. Der getaggte Frame wird dann über einen [[3]]-Link zum Ziel-Switch weitergeleitet.</p>
+<p><em>Zur Orientierung das Prozess-Diagramm:</em></p>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="120" viewBox="0 0 600 120">
+  <defs>
+    <style>
+      .process-box { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .arrow { fill: none; stroke: #333; stroke-width: 2; marker-end: url(#arrowhead15); }
+      .ptext { font-family: Arial; font-size: 11px; fill: #333; }
+      .ptitle { font-family: Arial; font-size: 12px; fill: #333; font-weight: bold; }
+    </style>
+    <marker id="arrowhead15" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L9,3 z" fill="#333"/>
+    </marker>
+  </defs>
+  <!-- Schritt 1: Endgerät -->
+  <rect x="20" y="10" width="100" height="55" class="process-box" rx="5"/>
+  <text x="70" y="33" class="ptitle" text-anchor="middle">Endgerät</text>
+  <text x="70" y="48" class="ptext" text-anchor="middle">sendet Frame</text>
+  <text x="70" y="61" class="ptext" text-anchor="middle" fill="#0d47a1">untagged</text>
+  <!-- Pfeil 1 -->
+  <path d="M 120 37 L 170 37" class="arrow"/>
+  <text x="145" y="32" class="ptext" text-anchor="middle" font-size="9">Access-Port</text>
+  <!-- Schritt 2: Switch -->
+  <rect x="170" y="10" width="100" height="55" class="process-box" rx="5"/>
+  <text x="220" y="33" class="ptitle" text-anchor="middle">Switch</text>
+  <text x="220" y="48" class="ptext" text-anchor="middle">fügt 802.1Q</text>
+  <text x="220" y="61" class="ptext" text-anchor="middle">Tag hinzu</text>
+  <!-- Pfeil 2 -->
+  <path d="M 270 37 L 330 37" class="arrow"/>
+  <text x="300" y="32" class="ptext" text-anchor="middle" font-size="9">Trunk-Port</text>
+  <!-- Schritt 3: Netzwerk -->
+  <rect x="330" y="10" width="100" height="55" class="process-box" rx="5"/>
+  <text x="380" y="33" class="ptitle" text-anchor="middle">Netzwerk</text>
+  <text x="380" y="48" class="ptext" text-anchor="middle">Frame mit</text>
+  <text x="380" y="61" class="ptext" text-anchor="middle" fill="#d84315">VLAN-Tag</text>
+  <!-- Pfeil 3 -->
+  <path d="M 430 37 L 480 37" class="arrow"/>
+  <!-- Schritt 4: Switch 2 -->
+  <rect x="480" y="10" width="100" height="55" class="process-box" rx="5"/>
+  <text x="530" y="33" class="ptitle" text-anchor="middle">Switch 2</text>
+  <text x="530" y="48" class="ptext" text-anchor="middle">entfernt Tag</text>
+  <text x="530" y="61" class="ptext" text-anchor="middle">→ untagged</text>
+  <!-- Legende -->
+  <rect x="20" y="75" width="560" height="30" fill="#f5f5f5" stroke="#999" stroke-width="1" rx="3"/>
+  <text x="300" y="94" class="ptext" text-anchor="middle" font-weight="bold">802.1Q-Tagging zwischen Switches über Trunk-Ports</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>VLAN-Tagging-Prozess: Endgerät sendet an <strong>Access</strong>-Port → Switch fügt <strong>802.1Q</strong>-Tag hinzu → Frame wird über <strong>Trunk</strong>-Link weitergeleitet.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>1</shuffleanswers>
+  
+  <!-- Gruppe 1: Port-Typ Eingang -->
+  <dragbox>
+    <text>Access</text>
+    <group>1</group>
+  </dragbox>
+  <dragbox>
+    <text>VLAN</text>
+    <group>1</group>
+  </dragbox>
+  <dragbox>
+    <text>Management</text>
+    <group>1</group>
+  </dragbox>
+  
+  <!-- Gruppe 2: Tag-Typ -->
+  <dragbox>
+    <text>802.1Q</text>
+    <group>2</group>
+  </dragbox>
+  <dragbox>
+    <text>802.3</text>
+    <group>2</group>
+  </dragbox>
+  <dragbox>
+    <text>QoS</text>
+    <group>2</group>
+  </dragbox>
+  
+  <!-- Gruppe 3: Verbindungstyp zwischen Switches -->
+  <dragbox>
+    <text>Trunk</text>
+    <group>3</group>
+  </dragbox>
+  <dragbox>
+    <text>Mirror</text>
+    <group>3</group>
+  </dragbox>
+  <dragbox>
+    <text>Uplink</text>
+    <group>3</group>
+  </dragbox>
+</question>
+
+<!-- Frage 16: Broadcast-Domains mit SVG (cloze mit SVG) -->
+<question type="cloze">
+  <name>
+    <text>Frage 16: Broadcast-Domains Diagramm (SVG)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Analysieren Sie das Broadcast-Domain-Diagramm:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="500" height="300" viewBox="0 0 500 300">
+  <defs>
+    <style>
+      .vlan-area { fill-opacity: 0.3; stroke-width: 3; stroke-dasharray: 5,5; }
+      .vlan10 { fill: #ffeb3b; stroke: #f57f17; }
+      .vlan20 { fill: #4caf50; stroke: #2e7d32; }
+      .device { fill: white; stroke: #333; stroke-width: 2; }
+      .switch { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .text { font-family: Arial; font-size: 11px; fill: #333; }
+      .label { font-family: Arial; font-size: 13px; fill: #333; font-weight: bold; }
+    </style>
+  </defs>
+  
+  <!-- VLAN 10 (gelb) -->
+  <ellipse cx="130" cy="100" rx="110" ry="80" class="vlan-area vlan10"/>
+  <text x="130" y="30" class="label" text-anchor="middle">VLAN 10 - Audio</text>
+  
+  <rect x="80" y="70" width="50" height="30" class="device" rx="3"/>
+  <text x="105" y="90" class="text" text-anchor="middle" font-size="9">Mischpult</text>
+  
+  <rect x="80" y="120" width="50" height="30" class="device" rx="3"/>
+  <text x="105" y="140" class="text" text-anchor="middle" font-size="9">Dante I/O</text>
+  
+  <rect x="150" y="70" width="50" height="30" class="device" rx="3"/>
+  <text x="175" y="90" class="text" text-anchor="middle" font-size="9">Stage Box</text>
+  
+  <!-- VLAN 20 (grün) -->
+  <ellipse cx="370" cy="100" rx="110" ry="80" class="vlan-area vlan20"/>
+  <text x="370" y="30" class="label" text-anchor="middle">VLAN 20 - Licht</text>
+  
+  <rect x="320" y="70" width="50" height="30" class="device" rx="3"/>
+  <text x="345" y="90" class="text" text-anchor="middle" font-size="9">Lichtpult</text>
+  
+  <rect x="320" y="120" width="50" height="30" class="device" rx="3"/>
+  <text x="345" y="135" class="text" text-anchor="middle" font-size="8">Moving</text>
+  <text x="345" y="145" class="text" text-anchor="middle" font-size="7">Heads</text>
+  
+  <rect x="390" y="70" width="50" height="30" class="device" rx="3"/>
+  <text x="415" y="85" class="text" text-anchor="middle" font-size="8">artNET</text>
+  <text x="415" y="95" class="text" text-anchor="middle" font-size="7">Node</text>
+  
+  <!-- Switch in der Mitte -->
+  <rect x="215" y="200" width="70" height="50" class="switch" rx="5"/>
+  <text x="250" y="220" class="label" text-anchor="middle">Switch</text>
+  <text x="250" y="235" class="text" text-anchor="middle" font-size="9">VLAN-fähig</text>
+  
+  <!-- Verbindungen zu Switch -->
+  <line x1="130" y1="150" x2="240" y2="200" stroke="#f57f17" stroke-width="2"/>
+  <line x1="370" y1="150" x2="260" y2="200" stroke="#2e7d32" stroke-width="2"/>
+  
+  <!-- Hinweistext -->
+  <text x="250" y="280" class="text" text-anchor="middle" font-size="10" fill="#d32f2f">Broadcasts bleiben im VLAN!</text>
+</svg>
+
+<p>Ein Switch ohne VLANs hat {1:NUMERICAL:=1:0} Broadcast-Domain(s). Mit zwei VLANs hat derselbe Switch {2:NUMERICAL:=2:0} Broadcast-Domain(s). Broadcasts in VLAN 10 {3:MULTICHOICE:=erreichen nicht~erreichen} VLAN 20.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Ohne VLANs = <strong>1 Broadcast-Domain</strong>. Mit 2 VLANs = <strong>2 Broadcast-Domains</strong>. Broadcasts überschreiten VLAN-Grenzen <strong>nicht</strong>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+</question>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TEIL C: VLANs - PORT-TYPEN (4 Fragen)
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+<!-- Frage 17: Port-Eigenschaften zuordnen (ddmatch) -->
+<question type="ddmatch">
+  <name>
+    <text>Frage 17: Access vs Trunk Ports</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordnen Sie die Eigenschaften den Port-Typen zu:</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Access-Port:</strong> 1 VLAN, untagged, für Endgeräte<br>
+    <strong>Trunk-Port:</strong> Mehrere VLANs, tagged (802.1Q), verbindet Switches</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Überträgt nur ein VLAN</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Access-Port</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Überträgt mehrere VLANs gleichzeitig</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Trunk-Port</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Traffic ist untagged</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Access-Port</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Traffic ist tagged (802.1Q)</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Trunk-Port</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Für Endgeräte verwendet</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Access-Port</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Verbindet Switches untereinander</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Trunk-Port</p>]]></text>
+    </answer>
+  </subquestion>
+</question>
+
+<!-- Frage 18: Access vs Trunk (cloze) -->
+<question type="cloze">
+  <name>
+    <text>Frage 18: Access und Trunk Ports Lückentext</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ein {1:MULTICHOICE:=Access~Trunk~Native~Management}-Port überträgt Daten nur für ein einziges VLAN, während ein {2:MULTICHOICE:=Trunk~Access~Native~Management}-Port mehrere VLANs gleichzeitig transportieren kann. Traffic auf Access-Ports ist {3:MULTICHOICE:=untagged~tagged}.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>Access-Port:</strong> 1 VLAN, <strong>untagged</strong><br>
+    <strong>Trunk-Port:</strong> Mehrere VLANs, tagged</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+</question>
+
+<!-- Frage 19: Port-Konfiguration mit SVG (ddmatch mit SVG) -->
+<question type="ddmatch">
+  <name>
+    <text>Frage 19: Switch-Port-Konfiguration (SVG)</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Betrachten Sie das Switch-Diagramm und ordnen Sie die Port-Konfigurationen zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" width="600" height="340" viewBox="0 0 600 340">
+  <defs>
+    <style>
+      .switch-body  { fill: #e3f2fd; stroke: #1976d2; stroke-width: 2; }
+      .port-vlan10  { fill: #1976d2; stroke: #0d47a1; stroke-width: 2; }
+      .port-vlan20  { fill: #388e3c; stroke: #1b5e20; stroke-width: 2; }
+      .port-trunk   { fill: #f57c00; stroke: #e65100; stroke-width: 2; }
+      .device       { fill: #fff9c4; stroke: #f57f17; stroke-width: 1.5; }
+      .device-licht { fill: #e8f5e9; stroke: #388e3c; stroke-width: 1.5; }
+      .line-vlan10  { stroke: #1976d2; stroke-width: 2.5; }
+      .line-vlan20  { stroke: #388e3c; stroke-width: 2.5; }
+      .line-trunk   { stroke: #f57c00; stroke-width: 2.5; stroke-dasharray: 6,3; }
+      .txt          { font-family: Arial; font-size: 11px; fill: #333; }
+      .txt-bold     { font-family: Arial; font-size: 12px; fill: #333; font-weight: bold; }
+      .txt-white    { font-family: Arial; font-size: 10px; fill: #fff; font-weight: bold; }
+      .txt-small    { font-family: Arial; font-size: 9px; fill: #555; }
+    </style>
+  </defs>
+
+  <!-- VLAN-Legende (Titelzeile) -->
+  <rect x="10" y="8" width="120" height="20" fill="#bbdefb" stroke="#1976d2" stroke-width="1.5" rx="3"/>
+  <text x="70" y="22" class="txt-bold" text-anchor="middle" fill="#0d47a1">VLAN 10 - Audio</text>
+
+  <rect x="140" y="8" width="120" height="20" fill="#c8e6c9" stroke="#388e3c" stroke-width="1.5" rx="3"/>
+  <text x="200" y="22" class="txt-bold" text-anchor="middle" fill="#1b5e20">VLAN 20 - Licht</text>
+
+  <rect x="270" y="8" width="110" height="20" fill="#ffe0b2" stroke="#f57c00" stroke-width="1.5" rx="3"/>
+  <text x="325" y="22" class="txt-bold" text-anchor="middle" fill="#e65100">Trunk (VLAN 10+20)</text>
+
+  <!-- Switch SW-01 -->
+  <rect x="230" y="100" width="150" height="130" class="switch-body" rx="6"/>
+  <text x="305" y="120" class="txt-bold" text-anchor="middle">Switch SW-01</text>
+  <text x="305" y="135" class="txt-small" text-anchor="middle">Cisco SG350</text>
+
+  <!-- Port 1 - Access VLAN 10 (blau) -->
+  <rect x="210" y="145" width="34" height="18" class="port-vlan10" rx="3"/>
+  <text x="227" y="157" class="txt-white" text-anchor="middle">P1</text>
+  <text x="192" y="157" class="txt-small" text-anchor="end" fill="#0d47a1">VLAN 10</text>
+
+  <!-- Port 2 - Access VLAN 10 (blau) -->
+  <rect x="210" y="170" width="34" height="18" class="port-vlan10" rx="3"/>
+  <text x="227" y="182" class="txt-white" text-anchor="middle">P2</text>
+  <text x="192" y="182" class="txt-small" text-anchor="end" fill="#0d47a1">VLAN 10</text>
+
+  <!-- Port 3 - Access VLAN 20 (grün) -->
+  <rect x="210" y="195" width="34" height="18" class="port-vlan20" rx="3"/>
+  <text x="227" y="207" class="txt-white" text-anchor="middle">P3</text>
+  <text x="192" y="207" class="txt-small" text-anchor="end" fill="#1b5e20">VLAN 20</text>
+
+  <!-- Port 4 - Trunk (orange) -->
+  <rect x="356" y="155" width="34" height="28" class="port-trunk" rx="3"/>
+  <text x="373" y="166" class="txt-white" text-anchor="middle">P4</text>
+  <text x="373" y="178" class="txt-white" text-anchor="middle" font-size="8">Trunk</text>
+
+  <!-- Geräte links (Audio / VLAN 10) -->
+  <rect x="40" y="138" width="90" height="26" class="device" rx="3"/>
+  <text x="85" y="155" class="txt" text-anchor="middle">PC (Audio)</text>
+  <line x1="130" y1="151" x2="210" y2="154" class="line-vlan10"/>
+
+  <rect x="40" y="170" width="90" height="26" class="device" rx="3"/>
+  <text x="85" y="187" class="txt" text-anchor="middle">Audio-Mischpult</text>
+  <line x1="130" y1="183" x2="210" y2="179" class="line-vlan10"/>
+
+  <!-- Gerät links (Licht / VLAN 20) -->
+  <rect x="40" y="203" width="90" height="26" class="device-licht" rx="3"/>
+  <text x="85" y="220" class="txt" text-anchor="middle">Lichtpult</text>
+  <line x1="130" y1="216" x2="210" y2="204" class="line-vlan20"/>
+
+  <!-- Switch SW-02 rechts (Trunk-Verbindung) -->
+  <rect x="460" y="140" width="110" height="55" class="switch-body" rx="4"/>
+  <text x="515" y="162" class="txt-bold" text-anchor="middle">SW-02</text>
+  <text x="515" y="178" class="txt-small" text-anchor="middle">Core Switch</text>
+  <line x1="390" y1="169" x2="460" y2="169" class="line-trunk"/>
+  <text x="425" y="162" class="txt-small" text-anchor="middle" fill="#e65100">tagged</text>
+
+  <!-- Legende -->
+  <rect x="10" y="265" width="580" height="65" fill="#f5f5f5" stroke="#bbb" stroke-width="1" rx="4"/>
+  <text x="300" y="280" class="txt-bold" text-anchor="middle">Legende</text>
+
+  <rect x="25" y="287" width="16" height="12" class="port-vlan10" rx="2"/>
+  <text x="47" y="297" class="txt-small">= Access-Port VLAN 10 (untagged)</text>
+
+  <rect x="205" y="287" width="16" height="12" class="port-vlan20" rx="2"/>
+  <text x="227" y="297" class="txt-small">= Access-Port VLAN 20 (untagged)</text>
+
+  <rect x="390" y="287" width="16" height="12" class="port-trunk" rx="2"/>
+  <text x="412" y="297" class="txt-small">= Trunk-Port (tagged, alle VLANs)</text>
+
+  <text x="25" y="318" class="txt-small">P1, P2 → Access VLAN 10</text>
+  <text x="205" y="318" class="txt-small">P3 → Access VLAN 20</text>
+  <text x="390" y="318" class="txt-small">P4 → Trunk (SW-02)</text>
+</svg>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Ports 1 und 2 sind Access-Ports für VLAN 10, Port 3 ist Access für VLAN 20, Port 4 ist ein Trunk-Port.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Port 1</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Access-Port für VLAN 10</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Port 2</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Access-Port für VLAN 10</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Port 3</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Access-Port für VLAN 20</p>]]></text>
+    </answer>
+  </subquestion>
+  
+  <subquestion format="html">
+    <text><![CDATA[<p>Port 4</p>]]></text>
+    <answer>
+      <text><![CDATA[<p>Trunk-Port für Switch-Verbindung</p>]]></text>
+    </answer>
+  </subquestion>
+</question>
+
+<!-- Frage 20: Native VLAN Sicherheit (multichoice) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 20: Native VLAN Sicherheit</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Welche Aussage zum Native VLAN auf einem Trunk-Port ist aus Sicherheitsgründen korrekt?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Das Native VLAN auf einem Trunk-Port sollte <strong>nicht VLAN 1</strong> sein. VLAN 1 ist das Standard-Native-VLAN und anfällig für VLAN-Hopping-Angriffe. Best Practice: Native VLAN auf ein ungenutztes VLAN (z.B. 999) ändern.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>2</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>true</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+
+  <answer fraction="100" format="html">
+    <text><![CDATA[<p>Das Native VLAN sollte NICHT VLAN 1 sein – VLAN 1 ist anfällig für VLAN-Hopping-Angriffe</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Das Standard-Native-VLAN (VLAN 1) sollte aus Sicherheitsgründen auf ein ungenutztes VLAN geändert werden (z.B. VLAN 999).</p>]]></text>
+    </feedback>
+  </answer>
+
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Das Native VLAN sollte immer VLAN 1 bleiben, da es das Standardprotokoll ist</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. VLAN 1 als Native VLAN birgt Sicherheitsrisiken (VLAN Hopping).</p>]]></text>
+    </feedback>
+  </answer>
+
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Das Native VLAN hat keine Auswirkung auf die Netzwerksicherheit</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Das Native VLAN ist ein häufig genutzter Angriffspunkt bei VLAN-Hopping-Attacken.</p>]]></text>
+    </feedback>
+  </answer>
+
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Das Native VLAN sendet alle Frames mit Tag über den Trunk-Port</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Das Native VLAN sendet Frames genau OHNE Tag über den Trunk-Port.</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- ═══════════════════════════════════════════════════════════════════════════
+     TEIL D: INTER-VLAN-ROUTING & PRAXISANWENDUNG (4 Fragen)
+═══════════════════════════════════════════════════════════════════════════════ -->
+
+
+<!-- Frage 21: Inter-VLAN-Routing Geräte (multichoice multi) -->
+<question type="multichoice">
+  <name>
+    <text>Frage 21: Geräte für Inter-VLAN-Routing</text>
+  </name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Welche Geräte sind für Inter-VLAN-Routing geeignet?</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Für Inter-VLAN-Routing benötigt man Layer-3-fähige Geräte: Layer-3-Switch, Router oder Firewall mit Routing-Funktionen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <single>false</single>
+  <shuffleanswers>true</shuffleanswers>
+  <answernumbering>abc</answernumbering>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Layer-2-Switch (unmanaged)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Layer-2-Switches können nicht routen.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="33.33333" format="html">
+    <text><![CDATA[<p>Layer-3-Switch (Multilayer-Switch)</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Layer-3-Switches können routen.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="33.33333" format="html">
+    <text><![CDATA[<p>Router</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Router sind die klassische Lösung.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Hub</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Hubs sind Layer-1-Geräte.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="33.33334" format="html">
+    <text><![CDATA[<p>Firewall mit Routing-Funktionen</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Richtig! Firewalls mit Layer-3-Funktionen können routen.</p>]]></text>
+    </feedback>
+  </answer>
+  
+  <answer fraction="0" format="html">
+    <text><![CDATA[<p>Access Point</p>]]></text>
+    <feedback format="html">
+      <text><![CDATA[<p>Falsch. Access Points können nicht routen.</p>]]></text>
+    </feedback>
+  </answer>
+</question>
+
+<!-- Fragen 25 und 26 entfernt (Freitextaufgaben) -->
+
+</quiz>

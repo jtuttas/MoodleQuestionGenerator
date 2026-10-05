@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Quiz: Schnittstellen und Signalleitungen LF10 Kap. 1 – Vorschau</title>
+  <style>
+    :root {
+      --orange: #f98012; --blue: #0f6cbf; --green: #1d7a1d;
+      --red: #ca3120; --gray: #6a737b; --border: #dee2e6; --text: #1d2125;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; font-size: 15px; color: var(--text); background: #e9eaec; line-height: 1.5; }
+    .site-header { height: 52px; background: var(--orange); display: flex; align-items: center; justify-content: space-between; padding: 0 24px; position: sticky; top: 0; z-index: 100; box-shadow: 0 2px 4px rgba(0,0,0,.2); }
+    .site-header .logo { font-weight: 700; font-size: 18px; color: white; }
+    .site-header .meta { font-size: 12px; color: rgba(255,255,255,.8); }
+    .container { max-width: 920px; margin: 24px auto; padding: 0 16px; }
+    .quiz-info { background: white; border: 1px solid var(--border); border-radius: 4px; padding: 20px; margin-bottom: 20px; }
+    .quiz-info h1 { font-size: 20px; color: var(--blue); margin-bottom: 8px; }
+    .quiz-info p { color: var(--gray); font-size: 13px; }
+    .badge { display: inline-block; padding: 2px 8px; border-radius: 3px; font-size: 11px; font-weight: 700; margin: 2px; }
+    .badge-ddwtos { background: #e3f2fd; color: #1565c0; }
+    .badge-ddmatch { background: #f3e5f5; color: #7b1fa2; }
+    .badge-gapselect { background: #e8f5e9; color: #2e7d32; }
+    .badge-ordering { background: #fff3e0; color: #e65100; }
+    .badge-numerical { background: #fce4ec; color: #c62828; }
+    .badge-cloze { background: #e0f7fa; color: #00838f; }
+    .badge-svg { background: #f5f5f5; color: #555; }
+
+    .question-card { background: white; border: 1px solid var(--border); border-radius: 4px; margin-bottom: 16px; overflow: hidden; }
+    .question-header { background: #f8f9fa; border-bottom: 1px solid var(--border); padding: 10px 16px; display: flex; align-items: center; gap: 8px; }
+    .question-number { font-size: 12px; font-weight: 700; color: var(--gray); }
+    .question-title { font-size: 14px; font-weight: 600; color: var(--text); }
+    .question-body { padding: 16px; }
+    .question-body p { margin-bottom: 10px; }
+    .question-body svg { display: block; margin: 12px 0; max-width: 100%; }
+    .answer-block { background: #f8f9fa; border: 1px solid var(--border); border-radius: 3px; padding: 10px 14px; margin-top: 12px; }
+    .answer-block h4 { font-size: 12px; color: var(--gray); margin-bottom: 6px; text-transform: uppercase; letter-spacing: .5px; }
+    .answer-item { padding: 3px 0; font-size: 13px; }
+    .answer-item strong { color: var(--green); }
+    .gap { display: inline-block; min-width: 140px; height: 22px; border: 2px dashed #90caf9; border-radius: 3px; background: #e3f2fd; vertical-align: middle; margin: 0 4px; }
+    .drag-item { display: inline-block; padding: 3px 8px; border: 1px solid #1565c0; border-radius: 3px; background: #e3f2fd; color: #1565c0; font-size: 12px; margin: 2px; }
+    .feedback { background: #e8f5e9; border-left: 3px solid var(--green); padding: 8px 12px; margin-top: 12px; font-size: 13px; border-radius: 0 3px 3px 0; }
+    .subq-table { width: 100%; border-collapse: collapse; font-size: 13px; margin-top: 8px; }
+    .subq-table td { padding: 5px 10px; border: 1px solid var(--border); }
+    .subq-table .term { background: #e8eaf6; font-weight: 600; width: 45%; }
+    .subq-table .def { background: #e8f5e9; }
+    .subq-table .distractor td { background: #fff3e0 !important; font-style: italic; color: var(--gray); }
+    .ordering-list { list-style: none; padding: 0; margin: 8px 0; }
+    .ordering-list li { padding: 6px 12px; border: 1px solid var(--border); border-radius: 3px; margin: 4px 0; background: #f8f9fa; font-size: 13px; display: flex; align-items: center; gap: 10px; }
+    .ordering-list li .pos { display: inline-block; width: 22px; height: 22px; border-radius: 50%; background: var(--orange); color: white; font-size: 11px; font-weight: 700; text-align: center; line-height: 22px; flex-shrink: 0; }
+    .select-item { display: inline-block; padding: 2px 6px; border: 1px solid #2e7d32; border-radius: 3px; background: #e8f5e9; color: #2e7d32; font-size: 12px; margin: 2px; }
+    .cloze-choice { background: #e0f7fa; border: 1px solid #00838f; border-radius: 3px; padding: 1px 6px; font-size: 12px; color: #00838f; }
+  </style>
+</head>
+<body>
+
+<div class="site-header">
+  <div class="logo">Moodle Vorschau</div>
+  <div class="meta">LF10 · Kapitel 1 · 20 Fragen · kein multichoice-Typ</div>
+</div>
+
+<div class="container">
+
+  <div class="quiz-info">
+    <h1>Quiz: Schnittstellen und Signalleitungen</h1>
+    <p><strong>Kurs:</strong> LF10 Netzwerktechnik für Veranstaltungstechnik · <strong>Kapitel:</strong> 1 · <strong>Erstellt:</strong> 2026-08-10</p>
+    <p style="margin-top:8px;"><strong>Fragetypen:</strong>
+      <span class="badge badge-ddwtos">ddwtos ×5</span>
+      <span class="badge badge-ddmatch">ddmatch ×6</span>
+      <span class="badge badge-gapselect">gapselect ×4</span>
+      <span class="badge badge-ordering">ordering ×3</span>
+      <span class="badge badge-numerical">numerical ×2</span>
+      <span class="badge badge-cloze">cloze ×2</span>
+      <span class="badge badge-svg">SVG in 14/20 Fragen</span>
+    </p>
+    <p style="margin-top:8px;color:#c62828;font-size:13px;">⚠ Dies ist eine statische Vorschau. Interaktive Funktionen (Drag-Drop, Feedback) nur in Moodle verfügbar.</p>
+  </div>
+
+  <!-- Q01 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 1 / 20</span>
+      <span class="question-title">XLR 3-pol Pinbelegung Audio</span>
+      <span class="badge badge-ddwtos">ddwtos</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Der XLR-3-pol-Stecker ist der Standard für symmetrische Audioübertragung. Ordne die Signalbezeichnungen den Pins zu:</p>
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+        <circle cx="110" cy="110" r="95" fill="#2d2d2d" stroke="#111" stroke-width="3"/>
+        <circle cx="110" cy="110" r="78" fill="#3e3e3e"/>
+        <rect x="96" y="14" width="28" height="16" rx="4" fill="#555"/>
+        <circle cx="75" cy="82" r="14" fill="#1565c0" stroke="#90caf9" stroke-width="2"/>
+        <text x="75" y="87" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">2</text>
+        <circle cx="145" cy="82" r="14" fill="#1565c0" stroke="#90caf9" stroke-width="2"/>
+        <text x="145" y="87" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">3</text>
+        <circle cx="110" cy="150" r="14" fill="#1565c0" stroke="#90caf9" stroke-width="2"/>
+        <text x="110" y="155" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">1</text>
+        <text x="110" y="210" text-anchor="middle" font-family="Arial" font-size="10" fill="#777">XLR female – Frontansicht</text>
+      </svg>
+      <p>Pin 1: <span class="gap"></span> &nbsp; Pin 2: <span class="gap"></span> &nbsp; Pin 3: <span class="gap"></span></p>
+      <div class="answer-block">
+        <h4>Drag-Elemente (Pool)</h4>
+        <span class="drag-item">Masse / GND</span>
+        <span class="drag-item">Hot (+)</span>
+        <span class="drag-item">Cold (−)</span>
+        <span class="drag-item">Phantomspeisung</span>
+        <span class="drag-item">Abschirmung</span>
+      </div>
+      <div class="feedback">✓ <strong>Lösung:</strong> Pin 1 = Masse/GND · Pin 2 = Hot (+) · Pin 3 = Cold (−)</div>
+    </div>
+  </div>
+
+  <!-- Q02 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 2 / 20</span>
+      <span class="question-title">Steckverbinder → Haupteinsatz in der VT</span>
+      <span class="badge badge-ddmatch">ddmatch</span>
+    </div>
+    <div class="question-body">
+      <p>Ordne jeden Steckverbinder seinem typischen Haupteinsatz zu. Zwei Antworten passen nicht.</p>
+      <table class="subq-table">
+        <tr><td class="term">XLR 3-pol</td><td class="def">Symmetrisches Audio (Mikrofon, Line)</td></tr>
+        <tr><td class="term">XLR 5-pol</td><td class="def">DMX512 Lichtsteuerung</td></tr>
+        <tr><td class="term">Klinke TRS 6,3 mm</td><td class="def">Symmetrisches Audio (kurze Strecken, Insert)</td></tr>
+        <tr><td class="term">Speakon NL4</td><td class="def">Lautsprecher / Leistungssignal</td></tr>
+        <tr><td class="term">BNC 75 Ω</td><td class="def">SDI-Videosignal (koaxial)</td></tr>
+        <tr><td class="term">RJ45</td><td class="def">Netzwerk (Dante, ArtNet, NDI)</td></tr>
+        <tr class="distractor"><td colspan="2">⚠ Distractor: Analoge Videosignal FBAS (Cinch) | USB-Peripherie</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q03 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 3 / 20</span>
+      <span class="question-title">Symmetrische Übertragung – Prinzip</span>
+      <span class="badge badge-ddwtos">ddwtos</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Ergänze die Lücken zum Prinzip der symmetrischen Signalübertragung:</p>
+      <p>Bei symmetrischer Übertragung wird das Signal auf <span class="gap"></span> Leitern übertragen. Der Empfänger bildet die <span class="gap"></span> beider Signale. Störungen, die auf beide Leiter gleich einkoppeln (<span class="gap"></span>), werden dadurch unterdrückt. Dieses Prinzip heißt <span class="gap"></span>.</p>
+      <div class="feedback">✓ <strong>Lösung:</strong> zwei · Differenz · Gleichtaktsignal · Gleichtaktunterdrückung (CMRR)</div>
+    </div>
+  </div>
+
+  <!-- Q04 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 4 / 20</span>
+      <span class="question-title">DMX512 Kernparameter</span>
+      <span class="badge badge-gapselect">gapselect</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>DMX512 überträgt bis zu <select><option>512</option></select> Kanäle pro Universum über eine <select><option>RS-485</option></select>-Leitung. Die Leitungsimpedanz beträgt <select><option>120 Ω</option></select> und die maximale Kabellänge liegt bei <select><option>300</option></select> Metern. Als Topologie wird die <select><option>Daisy Chain</option></select> verwendet.</p>
+      <div class="feedback">✓ <strong>Lösung:</strong> 512 · RS-485 · 120 Ω · 300 m · Daisy Chain</div>
+    </div>
+  </div>
+
+  <!-- Q05 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 5 / 20</span>
+      <span class="question-title">Signaltyp → passender Stecker</span>
+      <span class="badge badge-ddmatch">ddmatch</span>
+    </div>
+    <div class="question-body">
+      <table class="subq-table">
+        <tr><td class="term">Symmetrisches Audio (Mikrofon)</td><td class="def">XLR 3-pol</td></tr>
+        <tr><td class="term">Unsymmetrisches Audio (Instrument, kurz)</td><td class="def">Klinke TS 6,3 mm</td></tr>
+        <tr><td class="term">Leistungssignal (Endstufe → LS)</td><td class="def">Speakon NL4</td></tr>
+        <tr><td class="term">SDI-Videosignal (koaxial)</td><td class="def">BNC 75 Ω</td></tr>
+        <tr><td class="term">DMX512-Steuersignal</td><td class="def">XLR 5-pol</td></tr>
+        <tr class="distractor"><td colspan="2">⚠ Distractor: USB-C (nur Strom, PD-Modus)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q06 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 6 / 20</span>
+      <span class="question-title">DMX Kanäle pro Universum</span>
+      <span class="badge badge-numerical">numerical</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Wie viele Steuerkanäle enthält genau ein DMX512-Universum?</p>
+      <p>Antwort: <input type="number" placeholder="?" style="width:80px;padding:4px;border:1px solid #ccc;border-radius:3px;"></p>
+      <div class="feedback">✓ <strong>Lösung:</strong> 512 Kanäle (exakt, Toleranz 0)</div>
+    </div>
+  </div>
+
+  <!-- Q07 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 7 / 20</span>
+      <span class="question-title">Maximale DMX512 Kabellänge (in Metern)</span>
+      <span class="badge badge-numerical">numerical</span>
+    </div>
+    <div class="question-body">
+      <p>Wie viele Meter beträgt die maximale normgerechte Kabellänge einer DMX512-Verbindung (ohne Repeater) gemäß ANSI E1.11?</p>
+      <p>Antwort: <input type="number" placeholder="?" style="width:80px;padding:4px;border:1px solid #ccc;border-radius:3px;"> m</p>
+      <div class="feedback">✓ <strong>Lösung:</strong> 300 m (ANSI E1.11)</div>
+    </div>
+  </div>
+
+  <!-- Q08 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 8 / 20</span>
+      <span class="question-title">Speakon NL2 / NL4 / NL8 – Einsatz</span>
+      <span class="badge badge-ddmatch">ddmatch</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Ordne jeder Speakon-Variante ihren typischen Einsatz zu:</p>
+      <table class="subq-table">
+        <tr><td class="term">NL2 (2 Pole)</td><td class="def">Mono-Lautsprecher (1 Signalweg)</td></tr>
+        <tr><td class="term">NL4 (4 Pole)</td><td class="def">Bi-Amping: 1x = Bass, 2x = Hochton</td></tr>
+        <tr><td class="term">NL8 (8 Pole)</td><td class="def">Tri-Amping / komplexe Aktivsysteme</td></tr>
+        <tr class="distractor"><td colspan="2">⚠ Distractor: DMX512-Lichtsteuerung (XLR 5-pol)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q09 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 9 / 20</span>
+      <span class="question-title">SDI-Standards nach Bandbreite sortieren</span>
+      <span class="badge badge-ordering">ordering</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Bringe die SDI-Standards in die richtige Reihenfolge (niedrigste → höchste Bandbreite):</p>
+      <ul class="ordering-list">
+        <li><span class="pos">1</span> SD-SDI – 270 Mbit/s</li>
+        <li><span class="pos">2</span> HD-SDI – 1,5 Gbit/s</li>
+        <li><span class="pos">3</span> 3G-SDI – 3 Gbit/s</li>
+        <li><span class="pos">4</span> 6G-SDI – 6 Gbit/s</li>
+        <li><span class="pos">5</span> 12G-SDI – 12 Gbit/s</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 10 / 20</span>
+      <span class="question-title">Klinke TS vs. TRS – Segmente</span>
+      <span class="badge badge-ddwtos">ddwtos</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Ordne die Segmentbezeichnungen den markierten Bereichen der Klinkenstecker zu:</p>
+      <p>TS: <span class="gap"></span> (Signal, unsymm.)</p>
+      <p>TRS Ring: <span class="gap"></span> &nbsp; TRS Tip: <span class="gap"></span></p>
+      <div class="feedback">✓ <strong>Lösung:</strong> TS Tip = Signal (unsymm.) · TRS Ring = Cold (−) · TRS Tip = Hot (+)</div>
+    </div>
+  </div>
+
+  <!-- Q11 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 11 / 20</span>
+      <span class="question-title">VT-Szenario → richtiger Steckverbinder</span>
+      <span class="badge badge-ddmatch">ddmatch</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <table class="subq-table">
+        <tr><td class="term">① Mikrofon → Stagebox (20 m)</td><td class="def">XLR 3-pol (symmetrisch)</td></tr>
+        <tr><td class="term">② Moving Head ← DMX Controller</td><td class="def">XLR 5-pol (DMX512)</td></tr>
+        <tr><td class="term">③ E-Gitarre → DI-Box (2 m)</td><td class="def">Klinke TS 6,3 mm</td></tr>
+        <tr><td class="term">④ Endstufe → PA (Leistung)</td><td class="def">Speakon NL4</td></tr>
+        <tr><td class="term">⑤ SDI-Kamera → Monitor</td><td class="def">BNC 75 Ω</td></tr>
+        <tr><td class="term">⑥ Dante-Switch → Stagebox</td><td class="def">RJ45 / EtherCon CAT6</td></tr>
+        <tr class="distractor"><td colspan="2">⚠ Distractor: USB-C Thunderbolt</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q12 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 12 / 20</span>
+      <span class="question-title">HDMI-Versionen nach Bandbreite sortieren</span>
+      <span class="badge badge-ordering">ordering</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Bringe die HDMI-Versionen in aufsteigender Bandbreite in die richtige Reihenfolge:</p>
+      <ul class="ordering-list">
+        <li><span class="pos">1</span> HDMI 1.4 – 10,2 Gbit/s – 4K@30 Hz</li>
+        <li><span class="pos">2</span> HDMI 2.0 – 18 Gbit/s – 4K@60 Hz</li>
+        <li><span class="pos">3</span> HDMI 2.1 – 48 Gbit/s – 8K@60 Hz</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q13 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 13 / 20</span>
+      <span class="question-title">DMX Fehlerquellen analysieren</span>
+      <span class="badge badge-gapselect">gapselect</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Das <strong>Flackern</strong> von Fixture 2 deutet auf ein falsches Kabel hin: Es wurde ein <select><option>XLR 3-pol (Audiokabel)</option></select> verwendet. DMX-Kabel benötigen <select><option>120</option></select> Ohm Impedanz. Der <strong>Ausfall</strong> von Fixture 3 entsteht durch den fehlenden <select><option>Terminator</option></select> (Wert: <select><option>120</option></select> Ohm). Man darf kein <select><option>Audiomikrofonkabel (XLR 3-pol)</option></select> verwenden.</p>
+      <div class="feedback">✓ <strong>Lösung:</strong> XLR 3-pol (Audiokabel) · 120 Ω · Terminator · 120 Ω · Audiomikrofonkabel</div>
+    </div>
+  </div>
+
+  <!-- Q14 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 14 / 20</span>
+      <span class="question-title">XLR 5-pol Pin-Belegung DMX512</span>
+      <span class="badge badge-cloze">cloze</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Ergänze die Pin-Belegung des XLR-5-pol-DMX-Steckers:</p>
+      <table style="border-collapse:collapse;font-size:13px;margin-top:8px;">
+        <tr style="background:#e3f2fd;"><th style="padding:5px 12px;border:1px solid #90caf9;">Pin</th><th style="padding:5px 12px;border:1px solid #90caf9;">Funktion</th><th style="padding:5px 12px;border:1px solid #90caf9;">Lösung</th></tr>
+        <tr><td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">1</td><td style="padding:4px;border:1px solid #ccc;"><select><option>Masse / GND</option><option>Daten (+)</option></select></td><td style="padding:4px 12px;border:1px solid #ccc;color:#2e7d32;font-weight:600;">Masse / GND</td></tr>
+        <tr><td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">2</td><td style="padding:4px;border:1px solid #ccc;"><select><option>Daten (−)</option><option>Daten (+)</option></select></td><td style="padding:4px 12px;border:1px solid #ccc;color:#2e7d32;font-weight:600;">Daten (−)</td></tr>
+        <tr><td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">3</td><td style="padding:4px;border:1px solid #ccc;"><select><option>Daten (+)</option><option>Daten (−)</option></select></td><td style="padding:4px 12px;border:1px solid #ccc;color:#2e7d32;font-weight:600;">Daten (+)</td></tr>
+        <tr><td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">4</td><td style="padding:4px;border:1px solid #ccc;"><select><option>Reserve / RDM</option><option>Daten (+)</option></select></td><td style="padding:4px 12px;border:1px solid #ccc;color:#2e7d32;font-weight:600;">Reserve / RDM</td></tr>
+        <tr><td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">5</td><td style="padding:4px;border:1px solid #ccc;"><select><option>Reserve / RDM</option><option>Daten (−)</option></select></td><td style="padding:4px 12px;border:1px solid #ccc;color:#2e7d32;font-weight:600;">Reserve / RDM</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q15 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 15 / 20</span>
+      <span class="question-title">Stecker → Impedanz / Leitungsstandard</span>
+      <span class="badge badge-ddmatch">ddmatch</span>
+    </div>
+    <div class="question-body">
+      <table class="subq-table">
+        <tr><td class="term">BNC (SDI-Video)</td><td class="def">75 Ω (Koaxialkabel, Video)</td></tr>
+        <tr><td class="term">XLR 5-pol (DMX512-Kabel)</td><td class="def">120 Ω (RS-485 Abschluss)</td></tr>
+        <tr><td class="term">XLR 3-pol (AES/EBU Digital)</td><td class="def">110 Ω (symmetrisch differenziell)</td></tr>
+        <tr><td class="term">RJ45 (Ethernet CAT6)</td><td class="def">100 Ω (UTP/STP Twisted Pair)</td></tr>
+        <tr><td class="term">XLR 3-pol (normales Audio)</td><td class="def">Keine Normimpedanz (ungeeignet für DMX)</td></tr>
+        <tr class="distractor"><td colspan="2">⚠ Distractor: 50 Ω (HF-Koaxialkabel, Antennentechnik)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q16 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 16 / 20</span>
+      <span class="question-title">RJ45 – Protokolle in der Veranstaltungstechnik</span>
+      <span class="badge badge-ddwtos">ddwtos</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Ordne den RJ45-Verbindungen zum Switch das richtige Protokoll zu:</p>
+      <p>Audio-Interface → Switch: <span class="gap"></span></p>
+      <p>Lichtpult → Switch: <span class="gap"></span></p>
+      <p>IP-Kamera → Switch: <span class="gap"></span></p>
+      <p>WLAN-AP → Switch: <span class="gap"></span></p>
+      <div class="feedback">✓ <strong>Lösung:</strong> Dante · ArtNet · NDI · PoE</div>
+    </div>
+  </div>
+
+  <!-- Q17 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 17 / 20</span>
+      <span class="question-title">Signalkette Mikrofon → Lautsprecher</span>
+      <span class="badge badge-ordering">ordering</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Bringe die Stationen der Dante-Signalkette in die richtige Reihenfolge:</p>
+      <ul class="ordering-list">
+        <li><span class="pos">1</span> Mikrofon (XLR 3-pol)</li>
+        <li><span class="pos">2</span> Stagebox / Digitale Snake</li>
+        <li><span class="pos">3</span> Dante-Netzwerk (RJ45 / CAT6)</li>
+        <li><span class="pos">4</span> FOH-Mischpult</li>
+        <li><span class="pos">5</span> Endstufe (Speakon NL4)</li>
+        <li><span class="pos">6</span> Lautsprecher / PA-System</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Q18 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 18 / 20</span>
+      <span class="question-title">USB-C Betriebsmodi und AV-Fähigkeit</span>
+      <span class="badge badge-gapselect">gapselect</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p>Für Video-Ausgabe via USB-C wird <select><option>DisplayPort Alt Mode</option></select> verwendet. Für AV + PCIe wird <select><option>Thunderbolt 3 / 4</option></select> benötigt. Reine Stromversorgung läuft über <select><option>USB Power Delivery (PD)</option></select> mit max. <select><option>100</option></select> Watt.</p>
+      <div class="feedback">✓ <strong>Lösung:</strong> DisplayPort Alt Mode · Thunderbolt 3/4 · USB PD · 100 W</div>
+    </div>
+  </div>
+
+  <!-- Q19 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 19 / 20</span>
+      <span class="question-title">Ethernet-Kabelkategorien → Bandbreite</span>
+      <span class="badge badge-ddmatch">ddmatch</span>
+    </div>
+    <div class="question-body">
+      <table class="subq-table">
+        <tr><td class="term">CAT5e</td><td class="def">1 Gbit/s bis 100 m</td></tr>
+        <tr><td class="term">CAT6</td><td class="def">1 Gbit/s bis 100 m; 10 Gbit/s nur bis 55 m</td></tr>
+        <tr><td class="term">CAT6A</td><td class="def">10 Gbit/s bis 100 m (Augmented)</td></tr>
+        <tr><td class="term">CAT7</td><td class="def">10 Gbit/s bis 100 m, vollständig geschirmt (S/FTP)</td></tr>
+        <tr class="distractor"><td colspan="2">⚠ Distractor: 100 Gbit/s bis 100 m (CAT8)</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Q20 -->
+  <div class="question-card">
+    <div class="question-header">
+      <span class="question-number">Frage 20 / 20</span>
+      <span class="question-title">Fehleranalyse: Brummen / Erdschleife</span>
+      <span class="badge badge-cloze">cloze</span>
+      <span class="badge badge-svg">SVG</span>
+    </div>
+    <div class="question-body">
+      <p><strong>Situation:</strong> Videokamera (Klinke TS out) → 20-m-Kabel → Mischpult. Beide Geräte hängen an verschiedenen Steckdosen. Es brummt!</p>
+      <ol style="margin:8px 0 0 18px;font-size:13px;line-height:2;">
+        <li>Ursache: <span class="cloze-choice">Erdschleife (Ground Loop)</span></li>
+        <li>Das Problem entsteht, weil der TS-Stecker das Signal <span class="cloze-choice">unsymmetrisch überträgt</span></li>
+        <li>Einfachste Lösung: <span class="cloze-choice">DI-Box (Direct Injection)</span></li>
+        <li>Normgerechte Lösung: Kabel tauschen zu <span class="cloze-choice">XLR 3-pol (symmetrisch)</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div style="text-align:center;color:#aaa;font-size:12px;padding:24px 0 40px;">
+    Quiz: Schnittstellen und Signalleitungen · LF10 Kapitel 1 · 20 Fragen · erstellt 2026-08-10<br>
+    Import in Moodle: Fragensammlung → Importieren → Format: Moodle XML
+  </div>
+
+</div>
+</body>
+</html>

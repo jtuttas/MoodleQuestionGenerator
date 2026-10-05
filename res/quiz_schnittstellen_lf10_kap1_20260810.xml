@@ -1,0 +1,1245 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<quiz>
+<!--
+================================================================
+  Quiz: Schnittstellen und Signalleitungen – LF10 Kapitel 1
+  Zielgruppe: Fachkraft fuer Veranstaltungstechnik, 3. Ausbildungsjahr
+  Anzahl Fragen: 20 (kein multichoice-Typ)
+  Fragetypen: ddwtos, ddmatch, gapselect, ordering, numerical, cloze
+  SVG-Grafiken: 14 von 20 Fragen
+  Erstellt: 2026-08-10
+================================================================
+-->
+
+<!-- ============================================================
+     Q01 – ddwtos – XLR 3-pol Pinbelegung Audio (SVG)
+     ============================================================ -->
+<question type="ddwtos">
+  <name><text>Q01 XLR 3-pol Pinbelegung Audio</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Der XLR-3-pol-Stecker ist der Standard für symmetrische Audioübertragung. Ordne die Signalbezeichnungen den Pins zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 220 220" width="220" height="220">
+  <circle cx="110" cy="110" r="95" fill="#2d2d2d" stroke="#111" stroke-width="3"/>
+  <circle cx="110" cy="110" r="78" fill="#3e3e3e"/>
+  <rect x="96" y="14" width="28" height="16" rx="4" fill="#555"/>
+  <text x="110" y="26" text-anchor="middle" font-family="Arial" font-size="9" fill="#aaa">Arretierung</text>
+  <circle cx="75" cy="82" r="14" fill="#1565c0" stroke="#90caf9" stroke-width="2"/>
+  <text x="75" y="87" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">2</text>
+  <circle cx="145" cy="82" r="14" fill="#1565c0" stroke="#90caf9" stroke-width="2"/>
+  <text x="145" y="87" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">3</text>
+  <circle cx="110" cy="150" r="14" fill="#1565c0" stroke="#90caf9" stroke-width="2"/>
+  <text x="110" y="155" text-anchor="middle" font-family="Arial" font-size="15" font-weight="bold" fill="#fff">1</text>
+  <text x="110" y="210" text-anchor="middle" font-family="Arial" font-size="10" fill="#777">XLR female – Frontansicht (Kabelseite)</text>
+</svg>
+<p>Pin 1: [[1]] &nbsp;&nbsp; Pin 2: [[2]] &nbsp;&nbsp; Pin 3: [[3]]</p>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p><strong>XLR 3-pol (IEC 60268-12):</strong> Pin 1 = Masse/GND, Pin 2 = Hot (+, positive Phase), Pin 3 = Cold (−, negative Phase). Merkhilfe: <em>1-2-3 = Erde-Heiß-Kalt</em>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle drei Pins korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Noch nicht alle Pins stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Merke: 1=GND, 2=Hot(+), 3=Cold(−).</text></incorrectfeedback>
+  <shownumcorrect/>
+  <dragbox><text>Masse / GND</text><group>1</group></dragbox>
+  <dragbox><text>Hot (+)</text><group>1</group></dragbox>
+  <dragbox><text>Phantomspeisung</text><group>1</group></dragbox>
+  <dragbox><text>Hot (+)</text><group>2</group></dragbox>
+  <dragbox><text>Masse / GND</text><group>2</group></dragbox>
+  <dragbox><text>Cold (−)</text><group>2</group></dragbox>
+  <dragbox><text>Cold (−)</text><group>3</group></dragbox>
+  <dragbox><text>Hot (+)</text><group>3</group></dragbox>
+  <dragbox><text>Abschirmung</text><group>3</group></dragbox>
+</question>
+
+<!-- ============================================================
+     Q02 – ddmatch – Stecker → Haupteinsatz in der VT
+     ============================================================ -->
+<question type="ddmatch">
+  <name><text>Q02 Steckverbinder Haupteinsatz VT</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordne jeden Steckverbinder seinem typischen Haupteinsatz in der Veranstaltungstechnik zu. Zwei Antworten passen zu keinem Begriff.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>XLR 3-pol = symmetrisches Audio (Mikrofon, Line), XLR 5-pol = DMX512 Lichtsteuersignal, Klinke TRS = symmetrisches Audio (kurze Strecken), Speakon NL4 = Lautsprecher / Leistungssignal, BNC = SDI-Video (koaxial, 75 Ω), RJ45 = Netzwerk (Dante, ArtNet, NDI).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>6</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Zuordnungen korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Einige Zuordnungen stimmen noch nicht.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Achte auf Signaltyp und Einsatzbereich.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <subquestion format="html">
+    <text><![CDATA[<p>XLR 3-pol</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Symmetrisches Audio (Mikrofon, Line)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>XLR 5-pol</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>DMX512 Lichtsteuerung</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>Klinke TRS 6,3 mm</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Symmetrisches Audio (kurze Strecken, Insert)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>Speakon NL4</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Lautsprecher / Leistungssignal</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>BNC 75 Ω</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>SDI-Videosignal (koaxial)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>RJ45</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Netzwerk (Dante, ArtNet, NDI)</p>]]></text></answer>
+  </subquestion>
+  <!-- Distractors (leere linke Seite) -->
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Analoge Videosignal FBAS (Cinch)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>USB-Peripherie (Maus, Tastatur)</p>]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- ============================================================
+     Q03 – ddwtos – Symmetrische Übertragung Prinzip (SVG)
+     ============================================================ -->
+<question type="ddwtos">
+  <name><text>Q03 Symmetrische Uebertragung Prinzip</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Die symmetrische Signalübertragung ist das Grundprinzip professioneller Audiotechnik. Ergänze die Lücken:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 160" width="480" height="160">
+  <defs>
+    <marker id="arr3" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#333"/>
+    </marker>
+  </defs>
+  <!-- Quelle -->
+  <rect x="10" y="60" width="80" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="50" y="84" text-anchor="middle" font-family="Arial" font-size="11" fill="#1565c0">Quelle</text>
+  <!-- Signal + -->
+  <line x1="90" y1="70" x2="200" y2="70" stroke="#2e7d32" stroke-width="2" marker-end="url(#arr3)"/>
+  <text x="145" y="62" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">Signal +</text>
+  <!-- Signal - -->
+  <line x1="90" y1="90" x2="200" y2="90" stroke="#c62828" stroke-width="2" marker-end="url(#arr3)"/>
+  <text x="145" y="105" text-anchor="middle" font-family="Arial" font-size="10" fill="#c62828">Signal − (invertiert)</text>
+  <!-- Störung -->
+  <line x1="145" y1="30" x2="145" y2="65" stroke="#f57f17" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="145" y="22" text-anchor="middle" font-family="Arial" font-size="9" fill="#f57f17">Störung (Gleichtakt)</text>
+  <!-- Empfänger -->
+  <rect x="200" y="55" width="90" height="50" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="245" y="76" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">Differenz-</text>
+  <text x="245" y="90" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">verstärker</text>
+  <!-- Ausgang -->
+  <line x1="290" y1="80" x2="380" y2="80" stroke="#333" stroke-width="2" marker-end="url(#arr3)"/>
+  <!-- Ergebnis -->
+  <rect x="380" y="60" width="90" height="40" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="425" y="76" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">Nutzsignal</text>
+  <text x="425" y="90" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">ohne Störung</text>
+</svg>
+<p>Bei symmetrischer Übertragung wird das Signal auf [[1]] Leitern übertragen. Der Empfänger bildet die [[2]] beider Signale. Störungen, die auf beide Leiter gleich einkoppeln ([[3]]), werden dadurch unterdrückt. Dieses Prinzip heißt [[4]].</p>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Symmetrische Übertragung: Signal wird auf <strong>zwei</strong> Leitern übertragen (Phase + und invertierte Phase −). Der Differenzverstärker bildet die <strong>Differenz</strong> beider Signale. Einkoppelnde Störungen wirken auf beide Leiter gleich (<strong>Gleichtaktsignal</strong>). Das Prinzip heißt <strong>Gleichtaktunterdrückung (CMRR)</strong>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Lücken korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Lücken stimmen noch.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Prüfe das Prinzip der symmetrischen Übertragung.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <dragbox><text>zwei</text><group>1</group></dragbox>
+  <dragbox><text>drei</text><group>1</group></dragbox>
+  <dragbox><text>einem</text><group>1</group></dragbox>
+  <dragbox><text>Differenz</text><group>2</group></dragbox>
+  <dragbox><text>Summe</text><group>2</group></dragbox>
+  <dragbox><text>Amplitude</text><group>2</group></dragbox>
+  <dragbox><text>Gleichtaktsignal</text><group>3</group></dragbox>
+  <dragbox><text>Gegentaktsignal</text><group>3</group></dragbox>
+  <dragbox><text>Brummspannung</text><group>3</group></dragbox>
+  <dragbox><text>Gleichtaktunterdrückung (CMRR)</text><group>4</group></dragbox>
+  <dragbox><text>Impedanzanpassung</text><group>4</group></dragbox>
+  <dragbox><text>Phantomspeisung</text><group>4</group></dragbox>
+</question>
+
+<!-- ============================================================
+     Q04 – gapselect – DMX512 Kernparameter (SVG)
+     ============================================================ -->
+<question type="gapselect">
+  <name><text>Q04 DMX512 Kernparameter</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>DMX512 ist das Standardprotokoll zur digitalen Lichtsteuerung. Wähle die richtigen Werte:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 110" width="500" height="110">
+  <defs>
+    <marker id="arr4" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <!-- Controller -->
+  <rect x="10" y="30" width="90" height="50" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="55" y="55" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#1565c0">DMX</text>
+  <text x="55" y="68" text-anchor="middle" font-family="Arial" font-size="10" fill="#1565c0">Controller</text>
+  <!-- Kabel 1 -->
+  <line x1="100" y1="55" x2="150" y2="55" stroke="#555" stroke-width="2" marker-end="url(#arr4)"/>
+  <!-- Device 1 -->
+  <rect x="150" y="30" width="70" height="50" rx="5" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="185" y="55" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">Fixture 1</text>
+  <text x="185" y="68" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">Addr. 1</text>
+  <!-- Kabel 2 -->
+  <line x1="220" y1="55" x2="270" y2="55" stroke="#555" stroke-width="2" marker-end="url(#arr4)"/>
+  <!-- Device 2 -->
+  <rect x="270" y="30" width="70" height="50" rx="5" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="305" y="55" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">Fixture 2</text>
+  <text x="305" y="68" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">Addr. 512</text>
+  <!-- Kabel 3 -->
+  <line x1="340" y1="55" x2="390" y2="55" stroke="#555" stroke-width="2" marker-end="url(#arr4)"/>
+  <!-- Terminator -->
+  <rect x="390" y="38" width="100" height="34" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="440" y="55" text-anchor="middle" font-family="Arial" font-size="9" fill="#e65100">Terminator</text>
+  <text x="440" y="65" text-anchor="middle" font-family="Arial" font-size="9" fill="#e65100">120 Ω</text>
+  <!-- Daisy Chain Label -->
+  <text x="250" y="105" text-anchor="middle" font-family="Arial" font-size="9" fill="#777">Daisy-Chain-Topologie – max. 300 m</text>
+</svg>
+<p>DMX512 überträgt bis zu [[1]] Kanäle pro Universum über eine [[2]]-Leitung. Die Leitungsimpedanz beträgt [[3]] und die maximale Kabellänge ohne Repeater liegt bei [[4]] Metern. Als Topologie wird die [[5]] verwendet.</p>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>DMX512: <strong>512</strong> Kanäle/Universum, <strong>RS-485</strong>-Leitung (differenziell, 2-Draht), Impedanz <strong>120 Ω</strong>, max. <strong>300 m</strong>, Topologie: <strong>Daisy Chain</strong>. Abschluss mit 120-Ω-Widerstand am letzten Gerät zwingend erforderlich.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle DMX-Parameter korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Einige Parameter sind noch falsch.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Lerne die DMX512-Kernwerte: 512 Kanäle, RS-485, 120 Ω, 300 m, Daisy Chain.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <!-- Gruppe 1: Kanalanzahl -->
+  <selectoption><text>512</text><group>1</group></selectoption>
+  <selectoption><text>256</text><group>1</group></selectoption>
+  <selectoption><text>1024</text><group>1</group></selectoption>
+  <!-- Gruppe 2: Bustyp -->
+  <selectoption><text>RS-485</text><group>2</group></selectoption>
+  <selectoption><text>RS-232</text><group>2</group></selectoption>
+  <selectoption><text>MIDI</text><group>2</group></selectoption>
+  <!-- Gruppe 3: Impedanz -->
+  <selectoption><text>120 Ω</text><group>3</group></selectoption>
+  <selectoption><text>75 Ω</text><group>3</group></selectoption>
+  <selectoption><text>50 Ω</text><group>3</group></selectoption>
+  <!-- Gruppe 4: Max. Länge -->
+  <selectoption><text>300</text><group>4</group></selectoption>
+  <selectoption><text>100</text><group>4</group></selectoption>
+  <selectoption><text>500</text><group>4</group></selectoption>
+  <!-- Gruppe 5: Topologie -->
+  <selectoption><text>Daisy Chain</text><group>5</group></selectoption>
+  <selectoption><text>Stern</text><group>5</group></selectoption>
+  <selectoption><text>Ring</text><group>5</group></selectoption>
+</question>
+
+<!-- ============================================================
+     Q05 – ddmatch – Signaltyp → passender Stecker
+     ============================================================ -->
+<question type="ddmatch">
+  <name><text>Q05 Signaltyp passender Stecker</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordne jedem Signaltyp den typisch verwendeten Steckverbinder zu. Ein Antwort-Element passt nicht.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Symmetrisches Audio → XLR 3-pol, Unsymmetrisches Audio (kurz) → Klinke TS oder Cinch, Leistungssignal → Speakon NL4, SDI-Video → BNC 75 Ω, DMX-Steuerung → XLR 5-pol, Netzwerk-Daten → RJ45.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Zuordnungen korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Zuordnungen stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Beachte Signaltyp, Pegel und Einsatzgebiet.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <subquestion format="html">
+    <text><![CDATA[<p>Symmetrisches Audio (Mikrofon)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>XLR 3-pol</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>Unsymmetrisches Audio (Instrument, kurz)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Klinke TS 6,3 mm</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>Leistungssignal (Endstufe → LS)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Speakon NL4</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>SDI-Videosignal (koaxial)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>BNC 75 Ω</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>DMX512-Steuersignal</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>XLR 5-pol</p>]]></text></answer>
+  </subquestion>
+  <!-- Distractor -->
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>USB-C (nur Strom, PD-Modus)</p>]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- ============================================================
+     Q06 – numerical – DMX Kanäle pro Universum (SVG)
+     ============================================================ -->
+<question type="numerical">
+  <name><text>Q06 DMX Kanaele pro Universum</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Wie viele Steuerkanäle enthält genau ein DMX512-Universum?</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 120" width="340" height="120">
+  <rect x="10" y="10" width="320" height="100" rx="8" fill="#e8eaf6" stroke="#3949ab" stroke-width="2"/>
+  <text x="170" y="35" text-anchor="middle" font-family="Arial" font-size="13" font-weight="bold" fill="#3949ab">1 DMX-Universum</text>
+  <!-- Channel blocks -->
+  <rect x="20" y="45" width="60" height="30" rx="3" fill="#3949ab"/>
+  <text x="50" y="64" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">Ch 1–100</text>
+  <rect x="85" y="45" width="60" height="30" rx="3" fill="#5c6bc0"/>
+  <text x="115" y="64" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">101–200</text>
+  <rect x="150" y="45" width="60" height="30" rx="3" fill="#7986cb"/>
+  <text x="180" y="64" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">201–300</text>
+  <rect x="215" y="45" width="60" height="30" rx="3" fill="#9fa8da"/>
+  <text x="245" y="64" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">301–400</text>
+  <rect x="280" y="45" width="50" height="30" rx="3" fill="#c5cae9"/>
+  <text x="305" y="64" text-anchor="middle" font-family="Arial" font-size="9" fill="#3949ab">401–???</text>
+  <text x="170" y="102" text-anchor="middle" font-family="Arial" font-size="10" fill="#555">Gesamtanzahl Kanäle = ?</text>
+</svg>
+<p>Gib die Antwort als ganze Zahl ein.</p>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Ein DMX512-Universum enthält exakt <strong>512 Kanäle</strong> (Kanalnummern 1–512). Für größere Installationen werden mehrere Universen eingesetzt, jeweils über einen eigenen DMX-Ausgang.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <answer fraction="100" format="moodle_auto_format">
+    <text>512</text>
+    <feedback format="html"><text>Korrekt! 512 Kanäle pro Universum.</text></feedback>
+    <tolerance>0</tolerance>
+  </answer>
+  <answer fraction="0" format="moodle_auto_format">
+    <text>*</text>
+    <feedback format="html"><text>Falsch. Ein DMX512-Universum hat genau 512 Kanäle.</text></feedback>
+    <tolerance>0</tolerance>
+  </answer>
+  <units/>
+  <unitgradingtype>0</unitgradingtype>
+  <unitpenalty>0.1</unitpenalty>
+  <showunits>3</showunits>
+  <unitsleft>0</unitsleft>
+</question>
+
+<!-- ============================================================
+     Q07 – numerical – Maximale DMX512 Kabellänge
+     ============================================================ -->
+<question type="numerical">
+  <name><text>Q07 DMX max Kabellaenge Meter</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Wie viele Meter beträgt die maximale normgerechte Kabellänge einer DMX512-Verbindung (ohne Repeater/Booster) gemäß ANSI E1.11?</p><p>Gib die Antwort als ganze Zahl in Metern ein.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Die ANSI E1.11-Norm spezifiziert maximal <strong>300 m</strong> Kabellänge für eine DMX512-Verbindung ohne Signalverstärker. In der Praxis werden bei langen Strecken DMX-Repeater (Splitter/Booster) empfohlen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>1</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <answer fraction="100" format="moodle_auto_format">
+    <text>300</text>
+    <feedback format="html"><text>Korrekt! Max. 300 m laut ANSI E1.11.</text></feedback>
+    <tolerance>0</tolerance>
+  </answer>
+  <answer fraction="0" format="moodle_auto_format">
+    <text>*</text>
+    <feedback format="html"><text>Falsch. Die Norm erlaubt maximal 300 m.</text></feedback>
+    <tolerance>0</tolerance>
+  </answer>
+  <units/>
+  <unitgradingtype>0</unitgradingtype>
+  <unitpenalty>0.1</unitpenalty>
+  <showunits>3</showunits>
+  <unitsleft>0</unitsleft>
+</question>
+
+<!-- ============================================================
+     Q08 – ddmatch – Speakon NL2 / NL4 / NL8 → Einsatz (SVG)
+     ============================================================ -->
+<question type="ddmatch">
+  <name><text>Q08 Speakon NL-Varianten Einsatz</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Ordne jeder Speakon-Variante ihren typischen Einsatz zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 150" width="420" height="150">
+  <!-- NL2 -->
+  <rect x="10" y="10" width="120" height="130" rx="8" fill="#f5f5f5" stroke="#555" stroke-width="2"/>
+  <text x="70" y="30" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#333">NL2</text>
+  <circle cx="70" cy="70" r="40" fill="#e0e0e0" stroke="#555" stroke-width="1.5"/>
+  <circle cx="55" cy="70" r="7" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+  <text x="55" y="74" text-anchor="middle" font-family="Arial" font-size="8" fill="#fff">1+</text>
+  <circle cx="85" cy="70" r="7" fill="#333" stroke="#fff" stroke-width="1.5"/>
+  <text x="85" y="74" text-anchor="middle" font-family="Arial" font-size="8" fill="#fff">1-</text>
+  <text x="70" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">2 Pole</text>
+  <!-- NL4 -->
+  <rect x="150" y="10" width="120" height="130" rx="8" fill="#f5f5f5" stroke="#555" stroke-width="2"/>
+  <text x="210" y="30" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#333">NL4</text>
+  <circle cx="210" cy="70" r="40" fill="#e0e0e0" stroke="#555" stroke-width="1.5"/>
+  <circle cx="195" cy="58" r="7" fill="#1565c0" stroke="#fff" stroke-width="1.5"/>
+  <text x="195" y="62" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">1+</text>
+  <circle cx="225" cy="58" r="7" fill="#333" stroke="#fff" stroke-width="1.5"/>
+  <text x="225" y="62" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">1-</text>
+  <circle cx="195" cy="82" r="7" fill="#c62828" stroke="#fff" stroke-width="1.5"/>
+  <text x="195" y="86" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">2+</text>
+  <circle cx="225" cy="82" r="7" fill="#8b0000" stroke="#fff" stroke-width="1.5"/>
+  <text x="225" y="86" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">2-</text>
+  <text x="210" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">4 Pole</text>
+  <!-- NL8 -->
+  <rect x="290" y="10" width="120" height="130" rx="8" fill="#f5f5f5" stroke="#555" stroke-width="2"/>
+  <text x="350" y="30" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#333">NL8</text>
+  <circle cx="350" cy="70" r="40" fill="#e0e0e0" stroke="#555" stroke-width="1.5"/>
+  <circle cx="335" cy="57" r="6" fill="#1565c0" stroke="#fff" stroke-width="1"/>
+  <text x="335" y="61" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">1+</text>
+  <circle cx="350" cy="57" r="6" fill="#333" stroke="#fff" stroke-width="1"/>
+  <text x="350" y="61" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">1-</text>
+  <circle cx="365" cy="57" r="6" fill="#c62828" stroke="#fff" stroke-width="1"/>
+  <text x="365" y="61" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">2+</text>
+  <circle cx="335" cy="73" r="6" fill="#8b0000" stroke="#fff" stroke-width="1"/>
+  <text x="335" y="77" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">2-</text>
+  <circle cx="350" cy="73" r="6" fill="#2e7d32" stroke="#fff" stroke-width="1"/>
+  <text x="350" y="77" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">3+</text>
+  <circle cx="365" cy="73" r="6" fill="#1b5e20" stroke="#fff" stroke-width="1"/>
+  <text x="365" y="77" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">3-</text>
+  <circle cx="335" cy="89" r="6" fill="#e65100" stroke="#fff" stroke-width="1"/>
+  <text x="335" y="93" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">4+</text>
+  <circle cx="350" cy="89" r="6" fill="#bf360c" stroke="#fff" stroke-width="1"/>
+  <text x="350" y="93" text-anchor="middle" font-family="Arial" font-size="7" fill="#fff">4-</text>
+  <text x="350" y="130" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">8 Pole</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Speakon-Varianten: <strong>NL2</strong> = 2 Kontakte (1+/1−), für Mono-Lautsprecher. <strong>NL4</strong> = 4 Kontakte (1+/1−, 2+/2−), für Bi-Amping (z. B. 1x = Bass, 2x = Hochton). <strong>NL8</strong> = 8 Kontakte, für Tri-Amping oder komplexe Systeme. Alle sind für bis zu 40 A Stromtragfähigkeit ausgelegt.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Speakon-Varianten korrekt zugeordnet!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Zuordnungen stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Merke: NL2=Mono, NL4=Bi-Amping, NL8=Tri-Amping.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <subquestion format="html">
+    <text><![CDATA[<p>NL2</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Mono-Lautsprecher (1 Signalweg, 2 Kontakte)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>NL4</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Bi-Amping: 1x = Bass, 2x = Hochton (4 Kontakte)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>NL8</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Tri-Amping / komplexe Aktivsysteme (8 Kontakte)</p>]]></text></answer>
+  </subquestion>
+  <!-- Distractor -->
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>DMX512-Lichtsteuerung (XLR 5-pol)</p>]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- ============================================================
+     Q09 – ordering – SDI Standards nach Bandbreite (SVG)
+     ============================================================ -->
+<question type="ordering">
+  <name><text>Q09 SDI Standards Bandbreite aufsteigend</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Bringe die SDI-Standards in die richtige Reihenfolge – vom niedrigsten zum höchsten Datendurchsatz:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 180" width="440" height="180">
+  <text x="10" y="20" font-family="Arial" font-size="11" fill="#555">Bandbreite (Gbit/s) – nicht in Reihenfolge:</text>
+  <!-- Bars (shuffled display) -->
+  <rect x="10" y="30" width="260" height="22" rx="3" fill="#e57373"/>
+  <text x="275" y="45" font-family="Arial" font-size="10" fill="#333">12G-SDI → 12 Gbit/s</text>
+  <rect x="10" y="58" width="45" height="22" rx="3" fill="#81c784"/>
+  <text x="60" y="73" font-family="Arial" font-size="10" fill="#333">SD-SDI → 270 Mbit/s</text>
+  <rect x="10" y="86" width="130" height="22" rx="3" fill="#64b5f6"/>
+  <text x="145" y="101" font-family="Arial" font-size="10" fill="#333">3G-SDI → 3 Gbit/s</text>
+  <rect x="10" y="114" width="65" height="22" rx="3" fill="#ffb74d"/>
+  <text x="80" y="129" font-family="Arial" font-size="10" fill="#333">HD-SDI → 1,5 Gbit/s</text>
+  <rect x="10" y="142" width="195" height="22" rx="3" fill="#ba68c8"/>
+  <text x="210" y="157" font-family="Arial" font-size="10" fill="#333">6G-SDI → 6 Gbit/s</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>SDI-Standards aufsteigend: <strong>SD-SDI</strong> (270 Mbit/s) → <strong>HD-SDI</strong> (1,5 Gbit/s) → <strong>3G-SDI</strong> (3 Gbit/s) → <strong>6G-SDI</strong> (6 Gbit/s) → <strong>12G-SDI</strong> (12 Gbit/s). Jede Stufe verdoppelt (oder mehr) die Bandbreite für höhere Auflösungen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>1</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html">
+    <text><![CDATA[<p>SD-SDI – 270 Mbit/s (Standard Definition)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="2" format="html">
+    <text><![CDATA[<p>HD-SDI – 1,5 Gbit/s (High Definition)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="3" format="html">
+    <text><![CDATA[<p>3G-SDI – 3 Gbit/s (1080p50/60)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="4" format="html">
+    <text><![CDATA[<p>6G-SDI – 6 Gbit/s (4K@30 Hz)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="5" format="html">
+    <text><![CDATA[<p>12G-SDI – 12 Gbit/s (4K@60 Hz)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <correctfeedback format="html"><text>Reihenfolge vollständig korrekt!</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- ============================================================
+     Q10 – ddwtos – Klinke TS vs TRS Querschnitt (SVG)
+     ============================================================ -->
+<question type="ddwtos">
+  <name><text>Q10 Klinke TS vs TRS Segmente</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Der Klinkenquerschnitt zeigt die elektrischen Segmente. Ordne die Bezeichnungen den markierten Bereichen zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 160" width="440" height="160">
+  <!-- TS Connector -->
+  <text x="100" y="18" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#333">Klinke TS (unsymmetrisch)</text>
+  <!-- Sleeve -->
+  <rect x="20" y="60" width="60" height="60" rx="4" fill="#888"/>
+  <text x="50" y="94" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">Sleeve</text>
+  <!-- Isolator -->
+  <rect x="80" y="70" width="8" height="40" fill="#fff" stroke="#ccc"/>
+  <!-- Tip -->
+  <rect x="88" y="75" width="80" height="30" rx="15" fill="#f9a825"/>
+  <text x="128" y="94" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">[[1]]</text>
+  <!-- Labels TS -->
+  <text x="50" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">GND / Masse</text>
+  <text x="128" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">Signal (unsymm.)</text>
+
+  <!-- TRS Connector -->
+  <text x="330" y="18" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#333">Klinke TRS (symmetrisch)</text>
+  <!-- Sleeve -->
+  <rect x="240" y="60" width="55" height="60" rx="4" fill="#888"/>
+  <text x="267" y="94" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">Sleeve</text>
+  <!-- Isolator 1 -->
+  <rect x="295" y="70" width="7" height="40" fill="#fff" stroke="#ccc"/>
+  <!-- Ring -->
+  <rect x="302" y="70" width="40" height="40" fill="#c62828"/>
+  <text x="322" y="94" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">[[2]]</text>
+  <!-- Isolator 2 -->
+  <rect x="342" y="72" width="7" height="36" fill="#fff" stroke="#ccc"/>
+  <!-- Tip -->
+  <rect x="349" y="75" width="65" height="30" rx="15" fill="#2e7d32"/>
+  <text x="382" y="94" text-anchor="middle" font-family="Arial" font-size="10" fill="#fff">[[3]]</text>
+  <!-- Labels TRS -->
+  <text x="267" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">GND</text>
+  <text x="322" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">Cold (−)</text>
+  <text x="382" y="135" text-anchor="middle" font-family="Arial" font-size="9" fill="#555">Hot (+)</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Klinke TS: <strong>Tip</strong> = Signal (unsymmetrisch). Klinke TRS: <strong>Tip</strong> = Hot (+), <strong>Ring</strong> = Cold (−), Sleeve = GND. TRS überträgt symmetrisch und ist störungsresistenter als TS. Merkhilfe: <em>T-R-S = Spitze-Ring-Hülse</em>.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Segmente korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Segmente stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Merke: Tip (ganz vorne), Ring (Mitte), Sleeve (hinten/Hülse).</text></incorrectfeedback>
+  <shownumcorrect/>
+  <!-- Group 1: TS Tip -->
+  <dragbox><text>Tip (Signal)</text><group>1</group></dragbox>
+  <dragbox><text>Ring (Cold)</text><group>1</group></dragbox>
+  <dragbox><text>Sleeve (GND)</text><group>1</group></dragbox>
+  <!-- Group 2: TRS Ring -->
+  <dragbox><text>Ring (Cold −)</text><group>2</group></dragbox>
+  <dragbox><text>Tip (Hot +)</text><group>2</group></dragbox>
+  <dragbox><text>Sleeve (GND)</text><group>2</group></dragbox>
+  <!-- Group 3: TRS Tip -->
+  <dragbox><text>Tip (Hot +)</text><group>3</group></dragbox>
+  <dragbox><text>Ring (Cold −)</text><group>3</group></dragbox>
+  <dragbox><text>Signal (unsymm.)</text><group>3</group></dragbox>
+</question>
+
+<!-- ============================================================
+     Q11 – ddmatch – VT-Szenario → Steckverbinder (SVG)
+     ============================================================ -->
+<question type="ddmatch">
+  <name><text>Q11 VT Szenario Steckverbinder Wahl</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Wähle für jedes Praxis-Szenario den richtigen Steckverbinder. Ein Distractor passt nicht.</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460 200" width="460" height="200">
+  <rect x="5" y="5" width="215" height="185" rx="5" fill="#f5f5f5" stroke="#ddd"/>
+  <rect x="235" y="5" width="220" height="185" rx="5" fill="#f5f5f5" stroke="#ddd"/>
+  <!-- Scenarios left column -->
+  <text x="112" y="22" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#333">Szenarien</text>
+  <text x="15" y="45" font-family="Arial" font-size="9" fill="#333">① Gesangsmikrofon → Stagebox (20 m)</text>
+  <text x="15" y="75" font-family="Arial" font-size="9" fill="#333">② Moving Head ← DMX Controller</text>
+  <text x="15" y="105" font-family="Arial" font-size="9" fill="#333">③ E-Gitarre → DI-Box (2 m)</text>
+  <text x="15" y="135" font-family="Arial" font-size="9" fill="#333">④ Endstufe → Aktiv-PA (Leistung)</text>
+  <text x="15" y="165" font-family="Arial" font-size="9" fill="#333">⑤ SDI-Kamera → Regie-Monitor</text>
+  <text x="15" y="190" font-family="Arial" font-size="9" fill="#333">⑥ Dante-Switch → Stagebox</text>
+  <!-- Right: connector pool label -->
+  <text x="345" y="22" text-anchor="middle" font-family="Arial" font-size="10" font-weight="bold" fill="#333">Steckverbinder-Pool</text>
+  <text x="245" y="45" font-family="Arial" font-size="9" fill="#1565c0">XLR 3-pol</text>
+  <text x="245" y="65" font-family="Arial" font-size="9" fill="#7b1fa2">XLR 5-pol</text>
+  <text x="245" y="85" font-family="Arial" font-size="9" fill="#e65100">Klinke TS 6,3 mm</text>
+  <text x="245" y="105" font-family="Arial" font-size="9" fill="#2e7d32">Speakon NL4</text>
+  <text x="245" y="125" font-family="Arial" font-size="9" fill="#c62828">BNC 75 Ω</text>
+  <text x="245" y="145" font-family="Arial" font-size="9" fill="#37474f">RJ45 / EtherCon</text>
+  <text x="245" y="165" font-family="Arial" font-size="9" fill="#888">[+ 1 Distractor]</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>① Mikrofon 20 m = XLR 3-pol (symmetrisch, verriegelt). ② DMX Moving Head = XLR 5-pol. ③ E-Gitarre DI = Klinke TS 6,3 mm (Instrument-Level). ④ Endstufe = Speakon NL4 (Leistung, 40 A). ⑤ SDI-Kamera = BNC 75 Ω. ⑥ Dante = RJ45/EtherCon (CAT6).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>6</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Szenarien korrekt zugeordnet!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Zuordnungen stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Beachte Signaltyp, Länge und Einsatz.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <subquestion format="html">
+    <text><![CDATA[<p>① Gesangsmikrofon → Stagebox (20 m)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>XLR 3-pol (symmetrisch, verriegelt)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>② Moving Head ← DMX Controller</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>XLR 5-pol (DMX512)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>③ E-Gitarre → DI-Box (2 m)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Klinke TS 6,3 mm (Instrument-Pegel)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>④ Endstufe → Aktiv-PA (Leistung)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Speakon NL4 (Leistungssignal, 40 A)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>⑤ SDI-Kamera → Regie-Monitor</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>BNC 75 Ω (SDI-Koaxialkabel)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>⑥ Dante-Switch → Stagebox</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>RJ45 / EtherCon CAT6</p>]]></text></answer>
+  </subquestion>
+  <!-- Distractor -->
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>USB-C Thunderbolt (für Laptop-Displays)</p>]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- ============================================================
+     Q12 – ordering – HDMI Versionen nach Bandbreite (SVG)
+     ============================================================ -->
+<question type="ordering">
+  <name><text>Q12 HDMI Versionen Bandbreite aufsteigend</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Bringe die HDMI-Versionen in die richtige Reihenfolge – vom niedrigsten zum höchsten Datendurchsatz:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 110" width="440" height="110">
+  <text x="10" y="18" font-family="Arial" font-size="10" fill="#555">Bandbreite aufsteigend sortieren:</text>
+  <!-- Timeline bar -->
+  <line x1="30" y1="55" x2="420" y2="55" stroke="#bbb" stroke-width="3"/>
+  <!-- HDMI 2.1 -->
+  <circle cx="370" cy="55" r="18" fill="#c62828"/>
+  <text x="370" y="50" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">HDMI</text>
+  <text x="370" y="62" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">2.1</text>
+  <text x="370" y="82" text-anchor="middle" font-family="Arial" font-size="8" fill="#c62828">48 Gbit/s</text>
+  <text x="370" y="92" text-anchor="middle" font-family="Arial" font-size="8" fill="#555">8K@60 Hz</text>
+  <!-- HDMI 1.4 -->
+  <circle cx="80" cy="55" r="18" fill="#1565c0"/>
+  <text x="80" y="50" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">HDMI</text>
+  <text x="80" y="62" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">1.4</text>
+  <text x="80" y="82" text-anchor="middle" font-family="Arial" font-size="8" fill="#1565c0">10,2 Gbit/s</text>
+  <text x="80" y="92" text-anchor="middle" font-family="Arial" font-size="8" fill="#555">4K@30 Hz</text>
+  <!-- HDMI 2.0 -->
+  <circle cx="220" cy="55" r="18" fill="#2e7d32"/>
+  <text x="220" y="50" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">HDMI</text>
+  <text x="220" y="62" text-anchor="middle" font-family="Arial" font-size="9" fill="#fff">2.0</text>
+  <text x="220" y="82" text-anchor="middle" font-family="Arial" font-size="8" fill="#2e7d32">18 Gbit/s</text>
+  <text x="220" y="92" text-anchor="middle" font-family="Arial" font-size="8" fill="#555">4K@60 Hz</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>HDMI-Versionen aufsteigend: <strong>HDMI 1.4</strong> (10,2 Gbit/s, 4K@30 Hz) → <strong>HDMI 2.0</strong> (18 Gbit/s, 4K@60 Hz) → <strong>HDMI 2.1</strong> (48 Gbit/s, 8K@60 Hz). Für Live-Events ist 4K@60 Hz (HDMI 2.0) der aktuelle Standard, 8K (HDMI 2.1) gewinnt zunehmend an Bedeutung.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>3</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>1</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html">
+    <text><![CDATA[<p>HDMI 1.4 – 10,2 Gbit/s – 4K@30 Hz</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="2" format="html">
+    <text><![CDATA[<p>HDMI 2.0 – 18 Gbit/s – 4K@60 Hz</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="3" format="html">
+    <text><![CDATA[<p>HDMI 2.1 – 48 Gbit/s – 8K@60 Hz</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <correctfeedback format="html"><text>HDMI-Reihenfolge korrekt!</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- ============================================================
+     Q13 – gapselect – DMX Fehlerquellen (SVG)
+     ============================================================ -->
+<question type="gapselect">
+  <name><text>Q13 DMX Fehlerquellen Diagnose</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Eine Moving-Head-Anlage zeigt Probleme. Analysiere die Fehlerquellen anhand der Schaltung:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 130" width="500" height="130">
+  <defs>
+    <marker id="arr13" markerWidth="8" markerHeight="8" refX="7" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L8,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <!-- Controller -->
+  <rect x="5" y="40" width="80" height="50" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="45" y="65" text-anchor="middle" font-family="Arial" font-size="9" fill="#1565c0">DMX</text>
+  <text x="45" y="78" text-anchor="middle" font-family="Arial" font-size="9" fill="#1565c0">Controller</text>
+  <!-- Cable 1 – OK -->
+  <line x1="85" y1="65" x2="130" y2="65" stroke="#2e7d32" stroke-width="2" marker-end="url(#arr13)"/>
+  <!-- Fixture 1 -->
+  <rect x="130" y="40" width="70" height="50" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="165" y="65" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">Fixture 1</text>
+  <text x="165" y="78" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">OK ✓</text>
+  <!-- Cable 2 – Falsch: 3-pol statt 5-pol -->
+  <line x1="200" y1="65" x2="245" y2="65" stroke="#f57f17" stroke-width="2" stroke-dasharray="5,3" marker-end="url(#arr13)"/>
+  <text x="222" y="55" text-anchor="middle" font-family="Arial" font-size="8" fill="#f57f17">XLR 3-pol?</text>
+  <!-- Fixture 2 -->
+  <rect x="245" y="40" width="70" height="50" rx="5" fill="#fff3e0" stroke="#f57f17" stroke-width="2"/>
+  <text x="280" y="60" text-anchor="middle" font-family="Arial" font-size="9" fill="#f57f17">Fixture 2</text>
+  <text x="280" y="73" text-anchor="middle" font-family="Arial" font-size="9" fill="#f57f17">flackert!</text>
+  <!-- Cable 3 OK -->
+  <line x1="315" y1="65" x2="360" y2="65" stroke="#555" stroke-width="2" marker-end="url(#arr13)"/>
+  <!-- Fixture 3 -->
+  <rect x="360" y="40" width="70" height="50" rx="5" fill="#fff3e0" stroke="#c62828" stroke-width="2"/>
+  <text x="395" y="60" text-anchor="middle" font-family="Arial" font-size="9" fill="#c62828">Fixture 3</text>
+  <text x="395" y="73" text-anchor="middle" font-family="Arial" font-size="9" fill="#c62828">keine Funktion</text>
+  <!-- Fehlender Terminator -->
+  <text x="445" y="55" font-family="Arial" font-size="9" fill="#c62828">! kein</text>
+  <text x="445" y="67" font-family="Arial" font-size="9" fill="#c62828">Terminator</text>
+  <!-- Warning symbols -->
+  <text x="222" y="110" text-anchor="middle" font-family="Arial" font-size="8" fill="#f57f17">⚠ Kabelfehler</text>
+  <text x="440" y="110" text-anchor="middle" font-family="Arial" font-size="8" fill="#c62828">⚠ Abschlussfehler</text>
+</svg>
+<p>Das <strong>Flackern</strong> von Fixture 2 deutet auf ein falsches Kabel hin: Es wurde ein [[1]] anstelle eines XLR-5-pol-Kabels verwendet. DMX-Kabel benötigen eine Impedanz von [[2]] Ohm. Das <strong>Ausfall</strong> von Fixture 3 entsteht durch den fehlenden [[3]] am Leitungsende. Dieser muss einen Widerstand von [[4]] Ohm haben. Für DMX-Verbindungen darf man <strong>kein</strong> normales [[5]] verwenden.</p>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>DMX-Fehlerquellen: XLR-<strong>3-pol</strong>-Kabel ist nicht normkonform (fehlt Pin 4+5). DMX-Kabel: <strong>120 Ω</strong> Impedanz. Letztes Gerät braucht <strong>Terminator</strong> (120-Ω-Widerstand). Audiokabel (z.B. normales XLR-Mikrofonkabel) hat nur 50–75 Ω und verursacht Reflexionen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Fehler korrekt analysiert!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Fehlerursachen stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Beachte: 5-pol, 120 Ω, Terminator am Ende.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <!-- Gruppe 1: falscher Kabeltyp -->
+  <selectoption><text>XLR 3-pol (Audiokabel)</text><group>1</group></selectoption>
+  <selectoption><text>Cinch-Kabel</text><group>1</group></selectoption>
+  <selectoption><text>Koaxialkabel 75 Ω</text><group>1</group></selectoption>
+  <!-- Gruppe 2: Impedanz DMX -->
+  <selectoption><text>120</text><group>2</group></selectoption>
+  <selectoption><text>75</text><group>2</group></selectoption>
+  <selectoption><text>50</text><group>2</group></selectoption>
+  <!-- Gruppe 3: fehlendes Bauteil -->
+  <selectoption><text>Terminator</text><group>3</group></selectoption>
+  <selectoption><text>Splitter</text><group>3</group></selectoption>
+  <selectoption><text>Verstärker</text><group>3</group></selectoption>
+  <!-- Gruppe 4: Terminatorwert -->
+  <selectoption><text>120</text><group>4</group></selectoption>
+  <selectoption><text>75</text><group>4</group></selectoption>
+  <selectoption><text>600</text><group>4</group></selectoption>
+  <!-- Gruppe 5: verbotener Kabeltyp -->
+  <selectoption><text>Audiomikrofonkabel (XLR 3-pol)</text><group>5</group></selectoption>
+  <selectoption><text>Cat6-Patchkabel</text><group>5</group></selectoption>
+  <selectoption><text>Optisches Kabel</text><group>5</group></selectoption>
+</question>
+
+<!-- ============================================================
+     Q14 – cloze – XLR 5-pol Pin-Belegung DMX (SVG)
+     ============================================================ -->
+<question type="cloze">
+  <name><text>Q14 XLR 5-pol DMX Pinbelegung</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Der XLR-5-pol-Stecker ist die normgerechte Buchse für DMX512. Ergänze die Pinbelegung:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" width="240" height="240">
+  <circle cx="120" cy="120" r="100" fill="#2d2d2d" stroke="#111" stroke-width="3"/>
+  <circle cx="120" cy="120" r="84" fill="#3e3e3e"/>
+  <rect x="106" y="18" width="28" height="16" rx="4" fill="#555"/>
+  <!-- Pin 1 (bottom center) -->
+  <circle cx="120" cy="175" r="12" fill="#e65100" stroke="#fff" stroke-width="2"/>
+  <text x="120" y="180" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#fff">1</text>
+  <!-- Pin 2 (upper left) -->
+  <circle cx="72" cy="90" r="12" fill="#1565c0" stroke="#fff" stroke-width="2"/>
+  <text x="72" y="95" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#fff">2</text>
+  <!-- Pin 3 (upper right) -->
+  <circle cx="168" cy="90" r="12" fill="#2e7d32" stroke="#fff" stroke-width="2"/>
+  <text x="168" y="95" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#fff">3</text>
+  <!-- Pin 4 (lower left) -->
+  <circle cx="80" cy="155" r="12" fill="#7b1fa2" stroke="#fff" stroke-width="2"/>
+  <text x="80" y="160" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#fff">4</text>
+  <!-- Pin 5 (lower right) -->
+  <circle cx="160" cy="155" r="12" fill="#7b1fa2" stroke="#fff" stroke-width="2"/>
+  <text x="160" y="160" text-anchor="middle" font-family="Arial" font-size="12" font-weight="bold" fill="#fff">5</text>
+  <text x="120" y="225" text-anchor="middle" font-family="Arial" font-size="10" fill="#777">XLR 5-pol – Frontansicht</text>
+</svg>
+<table style="border-collapse:collapse;margin-top:10px;">
+<tr style="background:#e3f2fd;">
+  <th style="padding:5px 12px;border:1px solid #90caf9;">Pin</th>
+  <th style="padding:5px 12px;border:1px solid #90caf9;">Funktion</th>
+</tr>
+<tr>
+  <td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">1</td>
+  <td style="padding:4px 12px;border:1px solid #ccc;">{1:MULTICHOICE:=Masse / GND~Daten (+)~Daten (−)~Reserve}</td>
+</tr>
+<tr>
+  <td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">2</td>
+  <td style="padding:4px 12px;border:1px solid #ccc;">{1:MULTICHOICE:=Daten (−)~Masse / GND~Daten (+)~Reserve}</td>
+</tr>
+<tr>
+  <td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">3</td>
+  <td style="padding:4px 12px;border:1px solid #ccc;">{1:MULTICHOICE:=Daten (+)~Masse / GND~Daten (−)~Reserve}</td>
+</tr>
+<tr>
+  <td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">4</td>
+  <td style="padding:4px 12px;border:1px solid #ccc;">{1:MULTICHOICE:=Reserve / RDM~Masse / GND~Daten (−)~Daten (+)}</td>
+</tr>
+<tr>
+  <td style="padding:4px 12px;border:1px solid #ccc;text-align:center;">5</td>
+  <td style="padding:4px 12px;border:1px solid #ccc;">{1:MULTICHOICE:=Reserve / RDM~Masse / GND~Daten (+)~Daten (−)}</td>
+</tr>
+</table>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>XLR-5-pol DMX512: <strong>Pin 1</strong> = Masse/GND, <strong>Pin 2</strong> = Daten (−), <strong>Pin 3</strong> = Daten (+), <strong>Pin 4</strong> = Reserve (auch für RDM genutzt), <strong>Pin 5</strong> = Reserve (auch für RDM). Merke: Im XLR-3-pol-Kabel fehlen Pin 4 und 5 – daher nicht normkonform für DMX.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+</question>
+
+<!-- ============================================================
+     Q15 – ddmatch – Stecker → Impedanz / Leitungsstandard
+     ============================================================ -->
+<question type="ddmatch">
+  <name><text>Q15 Steckverbinder Impedanz Leitungsstandard</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordne jedem Steckverbinder seinen normierten Impedanzwert bzw. Leitungsstandard zu. Ein Distractor passt nicht.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>BNC = <strong>75 Ω</strong> (Videokoaxial, SDI). XLR-Kabel für DMX = <strong>120 Ω</strong> (RS-485, differenziell). XLR-Kabel für AES/EBU-Digital-Audio = <strong>110 Ω</strong> (symmetrisch differenziell). Klinke TRS Audio = keine Normimpedanz (niederohmig, je nach Gerät). RJ45 CAT-Kabel = <strong>100 Ω</strong> (UTP/STP, Ethernet).</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>5</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Impedanzen korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Impedanzen stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. BNC=75Ω, DMX=120Ω, AES/EBU=110Ω, RJ45=100Ω.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <subquestion format="html">
+    <text><![CDATA[<p>BNC (SDI-Video)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>75 Ω (Koaxialkabel, Video)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>XLR 5-pol (DMX512-Kabel)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>120 Ω (RS-485-Leitungsabschluss)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>XLR 3-pol (AES/EBU Digital-Audio)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>110 Ω (symmetrisch differenziell)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>RJ45 (Ethernet CAT6)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>100 Ω (UTP/STP Twisted Pair)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>XLR 3-pol (normales Audiokabel)</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>Keine Normimedanz (50–75 Ω, ungeeignet für DMX)</p>]]></text></answer>
+  </subquestion>
+  <!-- Distractor -->
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>50 Ω (HF-Koaxialkabel, Antennentechnik)</p>]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- ============================================================
+     Q16 – ddwtos – RJ45 Protokolle in der VT (SVG)
+     ============================================================ -->
+<question type="ddwtos">
+  <name><text>Q16 RJ45 Protokolle Veranstaltungstechnik</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>RJ45 / EtherCon ist der universelle Netzwerkstecker der Veranstaltungstechnik. Ordne den Anwendungsfällen das richtige Protokoll zu:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 190" width="480" height="190">
+  <defs>
+    <marker id="arr16" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <!-- Central Switch -->
+  <rect x="185" y="75" width="110" height="40" rx="6" fill="#37474f" stroke="#263238" stroke-width="2"/>
+  <text x="240" y="93" text-anchor="middle" font-family="Arial" font-size="11" font-weight="bold" fill="#fff">Managed</text>
+  <text x="240" y="107" text-anchor="middle" font-family="Arial" font-size="11" fill="#fff">Switch</text>
+  <!-- Dante Audio Device -->
+  <rect x="10" y="10" width="120" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="70" y="28" text-anchor="middle" font-family="Arial" font-size="10" fill="#1565c0">Audio-Interface</text>
+  <text x="70" y="42" text-anchor="middle" font-family="Arial" font-size="10" fill="#1565c0">↔ Stagebox</text>
+  <line x1="130" y1="30" x2="185" y2="90" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arr16)"/>
+  <text x="148" y="55" font-family="Arial" font-size="9" fill="#1565c0">[[1]]</text>
+  <!-- ArtNet Device -->
+  <rect x="10" y="140" width="120" height="40" rx="5" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="70" y="157" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">Lichtpult / Node</text>
+  <text x="70" y="170" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">↔ Dimmer</text>
+  <line x1="130" y1="160" x2="185" y2="110" stroke="#7b1fa2" stroke-width="1.5" marker-end="url(#arr16)"/>
+  <text x="140" y="148" font-family="Arial" font-size="9" fill="#7b1fa2">[[2]]</text>
+  <!-- NDI Camera -->
+  <rect x="350" y="10" width="120" height="40" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="410" y="28" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">IP-Kamera</text>
+  <text x="410" y="42" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">↔ Videomischer</text>
+  <line x1="350" y1="30" x2="295" y2="90" stroke="#2e7d32" stroke-width="1.5" marker-end="url(#arr16)"/>
+  <text x="330" y="55" font-family="Arial" font-size="9" fill="#2e7d32">[[3]]</text>
+  <!-- PoE Device -->
+  <rect x="350" y="140" width="120" height="40" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="410" y="157" text-anchor="middle" font-family="Arial" font-size="10" fill="#e65100">WLAN-AP</text>
+  <text x="410" y="170" text-anchor="middle" font-family="Arial" font-size="10" fill="#e65100">(ohne Netzteil)</text>
+  <line x1="350" y1="160" x2="295" y2="110" stroke="#e65100" stroke-width="1.5" marker-end="url(#arr16)"/>
+  <text x="330" y="148" font-family="Arial" font-size="9" fill="#e65100">[[4]]</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Über RJ45 laufen in der VT: <strong>Dante</strong> (digitales Audio, Layer-3-IP), <strong>ArtNet</strong> (DMX über Ethernet, Lichtsteuerung), <strong>NDI</strong> (Network Device Interface, IP-Video), <strong>PoE</strong> (Power over Ethernet, Stromversorgung über RJ45). Alle über denselben Switch – VLANs und QoS trennen die Protokolle.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Protokolle korrekt zugeordnet!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Protokolle stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. Dante=Audio, ArtNet=Licht, NDI=Video, PoE=Strom.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <dragbox><text>Dante (IP-Audio)</text><group>1</group></dragbox>
+  <dragbox><text>ArtNet (Licht)</text><group>1</group></dragbox>
+  <dragbox><text>NDI (Video)</text><group>1</group></dragbox>
+  <dragbox><text>ArtNet (Licht-DMX über Ethernet)</text><group>2</group></dragbox>
+  <dragbox><text>Dante (IP-Audio)</text><group>2</group></dragbox>
+  <dragbox><text>PoE (Strom)</text><group>2</group></dragbox>
+  <dragbox><text>NDI (IP-Video)</text><group>3</group></dragbox>
+  <dragbox><text>ArtNet (Licht)</text><group>3</group></dragbox>
+  <dragbox><text>Dante (Audio)</text><group>3</group></dragbox>
+  <dragbox><text>PoE (Power over Ethernet)</text><group>4</group></dragbox>
+  <dragbox><text>NDI (Video)</text><group>4</group></dragbox>
+  <dragbox><text>Dante (Audio)</text><group>4</group></dragbox>
+</question>
+
+<!-- ============================================================
+     Q17 – ordering – Signalkette Mikrofon → Lautsprecher (SVG)
+     ============================================================ -->
+<question type="ordering">
+  <name><text>Q17 Signalkette Mikrofon Lautsprecher Reihenfolge</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Bringe die Stationen einer typischen Dante-basierten Konzertsignalkette in die richtige Reihenfolge (Quelle → Ausgang):</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 80" width="500" height="80">
+  <defs>
+    <marker id="arr17" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#1565c0"/>
+    </marker>
+  </defs>
+  <text x="250" y="15" text-anchor="middle" font-family="Arial" font-size="10" fill="#555">Beispiel-Signalweg (vereinfacht):</text>
+  <!-- Steps -->
+  <rect x="5" y="25" width="65" height="30" rx="4" fill="#e3f2fd" stroke="#1565c0" stroke-width="1.5"/>
+  <text x="38" y="44" text-anchor="middle" font-family="Arial" font-size="8" fill="#1565c0">Mikrofon</text>
+  <line x1="70" y1="40" x2="90" y2="40" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <rect x="90" y="25" width="70" height="30" rx="4" fill="#e8eaf6" stroke="#3949ab" stroke-width="1.5"/>
+  <text x="125" y="44" text-anchor="middle" font-family="Arial" font-size="8" fill="#3949ab">Stagebox</text>
+  <line x1="160" y1="40" x2="180" y2="40" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <rect x="180" y="25" width="70" height="30" rx="4" fill="#e8f5e9" stroke="#2e7d32" stroke-width="1.5"/>
+  <text x="215" y="38" text-anchor="middle" font-family="Arial" font-size="7" fill="#2e7d32">Dante</text>
+  <text x="215" y="50" text-anchor="middle" font-family="Arial" font-size="7" fill="#2e7d32">Netzwerk</text>
+  <line x1="250" y1="40" x2="270" y2="40" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <rect x="270" y="25" width="65" height="30" rx="4" fill="#fff3e0" stroke="#e65100" stroke-width="1.5"/>
+  <text x="303" y="38" text-anchor="middle" font-family="Arial" font-size="7" fill="#e65100">FOH-Pult</text>
+  <text x="303" y="50" text-anchor="middle" font-family="Arial" font-size="7" fill="#e65100">(Mischung)</text>
+  <line x1="335" y1="40" x2="355" y2="40" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <rect x="355" y="25" width="65" height="30" rx="4" fill="#fce4ec" stroke="#c62828" stroke-width="1.5"/>
+  <text x="388" y="38" text-anchor="middle" font-family="Arial" font-size="7" fill="#c62828">Endstufe</text>
+  <text x="388" y="50" text-anchor="middle" font-family="Arial" font-size="7" fill="#c62828">(Verstärk.)</text>
+  <line x1="420" y1="40" x2="440" y2="40" stroke="#1565c0" stroke-width="1.5" marker-end="url(#arr17)"/>
+  <rect x="440" y="25" width="55" height="30" rx="4" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="1.5"/>
+  <text x="468" y="44" text-anchor="middle" font-family="Arial" font-size="7" fill="#7b1fa2">Lautspr.</text>
+</svg>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Korrekte Reihenfolge: <strong>Mikrofon</strong> → <strong>Stagebox</strong> (A/D-Wandlung) → <strong>Dante-Netzwerk</strong> (IP-Transport) → <strong>FOH-Pult</strong> (Mischung/EQ) → <strong>Endstufe</strong> (Leistungsverstärkung) → <strong>Lautsprecher</strong>. Die Stagebox digitalisiert das Mikrofonsignal direkt auf der Bühne und sendet es per Dante ans FOH.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>6</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>1</shuffleanswers>
+  <layouttype>0</layouttype>
+  <selecttype>0</selecttype>
+  <selectcount>0</selectcount>
+  <gradingtype>1</gradingtype>
+  <showgrading>1</showgrading>
+  <answer fraction="1" format="html">
+    <text><![CDATA[<p>Mikrofon (Schallwandlung, XLR 3-pol)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="2" format="html">
+    <text><![CDATA[<p>Stagebox / Digitale Snake (A/D-Wandlung auf der Bühne)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="3" format="html">
+    <text><![CDATA[<p>Dante-Netzwerk (IP-Audiotransport via RJ45 / CAT6)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="4" format="html">
+    <text><![CDATA[<p>FOH-Mischpult (Mischung, EQ, Dynamik, Routing)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="5" format="html">
+    <text><![CDATA[<p>Endstufe / Leistungsverstärker (Speakon NL4)</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <answer fraction="6" format="html">
+    <text><![CDATA[<p>Lautsprecher / PA-System</p>]]></text>
+    <feedback format="html"><text></text></feedback>
+    <md5key></md5key>
+  </answer>
+  <correctfeedback format="html"><text>Signalkette vollständig korrekt!</text></correctfeedback>
+  <shownumcorrect/>
+</question>
+
+<!-- ============================================================
+     Q18 – gapselect – USB-C Betriebsmodi (SVG)
+     ============================================================ -->
+<question type="gapselect">
+  <name><text>Q18 USB-C Betriebsmodi AV-Faehigkeit</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>USB-C kann mehrere Protokolle über denselben Stecker übertragen. Wähle den richtigen Betriebsmodus:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 440 140" width="440" height="140">
+  <!-- USB-C connector shape -->
+  <rect x="10" y="45" width="80" height="50" rx="8" fill="#37474f" stroke="#263238" stroke-width="2"/>
+  <rect x="18" y="55" width="64" height="30" rx="4" fill="#546e7a"/>
+  <text x="50" y="74" text-anchor="middle" font-family="Arial" font-size="10" fill="#ecf0f1">USB-C</text>
+  <!-- Arrows to protocol boxes -->
+  <line x1="90" y1="58" x2="130" y2="30" stroke="#1565c0" stroke-width="1.5"/>
+  <line x1="90" y1="70" x2="130" y2="70" stroke="#2e7d32" stroke-width="1.5"/>
+  <line x1="90" y1="82" x2="130" y2="110" stroke="#e65100" stroke-width="1.5"/>
+  <!-- TB3/4 box -->
+  <rect x="130" y="12" width="145" height="36" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="203" y="28" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#1565c0">Thunderbolt 3 / 4</text>
+  <text x="203" y="40" text-anchor="middle" font-family="Arial" font-size="9" fill="#1565c0">40 Gbit/s – AV + PCIe</text>
+  <!-- DP Alt Mode box -->
+  <rect x="130" y="52" width="145" height="36" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="203" y="68" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#2e7d32">DisplayPort Alt Mode</text>
+  <text x="203" y="80" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">32,4 Gbit/s – nur Video</text>
+  <!-- PD box -->
+  <rect x="130" y="92" width="145" height="36" rx="5" fill="#fff3e0" stroke="#e65100" stroke-width="2"/>
+  <text x="203" y="108" text-anchor="middle" font-family="Arial" font-size="9" font-weight="bold" fill="#e65100">USB Power Delivery (PD)</text>
+  <text x="203" y="120" text-anchor="middle" font-family="Arial" font-size="9" fill="#e65100">100 W – nur Strom, kein AV</text>
+  <!-- AV label -->
+  <text x="295" y="28" font-family="Arial" font-size="9" fill="#1565c0">✓ Video + Audio</text>
+  <text x="295" y="68" font-family="Arial" font-size="9" fill="#2e7d32">✓ Video (kein Audio)</text>
+  <text x="295" y="108" font-family="Arial" font-size="9" fill="#e65100">✗ kein AV-Signal</text>
+</svg>
+<p>Ein Laptop-Bildschirm per USB-C ansteuern: [[1]] ermöglicht das Ausgeben von Videosignalen. Für zusätzliche PCIe-Bandbreite und Audio wird [[2]] benötigt. Wenn ein USB-C-Kabel nur Strom liefert (z.B. für einen Akku), arbeitet es im [[3]]-Modus. Die maximale Ladeleistung dabei beträgt [[4]] Watt.</p>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>USB-C-Modi: <strong>DisplayPort Alt Mode</strong> = Video (32,4 Gbit/s). <strong>Thunderbolt 3/4</strong> = Video + Audio + PCIe (40 Gbit/s). <strong>USB Power Delivery (PD)</strong> = nur Strom, kein AV-Signal, max. 100 W. Für Live-Events: TB3/4-Kabel (Thunderbolt-Logo prüfen!) für Laptop → Videomischer, max. 2 m passiv.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle USB-C-Modi korrekt!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Modi stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. DP Alt Mode=Video, TB3/4=AV+PCIe, PD=Strom.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <!-- Gruppe 1: Video-Ausgabe -->
+  <selectoption><text>DisplayPort Alt Mode</text><group>1</group></selectoption>
+  <selectoption><text>USB Power Delivery</text><group>1</group></selectoption>
+  <selectoption><text>USB 3.2 Gen 2</text><group>1</group></selectoption>
+  <!-- Gruppe 2: AV + PCIe -->
+  <selectoption><text>Thunderbolt 3 / 4</text><group>2</group></selectoption>
+  <selectoption><text>DisplayPort Alt Mode</text><group>2</group></selectoption>
+  <selectoption><text>USB Power Delivery</text><group>2</group></selectoption>
+  <!-- Gruppe 3: nur Strom -->
+  <selectoption><text>USB Power Delivery (PD)</text><group>3</group></selectoption>
+  <selectoption><text>Thunderbolt 4</text><group>3</group></selectoption>
+  <selectoption><text>DisplayPort Alt Mode</text><group>3</group></selectoption>
+  <!-- Gruppe 4: max. Ladeleistung -->
+  <selectoption><text>100</text><group>4</group></selectoption>
+  <selectoption><text>60</text><group>4</group></selectoption>
+  <selectoption><text>240</text><group>4</group></selectoption>
+</question>
+
+<!-- ============================================================
+     Q19 – ddmatch – Kabelkategorien → Max. Bandbreite / Reichweite
+     ============================================================ -->
+<question type="ddmatch">
+  <name><text>Q19 Kabelkategorien Bandbreite Reichweite</text></name>
+  <questiontext format="html">
+    <text><![CDATA[<p>Ordne jeder Ethernet-Kabelkategorie die maximale Übertragungsgeschwindigkeit und typische Reichweite zu. Ein Distractor passt nicht.</p>]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>CAT5e: <strong>1 Gbit/s</strong> bis 100 m. CAT6: <strong>1 Gbit/s</strong> (100 m) bzw. 10 Gbit/s nur bis 55 m. CAT6A: <strong>10 Gbit/s</strong> bis 100 m (dicker Kabelmantel). CAT7: <strong>10 Gbit/s</strong> bis 100 m, vollständig geschirmt (S/FTP). In der VT wird CAT6 oder CAT6A für Dante, ArtNet und NDI empfohlen.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+  <shuffleanswers>true</shuffleanswers>
+  <correctfeedback format="html"><text>Alle Kategorien korrekt zugeordnet!</text></correctfeedback>
+  <partiallycorrectfeedback format="html"><text>Nicht alle Kategorien stimmen.</text></partiallycorrectfeedback>
+  <incorrectfeedback format="html"><text>Leider falsch. CAT5e=1G, CAT6=1G/100m (10G@55m), CAT6A=10G/100m.</text></incorrectfeedback>
+  <shownumcorrect/>
+  <subquestion format="html">
+    <text><![CDATA[<p>CAT5e</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>1 Gbit/s bis 100 m</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>CAT6</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>1 Gbit/s bis 100 m; 10 Gbit/s nur bis 55 m</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>CAT6A</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>10 Gbit/s bis 100 m (Augmented)</p>]]></text></answer>
+  </subquestion>
+  <subquestion format="html">
+    <text><![CDATA[<p>CAT7</p>]]></text>
+    <answer format="html"><text><![CDATA[<p>10 Gbit/s bis 100 m, vollständig geschirmt (S/FTP)</p>]]></text></answer>
+  </subquestion>
+  <!-- Distractor -->
+  <subquestion format="html">
+    <text><![CDATA[<p></p>]]></text>
+    <answer format="html"><text><![CDATA[<p>100 Gbit/s bis 100 m (CAT8, Rechenzentrum)</p>]]></text></answer>
+  </subquestion>
+</question>
+
+<!-- ============================================================
+     Q20 – cloze – Fehleranalyse Brummen (Erdschleife) (SVG)
+     ============================================================ -->
+<question type="cloze">
+  <name><text>Q20 Fehleranalyse Brummen Erdschleife</text></name>
+  <questiontext format="html">
+    <text><![CDATA[
+<p>Auf einer Veranstaltung meldet der Tontechniker ein dauerhaftes Brummen im Mischpult. Analysiere das Problem:</p>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 140" width="480" height="140">
+  <defs>
+    <marker id="arr20" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto">
+      <path d="M0,0 L0,6 L7,3 z" fill="#555"/>
+    </marker>
+  </defs>
+  <!-- Kamera -->
+  <rect x="10" y="50" width="80" height="40" rx="5" fill="#e3f2fd" stroke="#1565c0" stroke-width="2"/>
+  <text x="50" y="70" text-anchor="middle" font-family="Arial" font-size="10" fill="#1565c0">Videokamera</text>
+  <text x="50" y="83" text-anchor="middle" font-family="Arial" font-size="9" fill="#1565c0">(Klinke TS out)</text>
+  <!-- Langes Klinke-TS Kabel -->
+  <line x1="90" y1="70" x2="280" y2="70" stroke="#f57f17" stroke-width="3"/>
+  <text x="185" y="58" text-anchor="middle" font-family="Arial" font-size="9" fill="#f57f17">Klinke TS 6,3 mm – ca. 20 m</text>
+  <!-- Brummen-Symbol -->
+  <text x="185" y="95" text-anchor="middle" font-family="Arial" font-size="18" fill="#c62828">&#x7e;&#x7e;&#x7e;</text>
+  <text x="185" y="112" text-anchor="middle" font-family="Arial" font-size="8" fill="#c62828">Erdschleife / Brummen 50 Hz</text>
+  <!-- Steckdosenkreis -->
+  <ellipse cx="185" cy="128" rx="60" ry="8" fill="none" stroke="#f57f17" stroke-width="1.5" stroke-dasharray="4,3"/>
+  <text x="185" y="132" text-anchor="middle" font-family="Arial" font-size="7" fill="#f57f17">unterschiedliche Schutzerde</text>
+  <!-- Mixer -->
+  <rect x="280" y="50" width="80" height="40" rx="5" fill="#e8f5e9" stroke="#2e7d32" stroke-width="2"/>
+  <text x="320" y="70" text-anchor="middle" font-family="Arial" font-size="10" fill="#2e7d32">Mischpult</text>
+  <text x="320" y="83" text-anchor="middle" font-family="Arial" font-size="9" fill="#2e7d32">(Klinke TS in)</text>
+  <!-- PA -->
+  <rect x="390" y="55" width="80" height="30" rx="5" fill="#f3e5f5" stroke="#7b1fa2" stroke-width="2"/>
+  <text x="430" y="73" text-anchor="middle" font-family="Arial" font-size="10" fill="#7b1fa2">PA-System</text>
+  <line x1="360" y1="70" x2="390" y2="70" stroke="#555" stroke-width="1.5" marker-end="url(#arr20)"/>
+</svg>
+<p><strong>Situation:</strong> Videokamera (Klinke-TS-Ausgang) → 20-m-Kabel → Mischpult-Eingang. Beide Geräte hängen an unterschiedlichen Steckdosen.</p>
+<ol>
+<li>Die Ursache des Brummens ist eine <strong>{1:MULTICHOICE:=Erdschleife (Ground Loop)~Phasenumkehr~Überlastung der Endstufe~Impedanzfehlanpassung}</strong>.</li>
+<li>Das Problem entsteht, weil der Klinke-TS-Stecker das Signal <strong>{1:MULTICHOICE:=unsymmetrisch überträgt~symmetrisch überträgt~galvanisch trennt~aktiv verstärkt}</strong>.</li>
+<li>Die einfachste professionelle Lösung ist der Einsatz einer <strong>{1:MULTICHOICE:=DI-Box (Direct Injection)~längeren Kabeltrommels~zweiten Steckdose~Endstufe mit Brückenschaltung}</strong>.</li>
+<li>Alternativ wäre ein Wechsel zu einem Kabel mit <strong>{1:MULTICHOICE:=XLR 3-pol (symmetrisch)~Cinch (unsymmetrisch)~Klinke TS (länger)~Speakon NL2}</strong> die normgerechte Lösung.</li>
+</ol>
+    ]]></text>
+  </questiontext>
+  <generalfeedback format="html">
+    <text><![CDATA[<p>Das Brummen entsteht durch eine <strong>Erdschleife</strong>: Kamera und Mischpult sind über den Schutzleiter (PE) verbunden, haben aber leicht unterschiedliche Erdpotenziale. Die unsymmetrische TS-Verbindung kann diese Potenzialunterschiede nicht unterdrücken – es entsteht ein 50-Hz-Brummen. Lösung: <strong>DI-Box</strong> (galvanische Trennung + Symmetrierung) oder Umstieg auf symmetrische XLR-3-pol-Verbindung.</p>]]></text>
+  </generalfeedback>
+  <defaultgrade>4</defaultgrade>
+  <penalty>0.3333333</penalty>
+  <hidden>0</hidden>
+</question>
+
+</quiz>
