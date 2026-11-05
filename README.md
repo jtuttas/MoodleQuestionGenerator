@@ -46,7 +46,10 @@ Dieser Abschnitt dient nur als knappe Übersicht und kann bei neuen Generierunge
 | `quiz_klassendiagramm_tierheim_komposition_20260316.xml` | UML-Komposition, Aggregation, Assoziation | FOS/BOS Informatik / OOP | 1 | ddwtos |
 | `quiz_vlsm_systemintegration_20260316.xml` | VLSM-Netzplanung | FI Systemintegration | 3 | multichoice, ddwtos, cloze |
 | `quiz_vlsm_systemintegration_weiterfuehrend_20260316.xml` | VLSM-Netzplanung weiterführend | FI Systemintegration | 3 | ddmatch, ddwtos, ordering |
-| `quiz_proxmox_ve_fisi_20260305.xml` | Proxmox VE (KVM/LXC, Storage, Cluster, IaC) | FI Systemintegration, 3. Lehrjahr | 15 | ddmatch, ddwtos, multichoice, cloze |
+| `quiz_proxmox_ve_fisi_20260305.xml` | Proxmox VE (KVM/LXC, Storage, Cluster, IaC) | FI Systemintegration, 3. Lehrjahr | 15 | matching, ddwtos, multichoice, cloze |
+| `quiz_proxmox_ve_fisi_moodle_export_20260305.xml` | Proxmox VE, dieselben 15 Fragen als Moodle-Export (mit Kategorie „FI - LF10 - Proxmox“) | FI Systemintegration, 3. Lehrjahr | 15 | matching, ddwtos, multichoice, cloze |
+
+Papierfassung zum Proxmox-Quiz: `FI-LF10-PV-Proxmox.tex` (LaTeX-`exam`, mit Lösungen; braucht `includes/preamble.tex`, das nicht im Repo liegt).
 
 ## Nutzung
 Für eine neue Generierung sind typischerweise diese Angaben nötig:
